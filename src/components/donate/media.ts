@@ -1,0 +1,4 @@
+export const DONATE_IMG = {
+  hero:
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuDeGBmBtKqzF9NjthsoFPizcZHKRZQqbUnb0Nl9m6lYPoPO-fqhMj-x__bCjl04C5SBEvlUN4iB8U9jssUEI0VCclePO4motVwhYrd0NxRXuWJHCAowEM4srSWYxvq36aVtMm266AW6naDSYkDc0oTEVoZZk41ovD6WBwj2-GhtB71VXb_gAINDTOjIdaWFJgkencK34HZ0L72Y1EiGpxwNhbWvWkXM_xEofSlnlF_iPM2sWw7TaGD4podi0QAAouppTRhKWRI0IYA",
+} as const;

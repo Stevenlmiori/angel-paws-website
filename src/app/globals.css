@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fdf8f9;
+  --foreground: #1b1b1f;
+}
+
+@theme inline {
+  /* AngelPaws Serif — see DESIGN.md (tokens + usage) */
+  --color-primary: #4784f2;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #d7e2ff;
+  --color-on-primary-container: #001a40;
+  --color-secondary: #565e71;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #dae2f9;
+  --color-on-secondary-container: #131c2c;
+  /* Tertiary: warm gold accent (theme panel), not purple */
+  --color-tertiary: #8a6914;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #f8ecc8;
+  --color-on-tertiary-container: #3a3000;
+  --color-background: #fdf8f9;
+  --color-on-background: #1b1b1f;
+  --color-surface: #fdf8f9;
+  --color-on-surface: #1b1b1f;
+  --color-surface-variant: #e1e2ec;
+  --color-on-surface-variant: #44474f;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f7f3f2;
+  --color-surface-container: #f1edec;
+  --color-surface-container-high: #ebe7e6;
+  --color-surface-container-highest: #e5e2e1;
+
+  /* Legacy aliases used across earlier components */
+  --color-on-surface-muted: #44474f;
+
+  /* Typography */
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-noto-serif), ui-serif, Georgia, "Times New Roman",
+    serif;
+
+  --radius-editorial-sm: 0.5rem;
+  --radius-editorial-md: 0.75rem;
+  --radius-editorial-lg: 1rem;
+
+  --shadow-soft: 0 12px 32px rgba(26, 28, 28, 0.06);
+
+  --color-foreground: var(--foreground);
+}
+
+@layer base {
+  html {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-on-background font-sans text-base leading-relaxed tracking-[0.01em];
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif text-on-background tracking-tight;
+  }
+}

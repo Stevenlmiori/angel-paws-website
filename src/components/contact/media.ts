@@ -1,0 +1,6 @@
+export const CONTACT_IMG = {
+  hero:
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuDOtAvjVisel6wvxMaHqKWArL5LSzv1Li0zvsxdEIRrja77Cg5L0rjcXrklKVatpLI6mFsl6KszqzojjL2u7JguBl85Aj-C0E9yVYSCRVzXryc-ZtZ0m2AQsyx2aAvfJ6WnIn-C-sjOiMSun2blGW5TQq-ubSoqzsoVGoM5stNMSx-Aff7Fj5zsYF2AES0Owz9awSBhIO-K4QTWGAu7DjaN-XMrykD0ouLTk52jW2w1J106jOsK1MRm0YmD9tZLQbdVYIoSUQI_2bc",
+  map:
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuAWcTjfudcdsO4sccqb7pE35AybZoCGgvTBZAkNb6_EEK833PsECQCEuHSwr6sO4YmLpZrc2_Plob52_Rg8fcrwtX49RlhMljvkMGtz0aRUP3z2nKSVUdNFhDYEtDfs1gMMDIDlECfG1tAKrkDaSKuTL9jS0MR0nfvE6oBbugWRsVIF991OTPLJyzbGQ9UdQ4nU2bZUfWtN6wbqY2ttQiIFqpL5-roPbgvd434ScxeCYfOvbKEUSi9n9rBJFsrMwTjlrcTtzAu3O4Q",
+} as const;
