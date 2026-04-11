@@ -42,12 +42,23 @@ export function MembershipPortalTeaser() {
             </li>
           ))}
         </ul>
-        <Link
-          href="/members/portal"
-          className="inline-flex rounded-full bg-primary px-8 py-4 text-sm font-bold uppercase tracking-widest text-on-primary transition-opacity hover:opacity-90"
-        >
-          Open member portal
-        </Link>
+        <div className="flex flex-wrap gap-4">
+          <Link
+            href="/members/portal"
+            className="rounded-full bg-primary px-8 py-4 text-sm font-bold uppercase tracking-widest text-on-primary transition-opacity hover:opacity-90"
+          >
+            Go to portal
+          </Link>
+          <a
+            href="https://drive.google.com/drive/folders/angel-paws-resources-placeholder"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-8 py-4 text-sm font-bold uppercase tracking-widest text-primary transition-colors hover:bg-primary/10"
+          >
+            <FileText className="size-4" />
+            Member Resources (Drive)
+          </a>
+        </div>
       </div>
     </section>
   );

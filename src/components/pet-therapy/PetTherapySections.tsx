@@ -3,18 +3,18 @@ import { Heart, Shield, Sparkles } from "lucide-react";
 const blocks = [
   {
     Icon: Heart,
-    title: "Why a dog?",
-    body: "Dogs read the room. A gentle visit can soften a hospital hallway, a classroom, or a quiet room at home—often before anyone says a word.",
+    title: "The Definition",
+    body: "Pet therapy, or Animal-Assisted Activities (AAA), involves a trained handler and their pet visiting people to provide comfort, distraction, and a sense of normalcy in environments like hospitals and schools.",
   },
   {
     Icon: Shield,
-    title: "Safety first",
-    body: "Therapy teams follow policies from the places we serve. Handlers watch their dog’s body language, pace, and rest—so every visit stays respectful and safe.",
+    title: "Our Policies",
+    body: "Safety is our priority. Every team is vaccinated, temperament-tested, and certified. We adhere to the policies of each facility, ensuring a professional and hygienic environment for all visits.",
   },
   {
     Icon: Sparkles,
-    title: "Faith at the center",
-    body: "Angel Paws serves as a ministry: we pray for people, love without agenda, and let a faithful dog carry some of the comfort Christ asks us to share.",
+    title: "Faith-Centered Comfort",
+    body: "As a ministry of Champion Forest, we believe a faithful dog carries the comfort Christ asks us to share. We love without agenda, offering prayer and presence wherever we are invited.",
   },
 ] as const;
 
@@ -38,11 +38,20 @@ export function PetTherapySections() {
             </div>
           ))}
         </div>
-        <p className="mx-auto mt-14 max-w-2xl text-center text-lg italic text-on-surface-variant">
-          Details of training and certification paths can grow here as Angel Paws
-          finalizes them—this page is meant to read like a conversation, not a
-          manual.
-        </p>
+        <div className="mt-20 border-t border-stone-200/60 pt-16">
+          <div className="mx-auto max-w-3xl">
+            <h3 className="mb-6 font-serif text-3xl text-on-surface">Policies & Procedures</h3>
+            <p className="mb-6 leading-relaxed text-on-surface-variant">
+              To ensure the highest quality of service, Angel Paws teams follow a strict set of protocols:
+            </p>
+            <ul className="list-disc space-y-4 pl-6 text-on-surface-variant">
+              <li><strong>Certification:</strong> All dogs must pass a temperament evaluation and basic obedience test.</li>
+              <li><strong>Health:</strong> Up-to-date vaccinations and wellness exams are required annually.</li>
+              <li><strong>Conduct:</strong> Handlers are trained in active listening and proper hospital etiquette.</li>
+              <li><strong>Frequency:</strong> Teams typically visit for 1-2 hours at a time to ensure the comfort and health of the animal.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   );

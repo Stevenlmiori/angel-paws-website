@@ -8,19 +8,24 @@ import { cn } from "@/lib/cn";
 import { ChevronDown, Menu, X } from "lucide-react";
 
 const aboutSubLinks = [
-  { href: "/about", label: "About Angel Paws" },
-  { href: "/what-is-pet-therapy", label: "Pet Therapy" },
+  { href: "/about", label: "Who We Are & Beliefs" },
+  { href: "/what-is-pet-therapy", label: "What is Pet Therapy?" },
+  { href: "/meet-the-board", label: "Meet our Board" },
   { href: "/where-we-serve", label: "Where We Serve" },
 ] as const;
 
 const navAfterAbout = [
   { href: "/get-involved", label: "Get Involved" },
-  { href: "/meet-the-board", label: "Meet the Board" },
   { href: "/members", label: "Members" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
-const ABOUT_PATHS = ["/about", "/what-is-pet-therapy", "/where-we-serve"] as const;
+const ABOUT_PATHS = [
+  "/about",
+  "/what-is-pet-therapy",
+  "/meet-the-board",
+  "/where-we-serve",
+] as const;
 
 function navLinkActive(href: string, pathname: string) {
   if (href === "/") return pathname === "/";

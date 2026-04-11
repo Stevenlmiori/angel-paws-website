@@ -8,23 +8,23 @@ const beliefs: {
 }[] = [
   {
     Icon: Sparkles,
-    title: "Divine Connection",
-    body: "We believe that God uses all of His creation to bring healing. The bond between humans and animals is a sacred gift that reflects unconditional love.",
+    title: "Kingdom Ministry",
+    body: "We believe our pets are a gift from God, uniquely designed to break down barriers and open hearts to the Gospel message.",
   },
   {
     Icon: HeartHandshake,
-    title: "Compassionate Service",
-    body: "Our call is to serve the marginalized, the hurting, and the lonely with humility, mirroring the servant heart of Christ in every visit.",
+    title: "Unconditional Love",
+    body: "Our therapy visits model the selfless, judging-free love that Christ offers to us, bringing peace to hospitals, schools, and homes.",
   },
   {
     Icon: Shield,
-    title: "Integrity & Honor",
-    body: "We honor the trust placed in us by hospitals, schools, and families by maintaining the highest standards of safety and professionalism.",
+    title: "Vetted Excellence",
+    body: "To honor God in our service, we maintain rigorous training and temperament standards, ensuring every visit is safe and professional.",
   },
   {
     Icon: Users,
-    title: "Unity in Diversity",
-    body: "We celebrate the diversity of our community, offering comfort to all people regardless of background, as we are all unified by our shared humanity.",
+    title: "Sharing Hope",
+    body: "We exist to be 'Kingdom Builders' in Northwest Houston, using the simple act of a wagging tail to start deep conversations about hope.",
   },
 ];
 
