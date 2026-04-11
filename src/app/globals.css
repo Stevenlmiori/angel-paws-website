@@ -70,4 +70,13 @@
   a {
     @apply transition-colors duration-200 ease-out;
   }
+
+}
+
+/* GSAP Reveal — facilitates "Stylish" scroll reveals without flash (FOUC) */
+.gsap-reveal {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(40px);
+  will-change: transform, opacity;
 }
