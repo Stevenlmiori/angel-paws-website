@@ -21,12 +21,12 @@ export function getTallyVisitFormId(): string | null {
   return id || null;
 }
 
-/** URL for Tally’s embed script (`data-tally-src` on iframe). */
+/** URL for Tally iframe embeds (`data-tally-src` on iframe). */
 export function tallyDataSrc(formId: string): string {
   const q = new URLSearchParams({
     alignLeft: "1",
     hideTitle: "0",
     transparentBackground: "1",
   });
-  return `https://tally.so/r/${encodeURIComponent(formId)}?${q.toString()}`;
+  return `https://tally.so/embed/${encodeURIComponent(formId)}?${q.toString()}`;
 }

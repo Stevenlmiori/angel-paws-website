@@ -58,19 +58,14 @@ export function TallyContactSection() {
     <div className="space-y-12">
       {contactId ? (
         <div>
-          <h3 className="mb-4 font-serif text-2xl text-on-surface">
-            Send a message
-          </h3>
-          <p className="mb-6 font-sans text-on-surface-variant">
-            Questions, introductions, or anything on your heart—we read every
-            note.
-          </p>
           <iframe
             data-tally-src={tallyDataSrc(contactId)}
+            data-tally-dynamic-height="true"
             width="100%"
-            height="0"
+            height="700"
             title="Contact Angel Paws"
-            className="min-h-[480px] w-full rounded-xl border-0 bg-transparent"
+            scrolling="no"
+            className="w-full overflow-hidden rounded-xl border-0 bg-transparent"
           />
         </div>
       ) : null}
@@ -85,16 +80,18 @@ export function TallyContactSection() {
           </p>
           <iframe
             data-tally-src={tallyDataSrc(visitId)}
+            data-tally-dynamic-height="true"
             width="100%"
-            height="0"
+            height="900"
             title="Request a therapy visit"
-            className="min-h-[560px] w-full rounded-xl border-0 bg-transparent"
+            scrolling="no"
+            className="w-full overflow-hidden rounded-xl border-0 bg-transparent"
           />
         </div>
       ) : null}
       <Script
         src="https://tally.so/widgets/embed.js"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
         onLoad={loadTallyEmbeds}
       />
     </div>
