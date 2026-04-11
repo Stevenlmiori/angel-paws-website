@@ -113,4 +113,16 @@ Not required for launch if copy changes are rare.
 
 ---
 
-*Last updated: Donorbox + Tally embeds wired; env vars documented in `.env.example`.*
+### Search indexing (pre-launch)
+
+Until you are ready for Google, **do not** set `NEXT_PUBLIC_SITE_INDEXABLE` in Vercel (or set it to anything other than exactly `true`). The site then serves:
+
+- `robots.txt` with `Disallow: /` for all crawlers
+- `<meta name="robots" content="noindex,nofollow">` (via root layout metadata)
+- `X-Robots-Tag: noindex, nofollow` on all responses (via `next.config.ts`)
+
+When you launch publicly, set **`NEXT_PUBLIC_SITE_INDEXABLE=true`** in Vercel, **redeploy**, then optionally request indexing in Google Search Console.
+
+---
+
+*Last updated: Donorbox + Tally embeds wired; env vars documented in `.env.example`; pre-launch indexing controls.*

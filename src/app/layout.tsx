@@ -17,6 +17,9 @@ const notoSerif = Noto_Serif({
   style: ["normal", "italic"],
 });
 
+/** Set `NEXT_PUBLIC_SITE_INDEXABLE=true` in Vercel when the site should appear in search. */
+const siteIndexable = process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true";
+
 export const metadata: Metadata = {
   title: {
     default: "Angel Paws Pet Therapy",
@@ -31,6 +34,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  robots: siteIndexable
+    ? { index: true, follow: true }
+    : {
+        index: false,
+        follow: false,
+        googleBot: { index: false, follow: false },
+      },
 };
 
 /** AngelPaws Serif — light-first; match DESIGN.md */

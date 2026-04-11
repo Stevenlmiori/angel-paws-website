@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const siteIndexable = process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true";
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -9,6 +11,15 @@ const nextConfig: NextConfig = {
         pathname: "/aida-public/**",
       },
     ],
+  },
+  async headers() {
+    if (siteIndexable) return [];
+    return [
+      {
+        source: "/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+    ];
   },
 };
 
