@@ -96,8 +96,8 @@ Seed / primary brand blue: **`#4784F2`**. Use semantic names in markup, not raw 
 
 Keep motion **sparse and editorial**: one primary idea (soft enter on scroll), fast enough to feel responsive, slow enough to read as intentional.
 
-- **Scroll reveal:** Section-level fade + slight upward move (`Reveal` in `src/components/ui/Reveal.tsx` — inline styles so motion survives Tailwind processing). Optional `delayMs` for a light stagger after the section triggers—do not chain long delays.
-- **Reduced motion:** When `prefers-reduced-motion: reduce`, `Reveal` skips motion styles so content stays fully visible.
+- **Scroll reveal:** Section-level fade + slight upward move via **`Element.animate()`** (Web Animations API) in `src/components/ui/Reveal.tsx`—this runs outside Tailwind/CSS layers so it reliably reaches the browser. Optional `delayMs` staggers the WAAPI timeline slightly; do not chain long delays.
+- **Reduced motion:** When `prefers-reduced-motion: reduce`, `Reveal` does not start an animation; content stays as authored.
 - **Micro-interaction:** Default link color transitions (`globals.css` base `a`) are enough for most hovers; reserve stronger motion for primary CTAs already styled in components.
 
 ---
