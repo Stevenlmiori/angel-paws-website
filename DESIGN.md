@@ -92,6 +92,16 @@ Seed / primary brand blue: **`#4784F2`**. Use semantic names in markup, not raw 
 
 ---
 
+## Motion
+
+Keep motion **sparse and editorial**: one primary idea (soft enter on scroll), fast enough to feel responsive, slow enough to read as intentional.
+
+- **Scroll reveal:** Section-level fade + slight upward move (`Reveal` in `src/components/ui/Reveal.tsx` — inline styles so motion survives Tailwind processing). Optional `delayMs` for a light stagger after the section triggers—do not chain long delays.
+- **Reduced motion:** When `prefers-reduced-motion: reduce`, `Reveal` skips motion styles so content stays fully visible.
+- **Micro-interaction:** Default link color transitions (`globals.css` base `a`) are enough for most hovers; reserve stronger motion for primary CTAs already styled in components.
+
+---
+
 ## Changelog (high level)
 
 - **AngelPaws Serif** codifies Kindred Sanctuary / Blue Edition panel: Noto Serif + Manrope, seed `#4784F2`, tertiary as **warm gold** (updated from legacy purple-tertiary).  

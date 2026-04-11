@@ -66,4 +66,8 @@
   h4 {
     @apply font-serif text-on-background tracking-tight;
   }
+
+  a {
+    @apply transition-colors duration-200 ease-out;
+  }
 }
