@@ -3,6 +3,12 @@
 Audience: **Miss Debbie** (primary operator) and future volunteers helping with content.  
 Technical owner during build: development partner; goal is a **simple routine** after go-live.
 
+### Git & deploy (nimble phase)
+
+Repo: **https://github.com/Stevenlmiori/angel-paws-website** — default branch **`main`**. Vercel deploys from **`main`**.
+
+While it’s just the build team and the site isn’t in real use yet: **commit and push to `main` when a change is approved** (no PR requirement). Revisit branch protection / reviews when collaborators join or you go fully public.
+
 ---
 
 ## 1. Route map (Debbie’s list → this site)
