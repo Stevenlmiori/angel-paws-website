@@ -48,8 +48,8 @@ Seed / primary brand blue: **`#4784F2`**. Use semantic names in markup, not raw 
 
 ## Layout & composition
 
-- **Whitespace:** Generous vertical rhythm between sections (`py-24`–`py-32`+). Avoid dense stacks.
-- **Max width:** Primary content `max-w-screen-2xl` (with horizontal padding) unless a narrow reading column is intentional.
+- **Whitespace:** Generous vertical rhythm- **Gutter:** Consistent `px-6` (mobile) to `px-12` (desktop) padding.
+- **Max width:** Primary content `max-w-screen-xl` (1280px) with horizontal padding unless a narrow reading column is intentional.
 - **Asymmetry:** Prefer offset grids and varied column weight over perfectly centered everything.
 - **Corners:** Editorial radii roughly **0.5rem–1.5rem**; hero and large media often **`rounded-[2.5rem]`–`rounded-[3rem]`** per comps.
 - **Elevation:** Default soft shadow token: **`shadow-soft`** (`0 12px 32px rgba(26,28,28,0.06)`). Use sparingly.

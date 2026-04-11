@@ -27,7 +27,7 @@ const blocks = [
 
 export function AboutStory() {
   return (
-    <section className="mx-auto max-w-screen-2xl px-6 py-24 sm:px-10 md:py-32 lg:px-12">
+    <section className="mx-auto max-w-screen-xl px-6 py-24 sm:px-10 md:py-32 lg:px-12">
       <div className="mb-16 text-center md:mb-20">
         <span className="mb-4 block text-sm font-bold uppercase tracking-[0.2em] text-primary">
           The Journey

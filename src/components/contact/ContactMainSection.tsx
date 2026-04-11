@@ -4,7 +4,7 @@ import { TallyContactSection } from "@/components/embeds/TallyContactSection";
 
 export function ContactMainSection() {
   return (
-    <section className="mx-auto mb-24 max-w-screen-2xl px-6 sm:px-10 md:mb-32 lg:px-12">
+    <section className="mx-auto mb-24 max-w-screen-xl px-6 sm:px-10 md:mb-32 lg:px-12">
       <div className="space-y-10">
         <div className="rounded-[3rem] bg-surface-container-low p-10 shadow-soft sm:p-12 lg:p-16">
           <h2 className="mb-6 font-serif text-4xl text-on-surface">

@@ -31,7 +31,7 @@ const beliefs: {
 export function AboutMissionBeliefs() {
   return (
     <section className="rounded-[2.5rem] bg-surface-container-low py-24 md:rounded-[3rem] md:py-32">
-      <div className="mx-auto max-w-screen-2xl px-6 sm:px-10 lg:px-12">
+      <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-12">
         <div className="flex flex-col gap-16 md:flex-row md:gap-20">
           <div className="md:w-1/3">
             <h2 className="mb-8 font-serif text-4xl text-on-surface md:text-5xl">

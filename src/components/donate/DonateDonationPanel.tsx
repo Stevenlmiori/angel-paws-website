@@ -5,7 +5,7 @@ export function DonateDonationPanel() {
   return (
     <section
       id="donate-panel"
-      className="mx-auto mb-24 max-w-screen-2xl px-6 sm:px-10 md:mb-32 lg:px-12"
+      className="mx-auto mb-24 max-w-screen-xl px-6 sm:px-10 md:mb-32 lg:px-12"
     >
       <div className="mx-auto max-w-2xl rounded-[3rem] bg-surface-container-highest p-8 shadow-soft sm:p-12 md:p-16">
         <div className="mb-10 text-center">

@@ -2,7 +2,7 @@ import { BookOpen } from "lucide-react";
 
 export function PetTherapyHero() {
   return (
-    <section className="mx-auto mb-20 max-w-screen-2xl px-6 sm:px-10 md:mb-28 lg:px-12">
+    <section className="mx-auto mb-20 max-w-screen-xl px-6 sm:px-10 md:mb-28 lg:px-12">
       <span className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-container px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-on-primary-container">
         <BookOpen className="size-4" strokeWidth={2} aria-hidden />
         What We Do

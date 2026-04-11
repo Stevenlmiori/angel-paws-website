@@ -3,7 +3,7 @@ import { BOARD_IMG } from "./media";
 
 export function MeetTheBoardImpact() {
   return (
-    <section className="mx-auto mt-24 max-w-screen-2xl px-6 pb-12 sm:px-10 md:mt-32 lg:px-12">
+    <section className="mx-auto mt-24 max-w-screen-xl px-6 pb-12 sm:px-10 md:mt-32 lg:px-12">
       <div className="relative grid grid-cols-1 items-center lg:grid-cols-12">
         <div className="z-10 lg:col-span-7 lg:-mr-20">
           <div className="rounded-[2.5rem] bg-surface-container-lowest p-10 shadow-soft lg:p-20">

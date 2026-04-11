@@ -4,7 +4,7 @@ import { ABOUT_IMG } from "@/components/about/media";
 /** Note: `page-3-Get-Involved.txt` in WebsiteBuild is a duplicate of Where We Serve; this page follows the “Become a Healing Presence” Blue Edition structure until dedicated HTML is available. */
 export function GetInvolvedHero() {
   return (
-    <section className="mx-auto mb-20 max-w-screen-2xl px-6 sm:px-10 md:mb-28 lg:px-12">
+    <section className="mx-auto mb-20 max-w-screen-xl px-6 sm:px-10 md:mb-28 lg:px-12">
       <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20">
         <div>
           <span className="mb-4 inline-block rounded-full bg-primary-container/40 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">

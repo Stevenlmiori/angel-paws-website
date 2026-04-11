@@ -21,7 +21,7 @@ const blocks = [
 export function PetTherapySections() {
   return (
     <section className="rounded-[2.5rem] bg-surface-container-low py-20 md:rounded-[3rem] md:py-28">
-      <div className="mx-auto max-w-screen-2xl px-6 sm:px-10 lg:px-12">
+      <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-12">
         <div className="grid gap-12 md:grid-cols-3 md:gap-10">
           {blocks.map(({ Icon, title, body }) => (
             <div

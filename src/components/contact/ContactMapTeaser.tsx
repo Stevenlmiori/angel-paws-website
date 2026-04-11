@@ -4,7 +4,7 @@ import { CONTACT_IMG } from "./media";
 
 export function ContactMapTeaser() {
   return (
-    <section className="mx-auto max-w-screen-2xl px-6 sm:px-10 lg:px-12">
+    <section className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-12">
       <div className="group relative h-[min(400px,55vh)] overflow-hidden rounded-[3rem] md:h-[400px] md:rounded-[4rem]">
         <Image
           src={CONTACT_IMG.map}

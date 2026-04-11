@@ -8,7 +8,7 @@ const linkClass =
 export function SiteFooter() {
   return (
     <footer className="mt-16 w-full overflow-hidden rounded-t-[2rem] bg-stone-100 text-stone-900">
-      <div className="mx-auto grid w-full max-w-screen-2xl grid-cols-1 gap-12 px-6 py-16 sm:px-10 md:grid-cols-2 md:gap-x-12 md:gap-y-14 md:py-20 lg:grid-cols-4 lg:gap-x-16 lg:px-12">
+      <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-12 px-6 py-16 sm:px-10 md:grid-cols-2 md:gap-x-12 md:gap-y-14 md:py-20 lg:grid-cols-4 lg:gap-x-16 lg:px-12">
         <div className="space-y-6 md:max-w-sm lg:pr-4">
           <div className="font-serif text-xl font-bold tracking-tight text-stone-900">
             Angel Paws
@@ -120,7 +120,7 @@ export function SiteFooter() {
       </div>
 
       <div className="bg-stone-200/40">
-        <div className="mx-auto max-w-screen-2xl px-6 py-10 text-center sm:px-10 lg:px-12">
+        <div className="mx-auto max-w-screen-xl px-6 py-10 text-center sm:px-10 lg:px-12">
           <p className="font-sans text-xs uppercase leading-relaxed tracking-[0.22em] text-stone-500">
             © {new Date().getFullYear()} Angel Paws Pet Therapy. A Digital
             Home for Healing and Hope.

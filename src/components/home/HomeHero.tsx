@@ -5,7 +5,7 @@ import { IMG } from "./media";
 export function HomeHero() {
   return (
     <section className="relative flex min-h-[85vh] items-center overflow-hidden px-6 py-12 sm:px-10 lg:min-h-[90vh] lg:px-12">
-      <div className="relative z-10 mx-auto grid w-full max-w-screen-2xl grid-cols-1 items-center gap-12 py-12 lg:grid-cols-12">
+      <div className="relative z-10 mx-auto grid w-full max-w-screen-xl grid-cols-1 items-center gap-12 py-12 lg:grid-cols-12">
         <div className="z-10 space-y-8 lg:col-span-6">
           <div className="inline-flex items-center gap-2 rounded-full bg-primary-container px-4 py-1.5 text-sm font-medium uppercase tracking-wide text-primary">
             <Heart

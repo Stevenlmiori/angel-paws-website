@@ -3,7 +3,7 @@ import { ABOUT_IMG } from "./media";
 
 export function AboutHero() {
   return (
-    <section className="mx-auto mb-24 max-w-screen-2xl px-6 sm:px-10 md:mb-32 lg:px-12">
+    <section className="mx-auto mb-24 max-w-screen-xl px-6 sm:px-10 md:mb-32 lg:px-12">
       <div className="relative grid grid-cols-1 items-center gap-12 md:grid-cols-12">
         <div className="z-10 md:col-span-6">
           <span className="mb-4 block text-sm font-bold uppercase tracking-[0.2em] text-primary">

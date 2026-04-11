@@ -27,7 +27,7 @@ function ImagePanel({ src, alt }: { src: string; alt: string }) {
 
 export function WhereWeServeAreas() {
   return (
-    <section className="mx-auto max-w-screen-2xl space-y-24 px-6 sm:px-10 lg:space-y-32 lg:px-12">
+    <section className="mx-auto max-w-screen-xl space-y-24 px-6 sm:px-10 lg:space-y-32 lg:px-12">
       {/* Hospitals */}
       <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-7">

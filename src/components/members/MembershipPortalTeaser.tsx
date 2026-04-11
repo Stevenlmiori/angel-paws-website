@@ -10,7 +10,7 @@ const futureItems = [
 
 export function MembershipPortalTeaser() {
   return (
-    <section className="mx-auto max-w-screen-2xl px-6 pb-16 sm:px-10 md:pb-20 lg:px-12">
+    <section className="mx-auto max-w-screen-xl px-6 pb-16 sm:px-10 md:pb-20 lg:px-12">
       <div className="rounded-[2.5rem] bg-surface-container-high px-8 py-12 md:px-14 md:py-16">
         <div className="mb-8 flex items-start gap-4">
           <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-primary/15 text-primary">

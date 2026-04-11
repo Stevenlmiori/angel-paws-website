@@ -10,7 +10,7 @@ export function DonateNewsletter() {
   }
 
   return (
-    <section className="mx-auto max-w-screen-2xl px-6 pb-16 sm:px-10 lg:px-12">
+    <section className="mx-auto max-w-screen-xl px-6 pb-16 sm:px-10 lg:px-12">
       <div className="rounded-[3rem] bg-primary px-8 py-16 text-center text-on-primary sm:px-12 md:py-24">
         <h2 className="mb-6 font-serif text-4xl md:text-5xl">
           Stay Connected with Hope

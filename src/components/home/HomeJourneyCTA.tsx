@@ -4,7 +4,7 @@ import { IMG } from "./media";
 export function HomeJourneyCTA() {
   return (
     <section className="px-6 py-24 sm:px-10 md:py-32 lg:px-12">
-      <div className="relative mx-auto min-h-[480px] max-w-screen-2xl overflow-hidden rounded-[4rem] shadow-2xl md:min-h-[560px]">
+      <div className="relative mx-auto min-h-[480px] max-w-screen-xl overflow-hidden rounded-[4rem] shadow-2xl md:min-h-[560px]">
         <div className="absolute inset-0 bg-primary" />
         <Image
           src={IMG.journey}

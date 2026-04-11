@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function MemberPortalPage() {
   return (
-    <div className="mx-auto max-w-screen-2xl px-6 py-16 sm:px-10 md:py-24 lg:px-12">
+    <div className="mx-auto max-w-screen-xl px-6 py-16 sm:px-10 md:py-24 lg:px-12">
       <div className="mx-auto max-w-2xl text-center">
         <div className="mb-8 flex justify-center">
           <span className="flex size-16 items-center justify-center rounded-full bg-primary-container text-on-primary-container">

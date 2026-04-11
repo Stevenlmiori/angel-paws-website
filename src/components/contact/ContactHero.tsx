@@ -4,7 +4,7 @@ import { CONTACT_IMG } from "./media";
 
 export function ContactHero() {
   return (
-    <section className="mx-auto mb-24 max-w-screen-2xl px-6 sm:px-10 md:mb-32 lg:px-12">
+    <section className="mx-auto mb-24 max-w-screen-xl px-6 sm:px-10 md:mb-32 lg:px-12">
       <div className="relative grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
         <div className="z-10 lg:col-span-7">
           <span className="mb-6 inline-block rounded-full bg-primary-container px-4 py-1 text-xs font-bold uppercase tracking-widest text-on-primary-container">

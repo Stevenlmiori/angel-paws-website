@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function AboutLeadershipCTA() {
   return (
-    <section className="mx-auto mb-24 max-w-screen-2xl px-6 sm:px-10 md:mb-32 lg:px-12">
+    <section className="mx-auto mb-24 max-w-screen-xl px-6 sm:px-10 md:mb-32 lg:px-12">
       <div className="rounded-[2.5rem] bg-surface-container-highest px-8 py-16 text-center shadow-soft md:rounded-[3rem] md:p-20">
         <h2 className="mb-6 font-serif text-3xl text-on-surface md:text-4xl">
           Want to learn more about our leadership?

@@ -11,7 +11,7 @@ const places: { Icon: LucideIcon; title: string }[] = [
 export function HomeWhereWeServe() {
   return (
     <section className="bg-surface py-24 md:py-32">
-      <div className="mx-auto max-w-screen-2xl px-6 sm:px-10 lg:px-12">
+      <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-12">
         <div className="mb-16 space-y-6 text-center md:mb-20">
           <h2 className="font-serif text-5xl font-bold text-on-surface">
             Where We Serve

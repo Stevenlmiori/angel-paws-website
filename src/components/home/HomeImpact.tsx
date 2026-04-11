@@ -5,7 +5,7 @@ import { IMG } from "./media";
 export function HomeImpact() {
   return (
     <section className="overflow-hidden bg-white py-24 md:py-32">
-      <div className="mx-auto max-w-screen-2xl px-6 sm:px-10 lg:px-12">
+      <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-12">
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-24">
           <div className="relative">
             <div

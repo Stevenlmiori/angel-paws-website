@@ -20,7 +20,7 @@ const items = [
 
 export function DonateImpactSection() {
   return (
-    <section className="mx-auto mb-24 max-w-screen-2xl px-6 sm:px-10 md:mb-32 lg:px-12">
+    <section className="mx-auto mb-24 max-w-screen-xl px-6 sm:px-10 md:mb-32 lg:px-12">
       <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
         <div>
           <h2 className="mb-12 font-serif text-4xl text-on-surface md:text-5xl">

@@ -23,7 +23,7 @@ const steps = [
 
 export function MembershipSteps() {
   return (
-    <section className="mx-auto mb-20 max-w-screen-2xl px-6 sm:px-10 lg:px-12">
+    <section className="mx-auto mb-20 max-w-screen-xl px-6 sm:px-10 lg:px-12">
       <ol className="space-y-10">
         {steps.map(({ n, title, body }) => (
           <li

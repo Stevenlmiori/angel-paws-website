@@ -3,7 +3,7 @@ import { BOARD_IMG } from "./media";
 
 export function MeetTheBoardHero() {
   return (
-    <header className="mx-auto mb-20 max-w-screen-2xl px-6 sm:px-10 md:mb-24 lg:px-12">
+    <header className="mx-auto mb-20 max-w-screen-xl px-6 sm:px-10 md:mb-24 lg:px-12">
       <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
           <span className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">

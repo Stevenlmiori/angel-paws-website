@@ -40,7 +40,7 @@ function aboutSectionActive(pathname: string) {
 
 function linkClass(active: boolean) {
   return cn(
-    "block whitespace-nowrap font-serif text-base tracking-[0.02em] transition-all duration-300 2xl:text-lg",
+    "block whitespace-nowrap font-serif text-base tracking-[0.02em] transition-all duration-300 xl:text-lg",
     active
       ? "font-bold text-primary underline decoration-primary decoration-2 underline-offset-[10px]"
       : "text-stone-600 hover:text-primary",
@@ -54,7 +54,7 @@ export function SiteHeader() {
 
   return (
     <header className="fixed top-0 z-50 w-full bg-stone-50/85 text-stone-900 shadow-sm backdrop-blur-md transition-all">
-      <div className="relative mx-auto flex min-h-[4rem] max-w-screen-2xl items-center gap-3 px-6 py-3 sm:gap-4 sm:px-10 md:min-h-[4.25rem] lg:px-12 xl:gap-6 2xl:gap-8">
+      <div className="relative mx-auto flex min-h-[4rem] max-w-screen-xl items-center gap-3 px-6 py-3 sm:gap-4 sm:px-10 md:min-h-[4.25rem] lg:px-12 xl:gap-6 2xl:gap-8">
         <Link
           href="/"
           className="relative z-20 flex min-w-0 shrink-0 items-center gap-2 sm:gap-2.5 md:gap-3"
@@ -136,7 +136,7 @@ export function SiteHeader() {
         <div className="relative z-20 ml-auto flex min-w-0 shrink-0 items-center gap-2 sm:gap-3 md:gap-4">
           <Link
             href="/members/portal"
-            className="hidden font-serif text-base tracking-tight text-stone-600 transition-colors hover:text-primary 2xl:inline 2xl:text-lg"
+            className="hidden font-serif text-base tracking-tight text-stone-600 transition-colors hover:text-primary 2xl:inline xl:text-lg"
           >
             Member Resources
           </Link>
@@ -169,7 +169,7 @@ export function SiteHeader() {
         )}
       >
         <nav
-          className="mx-auto flex max-w-screen-2xl flex-col gap-0.5 px-6 py-4 sm:px-10 lg:px-12"
+          className="mx-auto flex max-w-screen-xl flex-col gap-0.5 px-6 py-4 sm:px-10 lg:px-12"
           aria-label="Primary mobile"
         >
           <Link

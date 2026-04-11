@@ -15,7 +15,7 @@ export default function Home() {
         <HomeHero />
       </Reveal>
       <section className="px-6 pb-24 md:pb-32 lg:px-12">
-        <div className="mx-auto max-w-screen-2xl">
+        <div className="mx-auto max-w-screen-xl">
           <Reveal delayMs={100}>
             <SlideShow />
           </Reveal>

@@ -3,7 +3,7 @@ import { SERVE_IMG } from "./media";
 
 export function WhereWeServeHero() {
   return (
-    <section className="mx-auto mb-20 max-w-screen-2xl px-6 sm:px-10 md:mb-24 lg:px-12">
+    <section className="mx-auto mb-20 max-w-screen-xl px-6 sm:px-10 md:mb-24 lg:px-12">
       <div className="relative grid grid-cols-1 items-center gap-12 md:grid-cols-2">
         <div className="z-10">
           <span className="mb-4 inline-block rounded-full bg-secondary-container px-4 py-1 text-xs font-bold uppercase tracking-widest text-on-secondary-container">

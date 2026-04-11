@@ -4,7 +4,7 @@ import { boardMembers } from "./boardData";
 
 export function MeetTheBoardGrid() {
   return (
-    <section className="mx-auto max-w-screen-2xl px-6 sm:px-10 lg:px-12">
+    <section className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-12">
       <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:grid-cols-3">
         {boardMembers.map((member) => (
           <BoardMemberCard key={member.name} member={member} />
