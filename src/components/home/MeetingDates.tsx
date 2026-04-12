@@ -79,8 +79,9 @@ export function MeetingDates() {
               Questions before the meeting?
             </h3>
             <p className="mx-auto mt-4 max-w-xl text-stone-600">
-              We're happy to chat about the vetting process or help you decide if
-              your pet is a good fit for therapy work.
+              {
+                "We're happy to chat about the vetting process or help you decide if your pet is a good fit for therapy work."
+              }
             </p>
             <div className="mt-8 flex justify-center">
               <a
