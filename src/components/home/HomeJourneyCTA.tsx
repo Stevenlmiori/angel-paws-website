@@ -7,11 +7,11 @@ export function HomeJourneyCTA() {
       <div className="relative mx-auto min-h-[480px] max-w-screen-xl overflow-hidden rounded-[4rem] shadow-2xl md:min-h-[560px]">
         <div className="absolute inset-0 bg-primary" />
         <Image
-          src={IMG.journey}
-          alt="Therapy dogs together in a park setting"
+          src={IMG.journeyInvite}
+          alt="Sam, an Angel Paws therapy dog"
           fill
           sizes="(max-width: 1536px) 100vw, 1536px"
-          className="object-cover mix-blend-overlay opacity-25"
+          className="object-cover object-[center_30%] mix-blend-overlay opacity-30"
         />
         <div className="relative z-10 flex min-h-[480px] flex-col justify-center px-8 py-20 text-center text-on-primary md:min-h-[560px] md:px-12 md:py-32">
           <h2 className="mx-auto max-w-4xl font-serif text-5xl font-bold leading-tight md:text-7xl">

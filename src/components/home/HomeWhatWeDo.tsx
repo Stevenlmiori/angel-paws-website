@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { BookOpen, School, UsersRound } from "lucide-react";
+import { BookOpen, Building2, School, UsersRound } from "lucide-react";
 import { IMG } from "./media";
 
 export function HomeWhatWeDo() {
@@ -17,13 +17,16 @@ export function HomeWhatWeDo() {
       <div className="grid h-auto grid-cols-1 gap-8 md:grid-cols-12 md:h-[700px]">
         <div className="group relative min-h-[320px] overflow-hidden rounded-[2.5rem] bg-surface-container-high transition-all duration-500 hover:shadow-xl md:col-span-8 md:h-full">
           <Image
-            src={IMG.hospital}
-            alt="Therapy dog with care team in a hospital corridor"
+            src={IMG.pillarHealthcare}
+            alt="Therapy Golden Retriever with handlers in a hospital setting"
             fill
             sizes="(max-width: 768px) 100vw, 66vw"
-            className="object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/92 via-primary/35 to-primary/10" />
+          <div className="absolute right-8 top-8 flex size-12 items-center justify-center rounded-2xl bg-white/15 text-on-primary backdrop-blur-sm md:right-10 md:top-10">
+            <Building2 className="size-6" strokeWidth={1.75} aria-hidden />
+          </div>
           <div className="absolute bottom-12 left-8 max-w-md text-on-primary sm:left-12">
             <h3 className="mb-4 font-serif text-4xl font-bold">
               Hospitals &amp; Healthcare
@@ -65,12 +68,13 @@ export function HomeWhatWeDo() {
 
           <div className="group relative min-h-[280px] overflow-hidden rounded-[2.5rem] bg-surface-container-highest md:min-h-0">
             <Image
-              src={IMG.careFacility}
-              alt="Resident with a small therapy dog at a care facility"
+              src={IMG.pillarCareFacilities}
+              alt="Therapy dog visiting with an older adult in a comfortable home-like setting"
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
-              className="object-cover opacity-30 transition-transform duration-700 group-hover:scale-110"
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface-container-highest via-surface-container-highest/85 to-transparent" />
             <div className="relative z-10 flex min-h-[280px] flex-col justify-between p-10 md:min-h-full">
               <UsersRound
                 className="size-10 text-primary"

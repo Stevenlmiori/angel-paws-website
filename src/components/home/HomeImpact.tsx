@@ -15,8 +15,8 @@ export function HomeImpact() {
             <div className="-rotate-2 overflow-hidden rounded-[3rem] bg-background shadow-2xl">
               <div className="relative h-[420px] w-full sm:h-[520px] lg:h-[600px]">
                 <Image
-                  src={IMG.impact}
-                  alt="Therapy dog team walking down a sunlit hallway"
+                  src={IMG.impactFeature}
+                  alt="Child reading with a therapy dog in a library program"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
