@@ -4,7 +4,6 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { cn } from "@/lib/cn";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -32,11 +31,10 @@ export function HomeMission() {
       const segs = el.querySelectorAll<HTMLElement>(".mission-seg");
       const jesus = el.querySelector<HTMLElement>(".mission-jesus");
       const label = el.querySelector<HTMLElement>(".mission-kicker");
-      const dots = el.querySelectorAll<HTMLElement>(".mission-dot");
       const line = underline.current;
 
       if (reduced) {
-        gsap.set([label, segs, jesus, dots, line].filter(Boolean), {
+        gsap.set([label, segs, jesus, line].filter(Boolean), {
           opacity: 1,
           y: 0,
           scale: 1,
@@ -49,7 +47,6 @@ export function HomeMission() {
       gsap.set(label, { opacity: 0, y: 14 });
       gsap.set(segs, { opacity: 0, y: 32, filter: "blur(10px)" });
       gsap.set(jesus, { opacity: 0, y: 28, filter: "blur(10px)" });
-      gsap.set(dots, { opacity: 0, scale: 0.5 });
       if (line) gsap.set(line, { scaleX: 0 });
 
       const tl = gsap.timeline({
@@ -100,18 +97,6 @@ export function HomeMission() {
           "-=0.55",
         );
       }
-
-      tl.to(
-        dots,
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
-          stagger: 0.07,
-          ease: "back.out(1.6)",
-        },
-        "-=0.45",
-      );
     },
     { scope: root },
   );
@@ -121,7 +106,7 @@ export function HomeMission() {
       ref={root}
       className="bg-surface-container-low py-24 md:py-32"
     >
-      <div className="mx-auto max-w-4xl space-y-10 px-6 text-center sm:px-10 lg:px-12">
+      <div className="mx-auto max-w-4xl space-y-8 px-6 text-center sm:px-10 lg:px-12">
         <p className="mission-kicker font-sans text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-on-surface-variant">
           Mission
         </p>
@@ -142,17 +127,6 @@ export function HomeMission() {
           <span className="mission-seg inline">{MISSION_SEGMENTS[2]}</span>
           <span className="sr-only">&rdquo;</span>
         </h2>
-        <div className="flex justify-center gap-2.5 pt-2" aria-hidden>
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              className={cn(
-                "mission-dot h-2 w-2 rounded-full",
-                i === 1 ? "bg-primary/50" : "bg-primary/20",
-              )}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );
