@@ -4,9 +4,9 @@ import { WhereWeServeCTA } from "@/components/where-we-serve/WhereWeServeCTA";
 import { WhereWeServeHero } from "@/components/where-we-serve/WhereWeServeHero";
 
 export const metadata: Metadata = {
-  title: "Where We Serve",
+  title: "Where We Serve | Houston Pet Therapy Locations",
   description:
-    "Hospitals, schools, care facilities, and community outreach—Angel Paws brings comfort across Greater Houston.",
+    "Angel Paws provides therapy dog visits to hospitals, schools, and nursing homes across Greater Houston, including Cypress, Katy, and Northwest Houston.",
 };
 
 export default function WhereWeServePage() {

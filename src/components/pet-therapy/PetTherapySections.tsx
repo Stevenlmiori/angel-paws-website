@@ -3,17 +3,17 @@ import { Heart, Shield, Sparkles } from "lucide-react";
 const blocks = [
   {
     Icon: Heart,
-    title: "The Definition",
+    title: "How do you define pet therapy?",
     body: "Pet therapy, or Animal-Assisted Activities (AAA), involves a trained handler and their pet visiting people to provide comfort, distraction, and a sense of normalcy in environments like hospitals and schools.",
   },
   {
     Icon: Shield,
-    title: "Our Policies",
+    title: "What are your safety policies?",
     body: "Safety is our priority. Every team is vaccinated, temperament-tested, and certified. We adhere to the policies of each facility, ensuring a professional and hygienic environment for all visits.",
   },
   {
     Icon: Sparkles,
-    title: "Faith-Centered Comfort",
+    title: "How does faith shape your work?",
     body: "As a ministry of Champion Forest, we believe a faithful dog carries the comfort Christ asks us to share. We love without agenda, offering prayer and presence wherever we are invited.",
   },
 ] as const;

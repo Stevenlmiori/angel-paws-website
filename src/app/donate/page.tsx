@@ -5,9 +5,9 @@ import { DonateDonationPanel } from "@/components/donate/DonateDonationPanel";
 import { DonateNewsletter } from "@/components/donate/DonateNewsletter";
 
 export const metadata: Metadata = {
-  title: "Donate",
+  title: "Support Our Mission | Donate to Angel Paws",
   description:
-    "Support Angel Paws Pet Therapy—your gift funds therapy animal care, training, and visits to hospitals, schools, and communities.",
+    "Your donations fund therapy dog certification, training, and visits to hospitals and schools. Support the Angel Paws ministry and help us share hope across Houston.",
 };
 
 export default function DonatePage() {

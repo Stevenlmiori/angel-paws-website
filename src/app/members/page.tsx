@@ -4,9 +4,9 @@ import { MembershipPortalTeaser } from "@/components/members/MembershipPortalTea
 import { MembershipSteps } from "@/components/members/MembershipSteps";
 
 export const metadata: Metadata = {
-  title: "Membership",
+  title: "Become a Member | Therapy Dog Training & Membership",
   description:
-    "How to become a member of Angel Paws Pet Therapy—steps, heart, and the member portal to come.",
+    "How to join Angel Paws Pet Therapy. Learn the steps to become a certified therapy dog team, from temperment testing to national certification in Houston.",
 };
 
 export default function MembersPage() {

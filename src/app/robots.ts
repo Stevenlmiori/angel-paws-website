@@ -1,17 +1,14 @@
-import type { MetadataRoute } from "next";
+import { MetadataRoute } from "next";
 
-function siteIndexable(): boolean {
-  return process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true";
-}
-
-/** Block crawlers until launch; set `NEXT_PUBLIC_SITE_INDEXABLE=true` when ready. */
 export default function robots(): MetadataRoute.Robots {
-  if (siteIndexable()) {
-    return {
-      rules: [{ userAgent: "*", allow: "/" }],
-    };
-  }
+  const siteIndexable = process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true";
+
   return {
-    rules: [{ userAgent: "*", disallow: "/" }],
+    rules: {
+      userAgent: "*",
+      allow: siteIndexable ? "/" : [],
+      disallow: ["/members/portal/", "/private/"],
+    },
+    sitemap: "https://angelpawshouston.com/sitemap.xml",
   };
 }

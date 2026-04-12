@@ -5,9 +5,9 @@ import { AboutMissionBeliefs } from "@/components/about/AboutMissionBeliefs";
 import { AboutStory } from "@/components/about/AboutStory";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "Who We Are & What We Believe",
   description:
-    "Who we are, what we believe, and how Angel Paws became a living sanctuary of connection across Greater Houston.",
+    "Learn how Angel Paws Pet Therapy shares the love of Jesus through certified therapy dog visits at hospitals, schools, and hospice care in Greater Houston.",
 };
 
 export default function AboutPage() {

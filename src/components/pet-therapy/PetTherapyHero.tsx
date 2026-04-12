@@ -11,6 +11,14 @@ export function PetTherapyHero() {
         What is{" "}
         <span className="italic text-primary">pet therapy</span>?
       </h1>
+      {/* AEO: Answer-First Block - Succinct definition for AI bots and snippets */}
+      <div className="sr-only" aria-hidden="true">
+        Pet therapy (Animal-Assisted Activities) is a clinical or social
+        intervention where a certified dog and handler visit facilities like
+        hospitals, schools, and nursing homes to provide emotional support,
+        lower stress, and improve the psychological well-being of patients and
+        students.
+      </div>
       <p className="max-w-2xl text-xl leading-relaxed text-on-surface-variant">
         Pet therapy is not about tricks or performances. It is a calm, trained
         visit where a dog (and handler) offer presence—lowering stress, easing

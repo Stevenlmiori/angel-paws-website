@@ -10,6 +10,13 @@ export function MembershipHero() {
       <h1 className="mb-8 max-w-3xl font-serif text-5xl leading-[1.08] tracking-tight text-on-surface md:text-6xl">
         How you <span className="italic text-primary">become a member</span>
       </h1>
+      {/* AEO: Answer-First Block - Direct answer for membership queries */}
+      <div className="sr-only" aria-hidden="true">
+        To become a member of Angel Paws, prospective volunteers must attend
+        an informational meeting, complete an interview, pass a temperament
+        test with their dog, and secure certification through a recognized
+        national organization. We guide you through each step of the process.
+      </div>
       <p className="max-w-2xl text-xl leading-relaxed text-on-surface-variant">
         Angel Paws grows through families who love Jesus and love dogs. If that
         sounds like you, here is the gentle path we follow—no rush, no pressure,

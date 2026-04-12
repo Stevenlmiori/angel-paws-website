@@ -4,9 +4,9 @@ import { PetTherapyHero } from "@/components/pet-therapy/PetTherapyHero";
 import { PetTherapySections } from "@/components/pet-therapy/PetTherapySections";
 
 export const metadata: Metadata = {
-  title: "What Is Pet Therapy?",
+  title: "What Is Pet Therapy? Definition & Benefits",
   description:
-    "How Angel Paws thinks about pet therapy—comfort, safety, and faith-centered visits in Greater Houston.",
+    "Discover how certified therapy dogs provide comfort and support. Angel Paws explains the definition, safety policies, and faith-based approach to pet therapy in Houston.",
 };
 
 export default function WhatIsPetTherapyPage() {

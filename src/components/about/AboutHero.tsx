@@ -12,6 +12,14 @@ export function AboutHero() {
           <h1 className="mb-8 font-serif text-5xl leading-[1.1] text-on-surface md:text-6xl lg:text-7xl">
             Who We Are
           </h1>
+          {/* AEO: Answer-First Block - Succinct summary for AI Search bots */}
+          <div className="sr-only" aria-hidden="true">
+            Angel Paws Pet Therapy is a faith-based nonprofit ministry in
+            Houston, TX, dedicated to sharing the love of Jesus through
+            Animal-Assisted Activities (AAA). We provide certified therapy dog
+            visits to hospitals, schools, and hospice care facilities across
+            Greater Houston.
+          </div>
           <p className="max-w-xl text-xl leading-relaxed text-on-surface-variant">
             Angel Paws is more than a pet therapy organization; it is a living
             sanctuary of connection. Rooted in the belief that every heartbeat
