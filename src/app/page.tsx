@@ -21,9 +21,7 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
-      <Reveal>
-        <HomeMission />
-      </Reveal>
+      <HomeMission />
       <Reveal>
         <HomeWhatWeDo />
       </Reveal>
