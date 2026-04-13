@@ -36,15 +36,18 @@ export function HomeWhatWeDo() {
             sizes="(max-width: 768px) 100vw, 66vw"
             className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/92 via-primary/35 to-primary/10" />
-          <div className="absolute right-8 top-8 flex size-12 items-center justify-center rounded-2xl bg-white/15 text-on-primary backdrop-blur-sm md:right-10 md:top-10">
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/35"
+            aria-hidden
+          />
+          <div className="absolute right-8 top-8 z-10 flex size-12 items-center justify-center rounded-2xl bg-white/15 text-white backdrop-blur-sm md:right-10 md:top-10">
             <Building2 className="size-6" strokeWidth={1.75} aria-hidden />
           </div>
-          <div className="absolute bottom-12 left-8 max-w-md text-on-primary sm:left-12">
-            <h3 className="mb-4 font-serif text-4xl font-bold">
+          <div className="absolute bottom-12 left-8 z-10 max-w-md text-white sm:left-12">
+            <h3 className="mb-4 font-serif text-4xl font-bold text-white drop-shadow-sm">
               Hospitals &amp; Healthcare
             </h3>
-            <p className="text-lg opacity-90">
+            <p className="text-lg text-white/95 drop-shadow-sm">
               A calm presence for patients, families, and staff—easing anxiety
               before procedures and bringing comfort on long days.
             </p>
