@@ -46,7 +46,7 @@ export function HomeHero() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-[3rem] shadow-2xl">
             <Image
               src={IMG.heroDog}
-              alt="Sam, Angel Paws therapy dog"
+              alt="A child holds Sam’s paw—Angel Paws therapy dog"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -56,8 +56,7 @@ export function HomeHero() {
           </div>
           <div className="absolute -bottom-10 -left-4 hidden max-w-xs rounded-3xl bg-surface-container/90 p-10 shadow-xl backdrop-blur-sm xl:block">
             <p className="font-serif text-2xl italic text-primary">
-              &ldquo;Sometimes the first step toward healing is a warm paw and a
-              gentle presence.&rdquo;
+              &ldquo;When I needed a hand, you gave me your paw.&rdquo;
             </p>
           </div>
         </div>

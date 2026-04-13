@@ -18,7 +18,7 @@ export function HomeWhatWeDo() {
         <div className="group relative min-h-[320px] overflow-hidden rounded-[2.5rem] bg-surface-container-high transition-all duration-500 hover:shadow-xl md:col-span-8 md:h-full">
           <Image
             src={IMG.pillarHealthcare}
-            alt="Therapy Golden Retriever with handlers in a hospital setting"
+            alt="Sam, a Golden Retriever therapy dog, beside a child in a comforting visit"
             fill
             sizes="(max-width: 768px) 100vw, 66vw"
             className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
@@ -69,7 +69,7 @@ export function HomeWhatWeDo() {
           <div className="group relative min-h-[280px] overflow-hidden rounded-[2.5rem] bg-surface-container-highest md:min-h-0">
             <Image
               src={IMG.pillarCareFacilities}
-              alt="Therapy dog visiting with an older adult in a comfortable home-like setting"
+              alt="Sam comforting a child during an Angel Paws visit"
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"

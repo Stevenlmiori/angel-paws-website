@@ -8,7 +8,7 @@ export function HomeJourneyCTA() {
         <div className="absolute inset-0 bg-primary" />
         <Image
           src={IMG.journeyInvite}
-          alt="Sam, an Angel Paws therapy dog"
+          alt="Sam comforting a child—Angel Paws therapy team"
           fill
           sizes="(max-width: 1536px) 100vw, 1536px"
           className="object-cover object-[center_30%] mix-blend-overlay opacity-30"

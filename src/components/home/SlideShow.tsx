@@ -5,27 +5,9 @@ import gsap from "gsap";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/cn";
+import { HOME_SLIDES } from "./media";
 
-const slides = [
-  {
-    src: "/slideshow/dog-1.png",
-    alt: "Friendly Golden Retriever therapy dog in a hospital setting",
-    title: "Unconditional Love",
-    description: "Bringing comfort to hospitals and hospice care.",
-  },
-  {
-    src: "/slideshow/dog-2.png",
-    alt: "Therapy dog in a library reading with a child",
-    title: "Furry Listeners",
-    description: "Helping children gain confidence in reading programs.",
-  },
-  {
-    src: "/slideshow/dog-3.png",
-    alt: "Therapy dog visiting an elderly resident in a retirement home",
-    title: "Gentle Companions",
-    description: "Sharing joy and companionship in local retirement homes.",
-  },
-];
+const slides = HOME_SLIDES;
 
 export function SlideShow() {
   const container = useRef<HTMLDivElement>(null);
