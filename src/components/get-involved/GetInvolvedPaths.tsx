@@ -5,7 +5,7 @@ const paths: { Icon: LucideIcon; title: string; text: string }[] = [
   {
     Icon: HeartHandshake,
     title: "Become a Therapy Team",
-    text: "If you have a dog with the right temperament, you may be able to serve together. Our teams go through training and evaluation before visiting facilities. Once approved, you’ll be part of something that makes a real difference in people’s lives.",
+    text: "If you have a dog with the right temperament, you may be able to serve together. Our teams go through training and evaluation before visiting facilities. Once approved, you'll be part of something that makes a real difference in people's lives.",
   },
   {
     Icon: ClipboardList,
@@ -23,7 +23,7 @@ const steps = [
   {
     n: "01",
     title: "Intro conversation",
-    body: "Tell us your story and your dog’s temperament. We’ll help you understand time commitments and heart posture.",
+    body: "Tell us your story and your dog's temperament. We'll help you understand time commitments and heart posture.",
   },
   {
     n: "02",
