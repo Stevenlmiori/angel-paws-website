@@ -14,13 +14,16 @@ export function GetInvolvedHero() {
             Become a{" "}
             <span className="italic text-primary">Healing Presence.</span>
           </h1>
-          <p className="max-w-xl text-xl leading-relaxed text-on-surface-variant">
-            Angel Paws grows through gentle hearts and steady hands—people who
-            are willing to walk beside others with a well-trained companion and
-            a posture of humility. Whether you dream of visiting beside a
-            hospital bed or supporting teams behind the scenes, there is a place
-            for you.
-          </p>
+          <div className="max-w-xl space-y-6 text-xl leading-relaxed text-on-surface-variant">
+            <p>
+              There are a few simple ways to be part of what&apos;s happening
+              through Angel Paws.
+            </p>
+            <p>
+              Whether you have a dog, time to give, or just want to support the
+              work, there&apos;s a place for you.
+            </p>
+          </div>
         </div>
         <div className="relative aspect-[4/5] max-h-[520px] overflow-hidden rounded-[2.5rem] shadow-2xl lg:max-h-none lg:translate-y-2">
           <Image

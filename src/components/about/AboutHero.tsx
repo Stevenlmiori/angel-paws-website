@@ -20,13 +20,25 @@ export function AboutHero() {
             visits to hospitals, schools, and hospice care facilities across
             Greater Houston.
           </div>
-          <p className="max-w-xl text-xl leading-relaxed text-on-surface-variant">
-            Angel Paws is more than a pet therapy organization; it is a living
-            sanctuary of connection. Rooted in the belief that every heartbeat
-            matters, we facilitate the profound healing that occurs when a
-            gentle animal meets a human in need. Our ministry is a quiet
-            revolution of comfort across Houston.
-          </p>
+          <div className="max-w-xl space-y-6 text-xl leading-relaxed text-on-surface-variant">
+            <p>
+              Angel Paws exists to bring comfort, encouragement, and connection
+              through therapy dogs.
+            </p>
+            <p>
+              We serve in places where people are often facing stress,
+              uncertainty, or difficult circumstances. Hospitals, schools, and
+              care environments where even a small moment of calm can mean a lot.
+            </p>
+            <p>
+              Our teams are made up of trained volunteers and their dogs who
+              give their time to simply be present. No pressure. No
+              expectations.
+            </p>
+            <p className="font-medium text-on-surface">
+              Just a calm, steady presence when it&apos;s needed most.
+            </p>
+          </div>
         </div>
         <div className="relative md:col-span-6">
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl md:rounded-3xl">

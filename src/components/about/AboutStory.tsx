@@ -64,6 +64,9 @@ export function AboutStory() {
           </div>
         ))}
       </div>
+      <p className="mx-auto mt-20 max-w-2xl text-center font-serif text-2xl italic text-primary md:mt-24 md:text-3xl">
+        It&apos;s hard to explain, but easy to feel.
+      </p>
     </section>
   );
 }

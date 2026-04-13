@@ -1,5 +1,6 @@
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeImpact } from "@/components/home/HomeImpact";
+import { HomeQuote } from "@/components/home/HomeQuote";
 import { HomeJourneyCTA } from "@/components/home/HomeJourneyCTA";
 import { HomeMission } from "@/components/home/HomeMission";
 import { HomeWhatWeDo } from "@/components/home/HomeWhatWeDo";
@@ -28,6 +29,9 @@ export default function Home() {
       <MeetingDates />
       <Reveal>
         <HomeImpact />
+      </Reveal>
+      <Reveal>
+        <HomeQuote />
       </Reveal>
       <Reveal>
         <HomeWhereWeServe />

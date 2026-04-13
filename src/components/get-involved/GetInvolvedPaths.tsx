@@ -4,18 +4,18 @@ import { ClipboardList, GraduationCap, HeartHandshake, Sparkles } from "lucide-r
 const paths: { Icon: LucideIcon; title: string; text: string }[] = [
   {
     Icon: HeartHandshake,
-    title: "Therapy teams",
-    text: "Certified handlers and dogs visit hospitals, schools, and care settings on a regular rhythm—bringing calm where anxiety runs high.",
-  },
-  {
-    Icon: GraduationCap,
-    title: "Training & certification",
-    text: "We walk with you through evaluation, handling skills, and site etiquette so every visit is safe, respectful, and predictable.",
+    title: "Become a Therapy Team",
+    text: "If you have a dog with the right temperament, you may be able to serve together. Our teams go through training and evaluation before visiting facilities. Once approved, you’ll be part of something that makes a real difference in people’s lives.",
   },
   {
     Icon: ClipboardList,
-    title: "Behind the scenes",
-    text: "Not every gift is four-legged. Coordinators, prayer partners, and event hosts keep the ministry moving between visits.",
+    title: "Serve Without a Dog",
+    text: "Not everyone has a dog, but there are still ways to help. From assisting with coordination to supporting visits and events, your time matters.",
+  },
+  {
+    Icon: GraduationCap,
+    title: "Support the Work",
+    text: "Every visit takes preparation, training, and coordination. Your support helps make more visits possible and allows us to reach more people in our community.",
   },
 ];
 
