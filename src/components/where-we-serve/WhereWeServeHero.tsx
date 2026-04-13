@@ -13,11 +13,15 @@ export function WhereWeServeHero() {
             A Presence in <br />
             <span className="font-normal italic text-primary">Every Corner.</span>
           </h1>
-          <p className="mb-8 max-w-lg text-xl leading-relaxed text-on-surface-variant">
-            Our therapy teams bring quiet comfort and joyful connection to
-            diverse settings throughout our community, from critical care units
-            to elementary classrooms.
-          </p>
+          <div className="mb-8 max-w-lg space-y-6 text-xl leading-relaxed text-on-surface-variant">
+            <p>
+              Our teams serve in a variety of environments across the community.
+            </p>
+            <p>
+              Each one is different, but the need is the same. A calm presence in
+              the middle of real life.
+            </p>
+          </div>
         </div>
         <div className="relative">
           <div className="relative aspect-[4/5] rotate-2 overflow-hidden rounded-[2rem] shadow-2xl transition-transform duration-700 hover:rotate-0">

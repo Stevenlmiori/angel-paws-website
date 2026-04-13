@@ -12,6 +12,9 @@ export function WhereWeServeCTA() {
         aria-hidden
       />
       <div className="relative z-10 mx-auto max-w-3xl">
+        <p className="mb-8 font-serif text-2xl italic leading-snug text-primary md:text-3xl">
+          A calm presence can change the tone of an entire room.
+        </p>
         <h2 className="mb-8 font-serif text-3xl leading-tight text-on-surface md:text-4xl">
           Does your facility need a{" "}
           <span className="italic">visit from Angel Paws?</span>

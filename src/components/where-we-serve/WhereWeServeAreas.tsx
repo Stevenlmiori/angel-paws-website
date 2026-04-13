@@ -44,10 +44,14 @@ export function WhereWeServeAreas() {
             </h2>
           </div>
           <p className="mb-8 text-lg leading-loose text-on-surface-variant">
-            In the sterile silence of recovery units and waiting rooms, our
-            teams offer a vital spark of normalcy. We serve adult and pediatric
-            wards, rehabilitation centers, and oncology units, providing a
-            non-clinical touch that lowers stress and encourages healing.
+            In hospitals, our dogs visit patients, families, and staff.
+          </p>
+          <p className="mb-8 text-lg leading-loose text-on-surface-variant">
+            They help ease anxiety before procedures, bring comfort during long
+            days, and give people something to look forward to.
+          </p>
+          <p className="mb-8 text-lg font-medium leading-loose text-on-surface">
+            For many, it becomes the best part of their day.
           </p>
           <ul className="space-y-4">
             {[
@@ -74,14 +78,16 @@ export function WhereWeServeAreas() {
           <div className="mb-6 flex items-center gap-3 text-primary">
             <BookOpen className="size-10 shrink-0" strokeWidth={1.5} />
             <h2 className="font-serif text-3xl font-bold text-on-surface">
-              Schools &amp; Reading
+              Schools
             </h2>
           </div>
           <p className="mb-8 text-lg leading-loose text-on-surface-variant">
-            Our &ldquo;Paws to Read&rdquo; program transforms the literacy
-            journey for young learners. By providing a non-judgmental, furry
-            listener, we help children build confidence, fluency, and a
-            lifelong love for stories.
+            In schools, therapy dogs help create a more relaxed and supportive
+            environment.
+          </p>
+          <p className="mb-8 text-lg leading-loose text-on-surface-variant">
+            Students often feel more comfortable reading, talking, or simply
+            sitting with a dog. It lowers pressure and helps them focus.
           </p>
           <div className="mb-8 rounded-2xl bg-surface-container-low p-8">
             <h4 className="mb-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant">
@@ -139,10 +145,12 @@ export function WhereWeServeAreas() {
             </h2>
           </div>
           <p className="mb-8 text-lg leading-loose text-on-surface-variant">
-            Loneliness can be a heavy burden in assisted living. Our therapy
-            dogs provide tactile comfort and a social bridge, sparking memories
-            of former pets and facilitating meaningful conversations between
-            residents and staff.
+            In care homes and similar settings, therapy dogs bring companionship
+            and familiarity.
+          </p>
+          <p className="mb-8 text-lg leading-loose text-on-surface-variant">
+            They create moments of connection that can break through loneliness
+            and routine.
           </p>
           <div className="grid grid-cols-2 gap-4">
             <div className="rounded-xl bg-surface-container p-6 shadow-soft">

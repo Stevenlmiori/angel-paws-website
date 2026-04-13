@@ -7,9 +7,13 @@ export function GetInvolvedCTA() {
         <h2 className="mb-4 font-serif text-3xl text-on-surface md:text-4xl">
           Ready for the next step?
         </h2>
-        <p className="mx-auto mb-10 max-w-xl text-on-surface-variant">
+        <p className="mx-auto mb-4 max-w-xl text-on-surface-variant">
           Share a little about yourself—we&apos;ll follow up with the right
           forms, training dates, and a warm welcome.
+        </p>
+        <p className="mx-auto mb-10 max-w-xl font-serif text-lg italic text-on-surface md:text-xl">
+          You don&apos;t have to do everything. You just have to take the next
+          step.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <Link

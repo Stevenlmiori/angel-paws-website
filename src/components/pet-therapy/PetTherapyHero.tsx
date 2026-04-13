@@ -7,23 +7,31 @@ export function PetTherapyHero() {
         <BookOpen className="size-4" strokeWidth={2} aria-hidden />
         What We Do
       </span>
-      <h1 className="mb-8 max-w-3xl font-serif text-5xl leading-[1.08] tracking-tight text-on-surface md:text-6xl lg:text-7xl">
+      <h1 className="mb-10 max-w-3xl font-serif text-5xl leading-[1.08] tracking-tight text-on-surface md:text-6xl lg:text-7xl">
         What is{" "}
         <span className="italic text-primary">pet therapy</span>?
       </h1>
-      {/* AEO: Answer-First Block - Succinct definition for AI bots and snippets */}
       <div className="sr-only" aria-hidden="true">
-        Pet therapy (Animal-Assisted Activities) is a clinical or social
-        intervention where a certified dog and handler visit facilities like
-        hospitals, schools, and nursing homes to provide emotional support,
-        lower stress, and improve the psychological well-being of patients and
-        students.
+        Pet therapy, often called animal-assisted therapy, is the use of trained
+        animals to support people emotionally and mentally. Therapy dogs visit
+        hospitals, schools, and care facilities to spend time with people who may
+        be dealing with stress, anxiety, illness, or loneliness.
       </div>
-      <p className="max-w-2xl text-xl leading-relaxed text-on-surface-variant">
-        Pet therapy is not about tricks or performances. It is a calm, trained
-        visit where a dog (and handler) offer presence—lowering stress, easing
-        loneliness, and opening room for conversation when words are hard.
-      </p>
+      <div className="max-w-2xl space-y-6 text-xl leading-relaxed text-on-surface-variant">
+        <p>
+          Pet therapy, often called animal-assisted therapy, is the use of
+          trained animals to support people emotionally and mentally.
+        </p>
+        <p className="font-medium text-on-surface">At its core, it&apos;s about connection.</p>
+        <p>
+          Our therapy dogs visit hospitals, schools, and care facilities to spend
+          time with people who may be dealing with stress, anxiety, illness, or
+          loneliness.
+        </p>
+        <p>
+          Even a few minutes with a dog can help someone feel more at ease.
+        </p>
+      </div>
     </section>
   );
 }

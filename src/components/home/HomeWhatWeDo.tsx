@@ -5,13 +5,26 @@ import { IMG } from "./media";
 export function HomeWhatWeDo() {
   return (
     <section className="mx-auto max-w-screen-xl px-6 py-24 sm:px-10 md:py-32 lg:px-12">
-      <div className="mb-16 space-y-4 md:mb-20">
+      <div className="mb-12 space-y-6 md:mb-16">
         <p className="text-sm font-bold uppercase tracking-widest text-secondary">
-          Service Pillars
+          What we do
         </p>
         <h2 className="font-serif text-5xl font-bold text-on-surface">
-          What We Do
+          They show up.
         </h2>
+        <div className="max-w-3xl space-y-5 text-lg leading-relaxed text-on-surface-variant">
+          <p>
+            Therapy dogs do something simple that makes a real difference. They
+            show up.
+          </p>
+          <p>
+            In hospitals, schools, and care facilities, our dogs bring a calm
+            presence into places that often feel heavy. For a few minutes, the
+            room changes. People breathe easier. Conversations open up.
+            Shoulders relax.
+          </p>
+          <p>They don&apos;t fix everything. But they make hard moments easier.</p>
+        </div>
       </div>
 
       <div className="grid h-auto grid-cols-1 gap-8 md:grid-cols-12 md:h-[700px]">
@@ -32,8 +45,8 @@ export function HomeWhatWeDo() {
               Hospitals &amp; Healthcare
             </h3>
             <p className="text-lg opacity-90">
-              Providing emotional solace and lowering stress levels for
-              patients and dedicated healthcare workers alike.
+              A calm presence for patients, families, and staff—easing anxiety
+              before procedures and bringing comfort on long days.
             </p>
           </div>
         </div>
@@ -51,8 +64,8 @@ export function HomeWhatWeDo() {
                   Schools &amp; Literacy
                 </h3>
                 <p className="text-on-secondary-container opacity-80">
-                  Supporting student well-being and helping children gain
-                  confidence in reading.
+                  A more relaxed environment—students read, talk, or sit with a
+                  dog with less pressure and more focus.
                 </p>
               </div>
             </div>
@@ -86,8 +99,8 @@ export function HomeWhatWeDo() {
                   Care Facilities
                 </h3>
                 <p className="text-on-surface-variant">
-                  Bringing joy and companionship to seniors in assisted living
-                  and memory care centers.
+                  Companionship and familiarity—moments of connection that break
+                  through loneliness and routine.
                 </p>
               </div>
             </div>

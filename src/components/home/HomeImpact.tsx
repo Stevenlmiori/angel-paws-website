@@ -27,18 +27,28 @@ export function HomeImpact() {
 
           <div className="space-y-8">
             <p className="text-sm font-bold uppercase tracking-widest text-primary">
-              The Power of Connection
+              Why it matters
             </p>
             <h2 className="font-serif text-5xl font-bold leading-tight md:text-6xl">
-              Witnessing Miracles in{" "}
-              <span className="italic text-primary">Simple Moments.</span>
+              A short visit can go a long way.
             </h2>
-            <p className="text-xl leading-relaxed text-on-surface-variant">
-              Beyond the statistics of visits and hours, our impact is measured
-              in the smiles returned, the hands held, and the silent prayers
-              answered. Every wag is a bridge to someone&apos;s heart, offering
-              a tangible glimpse of divine, unconditional love.
-            </p>
+            <div className="space-y-6 text-xl leading-relaxed text-on-surface-variant">
+              <p>
+                Time with a therapy dog has been shown to lower stress, ease
+                anxiety, and help people feel more at peace. But beyond the
+                research, you can see it happen in real time.
+              </p>
+              <p>
+                A patient smiles for the first time that day.
+                <br />
+                A student who was anxious starts to settle.
+                <br />
+                A family in a difficult moment feels just a little more steady.
+              </p>
+              <p className="font-medium text-on-surface">
+                It&apos;s simple. And it matters.
+              </p>
+            </div>
             <div className="grid grid-cols-2 gap-8 pt-6">
               <div>
                 <p className="text-4xl font-bold text-primary">150+</p>
