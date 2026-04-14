@@ -6,9 +6,6 @@ export function HomeWhatWeDo() {
   return (
     <section className="mx-auto max-w-screen-xl px-6 py-24 sm:px-10 md:py-32 lg:px-12">
       <div className="mb-12 space-y-6 md:mb-16">
-        <p className="text-sm font-bold uppercase tracking-widest text-secondary">
-          What we do
-        </p>
         <h2 className="font-serif text-5xl font-bold text-on-surface">
           They show up.
         </h2>

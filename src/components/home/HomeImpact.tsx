@@ -16,7 +16,7 @@ export function HomeImpact() {
               <div className="relative h-[420px] w-full sm:h-[520px] lg:h-[600px]">
                 <Image
                   src={IMG.impactFeature}
-                  alt="A child holds Sam’s paw during a therapy visit"
+                  alt="Angel Paws therapy dog with volunteer handler, ready for visits"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
@@ -51,9 +51,9 @@ export function HomeImpact() {
             </div>
             <div className="grid grid-cols-2 gap-8 pt-6">
               <div>
-                <p className="text-4xl font-bold text-primary">150+</p>
+                <p className="text-4xl font-bold text-primary">1,000+</p>
                 <p className="text-sm font-semibold uppercase tracking-wider text-secondary">
-                  Active Teams
+                  People Visited
                 </p>
               </div>
               <div>

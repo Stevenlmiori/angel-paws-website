@@ -15,13 +15,6 @@ export default function Home() {
       <Reveal>
         <HomeHero />
       </Reveal>
-      <section className="px-6 pb-24 md:pb-32 lg:px-12">
-        <div className="mx-auto max-w-screen-xl">
-          <Reveal delayMs={100}>
-            <SlideShow />
-          </Reveal>
-        </div>
-      </section>
       <HomeMission />
       <Reveal>
         <HomeWhatWeDo />
@@ -39,6 +32,13 @@ export default function Home() {
       <Reveal>
         <HomeJourneyCTA />
       </Reveal>
+      <section className="px-6 pb-24 pt-12 md:pb-32 md:pt-16 lg:px-12">
+        <div className="mx-auto max-w-screen-xl">
+          <Reveal delayMs={100}>
+            <SlideShow />
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 }

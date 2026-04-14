@@ -2,6 +2,8 @@ import Image from "next/image";
 import { ArrowRight, Heart, PawPrint } from "lucide-react";
 import { IMG } from "./media";
 
+const HERO_QUOTE = "When I needed a hand, you gave me your paw.";
+
 export function HomeHero() {
   return (
     <section className="relative flex min-h-[85vh] items-center overflow-hidden px-6 py-12 sm:px-10 lg:min-h-[90vh] lg:px-12">
@@ -42,7 +44,7 @@ export function HomeHero() {
           </div>
         </div>
 
-        <div className="relative lg:col-span-6">
+        <div className="relative mb-12 lg:col-span-6 lg:mb-0">
           <div className="relative aspect-[4/5] overflow-hidden rounded-[3rem] shadow-2xl">
             <Image
               src={IMG.heroDog}
@@ -52,11 +54,15 @@ export function HomeHero() {
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
           </div>
-          <div className="absolute -bottom-10 -left-4 hidden max-w-xs rounded-3xl bg-surface-container/90 p-10 shadow-xl backdrop-blur-sm xl:block">
-            <p className="font-serif text-2xl italic text-primary">
-              &ldquo;When I needed a hand, you gave me your paw.&rdquo;
+          {/* Sibling of clipped frame so the card can hang past the rounded image (all breakpoints) */}
+          <div className="absolute -bottom-8 -left-2 z-10 max-w-[min(20rem,calc(100%-0.5rem))] rounded-3xl border border-primary/10 bg-surface-container/90 p-6 shadow-xl backdrop-blur-sm sm:-bottom-10 sm:-left-4 sm:max-w-xs sm:p-8 xl:p-10">
+            <p
+              lang="en"
+              className="text-pretty text-left font-serif text-lg italic leading-snug text-primary sm:text-xl xl:text-2xl xl:leading-snug"
+            >
+              &ldquo;{HERO_QUOTE}&rdquo;
             </p>
           </div>
         </div>
