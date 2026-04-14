@@ -45,3 +45,6 @@ yarn-error.log*
 
 # turbopack / tooling caches
 .turbo
+
+# local member portal data (when Redis is not configured in dev)
+.data/

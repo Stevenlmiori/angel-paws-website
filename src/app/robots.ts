@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: siteIndexable ? "/" : [],
-      disallow: ["/members/portal/", "/private/"],
+      disallow: ["/members/portal/", "/admin/", "/private/"],
     },
     sitemap: "https://angelpawshouston.com/sitemap.xml",
   };
