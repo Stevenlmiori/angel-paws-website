@@ -9,8 +9,8 @@ export const IMG = {
   pillarHealthcare: "/img/sam-comforting-kid-1.jpg",
   /** What we do — care facilities tile */
   pillarCareFacilities: "/img/sam-comforting-kid-2.jpg",
-  /** Impact section */
-  impactFeature: "/img/gave-me-your-paw.jpg",
+  /** Impact section — dog and handler (horizontal) */
+  impactFeature: "/img/angelpaws-dog-and-owner-nk_horizontal.jpg",
   /** Bottom volunteer CTA (softened with overlay) */
   journeyInvite: "/img/sam-comforting-kid-2.jpg",
 } as const;
