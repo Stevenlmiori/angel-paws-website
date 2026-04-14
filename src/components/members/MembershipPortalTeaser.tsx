@@ -21,9 +21,9 @@ export function MembershipPortalTeaser() {
               Member portal
             </h2>
             <p className="mt-2 max-w-2xl text-on-surface-variant">
-              Members will sign in here for forms and documents. When this goes
-              live, everything will live in one calm place—simple for our team to
-              update and simple for handlers to find.
+              Members sign in with the team password to open forms, policies, and
+              Drive links in one place—simple for our team to update and simple for
+              handlers to find.
             </p>
           </div>
         </div>
@@ -49,15 +49,6 @@ export function MembershipPortalTeaser() {
           >
             Go to portal
           </Link>
-          <a
-            href="https://drive.google.com/drive/folders/angel-paws-resources-placeholder"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-8 py-4 text-sm font-bold uppercase tracking-widest text-primary transition-colors hover:bg-primary/10"
-          >
-            <FileText className="size-4" />
-            Member Resources (Drive)
-          </a>
         </div>
       </div>
     </section>
