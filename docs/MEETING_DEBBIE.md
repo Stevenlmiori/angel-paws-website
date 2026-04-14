@@ -468,7 +468,7 @@ Copy below is **user-visible marketing text** from components (not page metadata
 
 ### Remote / placeholder-style imagery (URLs in code, not in `public/img/`)
 
-- **About** hero + three **Our Story** panels — Google-hosted URLs in `src/components/about/media.ts`.
+- **About** hero + three **Our Story** panels — ministry dog photos from `public/img/` via `src/components/about/media.ts` (swap paths when story-specific art is ready).
 - **Where We Serve** hero + four area photos — `src/components/where-we-serve/media.ts`.
 - **Meet the Board** hero, impact image, and each board headshot — `src/components/meet-the-board/media.ts`.
 - **Donate** hero — `src/components/donate/media.ts`.

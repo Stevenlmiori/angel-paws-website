@@ -23,7 +23,7 @@ export function MeetTheBoardHero() {
           <div className="relative h-[min(420px,70vh)] overflow-hidden rounded-[3rem] shadow-soft lg:h-[500px]">
             <Image
               src={BOARD_IMG.hero}
-              alt="Older adult smiling while petting a gentle golden retriever"
+              alt="Therapy-style dog outdoors in natural light (placeholder hero image)"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"

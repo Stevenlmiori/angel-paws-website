@@ -42,7 +42,7 @@ export function MeetTheBoardImpact() {
         <div className="relative mt-8 h-[min(400px,60vh)] overflow-hidden rounded-[3rem] lg:col-span-6 lg:mt-0 lg:h-[600px]">
           <Image
             src={BOARD_IMG.impact}
-            alt="Therapy dog teams walking through a park at sunrise"
+            alt="Volunteers in matching shirts at a community event (placeholder)"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"

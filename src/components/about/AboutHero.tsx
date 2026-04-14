@@ -44,7 +44,7 @@ export function AboutHero() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl md:rounded-3xl">
             <Image
               src={ABOUT_IMG.hero}
-              alt="Golden retriever resting with an older adult in a sunlit room"
+              alt="Therapy Golden Retriever in vest with volunteer handler"
               fill
               priority
               sizes="(max-width: 768px) 100vw, 50vw"

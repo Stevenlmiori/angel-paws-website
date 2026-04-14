@@ -25,7 +25,7 @@ export function ContactHero() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-[3rem] bg-surface-container-low">
             <Image
               src={CONTACT_IMG.hero}
-              alt="Golden retriever therapy dog on a soft rug in a sunlit room"
+              alt="Students in a library setting (placeholder imagery for outreach)"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 42vw"

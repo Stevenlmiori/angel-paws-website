@@ -38,7 +38,7 @@ export function DonateHero() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-[3rem] bg-surface-container-low shadow-soft">
             <Image
               src={DONATE_IMG.hero}
-              alt="Therapy dog with a child in a hospital setting"
+              alt="Open field at golden hour (placeholder mood for giving)"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 42vw"

@@ -33,7 +33,7 @@ export function WhereWeServeAreas() {
         <div className="lg:col-span-7">
           <ImagePanel
             src={SERVE_IMG.hospitals}
-            alt="Patient's hand resting gently on a therapy dog in a recovery setting"
+            alt="Placeholder: bright hospital corridor (stock photo)"
           />
         </div>
         <div className="lg:col-span-5">
@@ -124,7 +124,7 @@ export function WhereWeServeAreas() {
         <div className="order-1 lg:order-2 lg:col-span-7">
           <ImagePanel
             src={SERVE_IMG.schools}
-            alt="Children reading to a golden retriever in a school library"
+            alt="Placeholder: students in a library setting (stock photo)"
           />
         </div>
       </div>
@@ -134,7 +134,7 @@ export function WhereWeServeAreas() {
         <div className="lg:col-span-7">
           <ImagePanel
             src={SERVE_IMG.care}
-            alt="Resident with a small dog in a comfortable sunlit living area"
+            alt="Placeholder: hands and caring gesture (stock photo for care facilities)"
           />
         </div>
         <div className="lg:col-span-5">
@@ -198,7 +198,7 @@ export function WhereWeServeAreas() {
         <div className="order-1 lg:order-2 lg:col-span-7">
           <ImagePanel
             src={SERVE_IMG.community}
-            alt="Community fair with therapy dogs in Angel Paws vests"
+            alt="Placeholder: people with dogs in a park (stock photo for community)"
           />
         </div>
       </div>

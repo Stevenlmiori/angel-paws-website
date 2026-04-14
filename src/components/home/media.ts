@@ -1,18 +1,16 @@
+import { SITE_IMAGES } from "@/lib/siteImages";
+
 /**
- * Homepage photography — ministry images in `public/img` (Debbie / Angel Paws).
+ * Homepage — each `SITE_IMAGES` key is used only here (see `src/lib/siteImages.ts`).
  */
 
 export const IMG = {
-  /** Home hero — hand and paw moment with Sam */
-  heroDog: "/img/gave-me-your-paw.jpg",
-  /** What we do — large tile (hospitals & healthcare) */
-  pillarHealthcare: "/img/sam-comforting-kid-1.jpg",
-  /** What we do — care facilities tile */
-  pillarCareFacilities: "/img/sam-comforting-kid-2.jpg",
-  /** Impact section — dog and handler (horizontal) */
-  impactFeature: "/img/angelpaws-dog-and-owner-nk_horizontal.jpg",
-  /** Bottom volunteer CTA (softened with overlay) */
-  journeyInvite: "/img/sam-comforting-kid-2.jpg",
+  /** Must stay `gave-me-your-paw` — pairs with hero quote (“…gave me your paw.”). */
+  heroDog: SITE_IMAGES.ministryPawHand,
+  pillarHealthcare: SITE_IMAGES.dogHarnessPortrait,
+  pillarCareFacilities: SITE_IMAGES.ministrySamWithChild2,
+  impactFeature: SITE_IMAGES.ministryHandlerHorizontal,
+  journeyInvite: SITE_IMAGES.dogElderlyManWithDogInBed,
 } as const;
 
 export type HomeSlide = {
@@ -22,25 +20,24 @@ export type HomeSlide = {
   description: string;
 };
 
-/** Homepage carousel — same three ministry photos, distinct captions */
 export const HOME_SLIDES: readonly HomeSlide[] = [
   {
-    src: "/img/sam-comforting-kid-1.jpg",
-    alt: "Sam, a Golden Retriever therapy dog, resting gently beside a child",
+    src: SITE_IMAGES.aiAboutStorySeed,
+    alt: "Therapy dog visiting with people in a warm care setting",
     title: "Unconditional Love",
     description:
       "A calm presence beside little ones—comfort that does not need words.",
   },
   {
-    src: "/img/sam-comforting-kid-2.jpg",
-    alt: "Sam comforting a child who is leaning in for a hug",
+    src: SITE_IMAGES.aiAboutStoryBayou,
+    alt: "Therapy dog and handler outdoors in green space",
     title: "Gentle Companions",
     description:
       "Sharing steady, patient friendship in hospitals, schools, and care settings.",
   },
   {
-    src: "/img/gave-me-your-paw.jpg",
-    alt: "A child holds Sam’s paw—trust in a simple touch",
+    src: SITE_IMAGES.stockTherapyDogVisit,
+    alt: "Therapy dog visiting with a person in a bright indoor setting",
     title: "Hope in Small Moments",
     description:
       "Sometimes the first step toward healing is a warm paw and a gentle hand.",

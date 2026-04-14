@@ -4,21 +4,21 @@ import { ABOUT_IMG } from "./media";
 const blocks = [
   {
     image: ABOUT_IMG.storySeed,
-    alt: "Early days of Angel Paws visiting a care community",
+    alt: "Elderly woman laughing with a therapy dog in a care setting",
     title: "The Seed of Hope",
     body: "It began with a single visit to a local nursing home. Our founders witnessed how the presence of their family dog transformed an atmosphere of silence into one of joyful chatter and memories. That afternoon, the vision for Angel Paws was born—a mission to institutionalize these moments of grace across Houston.",
     reverse: false,
   },
   {
     image: ABOUT_IMG.storyBayou,
-    alt: "Therapy teams serving across Houston",
+    alt: "Professional portrait of a woman in a gray jacket (placeholder board-adjacent imagery)",
     title: "Serving the Bayou City",
     body: "As Houston grew, so did the need for emotional support. We expanded from a small team of three to a network of certified handlers and their faithful companions. From the Texas Medical Center to quiet suburban libraries, Angel Paws became a staple of community resilience, especially during times of local hardship.",
     reverse: true,
   },
   {
     image: ABOUT_IMG.storyForward,
-    alt: "Training and future of therapy teams",
+    alt: "Sam, a Golden Retriever therapy dog, beside a child during a visit",
     title: "Looking Forward",
     body: "Today, Angel Paws continues to evolve, integrating modern therapy techniques with our timeless faith foundation. We are committed to training the next generation of therapy teams, ensuring that the legacy of compassion continues to thrive for decades to come.",
     reverse: false,

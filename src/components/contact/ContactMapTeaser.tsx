@@ -8,7 +8,7 @@ export function ContactMapTeaser() {
       <div className="group relative h-[min(400px,55vh)] overflow-hidden rounded-[3rem] md:h-[400px] md:rounded-[4rem]">
         <Image
           src={CONTACT_IMG.map}
-          alt="Regional map suggesting therapy service locations across the area"
+          alt="Therapy team outdoors—suggesting Greater Houston service area"
           fill
           sizes="100vw"
           className="object-cover transition-transform duration-700 group-hover:scale-110"

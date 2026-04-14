@@ -28,7 +28,7 @@ export function HomeWhatWeDo() {
         <div className="group relative min-h-[320px] overflow-hidden rounded-[2.5rem] bg-surface-container-high transition-all duration-500 hover:shadow-xl md:col-span-8 md:h-full">
           <Image
             src={IMG.pillarHealthcare}
-            alt="Sam, a Golden Retriever therapy dog, beside a child in a comforting visit"
+            alt="Long-coated dog in a red and black harness (stock photo)"
             fill
             sizes="(max-width: 768px) 100vw, 66vw"
             className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
