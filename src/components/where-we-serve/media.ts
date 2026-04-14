@@ -1,12 +1,9 @@
+import { SITE_IMAGES } from "@/lib/siteImages";
+
 export const SERVE_IMG = {
-  hero:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuDcYkNOWDHUO4PDw3CODteVHDBAyKpx53RdFZQ9twF6PS2m5hNhcKWPqIfSGqdn292zEjR4jSXJuTaN7WJghRDgfCu8qJg5dne7amWRgxeK2Siuc4W9CTgw22-D2WMc0JDTAc485ccAta6wyCdmhb5UUKSww0e16JFluHw3rGL3jOIMLPRji1TwzYfUB3qaSeTTQbx0Qm1AFKaGSWMC05OM2NoGVMDmxRmf5D8aJCIM9vOVjXeRS1nrSu6MMletLDadejgWnNeOTtM",
-  hospitals:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuAhlzuBIqUsL-iuq_KcUVWsC5XFuXxoIroA7VF1jeANHuEZB2_BugGNmfjN3bKoxPGMSSW2zzQbixFKQ5waciUcNwNdbRXtcBqmD5uhmKH9cXNKV7dC0UZObVqxuZBgMvZsMWkHiz4c77b14j90jGhqdQavjHgIchsu1yLNly663Ep8ElYpye_zCCxzInPXY8uprJIvzCrLjITHQlT3MDU8tWOzDMnqaXNpmVNtu-FsMG8yRehZKkvWnHuq1Dhb_1zKC9kWgGxJazw",
-  schools:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuCLb91m3ezO8YpN7ZhV9gypV9UAGAEI4ssUkg9HN7k1ft8inVjpLSOekGbSa4WzN54INaA_pK5KRY1q7qaiYgS4PKh-TeqGdHAjt618gwl_0P4OUW8ZNYvKu_QdkG_5GWP4WW2-71SL6bDSCcKO1qs5npXnkL6ZQu1Bd8M0zs_hqtWdwHHP6WinILeyzhkAtHRimuNo4YFGib6k48rOxtxrEe9CimfcjAdkCoM05B_A579-OD-5XF3BTAkc2RBnqiU0BBKzXoRW5xc",
-  care:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuDGP1xgdjDIZOsseOGJGXMXUge0EV0N_CM13zvBKF2T4A5QE9U0taHszgZKaLLtDA_pWALTm-jmoPbpNgOSxPGq972eD0Yb77z1O9bHcS1AFIAoDbMjK0KmbJVo1AQp-FAOLnpqzpB5Gk-_OrTdmwE0iB6XCXYtONwLkg3nv9IFgGMZdBBC0eR8xwT-kgVg1OPj9yHIFDSCTvlvNLOCThaObDUGPmrmUvFmfCpkKYcq3DuYqOvHhuDk92Hc-K7HY1DHXhFtNl9zBFU",
-  community:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuDOZKAXrUpFpZNec0KPaTDBoa_2xl1t0Ha15eKWKldECkO5g-0tf1C41P0CRVQ2quUTJ8bSSW0NhXhtx2fUwx5cv_FNJw4OUUtC5MP-xkq6McfDtHN7kx-NY1XqLYEw3BOhIBG7sST-c6JyUdlxcfO9t0CkmMBXBT44QjBKSI0yFjE5uup-ka74iZMRk0WXAOuLg8E0gAHGmLkwrX_OpuLLYUAgJyOqVeF6zUzlawDZYhFUGEZx_o4XT-c53HQl3vPr1GCYF64PAs8",
+  hero: SITE_IMAGES.stockDogWindowLight,
+  hospitals: SITE_IMAGES.stockHospitalCorridor,
+  schools: SITE_IMAGES.stockStudentsLibrary,
+  care: SITE_IMAGES.stockSeniorHands,
+  community: SITE_IMAGES.stockCommunityPark,
 } as const;

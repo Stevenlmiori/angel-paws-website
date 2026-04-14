@@ -31,6 +31,8 @@ function contentSecurityPolicyReportOnly(): string {
       "data:",
       "blob:",
       "https://lh3.googleusercontent.com",
+      "https://images.unsplash.com",
+      "https://plus.unsplash.com",
     ].join(" "),
     [
       "connect-src",
@@ -92,6 +94,16 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
         pathname: "/aida-public/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "plus.unsplash.com",
+        pathname: "/**",
       },
     ],
   },

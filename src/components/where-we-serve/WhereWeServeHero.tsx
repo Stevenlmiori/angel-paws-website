@@ -27,7 +27,7 @@ export function WhereWeServeHero() {
           <div className="relative aspect-[4/5] rotate-2 overflow-hidden rounded-[2rem] shadow-2xl transition-transform duration-700 hover:rotate-0">
             <Image
               src={SERVE_IMG.hero}
-              alt="Therapy dog in a sunlit hospital corridor"
+              alt="Golden retriever in soft window light (placeholder for regional presence)"
               fill
               priority
               sizes="(max-width: 768px) 100vw, 50vw"

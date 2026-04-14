@@ -48,7 +48,7 @@ export function HomeHero() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-[3rem] shadow-2xl">
             <Image
               src={IMG.heroDog}
-              alt="A child holds Sam’s paw—Angel Paws therapy dog"
+              alt="A child holds Sam’s paw—Angel Paws therapy dog (gave me your paw)"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
