@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Angel Paws — website
 
-## Getting Started
+Public-facing site for **Angel Paws**, a pet therapy organization: mission and beliefs, service areas, membership information, contact and visit requests, donations, and volunteer information. The UI follows the in-repo **AngelPaws Serif** design system (Tailwind v4 tokens, Lucide icons).
 
-First, run the development server:
+## Tech stack
+
+- [Next.js](https://nextjs.org/) 16 (App Router) — routes under `src/app/`
+- React 19 and TypeScript
+- Tailwind CSS v4
+- Embedded third-party flows: **Tally** (forms on `/contact`), **Donorbox** (widget on `/donate`)
+- Optional **Upstash Redis** for production persistence (member portal tooling); see `.env.example`
+
+> This repo tracks a newer Next.js major than many tutorials. If you touch framework APIs, skim the version-specific notes in [`AGENTS.md`](./AGENTS.md) and the guides under `node_modules/next/dist/docs/` when something looks unfamiliar.
+
+## Getting started
+
+**Requirements:** Node.js **20** or newer and npm (or another compatible package manager).
+
+```bash
+npm install
+cp .env.example .env.local
+```
+
+Edit `.env.local` with the values you need for local development. At minimum, set the `NEXT_PUBLIC_*` variables if you are working on `/contact` or `/donate`. See [.env.example](./.env.example) for every variable and short comments.
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command        | Description              |
+|----------------|--------------------------|
+| `npm run dev`  | Local development server |
+| `npm run build`| Production build         |
+| `npm run start`| Serve production build   |
+| `npm run lint` | ESLint                   |
 
-## Learn More
+## Documentation in this repo
 
-To learn more about Next.js, take a look at the following resources:
+| Doc | Purpose |
+|-----|---------|
+| [`docs/HANDOFF.md`](./docs/HANDOFF.md) | Route map, phased rollout, embeds (Tally / Donorbox), environment variables, indexing (`NEXT_PUBLIC_SITE_INDEXABLE`), and operator-focused notes |
+| [`DESIGN.md`](./DESIGN.md) | **AngelPaws Serif** — typography, colors, spacing, and UI patterns |
+| [`AGENTS.md`](./AGENTS.md) | Conventions for contributors and AI-assisted edits |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Search indexing (launch)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Until you intentionally allow indexing, leave `NEXT_PUBLIC_SITE_INDEXABLE` unset (or not exactly `true`). When the site should appear in search engines, set `NEXT_PUBLIC_SITE_INDEXABLE=true` in your host’s environment, redeploy, and verify `robots.txt` and metadata as described in [`docs/HANDOFF.md`](./docs/HANDOFF.md).
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The app runs as a standard **Node** Next.js deployment (server features such as cookies and optional Redis are supported). **[Vercel](https://vercel.com/)** is a common choice; add the same environment variables you use locally in the host’s project settings, then deploy from your default branch.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contributing
+
+Issues and small, focused pull requests are welcome. Please match existing patterns (see `DESIGN.md` and `AGENTS.md`) and avoid committing secrets—use `.env.local` only on your machine.
+
+## License
+
+There is no `LICENSE` file in this repository yet. If you need permission to reuse or redistribute the code or assets, contact the project maintainers.
