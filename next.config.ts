@@ -48,6 +48,8 @@ function contentSecurityPolicyReportOnly(): string {
       "https://*.tally.so",
       "https://donorbox.org",
       "https://*.donorbox.org",
+      "https://www.youtube-nocookie.com",
+      "https://www.youtube.com",
     ].join(" "),
     "object-src 'none'",
     "base-uri 'self'",

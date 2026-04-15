@@ -1,29 +1,56 @@
 import Image from "next/image";
 import { ABOUT_IMG } from "./media";
 
-const blocks = [
+const youtubeEmbedParams = new URLSearchParams({
+  rel: "0",
+  modestbranding: "1",
+  playsinline: "1",
+  /** Replays when the video ends so viewers are less likely to sit on YouTube’s end-screen suggestions. */
+  loop: "1",
+  playlist: "sxl9IDVqQVw",
+});
+
+type StoryMedia =
+  | { kind: "image"; src: string; alt: string }
+  | { kind: "youtube"; videoId: string; iframeTitle: string };
+
+const blocks: ReadonlyArray<{
+  title: string;
+  body: string;
+  reverse: boolean;
+  media: StoryMedia;
+}> = [
   {
-    image: ABOUT_IMG.storySeed,
-    alt: "Elderly woman laughing with a therapy dog in a care setting",
+    media: {
+      kind: "image",
+      src: ABOUT_IMG.storySeed,
+      alt: "Elderly woman laughing with a therapy dog in a care setting",
+    },
     title: "The Seed of Hope",
     body: "It began with a single visit to a local nursing home. Our founders witnessed how the presence of their family dog transformed an atmosphere of silence into one of joyful chatter and memories. That afternoon, the vision for Angel Paws was born—a mission to institutionalize these moments of grace across Houston.",
     reverse: false,
   },
   {
-    image: ABOUT_IMG.storyBayou,
-    alt: "Professional portrait of a woman in a gray jacket (placeholder board-adjacent imagery)",
-    title: "Serving the Bayou City",
-    body: "As Houston grew, so did the need for emotional support. We expanded from a small team of three to a network of certified handlers and their faithful companions. From the Texas Medical Center to quiet suburban libraries, Angel Paws became a staple of community resilience, especially during times of local hardship.",
+    media: {
+      kind: "youtube",
+      videoId: "sxl9IDVqQVw",
+      iframeTitle: "Angel Paws ministry video on YouTube",
+    },
+    title: "Helping the Hurting",
+    body: "From a small beginning, we have grown to meet more and more needs across our city and region. We expanded from a small team of three to a network of certified handlers and their faithful companions. From the Texas Medical Center to quiet suburban libraries, Angel Paws became a staple of community resilience, especially during times of local hardship.",
     reverse: true,
   },
   {
-    image: ABOUT_IMG.storyForward,
-    alt: "Sam, a Golden Retriever therapy dog, beside a child during a visit",
+    media: {
+      kind: "image",
+      src: ABOUT_IMG.storyForward,
+      alt: "Brown therapy cocker spaniel in a vest, looking toward the camera",
+    },
     title: "Looking Forward",
     body: "Today, Angel Paws continues to evolve, integrating modern therapy techniques with our timeless faith foundation. We are committed to training the next generation of therapy teams, ensuring that the legacy of compassion continues to thrive for decades to come.",
     reverse: false,
   },
-] as const;
+];
 
 export function AboutStory() {
   return (
@@ -37,20 +64,32 @@ export function AboutStory() {
         </h2>
       </div>
       <div className="space-y-20 md:space-y-24">
-        {blocks.map(({ image, alt, title, body, reverse }) => (
+        {blocks.map(({ media, title, body, reverse }) => (
           <div
             key={title}
             className={`flex flex-col items-center gap-12 md:flex-row md:gap-16 ${reverse ? "md:flex-row-reverse" : ""}`}
           >
             <div className="w-full md:w-1/2">
               <div className="relative aspect-video overflow-hidden rounded-2xl shadow-lg md:rounded-3xl">
-                <Image
-                  src={image}
-                  alt={alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                />
+                {media.kind === "image" ? (
+                  <Image
+                    src={media.src}
+                    alt={media.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <iframe
+                    title={media.iframeTitle}
+                    src={`https://www.youtube-nocookie.com/embed/${media.videoId}?${youtubeEmbedParams.toString()}`}
+                    className="absolute inset-0 h-full w-full border-0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                  />
+                )}
               </div>
             </div>
             <div className="w-full md:w-1/2">

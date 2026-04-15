@@ -29,15 +29,15 @@ export const SITE_IMAGES = {
   portraitManBlackJacket: unsplashPhoto("photo-1629425733761-caae3b5f2e50"),
   portraitWomanSmilingClose: unsplashPhoto("photo-1494790108377-be9c29b29330"),
   portraitWomanRedHairStriped: unsplashPhoto("photo-1650091903034-5f3bb37c35d2"),
-  portraitWomanGrayJacket: unsplashPhoto("photo-1573496359142-b8d87734a5a2"),
   portraitManSuitBrick: unsplashPhoto("photo-1627161684458-a62da52b51c3"),
 
   // --- Ministry + AI assets (local, each once) ---
   aiAboutHeroTeam: "/img/about-hero-therapy-team.png",
   aiAboutStorySeed: "/img/about-story-seed-of-hope.png",
   aiAboutStoryBayou: "/img/about-story-bayou-city.png",
+  /** About “Looking Forward” — wide composition for 16:9 panels (AI placeholder). */
+  aiAboutStoryForward: "/img/about-story-looking-forward-cocker.png",
   ministryPawHand: "/img/gave-me-your-paw.jpg",
-  ministrySamWithChild1: "/img/sam-comforting-kid-1.jpg",
   ministrySamWithChild2: "/img/sam-comforting-kid-2.jpg",
   ministryHandlerHorizontal: "/img/angelpaws-dog-and-owner-nk_horizontal.jpg",
 

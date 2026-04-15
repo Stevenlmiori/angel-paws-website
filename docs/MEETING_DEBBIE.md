@@ -194,8 +194,8 @@ Copy below is **user-visible marketing text** from components (not page metadata
 
 - Section kicker: **The Journey** · H2: **Our Story**
 - **The Seed of Hope:** It began with a single visit to a local nursing home. Our founders witnessed how the presence of their family dog transformed an atmosphere of silence into one of joyful chatter and memories. That afternoon, the vision for Angel Paws was born—a mission to institutionalize these moments of grace across Houston.
-- **Serving the Bayou City:** As Houston grew, so did the need for emotional support. We expanded from a small team of three to a network of certified handlers and their faithful companions. From the Texas Medical Center to quiet suburban libraries, Angel Paws became a staple of community resilience, especially during times of local hardship.
-- **Looking Forward:** Today, Angel Paws continues to evolve, integrating modern therapy techniques with our timeless faith foundation. We are committed to training the next generation of therapy teams, ensuring that the legacy of compassion continues to thrive for decades to come.
+- **Helping the Hurting:** From a small beginning, we have grown to meet more and more needs across our city and region. We expanded from a small team of three to a network of certified handlers and their faithful companions. From the Texas Medical Center to quiet suburban libraries, Angel Paws became a staple of community resilience, especially during times of local hardship. *(Media: embedded YouTube ministry clip — `https://www.youtube.com/watch?v=sxl9IDVqQVw` — privacy-oriented `youtube-nocookie.com` player with `rel=0`, modest branding, and loop so the end screen is less prominent.)*
+- **Looking Forward:** Today, Angel Paws continues to evolve, integrating modern therapy techniques with our timeless faith foundation. We are committed to training the next generation of therapy teams, ensuring that the legacy of compassion continues to thrive for decades to come. *(Media: AI placeholder — brown cocker spaniel in a therapy vest, wide composition for the 16:9 panel — replace when ministry art is ready.)*
 - Closing line: **It’s hard to explain, but easy to feel.**
 
 **Leadership CTA**
@@ -455,27 +455,41 @@ Copy below is **user-visible marketing text** from components (not page metadata
 
 ## Image inventory
 
+Paths and keys are centralized in `src/lib/siteImages.ts` (`SITE_IMAGES`); each file or remote URL is wired from one page module (see per-page `media.ts` under `src/components/`).
+
 ### Real ministry photos (local JPEGs in `public/img/`)
 
 | File | Used for (summary) |
 |------|---------------------|
-| `gave-me-your-paw.jpg` | Home hero; carousel slide 3; journey CTA background |
-| `sam-comforting-kid-1.jpg` | Home “Hospitals & Healthcare” tile; carousel slide 1 |
-| `sam-comforting-kid-2.jpg` | Home care tile; carousel slide 2; journey CTA (same file as care tile) |
-| `angelpaws-dog-and-owner-nk_horizontal.jpg` | Home impact section |
+| `gave-me-your-paw.jpg` | Home hero only (pairs with the “…gave me your paw.” quote in `HomeHero`) |
+| `sam-comforting-kid-2.jpg` | Home “Care Facilities” pillar photo tile |
+| `angelpaws-dog-and-owner-nk_horizontal.jpg` | Home impact / feature strip |
+| `sam-comforting-kid-1.jpg` | *(Present on disk; not referenced in the current site registry — available if you want it wired to a specific block.)* |
 
-**Ideal for Debbie:** Confirm these four are approved for web, credit/caption preferences, and whether any should be swapped (e.g. more explicit “CFBC / Angel Paws” context in frame).
+**Ideal for Debbie:** Confirm the in-use JPEGs are approved for web, credit/caption preferences, and whether any should be swapped (e.g. more explicit “CFBC / Angel Paws” context in frame).
 
-### Remote / placeholder-style imagery (URLs in code, not in `public/img/`)
+### AI / design placeholders (local PNGs in `public/img/`)
 
-- **About** hero + three **Our Story** panels — ministry dog photos from `public/img/` via `src/components/about/media.ts` (swap paths when story-specific art is ready).
+| File | Used for (summary) |
+|------|---------------------|
+| `about-hero-therapy-team.png` | About page hero |
+| `about-story-seed-of-hope.png` | Homepage carousel slide 1 |
+| `about-story-bayou-city.png` | Homepage carousel slide 2 |
+| `about-story-looking-forward-cocker.png` | About Our Story “Looking Forward” (wide framing for the video-shaped panel) |
+
+Replace these with ministry-owned photography when ready.
+
+### Remote / placeholder-style imagery (URLs in code, not local files)
+
+- **About** — Hero uses local AI PNG above. **Our Story:** first chapter uses a unique Unsplash dog+care photo; second chapter is a **YouTube embed** (see **Helping the Hurting** under `/about`); third chapter uses `about-story-looking-forward-cocker.png`. All wired via `src/components/about/media.ts` and `AboutStory.tsx`.
+- **Home** — Additional Unsplash images for pillars and carousel slide 3 are defined in `src/components/home/media.ts` (see `SITE_IMAGES` for exact URLs).
 - **Where We Serve** hero + four area photos — `src/components/where-we-serve/media.ts`.
 - **Meet the Board** hero, impact image, and each board headshot — `src/components/meet-the-board/media.ts`.
 - **Donate** hero — `src/components/donate/media.ts`.
 - **Contact** map image — `src/components/contact/media.ts`.
-- **Get Involved** hero reuses **About** hero URL.
+- **Get Involved** hero reuses **About** hero image key (same local PNG).
 
-**Plan:** Treat these as **replaceable placeholders** until Debbie supplies final photography or approved stock. For each section, decide: keep URL, upload to `public/`, or swap to a ministry-owned asset.
+**Plan:** Treat remote URLs and AI placeholders as **replaceable** until Debbie supplies final photography or approved stock. For each section, decide: keep URL, upload to `public/`, or swap to a ministry-owned asset.
 
 ### Brand
 

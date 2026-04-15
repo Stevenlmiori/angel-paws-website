@@ -6,6 +6,5 @@ import { SITE_IMAGES } from "@/lib/siteImages";
 export const ABOUT_IMG = {
   hero: SITE_IMAGES.aiAboutHeroTeam,
   storySeed: SITE_IMAGES.dogElderlyWomanLaughing,
-  storyBayou: SITE_IMAGES.portraitWomanGrayJacket,
-  storyForward: SITE_IMAGES.ministrySamWithChild1,
+  storyForward: SITE_IMAGES.aiAboutStoryForward,
 } as const;
