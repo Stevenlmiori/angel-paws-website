@@ -104,13 +104,13 @@ export function SiteFooter() {
           </div>
           <div className="flex flex-col gap-3 pt-1 text-xs text-stone-500">
             <Link
-              href="#"
+              href="/privacy-policy"
               className="w-fit transition-colors hover:text-primary"
             >
               Privacy Policy
             </Link>
             <Link
-              href="#"
+              href="/terms-of-service"
               className="w-fit transition-colors hover:text-primary"
             >
               Terms of Service

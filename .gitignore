@@ -48,3 +48,6 @@ yarn-error.log*
 
 # local member portal data (when Redis is not configured in dev)
 .data/
+
+# private meeting notes (local only)
+docs/MEETING_DEBBIE.md

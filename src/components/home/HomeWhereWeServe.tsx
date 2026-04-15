@@ -10,17 +10,8 @@ const places: { Icon: LucideIcon; title: string }[] = [
 
 export function HomeWhereWeServe() {
   return (
-    <section className="bg-surface py-24 md:py-32">
+    <section className="bg-surface pb-24 pt-2 md:pb-32 md:pt-4">
       <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-12">
-        <div className="mb-16 space-y-6 text-center md:mb-20">
-          <h2 className="font-serif text-5xl font-bold text-on-surface">
-            Where We Serve
-          </h2>
-          <p className="mx-auto max-w-2xl text-xl text-on-surface-variant">
-            Our ministry extends across the Greater Houston area, from major
-            medical centers to local elementary schools.
-          </p>
-        </div>
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           {places.map(({ Icon, title }) => (
             <div

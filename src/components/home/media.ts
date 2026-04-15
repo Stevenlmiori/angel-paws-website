@@ -8,6 +8,7 @@ export const IMG = {
   /** Must stay `gave-me-your-paw` — pairs with hero quote (“…gave me your paw.”). */
   heroDog: SITE_IMAGES.ministryPawHand,
   pillarHealthcare: SITE_IMAGES.dogHarnessPortrait,
+  pillarSchools: SITE_IMAGES.ministrySamCathedralHigh2,
   pillarCareFacilities: SITE_IMAGES.ministrySamWithChild2,
   impactFeature: SITE_IMAGES.ministryHandlerHorizontal,
   journeyInvite: SITE_IMAGES.dogElderlyManWithDogInBed,

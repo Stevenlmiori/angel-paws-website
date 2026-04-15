@@ -38,6 +38,7 @@ export const SITE_IMAGES = {
   /** About “Looking Forward” — wide composition for 16:9 panels (AI placeholder). */
   aiAboutStoryForward: "/img/about-story-looking-forward-cocker.png",
   ministryPawHand: "/img/gave-me-your-paw.jpg",
+  ministrySamCathedralHigh2: "/img/sam-cathedral-high-2.jpg",
   ministrySamWithChild2: "/img/sam-comforting-kid-2.jpg",
   ministryHandlerHorizontal: "/img/angelpaws-dog-and-owner-nk_horizontal.jpg",
 

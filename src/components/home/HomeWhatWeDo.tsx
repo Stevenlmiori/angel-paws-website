@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { BookOpen, Building2, School, UsersRound } from "lucide-react";
+import { Building2, School, UsersRound } from "lucide-react";
 import { IMG } from "./media";
 
 export function HomeWhatWeDo() {
@@ -53,29 +53,29 @@ export function HomeWhatWeDo() {
 
         <div className="grid grid-rows-2 gap-8 md:col-span-4 md:min-h-0">
           <div className="group relative min-h-[240px] overflow-hidden rounded-[2.5rem] bg-secondary-container md:min-h-0">
+            <Image
+              src={IMG.pillarSchools}
+              alt="Therapy dog and handler at a school campus visit"
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/35" />
             <div className="relative z-10 flex h-full min-h-[240px] flex-col justify-between p-10 md:min-h-0">
               <School
-                className="size-10 text-on-secondary-container"
+                className="size-10 text-white/90"
                 strokeWidth={1.75}
                 aria-hidden
               />
               <div>
-                <h3 className="mb-2 font-serif text-2xl font-bold text-on-secondary-container">
+                <h3 className="mb-2 font-serif text-2xl font-bold text-white drop-shadow-sm">
                   Schools &amp; Literacy
                 </h3>
-                <p className="text-on-secondary-container opacity-80">
+                <p className="text-white/95 drop-shadow-sm">
                   A more relaxed environment—students read, talk, or sit with a
                   dog with less pressure and more focus.
                 </p>
               </div>
-            </div>
-            <div className="pointer-events-none absolute bottom-0 right-0 opacity-10">
-              <BookOpen
-                className="translate-x-10 translate-y-10 text-on-secondary-container"
-                size={160}
-                strokeWidth={1}
-                aria-hidden
-              />
             </div>
           </div>
 
@@ -87,18 +87,18 @@ export function HomeWhatWeDo() {
               sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface-container-highest via-surface-container-highest/85 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/35" />
             <div className="relative z-10 flex min-h-[280px] flex-col justify-between p-10 md:min-h-full">
               <UsersRound
-                className="size-10 text-primary"
+                className="size-10 text-white/90"
                 strokeWidth={1.75}
                 aria-hidden
               />
               <div>
-                <h3 className="mb-2 font-serif text-2xl font-bold text-on-surface">
+                <h3 className="mb-2 font-serif text-2xl font-bold text-white drop-shadow-sm">
                   Care Facilities
                 </h3>
-                <p className="text-on-surface-variant">
+                <p className="text-white/95 drop-shadow-sm">
                   Companionship and familiarity—moments of connection that break
                   through loneliness and routine.
                 </p>

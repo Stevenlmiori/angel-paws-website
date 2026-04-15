@@ -6,7 +6,6 @@ import { HomeMission } from "@/components/home/HomeMission";
 import { HomeWhatWeDo } from "@/components/home/HomeWhatWeDo";
 import { HomeWhereWeServe } from "@/components/home/HomeWhereWeServe";
 import { SlideShow } from "@/components/home/SlideShow";
-import { MeetingDates } from "@/components/home/MeetingDates";
 import { Reveal } from "@/components/ui";
 
 export default function Home() {
@@ -19,15 +18,14 @@ export default function Home() {
       <Reveal>
         <HomeWhatWeDo />
       </Reveal>
-      <MeetingDates />
+      <Reveal>
+        <HomeWhereWeServe />
+      </Reveal>
       <Reveal>
         <HomeImpact />
       </Reveal>
       <Reveal>
         <HomeQuote />
-      </Reveal>
-      <Reveal>
-        <HomeWhereWeServe />
       </Reveal>
       <Reveal>
         <HomeJourneyCTA />
