@@ -40,6 +40,8 @@ export const SITE_IMAGES = {
   ministryPawHand: "/img/gave-me-your-paw.jpg",
   ministrySamCathedralHigh2: "/img/sam-cathedral-high-2.jpg",
   ministrySamWithChild2: "/img/sam-comforting-kid-2.jpg",
+  /** Pet therapy page — ministry moment (local; unique slot) */
+  ministrySamComfortingKid1: "/img/sam-comforting-kid-1.jpg",
   ministryHandlerHorizontal: "/img/angelpaws-dog-and-owner-nk_horizontal.jpg",
 
   // --- Extra Unsplash (free) — unique placeholders for section panels ---
@@ -52,6 +54,8 @@ export const SITE_IMAGES = {
   stockCitySkylinePark: unsplashPhoto("photo-1506905925346-21bda4d32df4"),
   stockReadingChild: unsplashPhoto("photo-1517841905240-472988babdf9"),
   stockTherapyDogVisit: unsplashPhoto("photo-1601758228041-f3b2795255f1"),
+  /** Pet therapy page — calm canine presence (Unsplash; unique slot) */
+  stockPetTherapyGoldenCalm: unsplashPhoto("photo-1587300003388-93608cc28fef"),
   stockGoldenField: unsplashPhoto("photo-1633722715463-d30f4f325e24"),
   /** Board hero — dog in natural light (unique from home / About story slots) */
   stockBoardHeroDog: unsplashPhoto("photo-1566073771259-6a8506099945"),
