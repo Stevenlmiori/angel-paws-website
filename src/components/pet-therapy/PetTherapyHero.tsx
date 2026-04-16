@@ -4,7 +4,7 @@ import { PET_THERAPY_IMG } from "./media";
 
 export function PetTherapyHero() {
   return (
-    <section className="mx-auto mb-20 max-w-screen-xl px-6 sm:px-10 md:mb-28 lg:px-12">
+    <section className="mx-auto mb-20 max-w-screen-xl px-6 pt-8 sm:px-10 md:mb-28 md:pt-10 lg:px-12">
       <div className="relative grid grid-cols-1 items-center gap-12 md:grid-cols-12">
         <div className="z-10 md:col-span-6">
           <span className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-container px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-on-primary-container">

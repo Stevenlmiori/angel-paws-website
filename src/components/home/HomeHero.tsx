@@ -18,8 +18,8 @@ export function HomeHero() {
             Faith-Based Ministry
           </div>
           <h1 className="font-serif text-5xl font-bold leading-[1.1] tracking-tighter text-on-background lg:text-7xl">
-            Delivering <span className="italic text-primary">Hope</span> one
-            moment at a{"\u00A0"}time.
+            Delivering <span className="italic text-primary">Hope</span> One
+            Moment At A{"\u00A0"}Time.
           </h1>
           <p className="max-w-xl text-lg leading-relaxed text-on-surface-variant lg:text-xl">
             Angel Paws is a faith-based pet therapy ministry in the Houston

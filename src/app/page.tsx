@@ -5,7 +5,6 @@ import { HomeJourneyCTA } from "@/components/home/HomeJourneyCTA";
 import { HomeMission } from "@/components/home/HomeMission";
 import { HomeWhatWeDo } from "@/components/home/HomeWhatWeDo";
 import { HomeWhereWeServe } from "@/components/home/HomeWhereWeServe";
-import { SlideShow } from "@/components/home/SlideShow";
 import { Reveal } from "@/components/ui";
 
 export default function Home() {
@@ -30,13 +29,6 @@ export default function Home() {
       <Reveal>
         <HomeJourneyCTA />
       </Reveal>
-      <section className="px-6 pb-24 pt-12 md:pb-32 md:pt-16 lg:px-12">
-        <div className="mx-auto max-w-screen-xl">
-          <Reveal delayMs={100}>
-            <SlideShow />
-          </Reveal>
-        </div>
-      </section>
     </div>
   );
 }
