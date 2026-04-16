@@ -45,7 +45,7 @@
 
 | Path | What Debbie sees |
 |------|------------------|
-| `/` | Home — mission, what we do, meetings, impact, scripture quote, where we serve, carousel, volunteer CTA |
+| `/` | Home — mission, what we do, meetings, impact, scripture quote, where we serve, volunteer CTA |
 | `/about` | Who we are, mission & beliefs, therapy-dog distinction, story timeline, CTA to board |
 | `/what-is-pet-therapy` | Definition (two-column hero + photo), why it works (text + image), outcomes, policy cards, policies list, CTA — aligned to `max-w-screen-xl` like other marketing pages |
 | `/where-we-serve` | Presence intro, hospitals / schools / care / community, facility CTA |
@@ -108,7 +108,7 @@ Copy below is **user-visible marketing text** from components (not page metadata
 **Hero**
 
 - Eyebrow: **Faith-Based Ministry**
-- H1: **Delivering *Hope* one moment at a time.** (The word *Hope* is emphasized; “a time.” is kept from wrapping as a lone word via a non-breaking space.)
+- H1: **Delivering *Hope* One Moment At A Time.** (The word *Hope* is emphasized; “A Time.” is kept from wrapping as a lone line via a non-breaking space.)
 - Lead: Angel Paws is a faith-based pet therapy ministry in the Houston area, sharing the love of Jesus through the steady comfort of therapy dogs.
 - Buttons (labels only; **not wired as links in code today**): **Join Our Mission** · **Donate Now**
 - Hero photo: ministry image `gave-me-your-paw.jpg` (registry: `SITE_IMAGES.ministryPawHand` in `HomeHero` via `src/components/home/media.ts`).
@@ -151,11 +151,9 @@ Copy below is **user-visible marketing text** from components (not page metadata
 - Body: We would love for you and your dog to join our growing therapy team family. You do not need special experience, just a gentle spirit and a heart to serve.
 - Buttons (not linked): **Become a Volunteer** · **Partner With Us**
 
-**Homepage carousel** (`HOME_SLIDES`)
+**Homepage note**
 
-1. **Unconditional Love** — A calm presence beside little ones—comfort that does not need words.
-2. **Gentle Companions** — Sharing steady, patient friendship in hospitals, schools, and care settings.
-3. **Hope in Small Moments** — Sometimes the first step toward healing is a warm paw and a gentle hand.
+- The bottom image carousel was removed to keep the page tighter and more focused on primary calls to action.
 
 ---
 
@@ -200,7 +198,7 @@ Copy below is **user-visible marketing text** from components (not page metadata
 
 ### `/what-is-pet-therapy`
 
-**Layout (matches site width):** Content uses the same **`max-w-screen-xl`** horizontal container and a **two-column hero** (text + image) similar to **About** and **Where We Serve**, so the page no longer reads as a narrow single column on large screens.
+**Layout (matches site width):** Content uses the same **`max-w-screen-xl`** horizontal container and a **two-column hero** (text + image) similar to **About** and **Where We Serve**, with added top spacing under the sticky header so the page no longer reads as cramped at the top.
 
 - Eyebrow: **What We Do**
 - H1: **What is *pet therapy*?**
@@ -211,7 +209,7 @@ Copy below is **user-visible marketing text** from components (not page metadata
 **Why It Works**
 
 - Short lines: There’s something about a dog that puts people at ease. / They don’t expect anything. They don’t need conversation. They don’t bring pressure into the room. / That kind of presence can change how a person feels, even in a short visit.
-- Companion image beside this section: stock photo `stockPetTherapyGoldenCalm` (Unsplash via `SITE_IMAGES`; see `pet-therapy/media.ts`).
+- Companion image beside this section: stock photo `stockDogWindowLight` (Unsplash via `SITE_IMAGES`; see `pet-therapy/media.ts`). *(Swapped from a previously broken remote image.)*
 
 **What We See Every Day** (bullets)
 
@@ -471,8 +469,8 @@ Paths and keys are centralized in `src/lib/siteImages.ts` (`SITE_IMAGES`); each 
 | File | Used for (summary) |
 |------|---------------------|
 | `about-hero-therapy-team.png` | About page hero |
-| `about-story-seed-of-hope.png` | Homepage carousel slide 1 |
-| `about-story-bayou-city.png` | Homepage carousel slide 2 |
+| `about-story-seed-of-hope.png` | Available local placeholder asset (currently not used on Home after carousel removal) |
+| `about-story-bayou-city.png` | Available local placeholder asset (currently not used on Home after carousel removal) |
 | `about-story-looking-forward-cocker.png` | About Our Story “Looking Forward” (wide framing for the video-shaped panel) |
 
 Replace these with ministry-owned photography when ready.
@@ -480,9 +478,9 @@ Replace these with ministry-owned photography when ready.
 ### Remote / placeholder-style imagery (URLs in code, not local files)
 
 - **About** — Hero uses local AI PNG above. **Our Story:** first chapter uses a unique Unsplash dog+care photo; second chapter is a **YouTube embed** (see **Helping the Hurting** under `/about`); third chapter uses `about-story-looking-forward-cocker.png`. All wired via `src/components/about/media.ts` and `AboutStory.tsx`.
-- **Home** — Healthcare pillar and carousel slide 3 use unique Unsplash images; hero plus Schools/Care/impact tiles use local ministry photos (see `src/components/home/media.ts` and `SITE_IMAGES` for exact wiring).
+- **Home** — Healthcare pillar uses a care-context Unsplash image (`dogElderlyManWithDogInBed`); hero plus Schools/Care/impact tiles use local ministry photos (see `src/components/home/media.ts` and `SITE_IMAGES` for exact wiring).
 - **Where We Serve** hero + four area photos — `src/components/where-we-serve/media.ts`.
-- **What Is Pet Therapy** hero (local `sam-comforting-kid-1.jpg`) + **Why It Works** panel (`stockPetTherapyGoldenCalm`) — `src/components/pet-therapy/media.ts`.
+- **What Is Pet Therapy** hero (local `sam-comforting-kid-1.jpg`) + **Why It Works** panel (`stockDogWindowLight`) — `src/components/pet-therapy/media.ts`.
 - **Meet the Board** hero, impact image, and each board headshot — `src/components/meet-the-board/media.ts`.
 - **Donate** hero — `src/components/donate/media.ts`.
 - **Contact** map image — `src/components/contact/media.ts`.
