@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { IMG } from "./media";
 
@@ -63,9 +64,9 @@ export function HomeImpact() {
                 </p>
               </div>
             </div>
-            <button
-              type="button"
-              className="group flex items-center gap-4 text-xl font-bold text-primary transition-opacity hover:opacity-70"
+            <Link
+              href="/stories"
+              className="group inline-flex items-center gap-4 text-xl font-bold text-primary underline-offset-4 transition-opacity hover:opacity-70 hover:underline"
             >
               Read Our Stories
               <ArrowRight
@@ -73,7 +74,7 @@ export function HomeImpact() {
                 strokeWidth={2.25}
                 aria-hidden
               />
-            </button>
+            </Link>
           </div>
         </div>
       </div>
