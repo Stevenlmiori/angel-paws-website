@@ -5,6 +5,7 @@ import { getAdminPortalEnv } from "@/lib/memberPortal/adminEnv";
 import { getAdminSession } from "@/lib/memberPortal/getAdminSession";
 import { AdminMisconfigured } from "../AdminMisconfigured";
 import { AdminLoginForm } from "./AdminLoginForm";
+import { AdminLoginDiagnostics } from "./AdminLoginDiagnostics";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,9 @@ export default async function AdminMemberPortalLoginPage({
   searchParams: Promise<{ error?: string }>;
 }) {
   const { error } = await searchParams;
+  const loginDiagnosticsEnabled = Boolean(
+    process.env.ADMIN_LOGIN_DEBUG_KEY?.trim(),
+  );
 
   const adminEnv = getAdminPortalEnv();
   if (!adminEnv.ok) {
@@ -49,6 +53,7 @@ export default async function AdminMemberPortalLoginPage({
             Member portal
           </Link>
         </p>
+        <AdminLoginDiagnostics enabled={loginDiagnosticsEnabled} />
       </div>
     </div>
   );
