@@ -8,7 +8,13 @@ import { AdminLoginForm } from "./AdminLoginForm";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminMemberPortalLoginPage() {
+export default async function AdminMemberPortalLoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string }>;
+}) {
+  const { error } = await searchParams;
+
   const adminEnv = getAdminPortalEnv();
   if (!adminEnv.ok) {
     return <AdminMisconfigured reason={adminEnv.reason} />;
@@ -34,7 +40,7 @@ export default async function AdminMemberPortalLoginPage() {
           Sign in to manage member portal links and public stories. This area is
           not linked in the public navigation.
         </p>
-        <AdminLoginForm />
+        <AdminLoginForm errorKey={error} />
         <p className="mt-10 text-sm text-on-surface-variant">
           <Link
             href="/members/portal"

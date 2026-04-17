@@ -1,16 +1,23 @@
-"use client";
-
-import { useActionState } from "react";
 import { Button } from "@/components/ui/Button";
-import { type AdminLoginState, adminLoginAction } from "../actions";
 
-const initial: AdminLoginState = { error: null };
+const ERROR_MESSAGES: Record<string, string> = {
+  invalid: "That email or password did not match.",
+  fields: "Enter email and password.",
+  config: "Admin sign-in is not configured on the server.",
+};
 
-export function AdminLoginForm() {
-  const [state, formAction, pending] = useActionState(adminLoginAction, initial);
+type Props = { errorKey?: string | null };
+
+export function AdminLoginForm({ errorKey }: Props) {
+  const message =
+    errorKey && ERROR_MESSAGES[errorKey] ? ERROR_MESSAGES[errorKey] : null;
 
   return (
-    <form action={formAction} className="mx-auto w-full max-w-md text-left">
+    <form
+      method="post"
+      action="/api/admin/login"
+      className="mx-auto w-full max-w-md text-left"
+    >
       <label
         htmlFor="admin-email"
         className="mb-2 block text-sm font-semibold text-on-surface"
@@ -39,13 +46,13 @@ export function AdminLoginForm() {
         required
         className="mb-4 w-full rounded-[0.625rem] border border-primary/15 bg-surface-container-lowest px-4 py-3.5 text-on-surface outline-none ring-primary/25 transition focus-visible:ring-2"
       />
-      {state.error ? (
+      {message ? (
         <p className="mb-4 text-sm font-medium text-red-700" role="alert">
-          {state.error}
+          {message}
         </p>
       ) : null}
-      <Button type="submit" className="w-full sm:w-auto" disabled={pending}>
-        {pending ? "Signing in…" : "Sign in"}
+      <Button type="submit" className="w-full sm:w-auto">
+        Sign in
       </Button>
     </form>
   );
