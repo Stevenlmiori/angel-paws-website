@@ -8,8 +8,18 @@ const ADMIN_PORTAL_COOKIE_NAME = "ap_admin_portal";
  */
 export const ADMIN_SESSION_COOKIE_PATH = "/";
 
-/** Paths we used before `path: "/"`; must be expired so they do not shadow the session cookie. */
+/** Paths we used before `path: "/"`; cleared once on successful login. */
 export const LEGACY_ADMIN_PORTAL_COOKIE_PATHS = ["/admin", "/admin/member-portal"] as const;
+
+/**
+ * Very old sessions scoped only to the login URL path. Safe to clear on every
+ * admin GET — that path never holds the current `path: "/"` session cookie.
+ *
+ * Do **not** clear `Path=/admin` on every request: that sends a second
+ * `ap_admin_portal` cookie (empty) alongside `Path=/`, and Safari can send
+ * duplicates so `cookies().get` reads the wrong value and sign-in fails.
+ */
+export const STALE_LOGIN_PAGE_ADMIN_COOKIE_PATH = "/admin/member-portal" as const;
 
 export function adminCookieBase(overrides?: { secure?: boolean }) {
   return {
@@ -31,6 +41,20 @@ type CookieSetter = (
     secure: boolean;
   },
 ) => void;
+
+/** Clear only the obsolete login-page-scoped cookie (middleware, every GET). */
+export function expireStaleLoginPageAdminPortalCookie(
+  setCookie: CookieSetter,
+  secure: boolean,
+) {
+  setCookie(ADMIN_PORTAL_COOKIE_NAME, "", {
+    maxAge: 0,
+    httpOnly: true,
+    sameSite: "lax",
+    secure,
+    path: STALE_LOGIN_PAGE_ADMIN_COOKIE_PATH,
+  });
+}
 
 /** Remove path-scoped copies of the admin cookie (older deployments). */
 export function expireLegacyAdminPortalCookiePaths(
