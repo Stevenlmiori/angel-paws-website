@@ -19,10 +19,12 @@
 
 **Timeline (current plan)**
 
-| Milestone | Date | Notes |
-|-----------|------|--------|
-| First full draft ready for Debbie’s review | **May 11, 2026** | Marketing pages + global chrome (header/footer) in reviewable shape. |
-| Target site wrap | **June 1, 2026** | Depends on how quickly we edit together after May 11 (copy, photos, forms, and any factual corrections). |
+
+| Milestone                                  | Date             | Notes                                                                                                    |
+| ------------------------------------------ | ---------------- | -------------------------------------------------------------------------------------------------------- |
+| First full draft ready for Debbie’s review | **May 11, 2026** | Marketing pages + global chrome (header/footer) in reviewable shape.                                     |
+| Target site wrap                           | **June 1, 2026** | Depends on how quickly we edit together after May 11 (copy, photos, forms, and any factual corrections). |
+
 
 **Budget**
 
@@ -43,18 +45,20 @@
 
 ## Sitemap (marketing + member entry pages)
 
-| Path | What Debbie sees |
-|------|------------------|
-| `/` | Home — mission, what we do, meetings, impact, scripture quote, where we serve, volunteer CTA |
-| `/about` | Who we are, mission & beliefs, therapy-dog distinction, story timeline, CTA to board |
+
+| Path                   | What Debbie sees                                                                                                                                                        |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/`                    | Home — mission, what we do, meetings, impact, scripture quote, where we serve, volunteer CTA                                                                            |
+| `/about`               | Who we are, mission & beliefs, therapy-dog distinction, story timeline, CTA to board                                                                                    |
 | `/what-is-pet-therapy` | Definition (two-column hero + photo), why it works (text + image), outcomes, policy cards, policies list, CTA — aligned to `max-w-screen-xl` like other marketing pages |
-| `/where-we-serve` | Presence intro, hospitals / schools / care / community, facility CTA |
-| `/meet-the-board` | Board hero, impact narrative, board grid (+ “Could you be next?”) |
-| `/get-involved` | Hero, ways to serve, path to membership, application CTA |
-| `/members` | Membership hero, four steps, member portal teaser |
-| `/members/portal` | Sign-in or resource hub (after password) |
-| `/donate` | Case for support, impact areas, Donorbox panel, newsletter strip |
-| `/contact` | “Get in touch” + Tally embeds + map teaser |
+| `/where-we-serve`      | Presence intro, hospitals / schools / care / community, facility CTA                                                                                                    |
+| `/meet-the-board`      | Board hero, impact narrative, board grid (+ “Could you be next?”)                                                                                                       |
+| `/get-involved`        | Hero, ways to serve, path to membership, application CTA                                                                                                                |
+| `/members`             | Membership hero, four steps, member portal teaser                                                                                                                       |
+| `/members/portal`      | Sign-in or resource hub (after password)                                                                                                                                |
+| `/donate`              | Case for support, impact areas, Donorbox panel, newsletter strip                                                                                                        |
+| `/contact`             | “Get in touch” + Tally embeds + map teaser                                                                                                                              |
+
 
 **Global chrome:** `SiteHeader` (nav, Donate, Member Resources) and `SiteFooter` (mission links, quick links, connect icons, legal links).
 
@@ -454,24 +458,28 @@ Paths and keys are centralized in `src/lib/siteImages.ts` (`SITE_IMAGES`); each 
 
 ### Real ministry photos (local JPEGs in `public/img/`)
 
-| File | Used for (summary) |
-|------|---------------------|
-| `gave-me-your-paw.jpg` | Home hero only (pairs with the “…gave me your paw.” quote in `HomeHero`) |
-| `sam-cathedral-high-2.jpg` | Home “Schools & Literacy” pillar photo tile |
-| `sam-comforting-kid-2.jpg` | Home “Care Facilities” pillar photo tile |
-| `angelpaws-dog-and-owner-nk_horizontal.jpg` | Home impact / feature strip |
-| `sam-comforting-kid-1.jpg` | **What is Pet Therapy** hero image (`PetTherapyHero` via `SITE_IMAGES.ministrySamComfortingKid1`) |
+
+| File                                        | Used for (summary)                                                                                |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `gave-me-your-paw.jpg`                      | Home hero only (pairs with the “…gave me your paw.” quote in `HomeHero`)                          |
+| `sam-cathedral-high-2.jpg`                  | Home “Schools & Literacy” pillar photo tile                                                       |
+| `sam-comforting-kid-2.jpg`                  | Home “Care Facilities” pillar photo tile                                                          |
+| `angelpaws-dog-and-owner-nk_horizontal.jpg` | Home impact / feature strip                                                                       |
+| `sam-comforting-kid-1.jpg`                  | **What is Pet Therapy** hero image (`PetTherapyHero` via `SITE_IMAGES.ministrySamComfortingKid1`) |
+
 
 **Ideal for Debbie:** Confirm the in-use JPEGs are approved for web, credit/caption preferences, and whether any should be swapped (e.g. more explicit “CFBC / Angel Paws” context in frame).
 
 ### AI / design placeholders (local PNGs in `public/img/`)
 
-| File | Used for (summary) |
-|------|---------------------|
-| `about-hero-therapy-team.png` | About page hero |
-| `about-story-seed-of-hope.png` | Available local placeholder asset (currently not used on Home after carousel removal) |
-| `about-story-bayou-city.png` | Available local placeholder asset (currently not used on Home after carousel removal) |
-| `about-story-looking-forward-cocker.png` | About Our Story “Looking Forward” (wide framing for the video-shaped panel) |
+
+| File                                     | Used for (summary)                                                                    |
+| ---------------------------------------- | ------------------------------------------------------------------------------------- |
+| `about-hero-therapy-team.png`            | About page hero                                                                       |
+| `about-story-seed-of-hope.png`           | Available local placeholder asset (currently not used on Home after carousel removal) |
+| `about-story-bayou-city.png`             | Available local placeholder asset (currently not used on Home after carousel removal) |
+| `about-story-looking-forward-cocker.png` | About Our Story “Looking Forward” (wide framing for the video-shaped panel)           |
+
 
 Replace these with ministry-owned photography when ready.
 
@@ -496,12 +504,14 @@ Replace these with ministry-owned photography when ready.
 
 ## Forms & integrations (reference only — no secrets)
 
-| System | Role on site | Configuration (see `.env.example`) |
-|--------|----------------|--------------------------------------|
-| **Tally** | Contact + optional “request a visit” embed on `/contact` | `NEXT_PUBLIC_TALLY_CONTACT_FORM_ID`, `NEXT_PUBLIC_TALLY_VISIT_FORM_ID` |
-| **Donorbox** | Donation widget on `/donate` | `NEXT_PUBLIC_DONORBOX_CAMPAIGN` (optional; has default in code) |
-| **Member portal** | Password gate + resource cards | `MEMBER_PORTAL_PASSWORD`, `MEMBER_PORTAL_COOKIE_SECRET`, optional session TTL; Redis keys for persisted links in production |
-| **Member portal admin** | Not in public nav; bookmark for operators | `MEMBER_PORTAL_ADMIN_EMAIL`, `MEMBER_PORTAL_ADMIN_PASSWORD` |
+
+| System                  | Role on site                                             | Configuration (see `.env.example`)                                                                                          |
+| ----------------------- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **Tally**               | Contact + optional “request a visit” embed on `/contact` | `NEXT_PUBLIC_TALLY_CONTACT_FORM_ID`, `NEXT_PUBLIC_TALLY_VISIT_FORM_ID`                                                      |
+| **Donorbox**            | Donation widget on `/donate`                             | `NEXT_PUBLIC_DONORBOX_CAMPAIGN` (optional; has default in code)                                                             |
+| **Member portal**       | Password gate + resource cards                           | `MEMBER_PORTAL_PASSWORD`, `MEMBER_PORTAL_COOKIE_SECRET`, optional session TTL; Redis keys for persisted links in production |
+| **Member portal admin** | Not in public nav; bookmark for operators                | `MEMBER_PORTAL_ADMIN_EMAIL`, `MEMBER_PORTAL_ADMIN_PASSWORD`                                                                 |
+
 
 Operator-facing detail also lives in `docs/HANDOFF.md`.
 
@@ -509,55 +519,65 @@ Operator-facing detail also lives in `docs/HANDOFF.md`.
 
 ## Placeholders & factual review
 
-| Item | Where | Suggested action |
-|------|--------|------------------|
-| **Tri-State area** vs Houston | `/contact` map teaser | Rewrite to Greater Houston (or your actual service geography). |
-| **Sample board** names, roles, bios, photos | `/meet-the-board` | Replace with real board roster and photos; remove or adjust stats (**500+** visits, **12** districts) if not sourced. |
-| **Story narrative** (founding, TMC, “team of three”) | `/about` Our Story | Confirm accuracy or mark as inspirational draft. |
-| **Home / Care stats** (**1,000+**, **85%**, **400+**) | Home, Where We Serve | Confirm, source, or soften wording. |
-| **Testimonial “Sarah J.” / Bella** | `/donate` | Replace with a permissioned real quote or remove. |
-| **Buttons not linked** | Home hero & CTA, Home impact, Where We Serve “Request a Visit” | Wire to `/contact`, Tally anchor, Donate, or `#donate-panel` as you decide. |
-| **`#` links** | Footer social/legal, Get Involved application, Community “Event Calendar” | Replace with real URLs or remove until ready. |
-| **Newsletter form** | `/donate` | Connect to your email platform or hide until live. |
-| **Logo `alt` text** | Header | Set to meaningful alt (e.g. “Angel Paws Pet Therapy”) for accessibility. |
+
+| Item                                                  | Where                                                                     | Suggested action                                                                                                      |
+| ----------------------------------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Tri-State area** vs Houston                         | `/contact` map teaser                                                     | Rewrite to Greater Houston (or your actual service geography).                                                        |
+| **Sample board** names, roles, bios, photos           | `/meet-the-board`                                                         | Replace with real board roster and photos; remove or adjust stats (**500+** visits, **12** districts) if not sourced. |
+| **Story narrative** (founding, TMC, “team of three”)  | `/about` Our Story                                                        | Confirm accuracy or mark as inspirational draft.                                                                      |
+| **Home / Care stats** (**1,000+**, **85%**, **400+**) | Home, Where We Serve                                                      | Confirm, source, or soften wording.                                                                                   |
+| **Testimonial “Sarah J.” / Bella**                    | `/donate`                                                                 | Replace with a permissioned real quote or remove.                                                                     |
+| **Buttons not linked**                                | Home hero & CTA, Home impact, Where We Serve “Request a Visit”            | Wire to `/contact`, Tally anchor, Donate, or `#donate-panel` as you decide.                                           |
+| `**#` links**                                         | Footer social/legal, Get Involved application, Community “Event Calendar” | Replace with real URLs or remove until ready.                                                                         |
+| **Newsletter form**                                   | `/donate`                                                                 | Connect to your email platform or hide until live.                                                                    |
+| **Logo `alt` text**                                   | Header                                                                    | Set to meaningful alt (e.g. “Angel Paws Pet Therapy”) for accessibility.                                              |
+
 
 ---
 
 ## Launch checklist (short)
 
-- [ ] Debbie approval on mission wording, geography, and Champion Forest references  
-- [ ] Replace placeholder imagery paths with final assets  
-- [ ] Tally forms live + tested; optional visit form  
-- [ ] Donorbox campaign tested end-to-end  
-- [ ] Member portal password rotated and shared through secure channel  
-- [ ] Footer social URLs finalized (Website / Email / Support icons still placeholders)  
-- [ ] Decide on `NEXT_PUBLIC_SITE_INDEXABLE` when going public (`true` only when ready for Google)
+- Debbie approval on mission wording, geography, and Champion Forest references  
+- Replace placeholder imagery paths with final assets  
+- Tally forms live + tested; optional visit form  
+- Donorbox campaign tested end-to-end  
+- Member portal password rotated and shared through secure channel  
+- Footer social URLs finalized (Website / Email / Support icons still placeholders)  
+- Decide on `NEXT_PUBLIC_SITE_INDEXABLE` when going public (`true` only when ready for Google)
 
 ---
 
 ## Questions for Debbie
 
-1. **Geography:** Confirm preferred phrase everywhere: Greater Houston, Northwest Houston, specific campuses only, etc. (Resolve **Tri-State** line on Contact.)  
-2. **Story:** Is the **Our Story** three-chapter narrative accurate as written, or should it be shortened to only verified history?  
-3. **Statistics:** Which numbers (if any) may we display without a written source?  
-4. **Board:** Who belongs on `/meet-the-board`, in what order, with which photos and one-line bios?  
-5. **Champion Forest:** Any wording you want standardized when we name the church (e.g. “ministry of Champion Forest Baptist Church”)?  
-6. **Meetings:** Are the May 12 and August 15, 2026 entries final for the site, or should they stay off the site until each date is confirmed?  
-7. **Calls to action:** Should **Join Our Mission** / **Become a Volunteer** / **Request a Visit** all route to Contact, to a single Tally form, or split flows?  
-8. **Donations:** Is the **100%** and **501(c)(3)** language approved by your treasurer or counsel?  
-9. **Member portal:** Which PDFs or links should appear first for handlers?
+1. [AngelPawsHouston.com](http://AngelPawsHouston.com) - Recommended domain
+2. **Donations - Recommended Platform Setup: Donorbox + Stripe**
+  Donorbox provides the donation forms and donor tools, while Stripe processes the payments. This is a strong option for Angel Paws because it is simple to launch, easy for donors to use, and supports recurring giving. Standard public pricing is typically 2.95% through Donorbox plus Stripe processing fees of 2.9% + 30¢ per domestic card transaction. 
+3. **Forms** service - [Tally.so](http://Tally.so)  - (Free) Good with this? 
+4. **Geography:** Confirm preferred phrase everywhere: Greater Houston, Northwest Houston, specific campuses only, etc. (Resolve **Tri-State** line on Contact.)
+5. **Story:** Is the **Our Story** three-chapter narrative accurate as written, or should it be shortened to only verified history?
+6. **Statistics:** What numbers/stats can we say on the site, that only need to be updated once a year or so.
+7. **Board:** Who belongs on `/meet-the-board`, in what order, with which photos and one-line bios?
+8. **Champion Forest:** Any wording you want standardized when we name the church (e.g. “Ministry Partner of Champion Forest Baptist Church”)?
+9. **Calls to action:** Should **Join Our Mission** / **Become a Volunteer** / **Request a Visit** all route to Contact, to a single Tally form, or split flows? Recommendation: 
+  1. Join Our Mission → Volunteer form
+  2. Request a Visit → Visit Request form
+  3. Contact → General Contact form
+10. **Donations:** Is the **100%** and **501(c)(3)** language approved by your treasurer or counsel?
+11. **Member portal:** Which PDFs or links should appear first for handlers for launch?
 
 ---
 
 ## Action items
 
-| Owner | Task | Due / notes |
-|-------|------|----------------|
-| Debbie | Answer **Questions for Debbie** (can be inline in this doc or email) | Before or at meeting |
-| Steven | Wire hero/CTA buttons and placeholder `#` links once destinations are chosen | After May 11 review |
-| Steven | Swap board + story + stats per approved facts | After content lock |
-| Debbie / team | Supply final photography list + permissions | As available |
-| Steven | Connect newsletter + confirm Donorbox + Tally in production env | Before launch |
+
+| Owner         | Task                                                                         | Due / notes          |
+| ------------- | ---------------------------------------------------------------------------- | -------------------- |
+| Debbie        | Answer **Questions for Debbie** (can be inline in this doc or email)         | Before or at meeting |
+| Steven        | Wire hero/CTA buttons and placeholder `#` links once destinations are chosen | After May 11 review  |
+| Steven        | Swap board + story + stats per approved facts                                | After content lock   |
+| Debbie / team | Supply final photography list + permissions                                  | As available         |
+| Steven        | Connect newsletter + confirm Donorbox + Tally in production env              | Before launch        |
+
 
 ---
 
