@@ -53,8 +53,19 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     const base = securityHeaders();
+    const adminNoCache = [
+      {
+        key: "Cache-Control",
+        value: "private, no-store, must-revalidate, max-age=0",
+      },
+      { key: "Vary", value: "Cookie" },
+    ];
     if (siteIndexable) {
-      return [{ source: "/:path*", headers: base }];
+      return [
+        { source: "/:path*", headers: base },
+        { source: "/admin", headers: adminNoCache },
+        { source: "/admin/:path*", headers: adminNoCache },
+      ];
     }
     return [
       {
@@ -64,6 +75,8 @@ const nextConfig: NextConfig = {
           { key: "X-Robots-Tag", value: "noindex, nofollow" },
         ],
       },
+      { source: "/admin", headers: adminNoCache },
+      { source: "/admin/:path*", headers: adminNoCache },
     ];
   },
 };

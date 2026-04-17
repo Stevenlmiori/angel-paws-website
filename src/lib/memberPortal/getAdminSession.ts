@@ -56,8 +56,10 @@ export async function getAdminSession(): Promise<{ emailNorm: string } | null> {
   const jar = await cookies();
   const headerList = await headers();
   const fromJar = jar.get(ADMIN_PORTAL_COOKIE_NAME)?.value;
+  const rawCookieHeader =
+    headerList.get("cookie") ?? headerList.get("Cookie");
   const fromWire = adminPortalTokensFromCookieHeader(
-    headerList.get("cookie"),
+    rawCookieHeader,
     ADMIN_PORTAL_COOKIE_NAME,
   );
 

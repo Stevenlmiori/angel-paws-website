@@ -21,8 +21,9 @@ export function middleware(request: NextRequest) {
   const res = NextResponse.next();
   res.headers.set(
     "Cache-Control",
-    "private, no-store, must-revalidate",
+    "private, no-store, must-revalidate, max-age=0",
   );
+  res.headers.set("Vary", "Cookie");
   const secure = request.nextUrl.protocol === "https:";
   expireStaleLoginPageAdminPortalCookie(
     (name, value, options) => res.cookies.set(name, value, options),
@@ -32,5 +33,6 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  /** Include exact `/admin` — some matchers only hit nested paths. */
+  matcher: ["/admin", "/admin/:path*"],
 };

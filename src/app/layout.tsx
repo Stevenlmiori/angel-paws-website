@@ -22,7 +22,8 @@ const notoSerif = Noto_Serif({
 const siteIndexable = process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://angelpawshouston.com"),
+  /** Match production traffic (www); host-only cookies set on www are not sent on apex. */
+  metadataBase: new URL("https://www.angelpawshouston.com"),
   title: {
     default: "Angel Paws Pet Therapy",
     template: "%s · Angel Paws Pet Therapy",
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
     title: "Angel Paws Pet Therapy",
     description:
       "Bringing the love of Jesus to those in need through the gentle presence of therapy dogs.",
-    url: "https://angelpawshouston.com",
+    url: "https://www.angelpawshouston.com",
     siteName: "Angel Paws Pet Therapy",
     locale: "en_US",
     type: "website",

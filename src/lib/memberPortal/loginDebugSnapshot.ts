@@ -26,7 +26,7 @@ export type LoginDebugSnapshot = {
 export async function buildLoginDebugSnapshot(): Promise<LoginDebugSnapshot> {
   const h = await headers();
   const jar = await cookies();
-  const cookieHeader = h.get("cookie") ?? "";
+  const cookieHeader = h.get("cookie") ?? h.get("Cookie") ?? "";
   const jarTok = jar.get(ADMIN_PORTAL_COOKIE_NAME)?.value;
 
   let apAdminPortalSegmentsInCookieHeader = 0;
