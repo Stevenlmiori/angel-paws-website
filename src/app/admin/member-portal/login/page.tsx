@@ -16,7 +16,7 @@ export default async function AdminMemberPortalLoginPage() {
 
   const session = await getAdminSession();
   if (session) {
-    redirect("/admin/member-portal");
+    redirect("/admin");
   }
 
   return (
@@ -28,11 +28,11 @@ export default async function AdminMemberPortalLoginPage() {
           </span>
         </div>
         <h1 className="mb-4 font-serif text-4xl text-on-surface md:text-5xl">
-          Member portal admin
+          Site admin
         </h1>
         <p className="mb-10 text-lg leading-relaxed text-on-surface-variant">
-          Sign in to reorder member links, edit titles and URLs, and add new
-          resources. This area is not linked in the public navigation.
+          Sign in to manage member portal links and public stories. This area is
+          not linked in the public navigation.
         </p>
         <AdminLoginForm />
         <p className="mt-10 text-sm text-on-surface-variant">

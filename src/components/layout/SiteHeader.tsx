@@ -16,6 +16,7 @@ const aboutSubLinks = [
 
 const navAfterAbout = [
   { href: "/get-involved", label: "Get Involved" },
+  { href: "/stories", label: "Stories" },
   { href: "/members", label: "Members" },
   { href: "/contact", label: "Contact" },
 ] as const;

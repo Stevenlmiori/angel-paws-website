@@ -1,17 +1,19 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
+import Link from "next/link";
+import { LogOut } from "lucide-react";
 import { getAdminPortalEnv } from "@/lib/memberPortal/adminEnv";
 import { getAdminSession } from "@/lib/memberPortal/getAdminSession";
-import { loadStoredPortalResources } from "@/lib/memberPortal/resourcesStore";
-import { adminLogoutAction } from "./actions";
-import { AdminMisconfigured } from "./AdminMisconfigured";
-import { MemberPortalEditor } from "./MemberPortalEditor";
+import { adminLogoutAction } from "@/app/admin/member-portal/actions";
+import { AdminMisconfigured } from "@/app/admin/member-portal/AdminMisconfigured";
 import { Button } from "@/components/ui/Button";
-import { LogOut } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-export default async function AdminMemberPortalPage() {
+export default async function AdminStoriesLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const adminEnv = getAdminPortalEnv();
   if (!adminEnv.ok) {
     return <AdminMisconfigured reason={adminEnv.reason} />;
@@ -22,14 +24,12 @@ export default async function AdminMemberPortalPage() {
     redirect("/admin/member-portal/login");
   }
 
-  const initialItems = await loadStoredPortalResources();
-
   return (
     <>
       <div className="border-b border-primary/10 bg-surface-container-low px-6 py-3 sm:px-10">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between gap-3">
           <span className="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
-            Signed in
+            Stories admin
           </span>
           <div className="flex flex-wrap items-center gap-3">
             <Link
@@ -39,16 +39,16 @@ export default async function AdminMemberPortalPage() {
               Admin home
             </Link>
             <Link
-              href="/admin/stories"
+              href="/admin/member-portal"
               className="text-sm font-semibold text-on-surface-variant underline-offset-4 hover:text-primary hover:underline"
             >
-              Stories
+              Member portal
             </Link>
             <Link
-              href="/members/portal"
+              href="/stories"
               className="text-sm font-semibold text-primary underline underline-offset-4"
             >
-              View member portal
+              View public stories
             </Link>
             <form action={adminLogoutAction}>
               <Button
@@ -63,7 +63,7 @@ export default async function AdminMemberPortalPage() {
           </div>
         </div>
       </div>
-      <MemberPortalEditor initialItems={initialItems} />
+      {children}
     </>
   );
 }

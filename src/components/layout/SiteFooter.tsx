@@ -58,6 +58,11 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/stories" className={linkClass}>
+                Stories
+              </Link>
+            </li>
+            <li>
               <Link href="/what-is-pet-therapy" className={linkClass}>
                 What Is Pet Therapy
               </Link>

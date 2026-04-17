@@ -24,6 +24,9 @@ While it’s just the build team and the site isn’t in real use yet: **commit 
 | Donations | `/donate` | Live — **Donorbox** embed (see §5 + env vars) |
 | Get involved (volunteer, etc.) | `/get-involved` | Live |
 | Board | `/meet-the-board` | Live |
+| Stories (blog) | `/stories` | Live — **Sanity** content; home strip optional tag filter |
+
+**Operator admin (one login):** After signing in at `/admin/member-portal/login`, you land on **`/admin`**. From there open **Member portal links** or **Stories**. Stories are stored in Sanity; no separate Sanity account is required for day-to-day editing.
 
 ---
 
@@ -55,9 +58,10 @@ While it’s just the build team and the site isn’t in real use yet: **commit 
 **Logins to keep in a password manager (1Password, Bitwarden, etc.):**
 
 1. **Website hosting** (Vercel/similar) — only if she needs to invite someone; optional for day-to-day.
-2. **Donation platform** — primary money workflow.
-3. **Form builder** — see all inquiries and visit requests.
-4. **Google Workspace** (nonprofit) — email, Drive for documents, optional Forms.
+2. **Site admin** — bookmark `/admin` (sign in at `/admin/member-portal/login`) for **member portal links** and **Stories**; same operator email/password as today.
+3. **Donation platform** — primary money workflow.
+4. **Form builder** — see all inquiries and visit requests.
+5. **Google Workspace** (nonprofit) — email, Drive for documents, optional Forms.
 
 **Weekly (5–10 minutes):** Check form tool for new messages; check donation platform for new recurring issues.
 
@@ -99,14 +103,12 @@ Copy `.env.example` to `.env.local` and set values. In **Vercel** (or similar), 
 
 ---
 
-## 6. CMS (optional later)
+## 6. Stories — **Sanity** + `/admin`
 
-When Debbie needs to **edit paragraphs** without calling a developer:
-
-- Add a **headless CMS** (e.g. Sanity) for: mission blurbs, team quotes, donation page copy.
-- Keep layout in code; only **text and images** in CMS.
-
-Not required for launch if copy changes are rare.
+- **Public:** `/stories` and each post at `/stories/[slug]`. Optional **home** section shows up to three posts; set **`NEXT_PUBLIC_HOME_STORIES_TAG`** to a tag (e.g. `home-spotlight`) so only tagged posts appear, or leave it unset for the three latest.
+- **Editing:** `/admin` → **Stories** (same email/password as member portal admin). Featured image, title, slug, tags, date, and body blocks (paragraphs, headings, quotes, bullets).
+- **Env:** See `.env.example` (`NEXT_PUBLIC_SANITY_*`, `SANITY_API_WRITE_TOKEN`, optional `SANITY_REVALIDATE_SECRET` for the revalidate webhook at `/api/revalidate-sanity`).
+- **Sample posts:** Run `npm run seed:stories` once (requires write token + three images under `public/stories-seed/` — see script header).
 
 ---
 

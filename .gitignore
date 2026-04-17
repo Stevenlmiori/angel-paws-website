@@ -48,3 +48,9 @@ yarn-error.log*
 
 # local member portal data (when Redis is not configured in dev)
 .data/
+
+# Story seed images: only the three committed assets (folder may contain local screenshots)
+public/stories-seed/*
+!public/stories-seed/hospital-feature.png
+!public/stories-seed/school-feature.png
+!public/stories-seed/senior-feature.png

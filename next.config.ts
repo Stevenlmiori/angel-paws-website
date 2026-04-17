@@ -33,6 +33,7 @@ function contentSecurityPolicyReportOnly(): string {
       "https://lh3.googleusercontent.com",
       "https://images.unsplash.com",
       "https://plus.unsplash.com",
+      "https://cdn.sanity.io",
     ].join(" "),
     [
       "connect-src",
@@ -41,6 +42,8 @@ function contentSecurityPolicyReportOnly(): string {
       "https://*.tally.so",
       "https://donorbox.org",
       "https://*.donorbox.org",
+      "https://*.apicdn.sanity.io",
+      "https://*.sanity.io",
     ].join(" "),
     [
       "frame-src",
@@ -106,6 +109,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "plus.unsplash.com",
         pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: "/images/**",
       },
     ],
   },

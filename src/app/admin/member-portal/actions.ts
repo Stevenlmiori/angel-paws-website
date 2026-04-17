@@ -15,16 +15,8 @@ import {
 import { getMemberPortalEnv } from "@/lib/memberPortal/env";
 import { getAdminSession } from "@/lib/memberPortal/getAdminSession";
 import { persistPortalResources } from "@/lib/memberPortal/resourcesStore";
+import { adminCookieBase } from "@/lib/memberPortal/adminCookie";
 import { parsePortalResourcesJsonString } from "@/lib/memberPortal/validatePortalResources";
-
-function adminCookieBase() {
-  return {
-    path: "/admin/member-portal",
-    sameSite: "lax" as const,
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-  };
-}
 
 export type AdminLoginState = { error: string | null };
 
@@ -69,7 +61,7 @@ export async function adminLoginAction(
     maxAge: adminEnv.value.maxAgeSec,
   });
 
-  redirect("/admin/member-portal");
+  redirect("/admin");
 }
 
 export async function adminLogoutAction() {
