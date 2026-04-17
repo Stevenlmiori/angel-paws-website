@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { unstable_noStore as noStore } from "next/cache";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { Settings2 } from "lucide-react";
 import { getAdminPortalEnv } from "@/lib/memberPortal/adminEnv";
@@ -17,6 +18,13 @@ export default async function AdminMemberPortalLoginPage({
 }) {
   noStore();
   const { error } = await searchParams;
+  const h = await headers();
+  const rawHost = h.get("x-forwarded-host") ?? h.get("host") ?? "";
+  const host = rawHost.split(",")[0]?.trim() ?? "";
+  const loginPostAction =
+    host.length > 0
+      ? `${(h.get("x-forwarded-proto") ?? "https").split(",")[0]?.trim() ?? "https"}://${host}/api/admin/login`
+      : "/api/admin/login";
   const loginDiagnosticsEnabled = Boolean(
     process.env.ADMIN_LOGIN_DEBUG_KEY?.trim(),
   );
@@ -46,7 +54,7 @@ export default async function AdminMemberPortalLoginPage({
           Sign in to manage member portal links and public stories. This area is
           not linked in the public navigation.
         </p>
-        <AdminLoginForm errorKey={error} />
+        <AdminLoginForm errorKey={error} postAction={loginPostAction} />
         <p className="mt-10 text-sm text-on-surface-variant">
           <Link
             href="/members/portal"

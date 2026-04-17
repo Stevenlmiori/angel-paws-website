@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
-import {
-  adminCookieBase,
-  expireLegacyAdminPortalCookiePaths,
-} from "@/lib/memberPortal/adminCookie";
+import { adminCookieBase } from "@/lib/memberPortal/adminCookie";
 import { issueAdminPortalSession } from "@/lib/memberPortal/issueAdminPortalSession";
 import { ADMIN_PORTAL_COOKIE_NAME } from "@/lib/memberPortal/adminSession";
 
@@ -56,10 +53,12 @@ export async function POST(request: Request) {
 
   const secure = new URL(request.url).protocol === "https:";
   const res = NextResponse.redirect(new URL("/admin", request.url), 303);
-  expireLegacyAdminPortalCookiePaths(
-    (name, value, options) => res.cookies.set(name, value, options),
-    secure,
-  );
+  /**
+   * Only one `Set-Cookie` on success. Safari was observed failing to keep the
+   * session when this response also cleared legacy paths (multiple Set-Cookie
+   * lines). Stale `/admin/member-portal` cookies are still cleared on the next
+   * admin GET by middleware.
+   */
   res.cookies.set(ADMIN_PORTAL_COOKIE_NAME, result.value.token, {
     ...adminCookieBase({ secure }),
     maxAge: result.value.maxAgeSec,

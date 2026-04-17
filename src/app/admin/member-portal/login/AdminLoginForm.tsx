@@ -6,18 +6,18 @@ const ERROR_MESSAGES: Record<string, string> = {
   config: "Admin sign-in is not configured on the server.",
 };
 
-type Props = { errorKey?: string | null };
+type Props = {
+  errorKey?: string | null;
+  /** Full URL so Safari always posts to the same host (e.g. https://www…/api/admin/login). */
+  postAction: string;
+};
 
-export function AdminLoginForm({ errorKey }: Props) {
+export function AdminLoginForm({ errorKey, postAction }: Props) {
   const message =
     errorKey && ERROR_MESSAGES[errorKey] ? ERROR_MESSAGES[errorKey] : null;
 
   return (
-    <form
-      method="post"
-      action="/api/admin/login"
-      className="mx-auto w-full max-w-md text-left"
-    >
+    <form method="post" action={postAction} className="mx-auto w-full max-w-md text-left">
       <label
         htmlFor="admin-email"
         className="mb-2 block text-sm font-semibold text-on-surface"
