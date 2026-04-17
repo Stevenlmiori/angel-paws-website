@@ -3,71 +3,6 @@ import type { NextConfig } from "next";
 const siteIndexable = process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true";
 const isProd = process.env.NODE_ENV === "production";
 
-/**
- * Report-only CSP: logs violations in the browser console (and DevTools) without
- * blocking. Tune based on reports, then consider enforcing + nonces later.
- * Covers Next.js + Google Fonts, Tally, Donorbox, and `next/image` sources in use.
- */
-function contentSecurityPolicyReportOnly(): string {
-  const directives = [
-    "default-src 'self'",
-    [
-      "script-src",
-      "'self'",
-      "'unsafe-inline'",
-      "https://tally.so",
-      "https://donorbox.org",
-    ].join(" "),
-    [
-      "style-src",
-      "'self'",
-      "'unsafe-inline'",
-      "https://fonts.googleapis.com",
-    ].join(" "),
-    ["font-src", "'self'", "https://fonts.gstatic.com", "data:"].join(" "),
-    [
-      "img-src",
-      "'self'",
-      "data:",
-      "blob:",
-      "https://lh3.googleusercontent.com",
-      "https://images.unsplash.com",
-      "https://plus.unsplash.com",
-      "https://cdn.sanity.io",
-    ].join(" "),
-    [
-      "connect-src",
-      "'self'",
-      "https://tally.so",
-      "https://*.tally.so",
-      "https://donorbox.org",
-      "https://*.donorbox.org",
-      "https://*.apicdn.sanity.io",
-      "https://*.sanity.io",
-    ].join(" "),
-    [
-      "frame-src",
-      "https://tally.so",
-      "https://*.tally.so",
-      "https://donorbox.org",
-      "https://*.donorbox.org",
-      "https://www.youtube-nocookie.com",
-      "https://www.youtube.com",
-    ].join(" "),
-    "object-src 'none'",
-    "base-uri 'self'",
-    [
-      "form-action",
-      "'self'",
-      "https://tally.so",
-      "https://donorbox.org",
-    ].join(" "),
-    "frame-ancestors 'self'",
-    "upgrade-insecure-requests",
-  ];
-  return directives.join("; ");
-}
-
 function securityHeaders(): { key: string; value: string }[] {
   const headers: { key: string; value: string }[] = [
     { key: "X-DNS-Prefetch-Control", value: "on" },
@@ -84,10 +19,9 @@ function securityHeaders(): { key: string; value: string }[] {
       key: "Strict-Transport-Security",
       value: "max-age=63072000; includeSubDomains; preload",
     });
-    headers.push({
-      key: "Content-Security-Policy-Report-Only",
-      value: contentSecurityPolicyReportOnly(),
-    });
+    // CSP report-only without `report-to` / `report-uri` only spams the console
+    // and has no effect. Re-add `Content-Security-Policy-Report-Only` or enforce
+    // `Content-Security-Policy` when you have a collector endpoint or nonces.
   }
   return headers;
 }
