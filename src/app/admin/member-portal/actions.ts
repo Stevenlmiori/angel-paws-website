@@ -6,15 +6,16 @@ import { redirect } from "next/navigation";
 import { ADMIN_PORTAL_COOKIE_NAME } from "@/lib/memberPortal/adminSession";
 import { getAdminSession } from "@/lib/memberPortal/getAdminSession";
 import { persistPortalResources } from "@/lib/memberPortal/resourcesStore";
-import { adminCookieBase } from "@/lib/memberPortal/adminCookie";
+import { expireAllAdminPortalCookiePaths } from "@/lib/memberPortal/adminCookie";
 import { parsePortalResourcesJsonString } from "@/lib/memberPortal/validatePortalResources";
 
 export async function adminLogoutAction() {
   const jar = await cookies();
-  jar.set(ADMIN_PORTAL_COOKIE_NAME, "", {
-    ...adminCookieBase(),
-    maxAge: 0,
-  });
+  const secure = process.env.NODE_ENV === "production";
+  expireAllAdminPortalCookiePaths(
+    (name, value, options) => jar.set(name, value, options),
+    secure,
+  );
   redirect("/admin/member-portal/login");
 }
 

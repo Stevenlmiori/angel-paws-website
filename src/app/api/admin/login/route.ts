@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
-import { adminCookieBase } from "@/lib/memberPortal/adminCookie";
+import {
+  adminCookieBase,
+  expireLegacyAdminPortalCookiePaths,
+} from "@/lib/memberPortal/adminCookie";
 import { issueAdminPortalSession } from "@/lib/memberPortal/issueAdminPortalSession";
 import { ADMIN_PORTAL_COOKIE_NAME } from "@/lib/memberPortal/adminSession";
 
@@ -51,9 +54,14 @@ export async function POST(request: Request) {
     return NextResponse.redirect(loginUrl(request, q), 303);
   }
 
+  const secure = new URL(request.url).protocol === "https:";
   const res = NextResponse.redirect(new URL("/admin", request.url), 303);
+  expireLegacyAdminPortalCookiePaths(
+    (name, value, options) => res.cookies.set(name, value, options),
+    secure,
+  );
   res.cookies.set(ADMIN_PORTAL_COOKIE_NAME, result.value.token, {
-    ...adminCookieBase(),
+    ...adminCookieBase({ secure }),
     maxAge: result.value.maxAgeSec,
   });
   return res;
