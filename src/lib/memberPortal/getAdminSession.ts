@@ -1,11 +1,39 @@
 import { timingSafeEqual } from "node:crypto";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { getMemberPortalEnv } from "./env";
 import { getAdminPortalEnv } from "./adminEnv";
 import {
   ADMIN_PORTAL_COOKIE_NAME,
   verifyAdminSessionToken,
 } from "./adminSession";
+
+/** Safari can send `name=` and `name=<token>` in one header; parsers may keep only one. */
+function adminPortalTokensFromCookieHeader(
+  cookieHeader: string | null,
+  cookieName: string,
+): string[] {
+  if (!cookieHeader) {
+    return [];
+  }
+  const out: string[] = [];
+  const prefix = `${cookieName}=`;
+  for (const part of cookieHeader.split(";")) {
+    const segment = part.trim();
+    if (!segment.startsWith(prefix)) {
+      continue;
+    }
+    const raw = segment.slice(prefix.length);
+    if (!raw) {
+      continue;
+    }
+    try {
+      out.push(decodeURIComponent(raw));
+    } catch {
+      out.push(raw);
+    }
+  }
+  return out;
+}
 
 function safeEmailNormEqual(a: string, b: string): boolean {
   const x = Buffer.from(a, "utf8");
@@ -26,16 +54,41 @@ export async function getAdminSession(): Promise<{ emailNorm: string } | null> {
     return null;
   }
   const jar = await cookies();
-  const token = jar.get(ADMIN_PORTAL_COOKIE_NAME)?.value;
-  if (typeof token !== "string") {
-    return null;
+  const headerList = await headers();
+  const fromJar = jar.get(ADMIN_PORTAL_COOKIE_NAME)?.value;
+  const fromWire = adminPortalTokensFromCookieHeader(
+    headerList.get("cookie"),
+    ADMIN_PORTAL_COOKIE_NAME,
+  );
+
+  const candidates: string[] = [];
+  const seen = new Set<string>();
+  const push = (v: string | undefined) => {
+    if (typeof v !== "string") {
+      return;
+    }
+    const t = v.trim();
+    if (!t || seen.has(t)) {
+      return;
+    }
+    seen.add(t);
+    candidates.push(t);
+  };
+  push(fromJar);
+  for (const v of fromWire) {
+    push(v);
   }
-  const verified = verifyAdminSessionToken(token, member.value.cookieSecret);
-  if (!verified) {
-    return null;
+  candidates.sort((a, b) => b.length - a.length);
+
+  for (const token of candidates) {
+    const verified = verifyAdminSessionToken(token, member.value.cookieSecret);
+    if (!verified) {
+      continue;
+    }
+    if (!safeEmailNormEqual(verified.emailNorm, adminEnv.value.emailNorm)) {
+      continue;
+    }
+    return { emailNorm: verified.emailNorm };
   }
-  if (!safeEmailNormEqual(verified.emailNorm, adminEnv.value.emailNorm)) {
-    return null;
-  }
-  return { emailNorm: verified.emailNorm };
+  return null;
 }
