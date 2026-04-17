@@ -1,6 +1,6 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 
-export const ADMIN_PORTAL_COOKIE_NAME = "ap_admin_portal";
+export { ADMIN_PORTAL_COOKIE_NAME } from "./adminPortalCookieName";
 
 function adminSign(expMs: number, emailNorm: string, secret: string): string {
   return createHmac("sha256", secret)

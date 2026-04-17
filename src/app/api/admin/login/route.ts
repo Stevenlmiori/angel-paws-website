@@ -22,6 +22,14 @@ function loginUrl(request: Request, query: string): URL {
   return u;
 }
 
+function isHttpsRequest(request: Request): boolean {
+  const raw = request.headers.get("x-forwarded-proto");
+  if (raw) {
+    return raw.split(",")[0]?.trim() === "https";
+  }
+  return new URL(request.url).protocol === "https:";
+}
+
 export async function POST(request: Request) {
   if (!sameOriginOk(request)) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
@@ -51,7 +59,7 @@ export async function POST(request: Request) {
     return NextResponse.redirect(loginUrl(request, q), 303);
   }
 
-  const secure = new URL(request.url).protocol === "https:";
+  const secure = isHttpsRequest(request);
   const res = NextResponse.redirect(new URL("/admin", request.url), 303);
   /**
    * Only one `Set-Cookie` on success. Safari was observed failing to keep the

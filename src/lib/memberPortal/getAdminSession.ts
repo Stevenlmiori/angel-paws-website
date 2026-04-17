@@ -76,10 +76,19 @@ export async function getAdminSession(): Promise<{ emailNorm: string } | null> {
     seen.add(t);
     candidates.push(t);
   };
-  push(fromJar);
   for (const v of fromWire) {
     push(v);
   }
+  try {
+    for (const pair of jar.getAll()) {
+      if (pair.name === ADMIN_PORTAL_COOKIE_NAME) {
+        push(pair.value);
+      }
+    }
+  } catch {
+    /* getAll may be unavailable in some runtimes */
+  }
+  push(fromJar);
   candidates.sort((a, b) => b.length - a.length);
 
   for (const token of candidates) {

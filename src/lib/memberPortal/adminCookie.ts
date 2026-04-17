@@ -1,5 +1,7 @@
-/** Must match `ADMIN_PORTAL_COOKIE_NAME` in `adminSession.ts` (avoid importing that file here: it pulls `node:crypto` into Edge middleware). */
-const ADMIN_PORTAL_COOKIE_NAME = "ap_admin_portal";
+import {
+  ADMIN_PORTAL_COOKIE_NAME,
+  LEGACY_ADMIN_PORTAL_COOKIE_NAMES,
+} from "@/lib/memberPortal/adminPortalCookieName";
 
 /**
  * Admin session uses `path: "/"` so the browser reliably stores and sends it
@@ -8,18 +10,11 @@ const ADMIN_PORTAL_COOKIE_NAME = "ap_admin_portal";
  */
 export const ADMIN_SESSION_COOKIE_PATH = "/";
 
-/** Paths we used before `path: "/"`; cleared once on successful login. */
+/** Paths we used before `path: "/"`; cleared on login success and logout. */
 export const LEGACY_ADMIN_PORTAL_COOKIE_PATHS = ["/admin", "/admin/member-portal"] as const;
 
-/**
- * Very old sessions scoped only to the login URL path. Safe to clear on every
- * admin GET — that path never holds the current `path: "/"` session cookie.
- *
- * Do **not** clear `Path=/admin` on every request: that sends a second
- * `ap_admin_portal` cookie (empty) alongside `Path=/`, and Safari can send
- * duplicates so `cookies().get` reads the wrong value and sign-in fails.
- */
-export const STALE_LOGIN_PAGE_ADMIN_COOKIE_PATH = "/admin/member-portal" as const;
+/** Paths where retired cookie names may still exist (middleware / logout). */
+const LEGACY_COOKIE_NAME_PATHS = ["/", "/admin", "/admin/member-portal"] as const;
 
 /** Optional e.g. `angelpawshouston.com` so `www` and apex share one session cookie. */
 export function adminSessionCookieDomain(): string | undefined {
@@ -54,22 +49,26 @@ function withDomain<T extends Omit<CookieOpts, "domain">>(base: T): T & { domain
   return domain ? { ...base, domain } : base;
 }
 
-/** Clear only the obsolete login-page-scoped cookie (middleware, every GET). */
-export function expireStaleLoginPageAdminPortalCookie(
+/** Strip retired cookie names (`ap_admin_portal`, etc.) so they cannot shadow the current session. */
+export function expireObsoleteAdminPortalCookieNames(
   setCookie: CookieSetter,
   secure: boolean,
 ) {
-  setCookie(
-    ADMIN_PORTAL_COOKIE_NAME,
-    "",
-    withDomain({
-      maxAge: 0,
-      httpOnly: true,
-      sameSite: "lax",
-      secure,
-      path: STALE_LOGIN_PAGE_ADMIN_COOKIE_PATH,
-    }),
-  );
+  for (const legacyName of LEGACY_ADMIN_PORTAL_COOKIE_NAMES) {
+    for (const path of LEGACY_COOKIE_NAME_PATHS) {
+      setCookie(
+        legacyName,
+        "",
+        withDomain({
+          maxAge: 0,
+          httpOnly: true,
+          sameSite: "lax",
+          secure,
+          path,
+        }),
+      );
+    }
+  }
 }
 
 /** Remove path-scoped copies of the admin cookie (older deployments). */
@@ -120,5 +119,20 @@ export function expireAllAdminPortalCookiePaths(
         path,
       }),
     );
+  }
+  for (const legacyName of LEGACY_ADMIN_PORTAL_COOKIE_NAMES) {
+    for (const path of LEGACY_COOKIE_NAME_PATHS) {
+      setCookie(
+        legacyName,
+        "",
+        withDomain({
+          maxAge: 0,
+          httpOnly: true,
+          sameSite: "lax",
+          secure,
+          path,
+        }),
+      );
+    }
   }
 }
