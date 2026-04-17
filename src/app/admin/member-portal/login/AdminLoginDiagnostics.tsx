@@ -16,10 +16,14 @@ export function AdminLoginDiagnostics({ enabled }: Props) {
     setJson(null);
     setBusy(true);
     try {
+      const trimmed = key.trim();
       const res = await fetch("/api/admin/login-debug", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ key: key.trim() }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${trimmed}`,
+        },
+        body: JSON.stringify({ key: trimmed }),
       });
       const text = await res.text();
       let data: unknown;
@@ -30,7 +34,24 @@ export function AdminLoginDiagnostics({ enabled }: Props) {
         return;
       }
       if (!res.ok) {
-        setError(`HTTP ${res.status} — ${JSON.stringify(data)}`);
+        const hint =
+          typeof data === "object" &&
+          data !== null &&
+          "hint" in data &&
+          typeof (data as { hint: unknown }).hint === "string"
+            ? (data as { hint: string }).hint
+            : null;
+        const code =
+          typeof data === "object" &&
+          data !== null &&
+          "error" in data &&
+          typeof (data as { error: unknown }).error === "string"
+            ? (data as { error: string }).error
+            : null;
+        setError(
+          hint ??
+            `HTTP ${res.status}${code ? ` (${code})` : ""} — ${JSON.stringify(data)}`,
+        );
         return;
       }
       const pretty = JSON.stringify(data, null, 2);
@@ -76,9 +97,12 @@ export function AdminLoginDiagnostics({ enabled }: Props) {
         .
       </p>
       <p className="mt-2 leading-relaxed">
-        Set <code className="text-xs">ADMIN_LOGIN_DEBUG_KEY</code> in Vercel (≥ 16 characters),
-        redeploy, paste the same key here, then click <strong className="text-on-surface">Run</strong>.
-        Remove the env var when you are done.
+        Set <code className="text-xs">ADMIN_LOGIN_DEBUG_KEY</code> in Vercel for{" "}
+        <strong className="text-on-surface">Production</strong> if this site uses your live domain
+        (≥ 16 characters). Save, redeploy, paste the <strong className="text-on-surface">same</strong>{" "}
+        value here, then <strong className="text-on-surface">Run</strong>. If you change the key in
+        Vercel, you must redeploy before Run will accept the new value. Remove the env var when you
+        are done.
       </p>
       <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-end">
         <label className="min-w-0 flex-1">
