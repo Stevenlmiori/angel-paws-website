@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { unstable_noStore as noStore } from "next/cache";
 import { redirect } from "next/navigation";
 import { BookOpen, Link2, LogOut } from "lucide-react";
 import { getAdminPortalEnv } from "@/lib/memberPortal/adminEnv";
@@ -10,6 +11,7 @@ import { Button } from "@/components/ui/Button";
 export const dynamic = "force-dynamic";
 
 export default async function AdminHubPage() {
+  noStore();
   const adminEnv = getAdminPortalEnv();
   if (!adminEnv.ok) {
     return <AdminMisconfigured reason={adminEnv.reason} />;

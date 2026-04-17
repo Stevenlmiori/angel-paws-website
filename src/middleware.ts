@@ -19,6 +19,10 @@ export function middleware(request: NextRequest) {
   }
 
   const res = NextResponse.next();
+  res.headers.set(
+    "Cache-Control",
+    "private, no-store, must-revalidate",
+  );
   const secure = request.nextUrl.protocol === "https:";
   expireStaleLoginPageAdminPortalCookie(
     (name, value, options) => res.cookies.set(name, value, options),

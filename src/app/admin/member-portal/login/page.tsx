@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { unstable_noStore as noStore } from "next/cache";
 import { redirect } from "next/navigation";
 import { Settings2 } from "lucide-react";
 import { getAdminPortalEnv } from "@/lib/memberPortal/adminEnv";
@@ -14,6 +15,7 @@ export default async function AdminMemberPortalLoginPage({
 }: {
   searchParams: Promise<{ error?: string }>;
 }) {
+  noStore();
   const { error } = await searchParams;
   const loginDiagnosticsEnabled = Boolean(
     process.env.ADMIN_LOGIN_DEBUG_KEY?.trim(),
