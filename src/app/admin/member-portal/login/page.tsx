@@ -21,10 +21,21 @@ export default async function AdminMemberPortalLoginPage({
   const h = await headers();
   const rawHost = h.get("x-forwarded-host") ?? h.get("host") ?? "";
   const host = rawHost.split(",")[0]?.trim() ?? "";
+  /**
+   * Absolute URL helps Safari post to the canonical host in production. On
+   * `next dev`, `x-forwarded-proto` is often missing — defaulting to `https`
+   * would send the form to `https://localhost:…` while the server only speaks
+   * HTTP, so sign-in silently fails.
+   */
+  const forwardedProto = h.get("x-forwarded-proto")?.split(",")[0]?.trim();
+  const isLocal =
+    host.includes("localhost") ||
+    host.includes("127.0.0.1") ||
+    host.includes("::1");
+  const proto =
+    forwardedProto ?? (isLocal ? "http" : "https");
   const loginPostAction =
-    host.length > 0
-      ? `${(h.get("x-forwarded-proto") ?? "https").split(",")[0]?.trim() ?? "https"}://${host}/api/admin/login`
-      : "/api/admin/login";
+    host.length > 0 ? `${proto}://${host}/api/admin/login` : "/api/admin/login";
   const loginDiagnosticsEnabled = Boolean(
     process.env.ADMIN_LOGIN_DEBUG_KEY?.trim(),
   );

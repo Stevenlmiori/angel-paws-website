@@ -5,8 +5,8 @@ import { redirect } from "next/navigation";
 import { getAdminSession } from "@/lib/memberPortal/getAdminSession";
 import { sanityWriteClient } from "@/lib/sanity/client";
 import {
-  formSegmentsToPortableText,
-  type FormSegment,
+  bodyMarkdownToPortableText,
+  parseStoryInlineImagesJson,
 } from "@/lib/stories/portableTextForm";
 import { slugify } from "@/lib/stories/slugify";
 
@@ -17,42 +17,6 @@ function parseTags(raw: string): string[] {
     .split(/[,]+/)
     .map((t) => t.trim().toLowerCase())
     .filter(Boolean);
-}
-
-function parseSegments(raw: string): FormSegment[] | null {
-  try {
-    const parsed = JSON.parse(raw) as unknown;
-    if (!Array.isArray(parsed)) {
-      return null;
-    }
-    const out: FormSegment[] = [];
-    for (const row of parsed) {
-      if (!row || typeof row !== "object") {
-        continue;
-      }
-      const k = (row as { kind?: string }).kind;
-      if (k === "paragraph" && typeof (row as { text?: string }).text === "string") {
-        out.push({ kind: "paragraph", text: (row as { text: string }).text });
-      } else if (k === "h2" && typeof (row as { text?: string }).text === "string") {
-        out.push({ kind: "h2", text: (row as { text: string }).text });
-      } else if (k === "h3" && typeof (row as { text?: string }).text === "string") {
-        out.push({ kind: "h3", text: (row as { text: string }).text });
-      } else if (
-        k === "blockquote" &&
-        typeof (row as { text?: string }).text === "string"
-      ) {
-        out.push({ kind: "blockquote", text: (row as { text: string }).text });
-      } else if (k === "bullets" && Array.isArray((row as { items?: unknown }).items)) {
-        const items = (row as { items: unknown[] }).items
-          .map((x) => (typeof x === "string" ? x : ""))
-          .filter(Boolean);
-        out.push({ kind: "bullets", items });
-      }
-    }
-    return out.length ? out : [{ kind: "paragraph", text: "" }];
-  } catch {
-    return null;
-  }
 }
 
 export async function saveStoryFromFormData(
@@ -99,11 +63,14 @@ export async function saveStoryFromFormData(
   const publishedAt = publishedAtRaw || undefined;
 
   const featuredAlt = String(formData.get("featuredAlt") ?? "").trim();
-  const segments = parseSegments(String(formData.get("bodyJson") ?? "[]"));
-  if (!segments) {
-    return { ok: false, message: "Body data was invalid." };
+  const bodyMarkdown = String(formData.get("bodyMarkdown") ?? "");
+  const inlineImages = parseStoryInlineImagesJson(
+    String(formData.get("bodyImagesJson") ?? "[]"),
+  );
+  if (!inlineImages) {
+    return { ok: false, message: "Inline image data was invalid." };
   }
-  const body = formSegmentsToPortableText(segments);
+  const body = bodyMarkdownToPortableText(bodyMarkdown, inlineImages);
 
   const file = formData.get("featuredImage");
   let featuredPatch: Record<string, unknown> | null = null;
