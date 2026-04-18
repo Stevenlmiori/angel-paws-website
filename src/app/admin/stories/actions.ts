@@ -4,10 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getAdminSession } from "@/lib/memberPortal/getAdminSession";
 import { sanityWriteClient } from "@/lib/sanity/client";
-import {
-  bodyMarkdownToPortableText,
-  parseStoryInlineImagesJson,
-} from "@/lib/stories/portableTextForm";
+import { parseStoryBodyPortableTextJson } from "@/lib/stories/storyBodyEditorSchema";
 import { slugify } from "@/lib/stories/slugify";
 
 export type StorySaveState = { ok: boolean; message: string; id?: string };
@@ -63,14 +60,12 @@ export async function saveStoryFromFormData(
   const publishedAt = publishedAtRaw || undefined;
 
   const featuredAlt = String(formData.get("featuredAlt") ?? "").trim();
-  const bodyMarkdown = String(formData.get("bodyMarkdown") ?? "");
-  const inlineImages = parseStoryInlineImagesJson(
-    String(formData.get("bodyImagesJson") ?? "[]"),
+  const body = parseStoryBodyPortableTextJson(
+    String(formData.get("bodyPortableTextJson") ?? ""),
   );
-  if (!inlineImages) {
-    return { ok: false, message: "Inline image data was invalid." };
+  if (!body) {
+    return { ok: false, message: "Story body data was invalid." };
   }
-  const body = bodyMarkdownToPortableText(bodyMarkdown, inlineImages);
 
   const file = formData.get("featuredImage");
   let featuredPatch: Record<string, unknown> | null = null;
