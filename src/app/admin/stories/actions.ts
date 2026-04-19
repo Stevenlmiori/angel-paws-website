@@ -122,6 +122,7 @@ export async function saveStoryFromFormData(
       revalidatePath("/stories");
       revalidatePath(`/stories/${slug}`);
       revalidatePath("/");
+      revalidatePath("/admin/stories");
       return { ok: true, message: "Story saved.", id };
     }
 
@@ -133,6 +134,7 @@ export async function saveStoryFromFormData(
     revalidatePath("/stories");
     revalidatePath(`/stories/${slug}`);
     revalidatePath("/");
+    revalidatePath("/admin/stories");
     return { ok: true, message: "Story created.", id: created._id };
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Save failed.";
@@ -157,6 +159,7 @@ export async function deleteStory(formData: FormData): Promise<void> {
     await client.delete(id);
     revalidatePath("/stories");
     revalidatePath("/");
+    revalidatePath("/admin/stories");
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Delete failed.";
     throw new Error(msg);
