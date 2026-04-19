@@ -3,7 +3,7 @@
 import { useActionState, useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ImagePlus } from "lucide-react";
+import { ImagePlus, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import {
   deleteStory,
@@ -48,6 +48,8 @@ export function StoryForm({ story }: { story: StoryDetail | null }) {
     story?.seoDescription ?? "",
   );
   const [featuredAlt, setFeaturedAlt] = useState(story?.featuredImage?.alt ?? "");
+  /** Edit mode: user chose to remove the saved featured image on next save. */
+  const [featuredRemoved, setFeaturedRemoved] = useState(false);
 
   const initialBody = useMemo(
     () => normalizeStoryBodyInitial(story?.body),
@@ -79,6 +81,16 @@ export function StoryForm({ story }: { story: StoryDetail | null }) {
     }
   }, [state, isNew, router]);
 
+  useEffect(() => {
+    if (state.ok && !isNew) {
+      router.refresh();
+    }
+  }, [state.ok, state.message, isNew, router]);
+
+  useEffect(() => {
+    setFeaturedRemoved(false);
+  }, [story?._id, story?.featuredImage?.asset?._ref]);
+
   const featuredPreview = useMemo(() => {
     const fi = story?.featuredImage;
     if (!fi?.asset?._ref) {
@@ -86,6 +98,8 @@ export function StoryForm({ story }: { story: StoryDetail | null }) {
     }
     return urlForImage(fi)?.width(640).height(400).url() ?? null;
   }, [story?.featuredImage]);
+
+  const showFeaturedPreview = Boolean(featuredPreview && !featuredRemoved);
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-10 sm:px-10 lg:px-12">
@@ -112,6 +126,11 @@ export function StoryForm({ story }: { story: StoryDetail | null }) {
 
       <form action={formAction} className="space-y-10">
         {!isNew ? <input type="hidden" name="id" value={story!._id} /> : null}
+        <input
+          type="hidden"
+          name="clearFeaturedImage"
+          value={featuredRemoved ? "1" : "0"}
+        />
         <textarea
           name="bodyPortableTextJson"
           value={bodyJson}
@@ -232,7 +251,7 @@ export function StoryForm({ story }: { story: StoryDetail | null }) {
               This is the image at the top of the story and in story listings.
             </p>
           </div>
-          {featuredPreview ? (
+          {showFeaturedPreview && featuredPreview ? (
             <div className="relative aspect-[16/10] w-full max-w-xl overflow-hidden rounded-2xl bg-surface-container-low ring-1 ring-primary/10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -240,7 +259,36 @@ export function StoryForm({ story }: { story: StoryDetail | null }) {
                 alt=""
                 className="h-full w-full object-cover"
               />
+              {!isNew ? (
+                <button
+                  type="button"
+                  className="absolute right-2 top-2 inline-flex size-10 items-center justify-center rounded-full bg-on-surface/85 text-white shadow-md ring-1 ring-white/20 transition hover:bg-on-surface"
+                  onClick={() => {
+                    setFeaturedRemoved(true);
+                    setFeaturedAlt("");
+                  }}
+                  aria-label="Remove featured image"
+                  title="Remove featured image"
+                >
+                  <X className="size-5" aria-hidden />
+                </button>
+              ) : null}
             </div>
+          ) : null}
+          {!isNew && featuredRemoved && featuredPreview ? (
+            <p className="text-sm font-medium text-on-surface-variant">
+              Featured image will be removed when you save.{" "}
+              <button
+                type="button"
+                className="font-semibold text-primary underline underline-offset-4"
+                onClick={() => {
+                  setFeaturedRemoved(false);
+                  setFeaturedAlt(story?.featuredImage?.alt ?? "");
+                }}
+              >
+                Undo
+              </button>
+            </p>
           ) : null}
           <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
             <label className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-primary/25 bg-white px-5 py-3 text-sm font-semibold text-primary shadow-sm transition hover:border-primary/40 hover:bg-primary/5">
@@ -251,12 +299,17 @@ export function StoryForm({ story }: { story: StoryDetail | null }) {
                 name="featuredImage"
                 accept="image/jpeg,image/png,image/webp"
                 className="sr-only"
+                onChange={(e) => {
+                  if (e.target.files?.length) {
+                    setFeaturedRemoved(false);
+                  }
+                }}
               />
             </label>
             <p className="max-w-md text-sm text-on-surface-variant sm:pt-1">
               {isNew
                 ? "JPG, PNG, or WebP. Alt text is required when you add a new image."
-                : "Leave empty to keep the current image. Pick a new file to replace it."}
+                : "Leave empty to keep the current image. Pick a new file to replace it, or use Remove on the preview to clear it."}
             </p>
           </div>
           <div className="space-y-2">

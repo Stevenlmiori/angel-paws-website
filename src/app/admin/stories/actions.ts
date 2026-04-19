@@ -68,6 +68,10 @@ export async function saveStoryFromFormData(
   }
 
   const file = formData.get("featuredImage");
+  const clearFeaturedRaw = String(formData.get("clearFeaturedImage") ?? "");
+  const clearFeatured =
+    clearFeaturedRaw === "1" || clearFeaturedRaw === "true";
+
   let featuredPatch: Record<string, unknown> | null = null;
   if (file instanceof File && file.size > 0) {
     if (!featuredAlt) {
@@ -106,11 +110,15 @@ export async function saveStoryFromFormData(
 
   try {
     if (id) {
-      const patch: Record<string, unknown> = { ...fields };
+      const patchData: Record<string, unknown> = { ...fields };
       if (featuredPatch) {
-        Object.assign(patch, featuredPatch);
+        Object.assign(patchData, featuredPatch);
       }
-      await client.patch(id).set(patch).commit();
+      let patch = client.patch(id).set(patchData);
+      if (!featuredPatch && clearFeatured) {
+        patch = patch.unset(["featuredImage"]);
+      }
+      await patch.commit();
       revalidatePath("/stories");
       revalidatePath(`/stories/${slug}`);
       revalidatePath("/");
