@@ -1,15 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { urlForImage } from "@/lib/sanity/image";
+import { safeSanityImageUrl } from "@/lib/sanity/image";
 import type { StoryListItem } from "@/lib/sanity/types";
 
 export function StoryCard({ story }: { story: StoryListItem }) {
   const img = story.featuredImage;
-  const src =
-    img?.asset?._ref && urlForImage(img)
-      ? urlForImage(img)!.width(800).height(520).url()
-      : null;
+  const src = safeSanityImageUrl(img, (b) => b.width(800).height(520));
 
   return (
     <Link

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
-import { urlForImage } from "@/lib/sanity/image";
+import { safeSanityImageUrl } from "@/lib/sanity/image";
 import { normalizePortableTextForPublic } from "@/lib/stories/normalizePortableTextForPublic";
 
 const components: PortableTextComponents = {
@@ -10,12 +10,8 @@ const components: PortableTextComponents = {
         typeof value?.alt === "string" && value.alt
           ? value.alt
           : "Story image";
-      const builder = urlForImage(value);
-      if (!builder) {
-        return null;
-      }
-      const src = builder.width(1200).url();
-      if (!src || !/^https?:\/\//.test(src)) {
+      const src = safeSanityImageUrl(value, (b) => b.width(1200));
+      if (!src) {
         return null;
       }
       return (

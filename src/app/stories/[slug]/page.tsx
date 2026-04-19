@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { sanityReadClient } from "@/lib/sanity/client";
-import { urlForImage } from "@/lib/sanity/image";
+import { safeSanityImageUrl } from "@/lib/sanity/image";
 import { storyBySlugQuery } from "@/lib/sanity/queries";
 import type { StoryDetail } from "@/lib/sanity/types";
 import { PortableBody } from "@/components/stories/PortableBody";
@@ -43,12 +43,9 @@ export default async function StoryDetailPage({ params }: Props) {
     notFound();
   }
 
-  const heroUrl =
-    story.featuredImage?.asset?._ref && urlForImage(story.featuredImage)
-      ? urlForImage(story.featuredImage)!.width(1600).height(900).url()
-      : null;
-  const hero =
-    heroUrl && /^https?:\/\//.test(heroUrl) ? heroUrl : null;
+  const hero = safeSanityImageUrl(story.featuredImage, (b) =>
+    b.width(1600).height(900),
+  );
 
   const publishedLabel = (() => {
     if (!story.publishedAt) {
