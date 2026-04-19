@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { urlForImage } from "@/lib/sanity/image";
+import { normalizePortableTextForPublic } from "@/lib/stories/normalizePortableTextForPublic";
 
 const components: PortableTextComponents = {
   types: {
@@ -14,6 +15,9 @@ const components: PortableTextComponents = {
         return null;
       }
       const src = builder.width(1200).url();
+      if (!src || !/^https?:\/\//.test(src)) {
+        return null;
+      }
       return (
         <figure className="my-10 overflow-hidden rounded-[2rem] bg-surface-container-low shadow-soft">
           <div className="relative aspect-[16/10] w-full">
@@ -21,6 +25,7 @@ const components: PortableTextComponents = {
               src={src}
               alt={alt}
               fill
+              unoptimized
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 720px"
             />
@@ -101,9 +106,13 @@ export function PortableBody({ value }: PortableBodyProps) {
   if (!value || !Array.isArray(value) || value.length === 0) {
     return null;
   }
+  const safe = normalizePortableTextForPublic(value);
+  if (!safe?.length) {
+    return null;
+  }
   return (
     <div className="prose-story max-w-none">
-      <PortableText value={value as never} components={components} />
+      <PortableText value={safe as never} components={components} />
     </div>
   );
 }

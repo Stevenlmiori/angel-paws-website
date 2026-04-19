@@ -43,10 +43,27 @@ export default async function StoryDetailPage({ params }: Props) {
     notFound();
   }
 
-  const hero =
+  const heroUrl =
     story.featuredImage?.asset?._ref && urlForImage(story.featuredImage)
       ? urlForImage(story.featuredImage)!.width(1600).height(900).url()
       : null;
+  const hero =
+    heroUrl && /^https?:\/\//.test(heroUrl) ? heroUrl : null;
+
+  const publishedLabel = (() => {
+    if (!story.publishedAt) {
+      return null;
+    }
+    const d = new Date(story.publishedAt);
+    if (Number.isNaN(d.getTime())) {
+      return null;
+    }
+    return d.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  })();
 
   return (
     <article>
@@ -58,16 +75,14 @@ export default async function StoryDetailPage({ params }: Props) {
           >
             ← All stories
           </Link>
-          {story.publishedAt ? (
+          {publishedLabel ? (
             <time
-              dateTime={story.publishedAt}
+              dateTime={
+                typeof story.publishedAt === "string" ? story.publishedAt : undefined
+              }
               className="mb-3 block text-xs font-bold uppercase tracking-widest text-primary"
             >
-              {new Date(story.publishedAt).toLocaleDateString(undefined, {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
+              {publishedLabel}
             </time>
           ) : null}
           <h1 className="font-serif text-4xl font-semibold leading-tight text-on-surface md:text-5xl lg:text-6xl">
@@ -86,9 +101,10 @@ export default async function StoryDetailPage({ params }: Props) {
           <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[2.5rem] bg-surface-container-low shadow-soft">
             <Image
               src={hero}
-              alt={story.featuredImage?.alt ?? ""}
+              alt={story.featuredImage?.alt ?? "Story image"}
               fill
               priority
+              unoptimized
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 1024px"
             />
