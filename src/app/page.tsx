@@ -1,3 +1,4 @@
+// Test edit by Sylvan to verify write access
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeImpact } from "@/components/home/HomeImpact";
 import { HomeQuote } from "@/components/home/HomeQuote";
