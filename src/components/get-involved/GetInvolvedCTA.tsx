@@ -17,7 +17,7 @@ export function GetInvolvedCTA() {
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <Link
-            href="#"
+            href="/contact"
             className="rounded-full bg-primary px-8 py-3.5 text-sm font-bold text-on-primary shadow-lg shadow-primary/15 transition-opacity hover:opacity-90"
           >
             Start an application

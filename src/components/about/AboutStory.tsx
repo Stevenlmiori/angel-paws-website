@@ -27,7 +27,7 @@ const blocks: ReadonlyArray<{
       alt: "Elderly woman laughing with a therapy dog in a care setting",
     },
     title: "The Seed of Hope",
-    body: "It began with a single visit to a local nursing home. Our founders witnessed how the presence of their family dog transformed an atmosphere of silence into one of joyful chatter and memories. That afternoon, the vision for Angel Paws was born—a mission to institutionalize these moments of grace across Houston.",
+    body: "In 2014, after receiving life-changing medical news, our founder began searching for hope and found both a church family and a renewed calling in Christ. Soon after, she witnessed how therapy-dog visits shifted hospital rooms from fear and isolation to calm conversation and comfort.",
     reverse: false,
   },
   {
@@ -37,7 +37,7 @@ const blocks: ReadonlyArray<{
       iframeTitle: "Angel Paws ministry video on YouTube",
     },
     title: "Helping the Hurting",
-    body: "From a small beginning, we have grown to meet more and more needs across our city and region. We expanded from a small team of three to a network of certified handlers and their faithful companions. From the Texas Medical Center to quiet suburban libraries, Angel Paws became a staple of community resilience, especially during times of local hardship.",
+    body: "Angel Paws began in 2017 as a small church-based ministry and grew as requests for visits increased across Houston. We served schools, colleges, assisted living communities, hospitals, and crisis-impacted communities, and saw God open doors far beyond what our early team could have imagined.",
     reverse: true,
   },
   {
@@ -47,7 +47,7 @@ const blocks: ReadonlyArray<{
       alt: "Brown therapy cocker spaniel in a vest, looking toward the camera",
     },
     title: "Looking Forward",
-    body: "Today, Angel Paws continues to evolve, integrating modern therapy techniques with our timeless faith foundation. We are committed to training the next generation of therapy teams, ensuring that the legacy of compassion continues to thrive for decades to come.",
+    body: "Today, as a 501(c)(3) nonprofit ministry, we continue to equip handlers and therapy dogs to serve with excellence, humility, and compassion. Our prayer is simple: to keep sharing the love of Jesus through the steady comfort our pets bring to every place we are invited.",
     reverse: false,
   },
 ];

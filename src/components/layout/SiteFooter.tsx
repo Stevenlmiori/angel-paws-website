@@ -86,26 +86,26 @@ export function SiteFooter() {
           </h4>
           <div className="flex gap-5 text-stone-600">
             <a
-              href="#"
+              href="https://www.angelpawshouston.com"
               className="rounded-lg p-1 transition-colors hover:text-primary"
               aria-label="Website"
             >
               <Globe className="size-6" strokeWidth={1.5} />
             </a>
-            <a
-              href="#"
+            <Link
+              href="/contact"
               className="rounded-lg p-1 transition-colors hover:text-primary"
               aria-label="Email"
             >
               <Mail className="size-6" strokeWidth={1.5} />
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/donate"
               className="rounded-lg p-1 transition-colors hover:text-primary"
               aria-label="Support"
             >
               <Heart className="size-6" strokeWidth={1.5} />
-            </a>
+            </Link>
           </div>
           <div className="flex flex-col gap-3 pt-1 text-xs text-stone-500">
             <Link

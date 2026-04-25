@@ -55,11 +55,39 @@ export function PetTherapySections() {
 
         <div className="mt-16 max-w-4xl md:mt-24">
           <h2 className="mb-6 font-serif text-3xl text-on-surface md:text-4xl">
+            Clear Definitions
+          </h2>
+          <ul className="list-disc space-y-3 pl-6 text-lg leading-relaxed text-on-surface-variant">
+            <li>
+              <strong className="font-semibold text-on-surface">
+                Therapy dogs:
+              </strong>{" "}
+              trained to provide comfort and support in settings like schools,
+              hospitals, care communities, and crisis response environments.
+            </li>
+            <li>
+              <strong className="font-semibold text-on-surface">
+                Service dogs:
+              </strong>{" "}
+              trained for specific disability-related tasks for one handler.
+            </li>
+            <li>
+              <strong className="font-semibold text-on-surface">
+                Comfort or crisis dogs:
+              </strong>{" "}
+              deployed in disaster and trauma contexts to support emotional care.
+            </li>
+          </ul>
+        </div>
+
+        <div className="mt-16 max-w-4xl md:mt-24">
+          <h2 className="mb-6 font-serif text-3xl text-on-surface md:text-4xl">
             What We See Every Day
           </h2>
           <ul className="list-disc space-y-4 pl-6 text-lg leading-relaxed text-on-surface-variant">
             <li>Patients who relax during difficult treatments</li>
             <li>Students who gain confidence and focus</li>
+            <li>People with reduced stress and lower anxiety in the moment</li>
             <li>People who simply feel less alone</li>
           </ul>
           <p className="mt-6 text-lg font-medium text-on-surface">

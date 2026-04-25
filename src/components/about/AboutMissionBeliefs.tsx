@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { HeartHandshake, Shield, Sparkles, Users } from "lucide-react";
+import { BookOpen, HeartHandshake, Shield, Sparkles } from "lucide-react";
 
 const beliefs: {
   Icon: LucideIcon;
@@ -8,23 +8,23 @@ const beliefs: {
 }[] = [
   {
     Icon: Sparkles,
-    title: "Kingdom Ministry",
-    body: "We believe our pets are a gift from God, uniquely designed to break down barriers and open hearts to the Gospel message.",
+    title: "Christ-Centered Mission",
+    body: "We serve to share the love of Jesus with gentleness, humility, and compassion in every visit.",
   },
   {
     Icon: HeartHandshake,
-    title: "Unconditional Love",
-    body: "Our therapy visits model the selfless, judging-free love that Christ offers to us, bringing peace to hospitals, schools, and homes.",
+    title: "Compassion in Action",
+    body: "Therapy dogs help people feel seen and safe. We use that open door to bring encouragement, hope, and meaningful connection.",
+  },
+  {
+    Icon: BookOpen,
+    title: "Biblical Foundation",
+    body: "Scripture guides our convictions, our character, and the way we care for people of every age and background.",
   },
   {
     Icon: Shield,
-    title: "Vetted Excellence",
-    body: "To honor God in our service, we maintain rigorous training and temperament standards, ensuring every visit is safe and professional.",
-  },
-  {
-    Icon: Users,
-    title: "Sharing Hope",
-    body: "We exist to be 'Kingdom Builders' in Northwest Houston, using the simple act of a wagging tail to start deep conversations about hope.",
+    title: "Safety & Stewardship",
+    body: "We require training, temperament screening, and health standards so each team serves with professionalism and trust.",
   },
 ];
 

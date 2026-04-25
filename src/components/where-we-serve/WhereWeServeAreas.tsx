@@ -87,7 +87,9 @@ export function WhereWeServeAreas() {
           </p>
           <p className="mb-8 text-lg leading-loose text-on-surface-variant">
             Students often feel more comfortable reading, talking, or simply
-            sitting with a dog. It lowers pressure and helps them focus.
+            sitting with a dog. It lowers pressure and helps them focus. We also
+            serve colleges and universities during high-stress seasons such as
+            finals week.
           </p>
           <div className="mb-8 rounded-2xl bg-surface-container-low p-8">
             <h4 className="mb-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant">
@@ -152,19 +154,14 @@ export function WhereWeServeAreas() {
             They create moments of connection that can break through loneliness
             and routine.
           </p>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="rounded-xl bg-surface-container p-6 shadow-soft">
-              <div className="mb-1 text-3xl font-bold text-primary">85%</div>
-              <div className="text-xs font-bold uppercase tracking-tight text-on-surface-variant">
-                Resident Engagement Increase
-              </div>
-            </div>
-            <div className="rounded-xl bg-surface-container p-6 shadow-soft">
-              <div className="mb-1 text-3xl font-bold text-primary">400+</div>
-              <div className="text-xs font-bold uppercase tracking-tight text-on-surface-variant">
-                Visits Annually
-              </div>
-            </div>
+          <div className="rounded-2xl bg-surface-container-low p-8">
+            <h4 className="mb-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+              Why it matters
+            </h4>
+            <p className="text-on-surface-variant">
+              Familiar touchpoints like petting and conversation often help
+              residents share memories, smile more, and feel less isolated.
+            </p>
           </div>
         </div>
       </div>
@@ -175,20 +172,24 @@ export function WhereWeServeAreas() {
           <div className="mb-6 flex items-center gap-3 text-primary">
             <UsersRound className="size-10 shrink-0" strokeWidth={1.5} />
             <h2 className="font-serif text-3xl font-bold text-on-surface">
-              Community Outreach
+              Community & Crisis Care
             </h2>
           </div>
           <p className="mb-8 text-lg leading-loose text-on-surface-variant">
             Beyond the walls of institutions, Angel Paws is active in the heart
-            of our city. We provide support at community events, memorials, and
-            public safety initiatives, demonstrating the power of the
-            human-animal bond for all.
+            of our city. We support first responders, community gatherings, and
+            crisis-impacted settings where people need calm presence and care.
+          </p>
+          <p className="mb-8 text-lg leading-loose text-on-surface-variant">
+            Our teams have served after local tragedies and during seasons of
+            grief, offering comfort and connection in moments when words are
+            hard to find.
           </p>
           <Link
-            href="#"
+            href="/contact"
             className="group inline-flex items-center gap-2 font-bold tracking-tight text-primary transition-opacity hover:opacity-80"
           >
-            Explore Event Calendar
+            Request a visit
             <ArrowRight
               className="size-5 transition-transform group-hover:translate-x-1"
               aria-hidden

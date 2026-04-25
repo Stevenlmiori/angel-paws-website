@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Heart, PawPrint } from "lucide-react";
 import { IMG } from "./media";
 
@@ -27,19 +28,19 @@ export function HomeHero() {
             therapy dogs.
           </p>
           <div className="flex flex-wrap gap-6 pt-4">
-            <button
-              type="button"
+            <Link
+              href="/get-involved"
               className="flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-lg font-bold text-on-primary shadow-lg shadow-primary/20 transition-transform hover:scale-[1.02]"
             >
               Join Our Mission
               <ArrowRight className="size-6 shrink-0" strokeWidth={2.25} aria-hidden />
-            </button>
-            <button
-              type="button"
+            </Link>
+            <Link
+              href="/donate"
               className="rounded-full bg-secondary-container px-8 py-4 text-lg font-bold text-on-secondary-container transition-transform hover:scale-[1.02]"
             >
               Donate Now
-            </button>
+            </Link>
           </div>
         </div>
 

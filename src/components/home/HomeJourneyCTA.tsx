@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { IMG } from "./media";
 
 export function HomeJourneyCTA() {
@@ -23,18 +24,18 @@ export function HomeJourneyCTA() {
             spirit and a heart to serve.
           </p>
           <div className="flex flex-wrap justify-center gap-6">
-            <button
-              type="button"
+            <Link
+              href="/get-involved"
               className="rounded-full bg-white px-12 py-5 text-xl font-bold text-primary shadow-xl transition-transform hover:scale-105"
             >
               Become a Volunteer
-            </button>
-            <button
-              type="button"
+            </Link>
+            <Link
+              href="/contact"
               className="rounded-full bg-white/15 px-12 py-5 text-xl font-bold text-on-primary backdrop-blur-sm transition-all hover:bg-white/25"
             >
               Partner With Us
-            </button>
+            </Link>
           </div>
         </div>
       </div>

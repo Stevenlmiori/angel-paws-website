@@ -59,13 +59,14 @@ export function TallyContactSection() {
       {contactId ? (
         <div>
           <iframe
+            src={tallyDataSrc(contactId)}
             data-tally-src={tallyDataSrc(contactId)}
             data-tally-dynamic-height="true"
             width="100%"
             height="700"
             title="Contact Angel Paws"
             scrolling="no"
-            className="w-full overflow-hidden rounded-xl border-0 bg-transparent"
+            className="w-full overflow-hidden rounded-xl border border-stone-200/60 bg-white"
           />
         </div>
       ) : null}
@@ -79,13 +80,14 @@ export function TallyContactSection() {
             phone.
           </p>
           <iframe
+            src={tallyDataSrc(visitId)}
             data-tally-src={tallyDataSrc(visitId)}
             data-tally-dynamic-height="true"
             width="100%"
             height="900"
             title="Request a therapy visit"
             scrolling="no"
-            className="w-full overflow-hidden rounded-xl border-0 bg-transparent"
+            className="w-full overflow-hidden rounded-xl border border-stone-200/60 bg-white"
           />
         </div>
       ) : null}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { DoorOpen, Home, Heart } from "lucide-react";
 import { TallyContactSection } from "@/components/embeds/TallyContactSection";
+import { DirectEmailReveal } from "@/components/contact/DirectEmailReveal";
 
 export function ContactMainSection() {
   return (
@@ -15,6 +16,17 @@ export function ContactMainSection() {
             organization. We will follow up as soon as we can.
           </p>
           <TallyContactSection />
+          <div className="mt-8 rounded-2xl bg-surface-container-high p-6">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-on-surface-variant">
+              For facility visit requests
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">
+              To help us schedule quickly, please include your facility name,
+              address, visit type, preferred date/time, indoor or outdoor setup,
+              and the best contact person.
+            </p>
+          </div>
+          <DirectEmailReveal />
         </div>
         <aside className="rounded-3xl bg-surface-container-low p-8 sm:p-10">
           <p className="mb-5 font-sans text-xs font-bold uppercase tracking-widest text-on-surface-variant">
