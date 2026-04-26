@@ -54,6 +54,16 @@ Until you intentionally allow indexing, leave `NEXT_PUBLIC_SITE_INDEXABLE` unset
 
 The app runs as a standard **Node** Next.js deployment (server features such as cookies and optional Redis are supported). **[Vercel](https://vercel.com/)** is a common choice; add the same environment variables you use locally in the host’s project settings, then deploy from your default branch.
 
+### Keeping Upstash active (optional)
+
+If you rely on Upstash Redis for member portal persistence and want to avoid inactivity archiving on free tiers, this repo includes a lightweight daily heartbeat:
+
+- Endpoint: `GET /api/redis-heartbeat` (writes a tiny timestamp key in Redis)
+- Schedule: configured in `vercel.json` (`17 3 * * *`, daily UTC)
+- Auth: set `CRON_SECRET` in Vercel (or `REDIS_HEARTBEAT_SECRET`), then redeploy
+
+Vercel Cron runs in the cloud and does not require your computer to be on.
+
 ## Contributing
 
 Issues and small, focused pull requests are welcome. Please match existing patterns (see `DESIGN.md` and `AGENTS.md`) and avoid committing secrets—use `.env.local` only on your machine.

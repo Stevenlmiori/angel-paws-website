@@ -9,6 +9,7 @@ import {
 } from "./validatePortalResources";
 
 const REDIS_KEY = "angel-paws:member-portal:resources:v1";
+const REDIS_HEARTBEAT_KEY = "angel-paws:ops:redis-heartbeat:v1";
 const LOCAL_RELATIVE = [".data", "member-portal-resources.json"] as const;
 
 function getRedisCredentials(): { url: string; token: string } | null {
@@ -128,5 +129,24 @@ export async function persistPortalResources(
     return { ok: true };
   } catch {
     return { ok: false, error: "file_write_failed" };
+  }
+}
+
+export async function writeRedisHeartbeat(): Promise<
+  { ok: true } | { ok: false; error: "no_storage" | "redis_write_failed" }
+> {
+  const redis = getRedis();
+  if (!redis) {
+    return { ok: false, error: "no_storage" };
+  }
+
+  try {
+    await redis.set(
+      REDIS_HEARTBEAT_KEY,
+      JSON.stringify({ ts: new Date().toISOString(), source: "vercel-cron" }),
+    );
+    return { ok: true };
+  } catch {
+    return { ok: false, error: "redis_write_failed" };
   }
 }
