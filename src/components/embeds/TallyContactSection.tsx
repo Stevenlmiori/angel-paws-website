@@ -20,35 +20,12 @@ export function TallyContactSection() {
     return (
       <div className="rounded-2xl bg-surface-container-low px-6 py-10 text-center">
         <p className="mb-2 font-serif text-lg text-on-surface">
-          Contact forms coming soon
+          Online forms are being finalized
         </p>
-        <p className="text-sm leading-relaxed text-on-surface-variant">
-          Create your forms in{" "}
-          <a
-            href="https://tally.so"
-            className="font-medium text-primary underline underline-offset-4"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Tally
-          </a>
-          , then add the form ids to{" "}
-          <code className="rounded bg-surface-container px-1.5 py-0.5 font-mono text-xs">
-            NEXT_PUBLIC_TALLY_CONTACT_FORM_ID
-          </code>
-          {` and optionally `}
-          <code className="rounded bg-surface-container px-1.5 py-0.5 font-mono text-xs">
-            NEXT_PUBLIC_TALLY_VISIT_FORM_ID
-          </code>{" "}
-          in{" "}
-          <code className="rounded bg-surface-container px-1.5 py-0.5 font-mono text-xs">
-            .env.local
-          </code>
-          . The id is the part after{" "}
-          <code className="rounded bg-surface-container px-1.5 py-0.5 font-mono text-xs">
-            tally.so/r/
-          </code>
-          .
+        <p className="mx-auto max-w-2xl text-sm leading-relaxed text-on-surface-variant">
+          For now, please use the email option below and include a few details
+          about your question, facility, or visit request. Angel Paws will
+          follow up as soon as possible.
         </p>
       </div>
     );
