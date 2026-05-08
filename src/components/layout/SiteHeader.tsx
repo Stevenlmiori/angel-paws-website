@@ -17,8 +17,11 @@ const aboutSubLinks = [
 const navAfterAbout = [
   { href: "/get-involved", label: "Get Involved" },
   { href: "/stories", label: "Stories" },
-  { href: "/members", label: "Members" },
-  { href: "/contact", label: "Contact" },
+] as const;
+
+const memberSubLinks = [
+  { href: "/members", label: "Membership" },
+  { href: "/members/portal", label: "Member Resources" },
 ] as const;
 
 const ABOUT_PATHS = [
@@ -27,6 +30,8 @@ const ABOUT_PATHS = [
   "/meet-the-board",
   "/where-we-serve",
 ] as const;
+
+const MEMBER_PATHS = ["/members", "/members/portal"] as const;
 
 function navLinkActive(href: string, pathname: string) {
   if (href === "/") return pathname === "/";
@@ -39,9 +44,15 @@ function aboutSectionActive(pathname: string) {
   );
 }
 
+function memberSectionActive(pathname: string) {
+  return MEMBER_PATHS.some(
+    (p) => pathname === p || pathname.startsWith(`${p}/`),
+  );
+}
+
 function linkClass(active: boolean) {
   return cn(
-    "block whitespace-nowrap font-serif text-base tracking-[0.02em] transition-all duration-300 xl:text-lg",
+    "block whitespace-nowrap font-serif text-[1.05rem] tracking-[0.01em] transition-all duration-300 2xl:text-lg",
     active
       ? "font-bold text-primary underline decoration-primary decoration-2 underline-offset-[10px]"
       : "text-stone-600 hover:text-primary",
@@ -52,13 +63,14 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const aboutActive = aboutSectionActive(pathname);
+  const membersActive = memberSectionActive(pathname);
 
   return (
     <header className="fixed top-0 z-50 w-full bg-stone-50/85 text-stone-900 shadow-sm backdrop-blur-md transition-all">
-      <div className="relative mx-auto flex min-h-[4rem] max-w-screen-xl items-center gap-3 px-6 py-3 sm:gap-4 sm:px-10 md:min-h-[4.25rem] lg:px-12 xl:gap-6 2xl:gap-8">
+      <div className="relative mx-auto flex min-h-[4rem] max-w-screen-2xl items-center gap-4 px-6 py-3 sm:px-10 md:min-h-[4.25rem] lg:px-12 xl:gap-8 2xl:px-14">
         <Link
           href="/"
-          className="relative z-20 flex min-w-0 shrink-0 items-center gap-2 sm:gap-2.5 md:gap-3"
+          className="relative z-20 flex min-w-0 shrink-0 items-center gap-2.5 md:gap-3"
         >
           <Image
             src="/brand/angel-paws/logo@2x.png"
@@ -74,11 +86,10 @@ export function SiteHeader() {
         </Link>
 
         <nav
-          className="hidden min-w-0 flex-1 items-center justify-center xl:flex xl:px-2"
+          className="hidden min-w-0 flex-1 items-center justify-center xl:flex"
           aria-label="Primary"
         >
-          {/* Centered cluster + even gaps — avoids pinning Home/Contact to logo & Donate */}
-          <ul className="flex max-w-full flex-wrap items-center justify-center gap-x-6 gap-y-2 xl:flex-nowrap xl:gap-x-8 2xl:gap-x-10">
+          <ul className="flex max-w-full flex-nowrap items-center justify-center gap-x-7 2xl:gap-x-9">
             <li>
               <Link href="/" className={linkClass(navLinkActive("/", pathname))}>
                 Home
@@ -131,16 +142,55 @@ export function SiteHeader() {
                 </li>
               );
             })}
+
+            <li className="group/membersnav relative">
+              <div className="flex items-center gap-0.5">
+                <Link href="/members" className={linkClass(membersActive)}>
+                  Members
+                </Link>
+                <ChevronDown
+                  className="size-[1.05rem] shrink-0 text-stone-400 transition-transform duration-200 group-hover/membersnav:rotate-180 group-hover/membersnav:text-primary"
+                  strokeWidth={2}
+                  aria-hidden
+                />
+              </div>
+              <ul
+                role="list"
+                className="invisible absolute left-1/2 top-full z-50 mt-1 min-w-[13.5rem] -translate-x-1/2 rounded-2xl border border-stone-200/90 bg-white/95 py-2 shadow-lg shadow-stone-900/5 backdrop-blur-md opacity-0 transition-[opacity,visibility] duration-150 group-hover/membersnav:visible group-hover/membersnav:opacity-100 group-focus-within/membersnav:visible group-focus-within/membersnav:opacity-100"
+              >
+                {memberSubLinks.map(({ href, label }) => {
+                  const active = navLinkActive(href, pathname);
+                  return (
+                    <li key={href}>
+                      <Link
+                        href={href}
+                        className={cn(
+                          "block px-4 py-2.5 font-serif text-base tracking-tight transition-colors",
+                          active
+                            ? "bg-primary-container/60 font-semibold text-primary"
+                            : "text-stone-700 hover:bg-stone-100 hover:text-stone-900",
+                        )}
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </li>
+
+            <li>
+              <Link
+                href="/contact"
+                className={linkClass(navLinkActive("/contact", pathname))}
+              >
+                Contact
+              </Link>
+            </li>
           </ul>
         </nav>
 
-        <div className="relative z-20 ml-auto flex min-w-0 shrink-0 items-center gap-2 sm:gap-3 md:gap-4">
-          <Link
-            href="/members/portal"
-            className="hidden font-serif text-base tracking-tight text-stone-600 transition-colors hover:text-primary 2xl:inline xl:text-lg"
-          >
-            Member Resources
-          </Link>
+        <div className="relative z-20 ml-auto flex min-w-0 shrink-0 items-center gap-2 sm:gap-3">
           <Link
             href="/donate"
             className="rounded-full bg-primary px-4 py-2.5 font-sans text-sm font-semibold text-on-primary transition-all duration-150 hover:opacity-90 active:scale-[0.98] sm:px-5 md:px-6"
@@ -229,12 +279,41 @@ export function SiteHeader() {
             );
           })}
 
+          <div className="rounded-xl py-1">
+            <p className="px-3 py-2 font-serif text-xs font-bold uppercase tracking-widest text-stone-500">
+              Members
+            </p>
+            {memberSubLinks.map(({ href, label }) => {
+              const active = navLinkActive(href, pathname);
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  className={cn(
+                    "block rounded-lg py-2.5 pl-6 pr-3 font-serif text-base transition-colors",
+                    active
+                      ? "bg-primary-container/80 font-bold text-primary"
+                      : "text-stone-600 hover:bg-stone-200/50 hover:text-stone-900",
+                  )}
+                  onClick={() => setOpen(false)}
+                >
+                  {label}
+                </Link>
+              );
+            })}
+          </div>
+
           <Link
-            href="/members/portal"
-            className="mt-1 rounded-xl px-3 py-3 font-serif text-base text-stone-600 hover:bg-stone-200/50"
+            href="/contact"
+            className={cn(
+              "rounded-xl px-3 py-3 font-serif text-lg transition-colors",
+              navLinkActive("/contact", pathname)
+                ? "bg-primary-container/80 font-bold text-primary"
+                : "text-stone-600 hover:bg-stone-200/50 hover:text-stone-900",
+            )}
             onClick={() => setOpen(false)}
           >
-            Member Resources
+            Contact
           </Link>
         </nav>
       </div>
