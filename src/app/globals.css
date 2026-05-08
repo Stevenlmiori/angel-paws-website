@@ -1,39 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fdf8f9;
-  --foreground: #1b1b1f;
+  --background: #fbf9f4;
+  --foreground: #1a211b;
 }
 
 @theme inline {
   /* AngelPaws Serif — see DESIGN.md (tokens + usage) */
-  --color-primary: #4784f2;
+  --color-primary: #2f7d5a;
+  --color-primary-strong: #256348;
   --color-on-primary: #ffffff;
-  --color-primary-container: #d7e2ff;
-  --color-on-primary-container: #001a40;
-  --color-secondary: #565e71;
+  --color-primary-container: #ddeee4;
+  --color-on-primary-container: #0b2f20;
+  --color-secondary: #58665d;
   --color-on-secondary: #ffffff;
-  --color-secondary-container: #dae2f9;
-  --color-on-secondary-container: #131c2c;
-  /* Tertiary: warm gold accent (theme panel), not purple */
-  --color-tertiary: #8a6914;
+  --color-secondary-container: #e0e7dd;
+  --color-on-secondary-container: #17261d;
+  /* Tertiary: warm gold accent for hope, warmth, and gentle contrast */
+  --color-tertiary: #9a6b14;
   --color-on-tertiary: #ffffff;
-  --color-tertiary-container: #f8ecc8;
-  --color-on-tertiary-container: #3a3000;
-  --color-background: #fdf8f9;
-  --color-on-background: #1b1b1f;
-  --color-surface: #fdf8f9;
-  --color-on-surface: #1b1b1f;
-  --color-surface-variant: #e1e2ec;
-  --color-on-surface-variant: #44474f;
+  --color-tertiary-container: #f6e9c2;
+  --color-on-tertiary-container: #3b2d05;
+  --color-background: #fbf9f4;
+  --color-on-background: #1a211b;
+  --color-surface: #fbf9f4;
+  --color-on-surface: #1a211b;
+  --color-surface-variant: #dde5db;
+  --color-on-surface-variant: #465048;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f7f3f2;
-  --color-surface-container: #f1edec;
-  --color-surface-container-high: #ebe7e6;
-  --color-surface-container-highest: #e5e2e1;
+  --color-surface-container-low: #f3f1ea;
+  --color-surface-container: #ece8df;
+  --color-surface-container-high: #e4e1d7;
+  --color-surface-container-highest: #dcd8cc;
 
   /* Legacy aliases used across earlier components */
-  --color-on-surface-muted: #44474f;
+  --color-on-surface-muted: #465048;
 
   /* Typography */
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;

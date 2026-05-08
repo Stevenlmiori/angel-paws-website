@@ -126,7 +126,7 @@ export function WhereWeServeAreas() {
         <div className="order-1 lg:order-2 lg:col-span-7">
           <ImagePanel
             src={SERVE_IMG.schools}
-            alt="Placeholder: students in a library setting (stock photo)"
+            alt="Benji, an Angel Paws therapy dog, visiting at a school"
           />
         </div>
       </div>
@@ -136,7 +136,7 @@ export function WhereWeServeAreas() {
         <div className="lg:col-span-7">
           <ImagePanel
             src={SERVE_IMG.care}
-            alt="Placeholder: hands and caring gesture (stock photo for care facilities)"
+            alt="Covey, an Angel Paws therapy dog who visits assisted living facilities"
           />
         </div>
         <div className="lg:col-span-5">

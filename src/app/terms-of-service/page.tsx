@@ -18,8 +18,9 @@ export default function TermsOfServicePage() {
             Last updated: April 15, 2026
           </p>
           <p className="max-w-3xl text-lg leading-relaxed text-on-surface-variant">
-            These Terms of Service ("Terms") govern your use of the Angel Paws
-            Houston website. By using this website, you agree to these Terms.
+            These Terms of Service (&ldquo;Terms&rdquo;) govern your use of the
+            Angel Paws Houston website. By using this website, you agree to
+            these Terms.
           </p>
         </header>
 
@@ -75,8 +76,9 @@ export default function TermsOfServicePage() {
               Disclaimer of Warranties
             </h2>
             <p>
-              This website is provided on an "as is" and "as available" basis
-              without warranties of any kind, express or implied.
+              This website is provided on an &ldquo;as is&rdquo; and &ldquo;as
+              available&rdquo; basis without warranties of any kind, express or
+              implied.
             </p>
           </section>
 

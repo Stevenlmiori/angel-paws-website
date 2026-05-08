@@ -5,8 +5,8 @@ const toneClasses = {
   default: "bg-surface",
   lifted:
     "bg-gradient-to-b from-white/[0.72] via-surface to-surface",
-  warm: "bg-gradient-to-br from-surface via-[#f6f3ee] to-[#efe9e0]",
-  mist: "bg-gradient-to-b from-[#f3f6f8] to-surface",
+  warm: "bg-gradient-to-br from-surface via-surface-container-low to-tertiary-container/35",
+  mist: "bg-gradient-to-b from-primary-container/35 to-surface",
 } as const;
 
 export type SectionTone = keyof typeof toneClasses;

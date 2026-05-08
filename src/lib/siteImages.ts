@@ -43,6 +43,8 @@ export const SITE_IMAGES = {
   /** Pet therapy page — ministry moment (local; unique slot) */
   ministrySamComfortingKid1: "/img/sam-comforting-kid-1.jpg",
   ministryHandlerHorizontal: "/img/angelpaws-dog-and-owner-nk_horizontal.jpg",
+  ministryBenjiSchool: "/img/where-we-serve/benji-school.jpg",
+  ministryCoveyAssistedLiving: "/img/where-we-serve/covey-assisted-living.jpeg",
 
   // --- Extra Unsplash (free) — unique placeholders for section panels ---
   stockHospitalCorridor: unsplashPhoto("photo-1519494026892-80bbd2d6fd0d"),

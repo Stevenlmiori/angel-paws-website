@@ -18,9 +18,10 @@ export default function PrivacyPolicyPage() {
             Last updated: April 15, 2026
           </p>
           <p className="max-w-3xl text-lg leading-relaxed text-on-surface-variant">
-            Angel Paws Houston ("we," "our," or "us") respects your privacy.
-            This Privacy Policy explains how we collect, use, and protect
-            information when you visit our website.
+            Angel Paws Houston (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or
+            &ldquo;us&rdquo;) respects your privacy. This Privacy Policy
+            explains how we collect, use, and protect information when you visit
+            our website.
           </p>
         </header>
 
@@ -106,7 +107,7 @@ export default function PrivacyPolicyPage() {
 
           <section className="space-y-3">
             <h2 className="font-serif text-3xl text-on-surface">
-              Children's Privacy
+              Children&apos;s Privacy
             </h2>
             <p>
               Our website is not directed to children under 13. We do not

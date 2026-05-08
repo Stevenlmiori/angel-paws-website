@@ -67,7 +67,7 @@ export const metadata: Metadata = {
 
 /** AngelPaws Serif — light-first; match DESIGN.md */
 export const viewport: Viewport = {
-  themeColor: "#4784f2",
+  themeColor: "#2f7d5a",
   colorScheme: "light",
 };
 

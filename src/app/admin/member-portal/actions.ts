@@ -3,7 +3,6 @@
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { ADMIN_PORTAL_COOKIE_NAME } from "@/lib/memberPortal/adminSession";
 import { getAdminSession } from "@/lib/memberPortal/getAdminSession";
 import { persistPortalResources } from "@/lib/memberPortal/resourcesStore";
 import { expireAllAdminPortalCookiePaths } from "@/lib/memberPortal/adminCookie";

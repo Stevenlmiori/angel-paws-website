@@ -21,7 +21,7 @@ export function Button({
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary/35",
         variant === "primary" &&
           cn(
-            "bg-gradient-to-br from-primary to-[#3468d9] text-on-primary",
+            "bg-gradient-to-br from-primary to-primary-strong text-on-primary",
             "shadow-none hover:shadow-soft",
           ),
         variant === "secondary" &&

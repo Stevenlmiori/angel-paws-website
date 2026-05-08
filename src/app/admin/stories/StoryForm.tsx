@@ -25,6 +25,10 @@ const fieldClass =
   "w-full rounded-2xl border border-primary/15 bg-white px-4 py-3 text-on-surface shadow-sm outline-none transition ring-primary/20 focus:ring-2";
 
 export function StoryForm({ story }: { story: StoryDetail | null }) {
+  return <StoryFormFields key={story?._id ?? "new"} story={story} />;
+}
+
+function StoryFormFields({ story }: { story: StoryDetail | null }) {
   const router = useRouter();
   const isNew = !story?._id;
   const [title, setTitle] = useState(story?.title ?? "");
@@ -60,10 +64,6 @@ export function StoryForm({ story }: { story: StoryDetail | null }) {
     JSON.stringify(initialBody),
   );
 
-  useEffect(() => {
-    setBodyJson(JSON.stringify(initialBody));
-  }, [story?._id, initialBody]);
-
   const onBodyJsonChange = useCallback((json: string) => {
     setBodyJson(json);
   }, []);
@@ -86,10 +86,6 @@ export function StoryForm({ story }: { story: StoryDetail | null }) {
       router.refresh();
     }
   }, [state.ok, state.message, isNew, router]);
-
-  useEffect(() => {
-    setFeaturedRemoved(false);
-  }, [story?._id, story?.featuredImage?.asset?._ref]);
 
   const featuredPreview = useMemo(() => {
     const fi = story?.featuredImage;
