@@ -49,7 +49,8 @@ Seed / primary brand green: **`#2F7D5A`**. Use semantic names in markup, not raw
 
 ## Layout & composition
 
-- **Whitespace:** Generous vertical rhythm- **Gutter:** Consistent `px-6` (mobile) to `px-12` (desktop) padding.
+- **Whitespace:** Generous vertical rhythm.
+- **Gutter:** Consistent `px-6` (mobile) to `px-12` (desktop) padding.
 - **Max width:** Primary content `max-w-screen-xl` (1280px) with horizontal padding unless a narrow reading column is intentional.
 - **Asymmetry:** Prefer offset grids and varied column weight over perfectly centered everything.
 - **Corners:** Editorial radii roughly **0.5rem–1.5rem**; hero and large media often **`rounded-[2.5rem]`–`rounded-[3rem]`** per comps.
@@ -106,7 +107,7 @@ Keep motion **sparse and editorial**: one primary idea (soft enter on scroll), f
 ## Changelog (high level)
 
 - Previous **Blue Edition** codified the Kindred Sanctuary panel: Noto Serif + Manrope, seed `#4784F2`, tertiary as **warm gold** (updated from legacy purple-tertiary).
-- Material/Stitch surface tokens retained for hero and cards.  
+- Material/Stitch surface tokens retained for hero and cards.
 - Icons migrated to Lucide.
 - **Green Edition** shifts the seed to `#2F7D5A` with sage-linen surfaces and preserves the previous Blue Edition tokens in `docs/theme-archive/angelpaws-serif-blue.css`.
 

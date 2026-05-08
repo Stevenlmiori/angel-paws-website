@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: siteIndexable ? "/" : [],
       disallow: ["/members/portal/", "/admin/", "/private/"],
     },
-    sitemap: "https://angelpawshouston.com/sitemap.xml",
+    sitemap: "https://www.angelpawspettherapy.com/sitemap.xml",
   };
 }

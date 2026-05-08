@@ -7,7 +7,7 @@ Public-facing site for **Angel Paws**, a pet therapy organization: mission and b
 - [Next.js](https://nextjs.org/) 16 (App Router) — routes under `src/app/`
 - React 19 and TypeScript
 - Tailwind CSS v4
-- Embedded third-party flows: **Tally** (forms on `/contact`), **Donorbox** (widget on `/donate`)
+- Embedded third-party flows: **Tally** (forms on `/contact` when IDs are configured; friendly email fallback otherwise), **Donorbox** (widget on `/donate`)
 - Optional **Upstash Redis** for production persistence (member portal tooling); see `.env.example`
 
 > This repo tracks a newer Next.js major than many tutorials. If you touch framework APIs, skim the version-specific notes in [`AGENTS.md`](./AGENTS.md) and the guides under `node_modules/next/dist/docs/` when something looks unfamiliar.
@@ -21,7 +21,7 @@ npm install
 cp .env.example .env.local
 ```
 
-Edit `.env.local` with the values you need for local development. At minimum, set the `NEXT_PUBLIC_*` variables if you are working on `/contact` or `/donate`. See [.env.example](./.env.example) for every variable and short comments.
+Edit `.env.local` with the values you need for local development. Set the relevant `NEXT_PUBLIC_*` variables if you are testing live embeds on `/contact`, `/donate`, or stories. See [.env.example](./.env.example) for every variable and short comments.
 
 ```bash
 npm run dev

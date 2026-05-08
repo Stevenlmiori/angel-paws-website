@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { sanityReadClient } from "@/lib/sanity/client";
 import { storySlugsQuery } from "@/lib/sanity/queries";
 
-const baseUrl = "https://angelpawshouston.com";
+const baseUrl = "https://www.angelpawspettherapy.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();

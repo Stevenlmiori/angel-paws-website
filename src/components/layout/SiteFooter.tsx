@@ -86,7 +86,7 @@ export function SiteFooter() {
           </h4>
           <div className="flex gap-5 text-stone-600">
             <a
-              href="https://www.angelpawshouston.com"
+              href="https://www.angelpawspettherapy.com"
               className="rounded-lg p-1 transition-colors hover:text-primary"
               aria-label="Website"
             >

@@ -23,7 +23,7 @@ const siteIndexable = process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true";
 
 export const metadata: Metadata = {
   /** Match production traffic (www); host-only cookies set on www are not sent on apex. */
-  metadataBase: new URL("https://www.angelpawshouston.com"),
+  metadataBase: new URL("https://www.angelpawspettherapy.com"),
   title: {
     default: "Angel Paws Pet Therapy",
     template: "%s · Angel Paws Pet Therapy",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: "Angel Paws Pet Therapy",
     description:
       "Bringing the love of Jesus to those in need through the gentle presence of therapy dogs.",
-    url: "https://www.angelpawshouston.com",
+    url: "https://www.angelpawspettherapy.com",
     siteName: "Angel Paws Pet Therapy",
     locale: "en_US",
     type: "website",

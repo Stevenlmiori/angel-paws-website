@@ -23,7 +23,7 @@ export function MeetTheBoardHero() {
           <div className="relative h-[min(420px,70vh)] overflow-hidden rounded-[3rem] shadow-soft lg:h-[500px]">
             <Image
               src={BOARD_IMG.hero}
-              alt="Therapy-style dog outdoors in natural light (placeholder hero image)"
+              alt="Golden retriever carrying a flower outdoors"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"

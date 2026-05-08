@@ -16,7 +16,7 @@ export const LEGACY_ADMIN_PORTAL_COOKIE_PATHS = ["/admin", "/admin/member-portal
 /** Paths where retired cookie names may still exist (middleware / logout). */
 const LEGACY_COOKIE_NAME_PATHS = ["/", "/admin", "/admin/member-portal"] as const;
 
-/** Optional e.g. `angelpawshouston.com` so `www` and apex share one session cookie. */
+/** Optional e.g. `angelpawspettherapy.com` so `www` and apex share one session cookie. */
 export function adminSessionCookieDomain(): string | undefined {
   const d = process.env.ADMIN_SESSION_COOKIE_DOMAIN?.trim();
   return d || undefined;

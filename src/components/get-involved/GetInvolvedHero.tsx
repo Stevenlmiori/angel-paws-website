@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ABOUT_IMG } from "@/components/about/media";
 
-/** Note: `page-3-Get-Involved.txt` in WebsiteBuild is a duplicate of Where We Serve; this page follows the “Become a Healing Presence” Blue Edition structure until dedicated HTML is available. */
+/** Note: `page-3-Get-Involved.txt` in WebsiteBuild is a duplicate of Where We Serve; this page follows the “Become a Healing Presence” structure until dedicated HTML is available. */
 export function GetInvolvedHero() {
   return (
     <section className="mx-auto mb-20 max-w-screen-xl px-6 sm:px-10 md:mb-28 lg:px-12">

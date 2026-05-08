@@ -7,6 +7,8 @@ Technical owner during build: development partner; goal is a **simple routine** 
 
 Repo: **https://github.com/Stevenlmiori/angel-paws-website** — default branch **`main`**. Vercel deploys from **`main`**.
 
+Production domain: **https://www.angelpawspettherapy.com**. Older `angelpawshouston.com` references should be treated as legacy unless Debbie explicitly decides to restore that domain as canonical.
+
 While it’s just the build team and the site isn’t in real use yet: **commit and push to `main` when a change is approved** (no PR requirement). Revisit branch protection / reviews when collaborators join or you go fully public.
 
 ---
@@ -19,11 +21,11 @@ While it’s just the build team and the site isn’t in real use yet: **commit 
 | Where we serve | `/where-we-serve` | Live |
 | What is pet therapy | `/what-is-pet-therapy` | Live — editorial page |
 | How to become a member | `/members` | Live — steps + expectations |
-| Members only (forms, policies, roster) | `/members/portal` | **Placeholder** — replace with real login + forms when ready |
-| Contact + visit requests | `/contact` | Live — **Tally** embeds (see §4 + env vars) |
+| Members only (forms, policies, roster) | `/members/portal` | Live password gate + editable resource links; content still needs final resource URLs |
+| Contact + visit requests | `/contact` | Live — **Tally** embeds when env vars are set; email fallback otherwise |
 | Donations | `/donate` | Live — **Donorbox** embed (see §5 + env vars) |
 | Get involved (volunteer, etc.) | `/get-involved` | Live |
-| Board | `/meet-the-board` | Live |
+| Board | `/meet-the-board` | Live layout; sample roster/bios/photos need Debbie’s real board details |
 | Stories (blog) | `/stories` | Live — **Sanity** content; home strip optional tag filter |
 
 **Operator admin (one login):** After signing in at `/admin/member-portal/login`, you land on **`/admin`**. From there open **Member portal links** or **Stories**. Stories are stored in Sanity; no separate Sanity account is required for day-to-day editing.
@@ -34,10 +36,10 @@ While it’s just the build team and the site isn’t in real use yet: **commit 
 
 ### Phase A — Content & clarity (before “portal” complexity)
 
-- [ ] Finalize wording on `/about`, `/what-is-pet-therapy`, `/members`.
+- [ ] Finalize wording on `/about`, `/what-is-pet-therapy`, `/members`, and `/meet-the-board`.
 - [x] Donation platform: **Donorbox** — embed on `/donate` (§5).
-- [x] Forms: **Tally** — contact + optional visit form on `/contact` (§4).
-- [ ] Replace `#` placeholder links in the footer with real routes (donate, privacy, etc. when ready).
+- [ ] Forms: **Tally** — code is wired, but production form IDs still need to be configured (§4).
+- [x] Replace footer placeholder links with real routes / site URL.
 
 ### Phase B — Debbie’s weekly tools (low code)
 
@@ -45,10 +47,10 @@ While it’s just the build team and the site isn’t in real use yet: **commit 
 - [ ] **Forms:** log in to the form tool to see submissions, export to spreadsheet if needed.
 - [ ] **Files (policies, PDFs):** start with **Google Drive** in a nonprofit Google Workspace—shared folders with clear names (`Policies`, `Forms templates`). Link from `/members/portal` when gated auth exists, or link from emails to members until then.
 
-### Phase C — Member portal (auth + private pages)
+### Phase C — Member portal (current lightweight gate + future auth)
 
-- [ ] Pick **one** auth approach: e.g. Clerk, Memberstack, or Supabase Auth (developer implements).
-- [ ] Restrict `/members/portal` to signed-in members only.
+- [x] Current launch gate: shared member password + signed session cookie.
+- [ ] Future upgrade, if needed: pick **one** auth approach, e.g. Clerk, Memberstack, or Supabase Auth.
 - [ ] Host member-only PDFs in Drive with link sharing off, or in secure storage behind the app.
 
 ---
@@ -71,13 +73,15 @@ While it’s just the build team and the site isn’t in real use yet: **commit 
 
 ---
 
-## 4. Forms — **Tally** (implemented)
+## 4. Forms — **Tally** (code implemented; production IDs pending)
 
 | Form | Public? | Env var | Notes |
 |------|---------|---------|--------|
 | Contact | Yes | `NEXT_PUBLIC_TALLY_CONTACT_FORM_ID` | Embed under “Send a message” on `/contact` |
 | Request a visit | Yes | `NEXT_PUBLIC_TALLY_VISIT_FORM_ID` (optional) | Second embed; omit if one Tally form covers both |
 | Member-only forms | No | — | After Phase C: add hidden or gated Tally links on `/members/portal` |
+
+If neither public Tally ID is configured, `/contact` shows a client-friendly “Online forms are being finalized” message and the protected email reveal fallback.
 
 **Debbie’s workflow:** Log in at [tally.so](https://tally.so) → Submissions → email notifications per form.
 
@@ -115,9 +119,10 @@ Copy `.env.example` to `.env.local` and set values. In **Vercel** (or similar), 
 ## 7. Technical notes (for developers)
 
 - Next.js App Router routes live under `src/app/`.
-- Member portal placeholder: `src/app/members/portal/page.tsx` — replace with protected layout + session check.
+- Member portal gate: `src/app/members/portal/page.tsx`, `src/app/members/portal/actions.ts`, and server helpers under `src/lib/memberPortal/`.
 - Donorbox loads `widgets.js` (`type="module"`) with `next/script` (`afterInteractive`) and a `<dbox-widget>` custom element. If CSP is enabled later, allow `donorbox.org` and `tally.so` for frames and scripts.
 - Embed URL helpers: `src/lib/embeds.ts`.
+- Visual system: **AngelPaws Serif — Green Edition**. The former Blue Edition token archive lives at `docs/theme-archive/angelpaws-serif-blue.css`.
 
 ---
 
@@ -133,4 +138,4 @@ When you launch publicly, set **`NEXT_PUBLIC_SITE_INDEXABLE=true`** in Vercel, *
 
 ---
 
-*Last updated: Donorbox + Tally embeds wired; env vars documented in `.env.example`; pre-launch indexing controls.*
+*Last updated: May 2026 — Green Edition palette, production domain, Contact fallback, member portal gate, Donorbox/Tally env notes, and pre-launch indexing controls.*

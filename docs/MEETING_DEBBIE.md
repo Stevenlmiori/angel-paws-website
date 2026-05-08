@@ -3,6 +3,7 @@
 **Purpose:** One document Debbie can read before or during a walkthrough: what is on the site today (marketing copy + global header/footer), how images are wired, what still uses placeholder content, and what we need from her to finish strong.
 
 **Prepared:** April 16, 2026.
+**Status note added May 2026:** This document is historical meeting prep, not the current source of truth. For current route, deploy, embed, portal, palette, and launch status, use `docs/HANDOFF.md` and `DESIGN.md`.
 
 ---
 
@@ -37,7 +38,7 @@
 ## Executive snapshot
 
 - **Angel Paws Pet Therapy** is presented as a **faith-based pet therapy ministry** in the **Greater Houston** area, sharing comfort through certified therapy dog teams in hospitals, schools, care settings, and community contexts.
-- The public site is a **Next.js** marketing site with embedded **Tally** contact/visit forms (when configured), **Donorbox** on `/donate`, and a **member portal** at `/members/portal` for password-protected resources.
+- The public site is a **Next.js** marketing site with embedded **Tally** contact/visit forms when configured, a friendly email fallback when they are not configured, **Donorbox** on `/donate`, and a **member portal** at `/members/portal` for password-protected resources.
 - **Champion Forest** is referenced on the “What is pet therapy?” page as the church context for how faith shapes the work.
 - Several sections still use **template statistics**, **sample board bios**, or **remote placeholder photos** (see **Placeholders & factual review**).
 
@@ -94,7 +95,7 @@
 
 **Connect**
 
-- Icons labeled Website, Email, Support — **all currently link to `#` (placeholder).**
+- Icons labeled Website, Email, Support — currently point to the production site, Contact page, and Donate page.
 - **Privacy Policy** → `/privacy-policy` · **Terms of Service** → `/terms-of-service`
 
 **Copyright line**
@@ -437,7 +438,7 @@ Copy below is **user-visible marketing text** from components (not page metadata
 
 - H2: **Get in touch**
 - Lead: Share a question, request a visit, or tell us a bit about your organization. We will follow up as soon as we can.
-- **Tally:** When form IDs are set in environment variables, the page embeds your Tally form(s). If not configured, visitors see **Contact forms coming soon** with instructions for operators (references `NEXT_PUBLIC_TALLY_CONTACT_FORM_ID` and optional `NEXT_PUBLIC_TALLY_VISIT_FORM_ID`).
+- **Tally:** When form IDs are set in environment variables, the page embeds your Tally form(s). If not configured, visitors see a friendly “Online forms are being finalized” message and can reveal the direct email address.
 - When visit form is present: **Request a visit** — Tell us about your facility or need. We will follow up by email or phone.
 
 **Quick links aside**
@@ -447,7 +448,7 @@ Copy below is **user-visible marketing text** from components (not page metadata
 **Map teaser**
 
 - H2: **We Serve Across the Region**
-- Body: From hospitals to schools, we bring comfort wherever it's needed most in the **Tri-State area.** *(Geography should be reconciled with Houston-first copy elsewhere.)*
+- Body: From hospitals to schools, we bring comfort wherever it&apos;s needed most across the **Greater Houston area.**
 - Button: **Explore Service Areas** → `/where-we-serve`
 
 ---
@@ -522,12 +523,12 @@ Operator-facing detail also lives in `docs/HANDOFF.md`.
 
 | Item                                                  | Where                                                                     | Suggested action                                                                                                      |
 | ----------------------------------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| **Tri-State area** vs Houston                         | `/contact` map teaser                                                     | Rewrite to Greater Houston (or your actual service geography).                                                        |
+| **Final service geography**                           | Sitewide copy                                                             | Confirm whether Debbie wants Greater Houston, Northwest Houston, specific campuses, or another preferred phrase.     |
 | **Sample board** names, roles, bios, photos           | `/meet-the-board`                                                         | Replace with real board roster and photos; remove or adjust stats (**500+** visits, **12** districts) if not sourced. |
 | **Story narrative** (founding, TMC, “team of three”)  | `/about` Our Story                                                        | Confirm accuracy or mark as inspirational draft.                                                                      |
 | **Home / Care stats** (**1,000+**, **85%**, **400+**) | Home, Where We Serve                                                      | Confirm, source, or soften wording.                                                                                   |
 | **Testimonial “Sarah J.” / Bella**                    | `/donate`                                                                 | Replace with a permissioned real quote or remove.                                                                     |
-| **Buttons not linked**                                | Home hero & CTA, Home impact, Where We Serve “Request a Visit”            | Wire to `/contact`, Tally anchor, Donate, or `#donate-panel` as you decide.                                           |
+| **Some CTA destinations still need final flow decisions** | Home hero & CTA, Home impact, application/visit flows | Decide whether each should go to `/contact`, a Tally form, Donate, or the member portal. |
 | `**#` links**                                         | Footer social/legal, Get Involved application, Community “Event Calendar” | Replace with real URLs or remove until ready.                                                                         |
 | **Newsletter form**                                   | `/donate`                                                                 | Connect to your email platform or hide until live.                                                                    |
 | **Logo `alt` text**                                   | Header                                                                    | Set to meaningful alt (e.g. “Angel Paws Pet Therapy”) for accessibility.                                              |
@@ -538,11 +539,11 @@ Operator-facing detail also lives in `docs/HANDOFF.md`.
 ## Launch checklist (short)
 
 - Debbie approval on mission wording, geography, and Champion Forest references  
-- Replace placeholder imagery paths with final assets  
+- Replace placeholder imagery paths with final assets
 - Tally forms live + tested; optional visit form  
 - Donorbox campaign tested end-to-end  
 - Member portal password rotated and shared through secure channel  
-- Footer social URLs finalized (Website / Email / Support icons still placeholders)  
+- Footer connect links finalized (Website / Email / Support now point to live site, Contact, and Donate)
 - Decide on `NEXT_PUBLIC_SITE_INDEXABLE` when going public (`true` only when ready for Google)
 
 ---
@@ -553,7 +554,7 @@ Operator-facing detail also lives in `docs/HANDOFF.md`.
 2. **Donations - Recommended Platform Setup: Donorbox + Stripe**
   Donorbox provides the donation forms and donor tools, while Stripe processes the payments. This is a strong option for Angel Paws because it is simple to launch, easy for donors to use, and supports recurring giving. Standard public pricing is typically 2.95% through Donorbox plus Stripe processing fees of 2.9% + 30¢ per domestic card transaction. 
 3. **Forms** service - [Tally.so](http://Tally.so)  - (Free) Good with this? 
-4. **Geography:** Confirm preferred phrase everywhere: Greater Houston, Northwest Houston, specific campuses only, etc. (Resolve **Tri-State** line on Contact.)
+4. **Geography:** Confirm preferred phrase everywhere: Greater Houston, Northwest Houston, specific campuses only, etc.
 5. **Story:** Is the **Our Story** three-chapter narrative accurate as written, or should it be shortened to only verified history?
 6. **Statistics:** What numbers/stats can we say on the site, that only need to be updated once a year or so.
 7. **Board:** Who belongs on `/meet-the-board`, in what order, with which photos and one-line bios?

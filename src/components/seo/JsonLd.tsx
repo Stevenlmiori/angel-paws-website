@@ -2,13 +2,15 @@
 
 import Script from "next/script";
 
+const siteUrl = "https://www.angelpawspettherapy.com";
+
 export function JsonLd() {
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "NonprofitOrganization",
     name: "Angel Paws Pet Therapy",
-    url: "https://angelpawshouston.com",
-    logo: "https://angelpawshouston.com/brand/angel-paws/logo@2x.png",
+    url: siteUrl,
+    logo: `${siteUrl}/brand/angel-paws/logo@2x.png`,
     description:
       "A faith-based pet therapy ministry serving the Greater Houston area, sharing the unconditional love of Jesus through therapy dogs.",
     address: {
@@ -28,7 +30,7 @@ export function JsonLd() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "Angel Paws Pet Therapy",
-    image: "https://angelpawshouston.com/brand/angel-paws/logo@2x.png",
+    image: `${siteUrl}/brand/angel-paws/logo@2x.png`,
     priceRange: "$",
     address: {
       "@type": "PostalAddress",
@@ -42,7 +44,7 @@ export function JsonLd() {
       latitude: 29.7604,
       longitude: -95.3698,
     },
-    url: "https://angelpawshouston.com",
+    url: siteUrl,
     telephone: "",
   };
 

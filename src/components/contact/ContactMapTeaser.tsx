@@ -13,18 +13,18 @@ export function ContactMapTeaser() {
           sizes="100vw"
           className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 flex items-center justify-center bg-blue-900/40 p-8 text-center backdrop-blur-sm md:p-12">
+        <div className="absolute inset-0 flex items-center justify-center bg-primary/45 p-8 text-center backdrop-blur-sm md:p-12">
           <div>
             <h2 className="mb-6 font-serif text-4xl text-white md:text-5xl">
               We Serve Across the Region
             </h2>
             <p className="mx-auto mb-10 max-w-2xl text-xl text-white/80">
               From hospitals to schools, we bring comfort wherever it&apos;s
-              needed most in the Tri-State area.
+              needed most across the Greater Houston area.
             </p>
             <Link
               href="/where-we-serve"
-              className="inline-flex rounded-full bg-white/20 px-10 py-4 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-blue-900"
+              className="inline-flex rounded-full bg-white/20 px-10 py-4 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-sm transition-colors hover:bg-white hover:text-primary"
             >
               Explore Service Areas
             </Link>

@@ -6,6 +6,6 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ## AngelPaws Serif
 
-Visual and UX decisions are governed by **`DESIGN.md`** (theme name: **AngelPaws Serif**). Extend **`src/app/globals.css`** `@theme` for new semantic colors; keep **Lucide** for icons.
+Visual and UX decisions are governed by **`DESIGN.md`** (theme name: **AngelPaws Serif — Green Edition**). Extend **`src/app/globals.css`** `@theme` for new semantic colors; keep **Lucide** for icons.
 
 **Content, routes, and operator handoff:** see **`docs/HANDOFF.md`** (sitemap, phases, forms/donations, member portal).
