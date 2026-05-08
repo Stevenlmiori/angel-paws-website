@@ -60,7 +60,7 @@ export const SITE_IMAGES = {
   stockPetTherapyGoldenCalm: unsplashPhoto("photo-1587300003388-93608cc28fef"),
   stockGoldenField: unsplashPhoto("photo-1633722715463-d30f4f325e24"),
   /** Board hero — dog in natural light (unique from home / About story slots) */
-  stockBoardHeroDog: unsplashPhoto("photo-1566073771259-6a8506099945"),
+  stockBoardHeroDog: unsplashPhoto("photo-1552053831-71594a27632d"),
 } as const;
 
 export type SiteImageKey = keyof typeof SITE_IMAGES;
