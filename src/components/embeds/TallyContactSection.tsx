@@ -18,11 +18,11 @@ export function TallyContactSection() {
 
   if (!contactId && !visitId) {
     return (
-      <div className="rounded-2xl bg-surface-container-low px-6 py-10 text-center">
-        <p className="mb-2 font-serif text-lg text-on-surface">
+      <div className="py-4">
+        <p className="font-serif text-2xl text-on-surface">
           Online forms are being finalized
         </p>
-        <p className="mx-auto max-w-2xl text-sm leading-relaxed text-on-surface-variant">
+        <p className="mt-3 max-w-2xl leading-relaxed text-on-surface-variant">
           For now, please use the email option below and include a few details
           about your question, facility, or visit request. Angel Paws will
           follow up as soon as possible.
@@ -40,10 +40,10 @@ export function TallyContactSection() {
             data-tally-src={tallyDataSrc(contactId)}
             data-tally-dynamic-height="true"
             width="100%"
-            height="700"
+            height="460"
             title="Contact Angel Paws"
             scrolling="no"
-            className="w-full overflow-hidden rounded-xl border border-stone-200/60 bg-white"
+            className="w-full overflow-hidden bg-transparent"
           />
         </div>
       ) : null}
@@ -61,10 +61,10 @@ export function TallyContactSection() {
             data-tally-src={tallyDataSrc(visitId)}
             data-tally-dynamic-height="true"
             width="100%"
-            height="900"
+            height="760"
             title="Request a therapy visit"
             scrolling="no"
-            className="w-full overflow-hidden rounded-xl border border-stone-200/60 bg-white"
+            className="w-full overflow-hidden bg-transparent"
           />
         </div>
       ) : null}

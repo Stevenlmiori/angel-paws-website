@@ -22,30 +22,30 @@ export function DirectEmailReveal() {
   }
 
   return (
-    <div className="mt-8 rounded-2xl border border-stone-200 bg-white/70 p-5">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">
+    <div className="space-y-3">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-on-surface-variant">
         Prefer email?
       </p>
       {!revealed ? (
         <button
           type="button"
           onClick={() => setRevealed(true)}
-          className="mt-3 rounded-full bg-surface-container-high px-5 py-2 text-sm font-semibold text-on-surface transition-colors hover:bg-primary hover:text-on-primary"
+          className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-on-primary transition-colors hover:bg-primary-strong"
         >
           Reveal email address
         </button>
       ) : (
-        <div className="mt-3 flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <a
             href={`mailto:${email}`}
-            className="rounded-full bg-surface-container-high px-4 py-2 text-sm font-semibold text-on-surface underline decoration-stone-300 underline-offset-4 transition-colors hover:text-primary"
+            className="font-semibold text-primary underline underline-offset-4 transition-colors hover:text-primary-strong"
           >
             {email}
           </a>
           <button
             type="button"
             onClick={copyEmail}
-            className="rounded-full border border-stone-300 px-4 py-2 text-sm font-semibold text-stone-700 transition-colors hover:border-primary hover:text-primary"
+            className="rounded-full border border-primary/20 px-4 py-2 text-sm font-semibold text-on-surface transition-colors hover:border-primary hover:text-primary"
           >
             {copied ? "Copied" : "Copy"}
           </button>

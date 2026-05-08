@@ -64,6 +64,7 @@ Seed / primary brand green: **`#2F7D5A`**. Use semantic names in markup, not raw
 2. **No pure black** for long-form text—use `on-surface` / `on-background`.
 3. **Serif = emotional / display; sans = functional UI** (nav labels may use serif when matching a specific Stitch header comp—document per page).
 4. **Icons:** **Lucide React** (SVG) only—no icon-font ligatures.
+5. **No nested card stacks.** Choose one primary surface per section, then use type, spacing, and a single clear action path for hierarchy.
 
 ---
 
