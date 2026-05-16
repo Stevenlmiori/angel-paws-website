@@ -104,13 +104,13 @@ export function HomeMission() {
   return (
     <section
       ref={root}
-      className="bg-surface-container-low py-24 md:py-32"
+      className="section-tone-inverse py-24 md:py-32"
     >
       <div className="mx-auto max-w-4xl space-y-8 px-6 text-center sm:px-10 lg:px-12">
-        <p className="mission-kicker font-sans text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-on-surface-variant">
+        <p className="mission-kicker font-sans text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-on-surface-inverse-muted">
           Mission
         </p>
-        <h2 className="font-serif text-3xl font-bold leading-[1.35] text-on-surface sm:text-4xl lg:text-5xl lg:leading-[1.28]">
+        <h2 className="font-serif text-3xl font-bold leading-[1.35] sm:text-4xl lg:text-5xl lg:leading-[1.28]">
           <span className="sr-only">&ldquo;</span>
           <span className="mission-seg inline">{MISSION_SEGMENTS[0]}</span>
           <span className="mission-jesus relative inline-block px-0.5 align-baseline">

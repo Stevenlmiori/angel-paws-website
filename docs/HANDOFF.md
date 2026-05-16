@@ -9,6 +9,14 @@ Repo: **https://github.com/Stevenlmiori/angel-paws-website** — default branch 
 
 Production domain: **https://www.angelpawspettherapy.com**. Older `angelpawshouston.com` references should be treated as legacy unless Debbie explicitly decides to restore that domain as canonical.
 
+### Until launch: “under construction” on production
+
+On **Vercel → Production → Environment Variables**, set **`NEXT_PUBLIC_UNDER_CONSTRUCTION`** to **`true`** (and redeploy). Visitors then see only the notice page on **every URL**; **`/api/*`** responds **503**; **`robots.txt`** disallows all; **`sitemap.xml`** is empty. Keep this variable **unset** on Preview/local **`npm run dev`** so you can keep building the full site. To preview the **full** site online before launch, use a **Preview** deployment (or a branch deploy) **without** this variable—Production stays gated.
+
+When you’re ready to go live: remove that variable (or set it to `false`), redeploy, then turn on **`NEXT_PUBLIC_SITE_INDEXABLE=true`** only when you want search indexing.
+
+---
+
 While it’s just the build team and the site isn’t in real use yet: **commit and push to `main` when a change is approved** (no PR requirement). Revisit branch protection / reviews when collaborators join or you go fully public.
 
 ---
@@ -122,7 +130,7 @@ Copy `.env.example` to `.env.local` and set values. In **Vercel** (or similar), 
 - Member portal gate: `src/app/members/portal/page.tsx`, `src/app/members/portal/actions.ts`, and server helpers under `src/lib/memberPortal/`.
 - Donorbox loads `widgets.js` (`type="module"`) with `next/script` (`afterInteractive`) and a `<dbox-widget>` custom element. If CSP is enabled later, allow `donorbox.org` and `tally.so` for frames and scripts.
 - Embed URL helpers: `src/lib/embeds.ts`.
-- Visual system: **AngelPaws Serif — Green Edition**. The former Blue Edition token archive lives at `docs/theme-archive/angelpaws-serif-blue.css`.
+- Visual system: **AngelPaws Serif — Blue Edition** with optional **navy (`section-tone-inverse`)** and **charcoal (`section-tone-charcoal`)** marketing bands documented in **`DESIGN.md`**. Historical token snapshots remain in **`docs/theme-archive/angelpaws-serif-blue.css`**.
 
 ---
 
@@ -138,4 +146,4 @@ When you launch publicly, set **`NEXT_PUBLIC_SITE_INDEXABLE=true`** in Vercel, *
 
 ---
 
-*Last updated: May 2026 — Green Edition palette, production domain, Contact fallback, member portal gate, Donorbox/Tally env notes, and pre-launch indexing controls.*
+*Last updated: May 2026 — Blue Edition palette plus inverse/charcoal section bands; production domain, Contact fallback, member portal gate, Donorbox/Tally env notes, and pre-launch indexing controls.*

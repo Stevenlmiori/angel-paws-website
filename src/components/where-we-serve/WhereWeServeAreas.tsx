@@ -27,182 +27,188 @@ function ImagePanel({ src, alt }: { src: string; alt: string }) {
 
 export function WhereWeServeAreas() {
   return (
-    <section className="mx-auto max-w-screen-xl space-y-24 px-6 sm:px-10 lg:space-y-32 lg:px-12">
-      {/* Hospitals */}
-      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-7">
-          <ImagePanel
-            src={SERVE_IMG.hospitals}
-            alt="Placeholder: bright hospital corridor (stock photo)"
-          />
-        </div>
-        <div className="lg:col-span-5">
-          <div className="mb-6 flex items-center gap-3 text-primary">
-            <Stethoscope className="size-10 shrink-0" strokeWidth={1.5} />
-            <h2 className="font-serif text-3xl font-bold text-on-surface">
-              Hospitals
-            </h2>
-          </div>
-          <p className="mb-8 text-lg leading-loose text-on-surface-variant">
-            In hospitals, our dogs visit patients, families, and staff.
-          </p>
-          <p className="mb-8 text-lg leading-loose text-on-surface-variant">
-            They help ease anxiety before procedures, bring comfort during long
-            days, and give people something to look forward to.
-          </p>
-          <p className="mb-8 text-lg font-medium leading-loose text-on-surface">
-            For many, it becomes the best part of their day.
-          </p>
-          <ul className="space-y-4">
-            {[
-              "Critical & Intensive Care Support",
-              "Post-Operative Rehabilitation Motivation",
-              "Waiting Area Anxiety Reduction",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-3">
-                <CircleCheck
-                  className="mt-0.5 size-6 shrink-0 text-primary"
-                  strokeWidth={2}
-                  aria-hidden
-                />
-                <span className="font-medium text-on-surface">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      {/* Schools */}
-      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-        <div className="order-2 lg:order-1 lg:col-span-5">
-          <div className="mb-6 flex items-center gap-3 text-primary">
-            <BookOpen className="size-10 shrink-0" strokeWidth={1.5} />
-            <h2 className="font-serif text-3xl font-bold text-on-surface">
-              Schools
-            </h2>
-          </div>
-          <p className="mb-8 text-lg leading-loose text-on-surface-variant">
-            In schools, therapy dogs help create a more relaxed and supportive
-            environment.
-          </p>
-          <p className="mb-8 text-lg leading-loose text-on-surface-variant">
-            Students often feel more comfortable reading, talking, or simply
-            sitting with a dog. It lowers pressure and helps them focus. We also
-            serve colleges and universities during high-stress seasons such as
-            finals week.
-          </p>
-          <div className="mb-8 rounded-2xl bg-surface-container-low p-8">
-            <h4 className="mb-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant">
-              Program Highlight
-            </h4>
-            <p className="font-serif italic text-on-surface">
-              &ldquo;Dogs don&apos;t correct pronunciation; they just wag their
-              tails and listen to the magic of the words.&rdquo;
-            </p>
-          </div>
-          <ul className="space-y-4">
-            <li className="flex items-start gap-3">
-              <BookOpen
-                className="mt-0.5 size-6 shrink-0 text-primary"
-                strokeWidth={2}
-                aria-hidden
-              />
-              <span className="font-medium text-on-surface">
-                One-on-One Literacy Coaching
-              </span>
-            </li>
-            <li className="flex items-start gap-3">
-              <School
-                className="mt-0.5 size-6 shrink-0 text-primary"
-                strokeWidth={2}
-                aria-hidden
-              />
-              <span className="font-medium text-on-surface">
-                University Finals Week De-stressing
-              </span>
-            </li>
-          </ul>
-        </div>
-        <div className="order-1 lg:order-2 lg:col-span-7">
-          <ImagePanel
-            src={SERVE_IMG.schools}
-            alt="Benji, an Angel Paws therapy dog, visiting at a school"
-          />
-        </div>
-      </div>
-
-      {/* Care facilities */}
-      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-7">
-          <ImagePanel
-            src={SERVE_IMG.care}
-            alt="Covey, an Angel Paws therapy dog who visits assisted living facilities"
-          />
-        </div>
-        <div className="lg:col-span-5">
-          <div className="mb-6 flex items-center gap-3 text-primary">
-            <UserRound className="size-10 shrink-0" strokeWidth={1.5} />
-            <h2 className="font-serif text-3xl font-bold text-on-surface">
-              Care Facilities
-            </h2>
-          </div>
-          <p className="mb-8 text-lg leading-loose text-on-surface-variant">
-            In care homes and similar settings, therapy dogs bring companionship
-            and familiarity.
-          </p>
-          <p className="mb-8 text-lg leading-loose text-on-surface-variant">
-            They create moments of connection that can break through loneliness
-            and routine.
-          </p>
-          <div className="rounded-2xl bg-surface-container-low p-8">
-            <h4 className="mb-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant">
-              Why it matters
-            </h4>
-            <p className="text-on-surface-variant">
-              Familiar touchpoints like petting and conversation often help
-              residents share memories, smile more, and feel less isolated.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Community */}
-      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-        <div className="order-2 lg:order-1 lg:col-span-5">
-          <div className="mb-6 flex items-center gap-3 text-primary">
-            <UsersRound className="size-10 shrink-0" strokeWidth={1.5} />
-            <h2 className="font-serif text-3xl font-bold text-on-surface">
-              Community & Crisis Care
-            </h2>
-          </div>
-          <p className="mb-8 text-lg leading-loose text-on-surface-variant">
-            Beyond the walls of institutions, Angel Paws is active in the heart
-            of our city. We support first responders, community gatherings, and
-            crisis-impacted settings where people need calm presence and care.
-          </p>
-          <p className="mb-8 text-lg leading-loose text-on-surface-variant">
-            Our teams have served after local tragedies and during seasons of
-            grief, offering comfort and connection in moments when words are
-            hard to find.
-          </p>
-          <Link
-            href="/contact"
-            className="group inline-flex items-center gap-2 font-bold tracking-tight text-primary transition-opacity hover:opacity-80"
-          >
-            Request a visit
-            <ArrowRight
-              className="size-5 transition-transform group-hover:translate-x-1"
-              aria-hidden
+    <>
+      <section className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-12">
+        {/* Hospitals */}
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-7">
+            <ImagePanel
+              src={SERVE_IMG.hospitals}
+              alt="Placeholder: bright hospital corridor (stock photo)"
             />
-          </Link>
+          </div>
+          <div className="lg:col-span-5">
+            <div className="mb-6 flex items-center gap-3 text-primary">
+              <Stethoscope className="size-10 shrink-0" strokeWidth={1.5} />
+              <h2 className="font-serif text-3xl font-bold text-on-surface">
+                Hospitals
+              </h2>
+            </div>
+            <p className="mb-8 text-lg leading-loose text-on-surface-variant">
+              In hospitals, our dogs visit patients, families, and staff.
+            </p>
+            <p className="mb-8 text-lg leading-loose text-on-surface-variant">
+              They help ease anxiety before procedures, bring comfort during long
+              days, and give people something to look forward to.
+            </p>
+            <p className="mb-8 text-lg font-medium leading-loose text-on-surface">
+              For many, it becomes the best part of their day.
+            </p>
+            <ul className="space-y-4">
+              {[
+                "Critical & Intensive Care Support",
+                "Post-Operative Rehabilitation Motivation",
+                "Waiting Area Anxiety Reduction",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <CircleCheck
+                    className="mt-0.5 size-6 shrink-0 text-primary"
+                    strokeWidth={2}
+                    aria-hidden
+                  />
+                  <span className="font-medium text-on-surface">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div className="order-1 lg:order-2 lg:col-span-7">
-          <ImagePanel
-            src={SERVE_IMG.community}
-            alt="Placeholder: people with dogs in a park (stock photo for community)"
-          />
+      </section>
+
+      {/* Schools — full-width navy band */}
+      <div className="section-tone-inverse w-full py-20 md:py-28 lg:py-32">
+        <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-12">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="order-2 lg:order-1 lg:col-span-5">
+              <div className="mb-6 flex items-center gap-3 text-primary">
+                <BookOpen className="size-10 shrink-0" strokeWidth={1.5} />
+                <h2 className="font-serif text-3xl font-bold">Schools</h2>
+              </div>
+              <p className="mb-8 text-lg leading-loose text-on-surface-inverse-muted">
+                In schools, therapy dogs help create a more relaxed and supportive
+                environment.
+              </p>
+              <p className="mb-8 text-lg leading-loose text-on-surface-inverse-muted">
+                Students often feel more comfortable reading, talking, or simply
+                sitting with a dog. It lowers pressure and helps them focus. We also
+                serve colleges and universities during high-stress seasons such as
+                finals week.
+              </p>
+              <div className="mb-8 rounded-2xl border border-white/10 bg-white/[0.06] p-8">
+                <h4 className="mb-2 text-xs font-bold uppercase tracking-widest text-on-surface-inverse-muted">
+                  Program Highlight
+                </h4>
+                <p className="font-serif italic text-on-surface-inverse">
+                  &ldquo;Dogs don&apos;t correct pronunciation; they just wag their
+                  tails and listen to the magic of the words.&rdquo;
+                </p>
+              </div>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <BookOpen
+                    className="mt-0.5 size-6 shrink-0 text-primary"
+                    strokeWidth={2}
+                    aria-hidden
+                  />
+                  <span className="font-medium text-on-surface-inverse">
+                    One-on-One Literacy Coaching
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <School
+                    className="mt-0.5 size-6 shrink-0 text-primary"
+                    strokeWidth={2}
+                    aria-hidden
+                  />
+                  <span className="font-medium text-on-surface-inverse">
+                    University Finals Week De-stressing
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div className="order-1 lg:order-2 lg:col-span-7">
+              <ImagePanel
+                src={SERVE_IMG.schools}
+                alt="Benji, an Angel Paws therapy dog, visiting at a school"
+              />
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+
+      <section className="mx-auto max-w-screen-xl space-y-24 px-6 pt-24 sm:px-10 md:space-y-32 lg:space-y-32 lg:px-12 lg:pt-32">
+        {/* Care facilities */}
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-7">
+            <ImagePanel
+              src={SERVE_IMG.care}
+              alt="Covey, an Angel Paws therapy dog who visits assisted living facilities"
+            />
+          </div>
+          <div className="lg:col-span-5">
+            <div className="mb-6 flex items-center gap-3 text-primary">
+              <UserRound className="size-10 shrink-0" strokeWidth={1.5} />
+              <h2 className="font-serif text-3xl font-bold text-on-surface">
+                Care Facilities
+              </h2>
+            </div>
+            <p className="mb-8 text-lg leading-loose text-on-surface-variant">
+              In care homes and similar settings, therapy dogs bring companionship
+              and familiarity.
+            </p>
+            <p className="mb-8 text-lg leading-loose text-on-surface-variant">
+              They create moments of connection that can break through loneliness
+              and routine.
+            </p>
+            <div className="rounded-2xl bg-surface-container-low p-8">
+              <h4 className="mb-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                Why it matters
+              </h4>
+              <p className="text-on-surface-variant">
+                Familiar touchpoints like petting and conversation often help
+                residents share memories, smile more, and feel less isolated.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Community */}
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="order-2 lg:order-1 lg:col-span-5">
+            <div className="mb-6 flex items-center gap-3 text-primary">
+              <UsersRound className="size-10 shrink-0" strokeWidth={1.5} />
+              <h2 className="font-serif text-3xl font-bold text-on-surface">
+                Community & Crisis Care
+              </h2>
+            </div>
+            <p className="mb-8 text-lg leading-loose text-on-surface-variant">
+              Beyond the walls of institutions, Angel Paws is active in the heart
+              of our city. We support first responders, community gatherings, and
+              crisis-impacted settings where people need calm presence and care.
+            </p>
+            <p className="mb-8 text-lg leading-loose text-on-surface-variant">
+              Our teams have served after local tragedies and during seasons of
+              grief, offering comfort and connection in moments when words are
+              hard to find.
+            </p>
+            <Link
+              href="/contact"
+              className="group inline-flex items-center gap-2 font-bold tracking-tight text-primary transition-opacity hover:opacity-80"
+            >
+              Request a visit
+              <ArrowRight
+                className="size-5 transition-transform group-hover:translate-x-1"
+                aria-hidden
+              />
+            </Link>
+          </div>
+          <div className="order-1 lg:order-2 lg:col-span-7">
+            <ImagePanel
+              src={SERVE_IMG.community}
+              alt="Placeholder: people with dogs in a park (stock photo for community)"
+            />
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

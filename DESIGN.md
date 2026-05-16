@@ -1,6 +1,6 @@
 # AngelPaws Serif — design system
 
-**Canonical name:** AngelPaws Serif (Green Edition)
+**Canonical name:** AngelPaws Serif (Blue Edition — with dark section bands)
 **Role:** Single source of truth for typography, color, spacing, and UI patterns before adding new pages or components.
 
 **Implementation:** Tailwind CSS v4 tokens in `src/app/globals.css` (`@theme inline`). Fonts load in `src/app/layout.tsx` via `next/font/google`.
@@ -21,27 +21,44 @@
 
 ## Color tokens (semantic)
 
-Seed / primary brand green: **`#2F7D5A`**. Use semantic names in markup, not raw hex (except rare gradients).
+Seed / primary brand blue: **`#4784F2`**. Use semantic names in markup, not raw hex (except rare gradients).
 
 | Token | Hex (approx.) | Use |
 |-------|----------------|-----|
-| `primary` | `#2F7D5A` | CTAs, links, key accents |
+| `primary` | `#4784F2` | CTAs, links, key accents |
 | `on-primary` | `#FFFFFF` | Text on primary buttons |
-| `primary-strong` | `#256348` | Deep green endpoint for primary gradients |
-| `primary-container` | `#DDEEE4` | Soft chips, selection, light green fields |
-| `on-primary-container` | `#0B2F20` | Text on primary-container |
-| `secondary` | `#58665D` | Muted headings, secondary labels, sage support |
+| `primary-strong` | `#2D65D9` | Deep blue endpoint for primary gradients |
+| `primary-container` | `#D7E2FF` | Soft chips, selection, light blue fields |
+| `on-primary-container` | `#001A40` | Text on primary-container |
+| `secondary` | `#565E71` | Muted headings, secondary labels |
 | `on-secondary` | `#FFFFFF` | — |
-| `secondary-container` | `#E0E7DD` | Tonal cards / panels |
-| `on-secondary-container` | `#17261D` | Text on secondary-container |
-| `tertiary` | `#9A6B14` | Warm gold accent (highlights, seasonal warmth) |
+| `secondary-container` | `#DAE2F9` | Tonal cards / panels |
+| `on-secondary-container` | `#131C2C` | Text on secondary-container |
+| `tertiary` | `#8A6914` | Warm gold accent (highlights, seasonal warmth) |
 | `on-tertiary` | `#FFFFFF` | Text on solid tertiary |
-| `tertiary-container` | `#F6E9C2` | Soft gold panels |
-| `on-tertiary-container` | `#3B2D05` | Text on tertiary-container |
-| `background` / `surface` | `#FBF9F4` | Page + main surfaces |
-| `on-background` / `on-surface` | `#1A211B` | Primary text (not pure black) |
-| `on-surface-variant` | `#465048` | Supporting body |
-| `surface-container-low` … `highest` | warm sage-linen neutrals | Layered sections, cards, footer slab |
+| `tertiary-container` | `#F8ECC8` | Soft gold panels |
+| `on-tertiary-container` | `#3A3000` | Text on tertiary-container |
+| `background` / `surface` | `#FDF8F9` | Page + main surfaces |
+| `on-background` / `on-surface` | `#1B1B1F` | Primary text (not pure black) |
+| `on-surface-variant` | `#44474F` | Supporting body |
+| `surface-container-low` … `highest` | warm neutrals | Layered sections, cards, footer slab |
+
+### Dark bands (marketing differentiation)
+
+Strategic navy or charcoal full-width bands break up long white scrolls and differentiate from similarly blue-on-white national ministry sites.
+
+| Token | Hex (approx.) | Use |
+|-------|----------------|-----|
+| `surface-inverse` | `#131C2C` | Navy section backgrounds |
+| `on-surface-inverse` | `#F0F4FA` | Headings/body emphasis on navy |
+| `on-surface-inverse-muted` | `#9EB0C8` | Supporting copy on navy |
+| `surface-charcoal` | `#292524` | Charcoal section backgrounds |
+| `on-surface-charcoal` | `#FAFAF9` | Headings/body emphasis on charcoal |
+| `on-surface-charcoal-muted` | `#B8B3AD` | Supporting copy on charcoal |
+
+**Implementation:** Prefer utility classes **`section-tone-inverse`** and **`section-tone-charcoal`** (`globals.css`), or **`Section`** tones `inverse` and `charcoal`, plus the `on-*-muted` text tokens above for paragraphs and captions.
+
+---
 
 **Stone (marketing shell):** Header and footer also use Tailwind `stone-*` where the Stitch shell calls for a neutral strip (`stone-50`, `stone-100`, `stone-600`, etc.). Prefer **semantic tokens** for page content; **stone** for chrome when matching the export.
 
@@ -76,7 +93,7 @@ Seed / primary brand green: **`#2F7D5A`**. Use semantic names in markup, not raw
 | `Card` | `src/components/ui/Card.tsx` | Tonal cards, no borders |
 | `Container` | `src/components/ui/Container.tsx` | Max width + optional narrow column |
 | `HeadingBlock` | `src/components/ui/HeadingBlock.tsx` | Label + serif title + optional body |
-| `Section` | `src/components/ui/Section.tsx` | Vertical section padding + tone variants |
+| `Section` | `src/components/ui/Section.tsx` | Vertical section padding + tone variants (incl. `inverse`, `charcoal`) |
 | `SiteHeader` | `src/components/layout/SiteHeader.tsx` | Light frosted bar, brand + centered nav |
 | `SiteFooter` | `src/components/layout/SiteFooter.tsx` | Light stone slab, four columns |
 
@@ -107,9 +124,10 @@ Keep motion **sparse and editorial**: one primary idea (soft enter on scroll), f
 
 ## Changelog (high level)
 
-- Previous **Blue Edition** codified the Kindred Sanctuary panel: Noto Serif + Manrope, seed `#4784F2`, tertiary as **warm gold** (updated from legacy purple-tertiary).
-- Material/Stitch surface tokens retained for hero and cards.
+- **Blue Edition** is the canonical brand palette (seed **`#4784F2`**), tertiary as **warm gold** (replacing legacy purple-tertiary).
+- **`primary-strong`** drives primary button gradients alongside `primary`.
+- **Inverse / charcoal bands** (`section-tone-inverse`, `section-tone-charcoal`, matching `@theme` tokens) add rhythm and differentiation versus generic white + blue brochure sites.
+- A **Green Edition** snapshot (`#2F7D5A`) existed briefly in 2026; rollback reference values live in Git history alongside `docs/theme-archive/angelpaws-serif-blue.css` (canonical blue token list mirrored in active `globals.css`).
 - Icons migrated to Lucide.
-- **Green Edition** shifts the seed to `#2F7D5A` with sage-linen surfaces and preserves the previous Blue Edition tokens in `docs/theme-archive/angelpaws-serif-blue.css`.
 
 When tokens change, update **this file** and **`src/app/globals.css`** together.

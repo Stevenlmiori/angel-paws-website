@@ -1,7 +1,7 @@
 /*
  * AngelPaws Serif — Blue Edition token archive
  *
- * Preserved before the May 2026 client-requested green palette shift.
+ * Historical snapshot mirroring canonical Blue Edition tokens (`#4784F2`). Active site tokens live in `src/app/globals.css`.
  * To roll back, copy these values into src/app/globals.css and update
  * DESIGN.md plus the viewport theme color in src/app/layout.tsx.
  */

@@ -1,40 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbf9f4;
-  --foreground: #1a211b;
+  --background: #fdf8f9;
+  --foreground: #1b1b1f;
 }
 
 @theme inline {
-  /* AngelPaws Serif — see DESIGN.md (tokens + usage) */
-  --color-primary: #2f7d5a;
-  --color-primary-strong: #256348;
+  /* AngelPaws Serif — Blue Edition; see DESIGN.md */
+  --color-primary: #4784f2;
+  --color-primary-strong: #2d65d9;
   --color-on-primary: #ffffff;
-  --color-primary-container: #ddeee4;
-  --color-on-primary-container: #0b2f20;
-  --color-secondary: #58665d;
+  --color-primary-container: #d7e2ff;
+  --color-on-primary-container: #001a40;
+  --color-secondary: #565e71;
   --color-on-secondary: #ffffff;
-  --color-secondary-container: #e0e7dd;
-  --color-on-secondary-container: #17261d;
-  /* Tertiary: warm gold accent for hope, warmth, and gentle contrast */
-  --color-tertiary: #9a6b14;
+  --color-secondary-container: #dae2f9;
+  --color-on-secondary-container: #131c2c;
+  --color-tertiary: #8a6914;
   --color-on-tertiary: #ffffff;
-  --color-tertiary-container: #f6e9c2;
-  --color-on-tertiary-container: #3b2d05;
-  --color-background: #fbf9f4;
-  --color-on-background: #1a211b;
-  --color-surface: #fbf9f4;
-  --color-on-surface: #1a211b;
-  --color-surface-variant: #dde5db;
-  --color-on-surface-variant: #465048;
+  --color-tertiary-container: #f8ecc8;
+  --color-on-tertiary-container: #3a3000;
+  --color-background: #fdf8f9;
+  --color-on-background: #1b1b1f;
+  --color-surface: #fdf8f9;
+  --color-on-surface: #1b1b1f;
+  --color-surface-variant: #e1e2ec;
+  --color-on-surface-variant: #44474f;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f3f1ea;
-  --color-surface-container: #ece8df;
-  --color-surface-container-high: #e4e1d7;
-  --color-surface-container-highest: #dcd8cc;
+  --color-surface-container-low: #f7f3f2;
+  --color-surface-container: #f1edec;
+  --color-surface-container-high: #ebe7e6;
+  --color-surface-container-highest: #e5e2e1;
+
+  /* Dark section bands (navy + charcoal) */
+  --color-surface-inverse: #131c2c;
+  --color-on-surface-inverse: #f0f4fa;
+  --color-on-surface-inverse-muted: #9eb0c8;
+  --color-surface-charcoal: #292524;
+  --color-on-surface-charcoal: #fafaf9;
+  --color-on-surface-charcoal-muted: #b8b3ad;
 
   /* Legacy aliases used across earlier components */
-  --color-on-surface-muted: #465048;
+  --color-on-surface-muted: #44474f;
 
   /* Typography */
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
@@ -48,6 +55,35 @@
   --shadow-soft: 0 12px 32px rgba(26, 28, 28, 0.06);
 
   --color-foreground: var(--foreground);
+}
+
+@layer utilities {
+  /* Full-width marketing bands: pull text/heading colors onto dark surfaces */
+  .section-tone-inverse {
+    background-color: var(--color-surface-inverse);
+    color: var(--color-on-surface-inverse);
+  }
+
+  .section-tone-inverse :is(h1, h2, h3, h4) {
+    color: var(--color-on-surface-inverse);
+  }
+
+  .section-tone-inverse cite {
+    color: var(--color-on-surface-inverse-muted);
+  }
+
+  .section-tone-charcoal {
+    background-color: var(--color-surface-charcoal);
+    color: var(--color-on-surface-charcoal);
+  }
+
+  .section-tone-charcoal :is(h1, h2, h3, h4) {
+    color: var(--color-on-surface-charcoal);
+  }
+
+  .section-tone-charcoal cite {
+    color: var(--color-on-surface-charcoal-muted);
+  }
 }
 
 @layer base {

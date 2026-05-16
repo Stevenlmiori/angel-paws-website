@@ -1,10 +1,15 @@
 import { MetadataRoute } from "next";
 import { sanityReadClient } from "@/lib/sanity/client";
 import { storySlugsQuery } from "@/lib/sanity/queries";
+import { siteUnderConstruction } from "@/lib/siteFlags";
 
 const baseUrl = "https://www.angelpawspettherapy.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  if (siteUnderConstruction()) {
+    return [];
+  }
+
   const lastModified = new Date();
 
   const routes = [

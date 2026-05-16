@@ -102,12 +102,12 @@ export function ContactMainSection() {
             </div>
           </div>
 
-          <div className="bg-surface-container-low px-6 py-7">
+          <div className="section-tone-inverse px-6 py-7">
             <Mail className="mb-5 size-5 text-primary" aria-hidden />
-            <p className="font-serif text-2xl leading-snug text-on-surface">
+            <p className="font-serif text-2xl leading-snug text-on-surface-inverse">
               A real person will read your note.
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">
+            <p className="mt-3 text-sm leading-relaxed text-on-surface-inverse-muted">
               Short messages are fine. If details are missing, Angel Paws can
               follow up.
             </p>

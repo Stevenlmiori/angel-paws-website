@@ -11,16 +11,16 @@ const futureItems = [
 export function MembershipPortalTeaser() {
   return (
     <section className="mx-auto max-w-screen-xl px-6 pb-16 sm:px-10 md:pb-20 lg:px-12">
-      <div className="rounded-[2.5rem] bg-surface-container-high px-8 py-12 md:px-14 md:py-16">
+      <div className="section-tone-inverse rounded-[2.5rem] px-8 py-12 md:px-14 md:py-16">
         <div className="mb-8 flex items-start gap-4">
-          <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-primary/15 text-primary">
+          <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-primary/20 text-primary">
             <Lock className="size-6" strokeWidth={2} aria-hidden />
           </div>
           <div>
-            <h2 className="font-serif text-3xl text-on-surface md:text-4xl">
+            <h2 className="font-serif text-3xl md:text-4xl">
               Member portal
             </h2>
-            <p className="mt-2 max-w-2xl text-on-surface-variant">
+            <p className="mt-2 max-w-2xl text-on-surface-inverse-muted">
               Members sign in with the team password to open forms, policies, and
               Drive links in one place—simple for our team to update and simple for
               handlers to find.
@@ -31,7 +31,7 @@ export function MembershipPortalTeaser() {
           {futureItems.map((item) => (
             <li
               key={item}
-              className="flex items-center gap-3 rounded-2xl bg-surface-container-lowest px-4 py-3 font-sans text-sm text-on-surface"
+              className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 font-sans text-sm text-on-surface-inverse"
             >
               <FileText
                 className="size-4 shrink-0 text-primary"

@@ -3,6 +3,7 @@ import { Manrope, Noto_Serif } from "next/font/google";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { siteUnderConstruction } from "@/lib/siteFlags";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -20,6 +21,8 @@ const notoSerif = Noto_Serif({
 
 /** Set `NEXT_PUBLIC_SITE_INDEXABLE=true` in Vercel when the site should appear in search. */
 const siteIndexable = process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true";
+
+const underConstruction = siteUnderConstruction();
 
 export const metadata: Metadata = {
   /** Match production traffic (www); host-only cookies set on www are not sent on apex. */
@@ -56,18 +59,19 @@ export const metadata: Metadata = {
     description: "Faith-based pet therapy ministry in Greater Houston.",
     images: ["/brand/angel-paws/logo@2x.png"],
   },
-  robots: siteIndexable
-    ? { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 }
-    : {
-        index: false,
-        follow: false,
-        googleBot: { index: false, follow: false },
-      },
+  robots:
+    siteIndexable && !underConstruction
+      ? { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 }
+      : {
+          index: false,
+          follow: false,
+          googleBot: { index: false, follow: false },
+        },
 };
 
 /** AngelPaws Serif — light-first; match DESIGN.md */
 export const viewport: Viewport = {
-  themeColor: "#2f7d5a",
+  themeColor: "#4784f2",
   colorScheme: "light",
 };
 
@@ -82,12 +86,18 @@ export default function RootLayout({
       className={`${manrope.variable} ${notoSerif.variable} h-full scroll-smooth antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
-        <JsonLd />
-        <SiteHeader />
-        <main className="flex min-h-full flex-1 flex-col pt-20 md:pt-24">
-          {children}
-        </main>
-        <SiteFooter />
+        {underConstruction ? (
+          children
+        ) : (
+          <>
+            <JsonLd />
+            <SiteHeader />
+            <main className="flex min-h-full flex-1 flex-col pt-20 md:pt-24">
+              {children}
+            </main>
+            <SiteFooter />
+          </>
+        )}
       </body>
     </html>
   );

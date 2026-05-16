@@ -64,7 +64,7 @@ export default async function StoryDetailPage({ params }: Props) {
 
   return (
     <article>
-      <Section tone="default" className="!pt-28 md:!pt-32">
+      <Section tone="inverse" className="!pt-28 md:!pt-32">
         <div className="mx-auto max-w-screen-md px-6 sm:px-10 lg:px-12">
           <Link
             href="/stories"
@@ -82,11 +82,11 @@ export default async function StoryDetailPage({ params }: Props) {
               {publishedLabel}
             </time>
           ) : null}
-          <h1 className="font-serif text-4xl font-semibold leading-tight text-on-surface md:text-5xl lg:text-6xl">
+          <h1 className="font-serif text-4xl font-semibold leading-tight md:text-5xl lg:text-6xl">
             {story.title}
           </h1>
           {story.tags?.length ? (
-            <p className="mt-4 text-sm font-semibold uppercase tracking-wider text-secondary">
+            <p className="mt-4 text-sm font-semibold uppercase tracking-wider text-on-surface-inverse-muted">
               {story.tags.join(" · ")}
             </p>
           ) : null}

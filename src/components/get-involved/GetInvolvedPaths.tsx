@@ -72,11 +72,11 @@ export function GetInvolvedPaths() {
       </section>
 
       <section className="mx-auto mt-24 max-w-screen-xl px-6 sm:px-10 md:mt-32 lg:px-12">
-        <div className="rounded-[2.5rem] bg-surface-container-low px-8 py-16 md:rounded-[3rem] md:px-12 md:py-20">
-          <h2 className="mb-4 text-center font-serif text-3xl text-on-surface md:text-4xl">
+        <div className="section-tone-charcoal rounded-[2.5rem] px-8 py-16 md:rounded-[3rem] md:px-12 md:py-20">
+          <h2 className="mb-4 text-center font-serif text-3xl md:text-4xl">
             Path to membership
           </h2>
-          <p className="mx-auto mb-14 max-w-2xl text-center text-lg text-on-surface-variant">
+          <p className="mx-auto mb-14 max-w-2xl text-center text-lg text-on-surface-charcoal-muted">
             A simple sequence—we never rush the heart or the dog. Timelines vary
             by team and season.
           </p>
@@ -86,10 +86,10 @@ export function GetInvolvedPaths() {
                 <span className="mb-3 block font-serif text-3xl text-primary/80">
                   {s.n}
                 </span>
-                <h3 className="mb-2 font-serif text-xl text-on-surface">
+                <h3 className="mb-2 font-serif text-xl">
                   {s.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-on-surface-variant">
+                <p className="text-sm leading-relaxed text-on-surface-charcoal-muted">
                   {s.body}
                 </p>
               </div>

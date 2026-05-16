@@ -44,17 +44,17 @@ export function DonateImpactSection() {
             ))}
           </div>
         </div>
-        <div className="flex flex-col justify-center rounded-[3rem] bg-surface-container-low p-10 sm:p-16">
+        <div className="flex flex-col justify-center rounded-[3rem] section-tone-charcoal p-10 sm:p-16">
           <span className="mb-8 text-6xl text-primary">&ldquo;</span>
-          <blockquote className="mb-10 font-serif text-3xl italic leading-snug text-on-surface md:text-4xl">
+          <blockquote className="mb-10 font-serif text-3xl italic leading-snug md:text-4xl">
             Seeing my daughter smile for the first time in weeks because of a
             visit from Bella was a miracle we&apos;ll never forget.
           </blockquote>
           <div>
-            <p className="font-sans text-sm font-bold uppercase tracking-widest text-on-surface">
+            <p className="font-sans text-sm font-bold uppercase tracking-widest text-on-surface-charcoal">
               Sarah J.
             </p>
-            <p className="text-sm text-on-surface-variant">
+            <p className="text-sm text-on-surface-charcoal-muted">
               Parent of a patient
             </p>
           </div>
