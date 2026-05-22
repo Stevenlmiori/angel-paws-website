@@ -16,9 +16,8 @@ export function ContactHero() {
             <span className="italic text-primary">to Listen.</span>
           </h1>
           <p className="max-w-xl text-xl leading-relaxed text-on-surface-variant">
-            Whether you are looking to bring a therapy pet to your facility,
-            interested in volunteering, or simply want to share a story, our
-            doors are always open.
+            Whether you are looking to bring a therapy dog visit to your
+            facility or simply have a question, our doors are open.
           </p>
         </div>
         <div className="relative lg:col-span-5">

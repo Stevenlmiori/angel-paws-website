@@ -10,16 +10,16 @@ export function MeetTheBoardGrid() {
           <BoardMemberCard key={member.name} member={member} />
         ))}
         <article className="relative flex flex-col items-center justify-center rounded-[2rem] bg-primary p-10 text-center text-on-primary md:p-12">
-          <h3 className="mb-4 font-serif text-3xl">Could you be next?</h3>
+          <h3 className="mb-4 font-serif text-3xl">Help the mission continue</h3>
           <p className="mb-8 font-light opacity-90">
-            We are always looking for passionate individuals to join our
-            advisory councils and committees.
+            Your gift helps Angel Paws prepare for visits and care for the
+            dogs who bring comfort across our community.
           </p>
           <Link
-            href="/get-involved"
+            href="/donate"
             className="rounded-full bg-surface-container-lowest px-8 py-3 font-bold text-primary transition-transform hover:scale-[1.02]"
           >
-            Get Involved
+            Give
           </Link>
           <div
             className="pointer-events-none absolute inset-0 opacity-10"

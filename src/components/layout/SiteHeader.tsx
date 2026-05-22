@@ -15,13 +15,7 @@ const aboutSubLinks = [
 ] as const;
 
 const navAfterAbout = [
-  { href: "/get-involved", label: "Get Involved" },
   { href: "/stories", label: "Stories" },
-] as const;
-
-const memberSubLinks = [
-  { href: "/members", label: "Membership" },
-  { href: "/members/portal", label: "Member Resources" },
 ] as const;
 
 const ABOUT_PATHS = [
@@ -31,8 +25,6 @@ const ABOUT_PATHS = [
   "/where-we-serve",
 ] as const;
 
-const MEMBER_PATHS = ["/members", "/members/portal"] as const;
-
 function navLinkActive(href: string, pathname: string) {
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);
@@ -40,12 +32,6 @@ function navLinkActive(href: string, pathname: string) {
 
 function aboutSectionActive(pathname: string) {
   return ABOUT_PATHS.some(
-    (p) => pathname === p || pathname.startsWith(`${p}/`),
-  );
-}
-
-function memberSectionActive(pathname: string) {
-  return MEMBER_PATHS.some(
     (p) => pathname === p || pathname.startsWith(`${p}/`),
   );
 }
@@ -63,7 +49,6 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const aboutActive = aboutSectionActive(pathname);
-  const membersActive = memberSectionActive(pathname);
 
   return (
     <header className="fixed top-0 z-50 w-full bg-stone-50/85 text-stone-900 shadow-sm backdrop-blur-md transition-all">
@@ -143,42 +128,6 @@ export function SiteHeader() {
               );
             })}
 
-            <li className="group/membersnav relative">
-              <div className="flex items-center gap-0.5">
-                <Link href="/members" className={linkClass(membersActive)}>
-                  Members
-                </Link>
-                <ChevronDown
-                  className="size-[1.05rem] shrink-0 text-stone-400 transition-transform duration-200 group-hover/membersnav:rotate-180 group-hover/membersnav:text-primary"
-                  strokeWidth={2}
-                  aria-hidden
-                />
-              </div>
-              <ul
-                role="list"
-                className="invisible absolute left-1/2 top-full z-50 mt-1 min-w-[13.5rem] -translate-x-1/2 rounded-2xl border border-stone-200/90 bg-white/95 py-2 shadow-lg shadow-stone-900/5 backdrop-blur-md opacity-0 transition-[opacity,visibility] duration-150 group-hover/membersnav:visible group-hover/membersnav:opacity-100 group-focus-within/membersnav:visible group-focus-within/membersnav:opacity-100"
-              >
-                {memberSubLinks.map(({ href, label }) => {
-                  const active = navLinkActive(href, pathname);
-                  return (
-                    <li key={href}>
-                      <Link
-                        href={href}
-                        className={cn(
-                          "block px-4 py-2.5 font-serif text-base tracking-tight transition-colors",
-                          active
-                            ? "bg-primary-container/60 font-semibold text-primary"
-                            : "text-stone-700 hover:bg-stone-100 hover:text-stone-900",
-                        )}
-                      >
-                        {label}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </li>
-
             <li>
               <Link
                 href="/contact"
@@ -192,10 +141,16 @@ export function SiteHeader() {
 
         <div className="relative z-20 ml-auto flex min-w-0 shrink-0 items-center gap-2 sm:gap-3">
           <Link
+            href="/contact"
+            className="hidden rounded-full bg-surface-container-high px-4 py-2.5 font-sans text-sm font-semibold text-on-surface transition-colors hover:bg-surface-container-highest sm:inline-flex md:px-6"
+          >
+            Request a Visit
+          </Link>
+          <Link
             href="/donate"
             className="rounded-full bg-primary px-4 py-2.5 font-sans text-sm font-semibold text-on-primary transition-all duration-150 hover:opacity-90 active:scale-[0.98] sm:px-5 md:px-6"
           >
-            Donate
+            Give
           </Link>
           <button
             type="button"
@@ -279,30 +234,6 @@ export function SiteHeader() {
             );
           })}
 
-          <div className="rounded-xl py-1">
-            <p className="px-3 py-2 font-serif text-xs font-bold uppercase tracking-widest text-stone-500">
-              Members
-            </p>
-            {memberSubLinks.map(({ href, label }) => {
-              const active = navLinkActive(href, pathname);
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  className={cn(
-                    "block rounded-lg py-2.5 pl-6 pr-3 font-serif text-base transition-colors",
-                    active
-                      ? "bg-primary-container/80 font-bold text-primary"
-                      : "text-stone-600 hover:bg-stone-200/50 hover:text-stone-900",
-                  )}
-                  onClick={() => setOpen(false)}
-                >
-                  {label}
-                </Link>
-              );
-            })}
-          </div>
-
           <Link
             href="/contact"
             className={cn(
@@ -314,6 +245,20 @@ export function SiteHeader() {
             onClick={() => setOpen(false)}
           >
             Contact
+          </Link>
+          <Link
+            href="/contact"
+            className="rounded-xl px-3 py-3 font-serif text-lg text-stone-600 transition-colors hover:bg-stone-200/50 hover:text-stone-900 sm:hidden"
+            onClick={() => setOpen(false)}
+          >
+            Request a Visit
+          </Link>
+          <Link
+            href="/donate"
+            className="rounded-xl px-3 py-3 font-serif text-lg text-stone-600 transition-colors hover:bg-stone-200/50 hover:text-stone-900"
+            onClick={() => setOpen(false)}
+          >
+            Give
           </Link>
         </nav>
       </div>

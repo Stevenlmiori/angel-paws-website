@@ -16,25 +16,24 @@ export function HomeJourneyCTA() {
         />
         <div className="relative z-10 flex min-h-[480px] flex-col justify-center px-8 py-20 text-center text-on-primary md:min-h-[560px] md:px-12 md:py-32">
           <h2 className="mx-auto max-w-4xl font-serif text-5xl font-bold leading-tight md:text-7xl">
-            Ready to Share the Love with Your Furry Friend?
+            Ready to bring a calm presence into your space?
           </h2>
           <p className="mx-auto mb-12 mt-8 max-w-2xl text-xl leading-relaxed opacity-90 md:text-2xl">
-            We would love for you and your dog to join our growing therapy
-            team family. You do not need special experience, just a gentle
-            spirit and a heart to serve.
+            Angel Paws visits hospitals, schools, care communities, and other
+            spaces where a few quiet minutes with a therapy dog can matter.
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             <Link
-              href="/get-involved"
+              href="/contact"
               className="rounded-full bg-white px-12 py-5 text-xl font-bold text-primary shadow-xl transition-transform hover:scale-105"
             >
-              Become a Volunteer
+              Request a Visit
             </Link>
             <Link
-              href="/contact"
+              href="/donate"
               className="rounded-full bg-white/15 px-12 py-5 text-xl font-bold text-on-primary backdrop-blur-sm transition-all hover:bg-white/25"
             >
-              Partner With Us
+              Give
             </Link>
           </div>
         </div>

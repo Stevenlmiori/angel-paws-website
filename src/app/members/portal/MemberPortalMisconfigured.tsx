@@ -23,10 +23,10 @@ export function MemberPortalMisconfigured({ reason }: Props) {
           for the required variables.
         </p>
         <Link
-          href="/members"
+          href="/"
           className="inline-flex rounded-full bg-primary px-8 py-4 text-sm font-bold uppercase tracking-widest text-on-primary"
         >
-          Back to membership
+          Back to site
         </Link>
       </div>
     </div>

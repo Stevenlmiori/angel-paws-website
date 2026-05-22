@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui";
 export const metadata: Metadata = {
   title: "Contact Us | Therapy Dog Visit Requests",
   description:
-    "Get in touch with Angel Paws Pet Therapy. Inquire about facility visits, volunteering opportunities, or informational meetings in Greater Houston.",
+    "Get in touch with Angel Paws Pet Therapy to request a facility visit or ask a question about therapy dog visits in Greater Houston.",
 };
 
 export default function ContactPage() {

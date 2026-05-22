@@ -49,12 +49,12 @@ export function SiteFooter() {
           <ul className="flex flex-col gap-4">
             <li>
               <Link href="/donate" className={linkClass}>
-                Donate
+                Give
               </Link>
             </li>
             <li>
               <Link href="/contact" className={linkClass}>
-                Contact
+                Request a Visit
               </Link>
             </li>
             <li>
@@ -65,16 +65,6 @@ export function SiteFooter() {
             <li>
               <Link href="/what-is-pet-therapy" className={linkClass}>
                 What Is Pet Therapy
-              </Link>
-            </li>
-            <li>
-              <Link href="/members" className={linkClass}>
-                Membership
-              </Link>
-            </li>
-            <li>
-              <Link href="/members/portal" className={linkClass}>
-                Member Portal
               </Link>
             </li>
           </ul>

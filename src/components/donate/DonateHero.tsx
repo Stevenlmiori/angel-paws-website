@@ -24,13 +24,13 @@ export function DonateHero() {
               href="#donate-panel"
               className="rounded-full bg-primary px-8 py-4 text-sm font-bold uppercase tracking-widest text-on-primary shadow-lg shadow-primary/20 transition-transform hover:scale-[1.02]"
             >
-              Donate Now
+              Give Now
             </a>
             <a
-              href="/get-involved"
+              href="/contact"
               className="rounded-full bg-surface-container-high px-8 py-4 text-sm font-bold uppercase tracking-widest text-on-surface transition-colors hover:bg-surface-container-highest"
             >
-              Learn More
+              Request a Visit
             </a>
           </div>
         </div>

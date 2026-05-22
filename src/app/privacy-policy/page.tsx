@@ -52,7 +52,7 @@ export default function PrivacyPolicyPage() {
             <ul className="list-disc space-y-2 pl-6">
               <li>Respond to inquiries and requests</li>
               <li>
-                Coordinate ministry, volunteer, visit, or donation follow-up
+                Coordinate ministry, visit, or donation follow-up
               </li>
               <li>Improve website content and user experience</li>
               <li>Comply with legal obligations</li>

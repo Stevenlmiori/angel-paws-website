@@ -8,13 +8,13 @@ const meetings = [
     date: "Tuesday, May 12, 2026",
     time: "6:30 PM — 8:00 PM",
     location: "CFBC Northwest Campus, Dining Hall",
-    description: "Quarterly Informational Meeting for prospective new members.",
+    description: "Visit planning and care-community coordination.",
   },
   {
     date: "Saturday, August 15, 2026",
     time: "10:00 AM — 11:30 AM",
     location: "CFBC Champions Campus, Room 402",
-    description: "Special workshop for existing members and focus on veteran outreach.",
+    description: "Service-area planning and partner follow-up.",
   },
 ];
 
@@ -28,9 +28,9 @@ export function MeetingDates() {
               Informational Meetings
             </h2>
             <p className="mt-6 text-lg text-stone-600">
-              Interested in joining Angel Paws? Come to our next informational
-              meeting to learn about requirements, temperament testing, and how
-              you and your pet can serve the community.
+              Angel Paws coordinates visits carefully so each facility knows
+              what to expect and every visit has room to be calm, safe, and
+              helpful.
             </p>
           </div>
         </Reveal>
@@ -76,11 +76,11 @@ export function MeetingDates() {
         <Reveal delayMs={200}>
           <div className="mt-16 rounded-3xl bg-primary-container/40 p-12 text-center">
             <h3 className="font-serif text-2xl font-bold text-on-primary-container">
-              Questions before the meeting?
+              Questions before requesting a visit?
             </h3>
             <p className="mx-auto mt-4 max-w-xl text-stone-600">
               {
-                "We're happy to chat about the vetting process or help you decide if your pet is a good fit for therapy work."
+                "We're happy to talk through your setting, timing, and what kind of visit may be the best fit."
               }
             </p>
             <div className="mt-8 flex justify-center">
@@ -88,7 +88,7 @@ export function MeetingDates() {
                 href="/contact"
                 className="rounded-full bg-primary px-8 py-4 font-sans text-base font-bold text-on-primary transition-opacity hover:opacity-90"
               >
-                Contact Debbie
+                Request a Visit
               </a>
             </div>
           </div>

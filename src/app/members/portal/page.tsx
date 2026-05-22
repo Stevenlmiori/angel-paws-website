@@ -52,10 +52,10 @@ export default async function MemberPortalPage() {
         <MemberPortalLoginForm />
         <p className="mt-10 text-sm text-on-surface-variant">
           <Link
-            href="/members"
+            href="/"
             className="font-semibold text-primary underline underline-offset-4"
           >
-            Back to membership
+            Back to site
           </Link>
         </p>
       </div>

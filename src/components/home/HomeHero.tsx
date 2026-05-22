@@ -29,17 +29,17 @@ export function HomeHero() {
           </p>
           <div className="flex flex-wrap gap-6 pt-4">
             <Link
-              href="/get-involved"
+              href="/contact"
               className="flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-lg font-bold text-on-primary shadow-lg shadow-primary/20 transition-transform hover:scale-[1.02]"
             >
-              Join Our Mission
+              Request a Visit
               <ArrowRight className="size-6 shrink-0" strokeWidth={2.25} aria-hidden />
             </Link>
             <Link
               href="/donate"
               className="rounded-full bg-secondary-container px-8 py-4 text-lg font-bold text-on-secondary-container transition-transform hover:scale-[1.02]"
             >
-              Donate Now
+              Give
             </Link>
           </div>
         </div>

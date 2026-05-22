@@ -17,7 +17,7 @@ export function HomeImpact() {
               <div className="relative h-[420px] w-full sm:h-[520px] lg:h-[600px]">
                 <Image
                   src={IMG.impactFeature}
-                  alt="Angel Paws therapy dog with volunteer handler, ready for visits"
+                  alt="Angel Paws therapy dog with handler, ready for visits"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"

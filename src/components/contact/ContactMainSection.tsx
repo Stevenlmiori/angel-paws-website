@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, DoorOpen, Heart, Mail, MapPin } from "lucide-react";
+import { ArrowRight, Heart, Mail, MapPin } from "lucide-react";
 import { TallyContactSection } from "@/components/embeds/TallyContactSection";
 import { DirectEmailReveal } from "@/components/contact/DirectEmailReveal";
 
@@ -46,7 +46,7 @@ export function ContactMainSection() {
             </p>
             <div className="mt-5 space-y-6">
               <Link
-                href="/where-we-serve"
+                href="/contact"
                 className="group flex items-center justify-between gap-6 text-left"
               >
                 <span>
@@ -55,25 +55,7 @@ export function ContactMainSection() {
                     Request a visit
                   </span>
                   <span className="mt-1 block text-sm leading-relaxed text-on-surface-variant">
-                    See where Angel Paws serves before reaching out.
-                  </span>
-                </span>
-                <ArrowRight
-                  className="size-4 shrink-0 text-primary transition-transform group-hover:translate-x-1"
-                  aria-hidden
-                />
-              </Link>
-              <Link
-                href="/members/portal"
-                className="group flex items-center justify-between gap-6 text-left"
-              >
-                <span>
-                  <span className="flex items-center gap-2 font-serif text-xl text-on-surface">
-                    <DoorOpen className="size-5 text-primary" aria-hidden />
-                    Member resources
-                  </span>
-                  <span className="mt-1 block text-sm leading-relaxed text-on-surface-variant">
-                    Open the protected portal for forms and links.
+                    Tell us about your facility, school, or care setting.
                   </span>
                 </span>
                 <ArrowRight

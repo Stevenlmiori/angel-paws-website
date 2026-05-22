@@ -31,9 +31,8 @@ export function AboutHero() {
               care environments where even a small moment of calm can mean a lot.
             </p>
             <p>
-              Our teams are made up of trained volunteers and their dogs who
-              give their time to simply be present. No pressure. No
-              expectations.
+              Our visiting teams are trained handlers and their dogs who give
+              their time to simply be present. No pressure. No expectations.
             </p>
             <p className="font-medium text-on-surface">
               Just a calm, steady presence when it&apos;s needed most.
@@ -44,7 +43,7 @@ export function AboutHero() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-2xl md:rounded-3xl">
             <Image
               src={ABOUT_IMG.hero}
-              alt="Therapy Golden Retriever in vest with volunteer handler"
+              alt="Therapy Golden Retriever in vest with handler"
               fill
               priority
               sizes="(max-width: 768px) 100vw, 50vw"

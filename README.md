@@ -1,6 +1,6 @@
 # Angel Paws — website
 
-Public-facing site for **Angel Paws**, a pet therapy organization: mission and beliefs, service areas, membership information, contact and visit requests, donations, and volunteer information. The UI follows the in-repo **AngelPaws Serif** design system (Tailwind v4 tokens, Lucide icons).
+Public-facing site for **Angel Paws**, a pet therapy organization: mission and beliefs, service areas, visit requests, donations, stories, and operator-managed resources. The public action paths are **Request a Visit** and **Give**. The UI follows the in-repo **AngelPaws Serif** design system (Tailwind v4 tokens, Lucide icons).
 
 ## Tech stack
 

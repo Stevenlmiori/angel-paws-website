@@ -14,9 +14,8 @@ export function MeetTheBoardHero() {
             <span className="italic text-primary">connection.</span>
           </h1>
           <p className="max-w-lg text-lg font-light leading-relaxed text-on-surface-variant">
-            Meet the dedicated individuals who volunteer their time and
-            expertise to ensure every community we touch feels the healing power
-            of a cold nose and a warm heart.
+            Meet the dedicated individuals who guide Angel Paws with care,
+            wisdom, and a shared commitment to every community we touch.
           </p>
         </div>
         <div className="relative">
@@ -33,7 +32,7 @@ export function MeetTheBoardHero() {
           <div className="absolute -bottom-6 -left-4 max-w-xs rounded-2xl bg-surface-container-lowest p-8 shadow-soft lg:-bottom-8 lg:-left-8">
             <p className="font-serif text-lg italic text-primary">
               &ldquo;Our board members aren&apos;t just leaders; they&apos;re the
-              first to volunteer for a shift.&rdquo;
+              people helping keep every visit rooted in care.&rdquo;
             </p>
           </div>
         </div>

@@ -20,22 +20,22 @@ export function WhereWeServeCTA() {
           <span className="italic">visit from Angel Paws?</span>
         </h2>
         <p className="mb-12 text-xl text-on-surface-charcoal-muted">
-          We are always looking to expand our reach. If you represent a
-          healthcare, educational, or community organization, we invite you
-          to apply for our services.
+          If you represent a healthcare, educational, senior care, or community
+          organization, tell us a little about your setting and what kind of
+          visit would be helpful.
         </p>
         <div className="flex flex-wrap justify-center gap-6">
-          <button
-            type="button"
+          <Link
+            href="/contact"
             className="rounded-full bg-primary px-10 py-4 text-sm font-bold uppercase tracking-widest text-on-primary transition-opacity hover:opacity-90"
           >
             Request a Visit
-          </button>
+          </Link>
           <Link
-            href="/get-involved"
+            href="/donate"
             className="rounded-full bg-primary/12 px-10 py-4 text-sm font-bold uppercase tracking-widest text-primary transition-colors hover:bg-primary/18"
           >
-            Become a Volunteer
+            Give
           </Link>
         </div>
       </div>

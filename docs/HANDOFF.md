@@ -1,6 +1,6 @@
 # Angel Paws website — handoff plan
 
-Audience: **Miss Debbie** (primary operator) and future volunteers helping with content.  
+Audience: **Miss Debbie** (primary operator) and future content helpers.
 Technical owner during build: development partner; goal is a **simple routine** after go-live.
 
 ### Git & deploy (nimble phase)
@@ -21,6 +21,15 @@ While it’s just the build team and the site isn’t in real use yet: **commit 
 
 ---
 
+## Public action model
+
+The public site should present only two action paths:
+
+- **Request a Visit** → `/contact`
+- **Give** → `/donate`
+
+Do not add public “become a member,” “join the team,” or volunteer recruitment CTAs. Keep `/members/portal` available only as a protected direct URL for existing handlers/operators.
+
 ## 1. Route map (Debbie’s list → this site)
 
 | Need | Route | Status |
@@ -28,11 +37,9 @@ While it’s just the build team and the site isn’t in real use yet: **commit 
 | Who we are / mission & beliefs | `/about` | Live — refine copy as needed; beliefs align with CFBC-style language |
 | Where we serve | `/where-we-serve` | Live |
 | What is pet therapy | `/what-is-pet-therapy` | Live — editorial page |
-| How to become a member | `/members` | Live — steps + expectations |
-| Members only (forms, policies, roster) | `/members/portal` | Live password gate + editable resource links; content still needs final resource URLs |
+| Existing handler resources | `/members/portal` | Protected direct URL; not public navigation |
 | Contact + visit requests | `/contact` | Live — **Tally** embeds when env vars are set; email fallback otherwise |
-| Donations | `/donate` | Live — **Donorbox** embed (see §5 + env vars) |
-| Get involved (volunteer, etc.) | `/get-involved` | Live |
+| Give / donations | `/donate` | Live — **Donorbox** embed (see §5 + env vars) |
 | Board | `/meet-the-board` | Live layout; sample roster/bios/photos need Debbie’s real board details |
 | Stories (blog) | `/stories` | Live — **Sanity** content; home strip optional tag filter |
 
@@ -44,7 +51,7 @@ While it’s just the build team and the site isn’t in real use yet: **commit 
 
 ### Phase A — Content & clarity (before “portal” complexity)
 
-- [ ] Finalize wording on `/about`, `/what-is-pet-therapy`, `/members`, and `/meet-the-board`.
+- [ ] Finalize wording on `/about`, `/what-is-pet-therapy`, and `/meet-the-board`.
 - [x] Donation platform: **Donorbox** — embed on `/donate` (§5).
 - [ ] Forms: **Tally** — code is wired, but production form IDs still need to be configured (§4).
 - [x] Replace footer placeholder links with real routes / site URL.

@@ -38,7 +38,7 @@ export const boardMembers: BoardMember[] = [
     name: "Maya Patel",
     role: "Community",
     companion: "Roo",
-    bio: "Maya leads our community outreach and volunteer recruitment. Her background in social work helps us identify new areas where pet therapy can make a difference.",
+    bio: "Maya helps guide community outreach. Her background in social work helps us identify places where pet therapy can make a difference.",
     image: BOARD_IMG.maya,
     imageAlt: "Placeholder portrait for board member Maya Patel",
   },
