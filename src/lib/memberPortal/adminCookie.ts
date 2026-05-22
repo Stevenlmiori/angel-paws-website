@@ -13,7 +13,7 @@ export const ADMIN_SESSION_COOKIE_PATH = "/";
 /** Paths we used before `path: "/"`; cleared on login success and logout. */
 export const LEGACY_ADMIN_PORTAL_COOKIE_PATHS = ["/admin", "/admin/member-portal"] as const;
 
-/** Paths where retired cookie names may still exist (middleware / logout). */
+/** Paths where retired cookie names may still exist (proxy / logout). */
 const LEGACY_COOKIE_NAME_PATHS = ["/", "/admin", "/admin/member-portal"] as const;
 
 /** Optional e.g. `angelpawspettherapy.com` so `www` and apex share one session cookie. */

@@ -5,5 +5,5 @@
  */
 export const ADMIN_PORTAL_COOKIE_NAME = "ap_admin_site_session";
 
-/** Previous name — cleared by middleware so old values cannot shadow the new cookie. */
+/** Previous name — cleared by proxy so old values cannot shadow the new cookie. */
 export const LEGACY_ADMIN_PORTAL_COOKIE_NAMES = ["ap_admin_portal"] as const;

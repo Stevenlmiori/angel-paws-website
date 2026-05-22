@@ -65,7 +65,7 @@ export async function POST(request: Request) {
    * Only one `Set-Cookie` on success. Safari was observed failing to keep the
    * session when this response also cleared legacy paths (multiple Set-Cookie
    * lines). Stale `/admin/member-portal` cookies are still cleared on the next
-   * admin GET by middleware.
+   * admin GET by proxy.
    */
   res.cookies.set(ADMIN_PORTAL_COOKIE_NAME, result.value.token, {
     ...adminCookieBase({ secure }),

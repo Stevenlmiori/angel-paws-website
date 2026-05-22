@@ -1,12 +1,16 @@
-import imageUrlBuilder from "@sanity/image-url";
+import { createImageUrlBuilder } from "@sanity/image-url";
 import { getSanityPublicConfig } from "@/lib/sanity/env";
 
-export function urlForImage(source: Parameters<ReturnType<typeof imageUrlBuilder>["image"]>[0]) {
+type SanityImageSource = Parameters<
+  ReturnType<typeof createImageUrlBuilder>["image"]
+>[0];
+
+export function urlForImage(source: SanityImageSource) {
   const cfg = getSanityPublicConfig();
   if (!cfg) {
     return null;
   }
-  return imageUrlBuilder({
+  return createImageUrlBuilder({
     projectId: cfg.projectId,
     dataset: cfg.dataset,
   })
@@ -23,11 +27,11 @@ type ImageBuilder = NonNullable<ReturnType<typeof urlForImage>>;
  * or drafts — which would otherwise crash the Server Component (HTTP 500).
  */
 export function safeSanityImageUrl(
-  source: Parameters<typeof urlForImage>[0] | null | undefined,
+  source: SanityImageSource | null | undefined,
   configure: (b: ImageBuilder) => ImageBuilder,
 ): string | null {
   try {
-    const b = urlForImage(source as Parameters<typeof urlForImage>[0]);
+    const b = urlForImage(source as SanityImageSource);
     if (!b) {
       return null;
     }

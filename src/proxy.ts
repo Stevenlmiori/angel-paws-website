@@ -27,7 +27,7 @@ function constructionAllows(pathname: string): boolean {
  *
  * Only run on **GET/HEAD** so POST responses are not given extra `Set-Cookie`.
  */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const gated = siteUnderConstruction();
 
@@ -78,9 +78,9 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     /*
-     * Skip middleware for Next static/image pipelines only (recommended).
+     * Skip proxy for Next static/image pipelines only (recommended).
      * All other paths (including `/api`, `_next/webpack-hmr`, public assets)
-     * hit middleware so construction mode can rewrite or allow explicitly.
+     * hit proxy so construction mode can rewrite or allow explicitly.
      */
     "/((?!_next/static|_next/image|favicon.ico).*)",
   ],
