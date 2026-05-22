@@ -2,6 +2,10 @@ import Link from "next/link";
 import { sanityReadClient } from "@/lib/sanity/client";
 import { storiesForHomeQuery } from "@/lib/sanity/queries";
 import type { StoryListItem } from "@/lib/sanity/types";
+import {
+  getLocalPublishedStories,
+  mergePublishedStories,
+} from "@/lib/stories/localStories";
 import { StoryCard } from "@/components/stories/StoryCard";
 import { HeadingBlock } from "@/components/ui/HeadingBlock";
 
@@ -12,13 +16,16 @@ export async function HomeStories() {
 
   let items: StoryListItem[] = [];
   if (client) {
-    items = await client.fetch<StoryListItem[]>(
-      storiesForHomeQuery,
-      { tag: tagParam } as Record<string, string>,
-    );
+    items = await client.fetch<StoryListItem[]>(storiesForHomeQuery, {
+      tag: tagParam,
+    } as Record<string, string>);
   }
+  items = mergePublishedStories(
+    getLocalPublishedStories(tagParam),
+    items,
+  ).slice(0, 3);
 
-  if (!client || items.length === 0) {
+  if (items.length === 0) {
     return null;
   }
 

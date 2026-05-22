@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { sanityReadClient } from "@/lib/sanity/client";
 import { storySlugsQuery } from "@/lib/sanity/queries";
+import { getLocalStorySlugs } from "@/lib/stories/localStories";
 import { siteUnderConstruction } from "@/lib/siteFlags";
 
 const baseUrl = "https://www.angelpawspettherapy.com";
@@ -31,12 +32,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const client = sanityReadClient();
+  let slugs = getLocalStorySlugs();
   if (!client) {
-    return staticEntries;
+    return [
+      ...staticEntries,
+      ...slugs.map((slug) => ({
+        url: `${baseUrl}/stories/${slug}`,
+        lastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.65,
+      })),
+    ];
   }
 
   try {
-    const slugs = await client.fetch<string[]>(storySlugsQuery);
+    slugs = Array.from(
+      new Set([...slugs, ...(await client.fetch<string[]>(storySlugsQuery))]),
+    );
     const storyEntries: MetadataRoute.Sitemap = slugs.map((slug) => ({
       url: `${baseUrl}/stories/${slug}`,
       lastModified,

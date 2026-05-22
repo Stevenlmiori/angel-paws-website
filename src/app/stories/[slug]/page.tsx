@@ -6,6 +6,7 @@ import { sanityReadClient } from "@/lib/sanity/client";
 import { safeSanityImageUrl } from "@/lib/sanity/image";
 import { storyBySlugQuery } from "@/lib/sanity/queries";
 import type { StoryDetail } from "@/lib/sanity/types";
+import { getLocalStoryBySlug } from "@/lib/stories/localStories";
 import { PortableBody } from "@/components/stories/PortableBody";
 import { Section } from "@/components/ui/Section";
 
@@ -15,16 +16,32 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const localStory = getLocalStoryBySlug(slug);
+  if (localStory) {
+    const title = localStory.seoTitle?.trim() || localStory.title;
+    const desc =
+      localStory.seoDescription?.trim() ||
+      localStory.excerpt?.trim() ||
+      undefined;
+    return {
+      title,
+      description: desc,
+      openGraph: { title, description: desc },
+    };
+  }
   const client = sanityReadClient();
   if (!client) {
     return { title: "Story" };
   }
-  const story = await client.fetch<StoryDetail | null>(storyBySlugQuery, { slug });
+  const story = await client.fetch<StoryDetail | null>(storyBySlugQuery, {
+    slug,
+  });
   if (!story) {
     return { title: "Story" };
   }
   const title = story.seoTitle?.trim() || story.title;
-  const desc = story.seoDescription?.trim() || story.excerpt?.trim() || undefined;
+  const desc =
+    story.seoDescription?.trim() || story.excerpt?.trim() || undefined;
   return {
     title,
     description: desc,
@@ -34,18 +51,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function StoryDetailPage({ params }: Props) {
   const { slug } = await params;
+  const localStory = getLocalStoryBySlug(slug);
   const client = sanityReadClient();
-  if (!client) {
+  if (!client && !localStory) {
     notFound();
   }
-  const story = await client.fetch<StoryDetail | null>(storyBySlugQuery, { slug });
+  const story =
+    localStory ??
+    (await client!.fetch<StoryDetail | null>(storyBySlugQuery, { slug }));
   if (!story) {
     notFound();
   }
 
-  const hero = safeSanityImageUrl(story.featuredImage, (b) =>
-    b.width(1600).height(900),
-  );
+  const hero =
+    story.featuredImage?.url ??
+    safeSanityImageUrl(story.featuredImage, (b) => b.width(1600).height(900));
 
   const publishedLabel = (() => {
     if (!story.publishedAt) {
@@ -75,7 +95,9 @@ export default async function StoryDetailPage({ params }: Props) {
           {publishedLabel ? (
             <time
               dateTime={
-                typeof story.publishedAt === "string" ? story.publishedAt : undefined
+                typeof story.publishedAt === "string"
+                  ? story.publishedAt
+                  : undefined
               }
               className="mb-3 block text-xs font-bold uppercase tracking-widest text-primary"
             >

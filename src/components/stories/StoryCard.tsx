@@ -6,7 +6,8 @@ import type { StoryListItem } from "@/lib/sanity/types";
 
 export function StoryCard({ story }: { story: StoryListItem }) {
   const img = story.featuredImage;
-  const src = safeSanityImageUrl(img, (b) => b.width(800).height(520));
+  const src =
+    img?.url ?? safeSanityImageUrl(img, (b) => b.width(800).height(520));
 
   return (
     <Link
@@ -56,7 +57,10 @@ export function StoryCard({ story }: { story: StoryListItem }) {
         ) : null}
         <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary">
           Read story
-          <ArrowRight className="size-4 transition group-hover:translate-x-0.5" aria-hidden />
+          <ArrowRight
+            className="size-4 transition group-hover:translate-x-0.5"
+            aria-hidden
+          />
         </span>
       </div>
     </Link>

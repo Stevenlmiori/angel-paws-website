@@ -3,6 +3,10 @@ import Link from "next/link";
 import { sanityReadClient } from "@/lib/sanity/client";
 import { storiesPublishedQuery } from "@/lib/sanity/queries";
 import type { StoryListItem } from "@/lib/sanity/types";
+import {
+  getLocalPublishedStories,
+  mergePublishedStories,
+} from "@/lib/stories/localStories";
 import { StoryCard } from "@/components/stories/StoryCard";
 import { HeadingBlock } from "@/components/ui/HeadingBlock";
 import { Section } from "@/components/ui/Section";
@@ -26,11 +30,20 @@ export default async function StoriesIndexPage({
   if (client) {
     allPublished = await client.fetch<StoryListItem[]>(storiesPublishedQuery);
   }
+  allPublished = mergePublishedStories(
+    getLocalPublishedStories(),
+    allPublished,
+  );
 
   const tagNorm = tag?.trim().toLowerCase() ?? "";
   const stories = tagNorm
-    ? allPublished.filter((s) =>
-        (s.tags ?? []).map((x) => x.toLowerCase()).includes(tagNorm),
+    ? mergePublishedStories(
+        getLocalPublishedStories(tagNorm),
+        allPublished.filter(
+          (s) =>
+            !s._id.startsWith("local.") &&
+            (s.tags ?? []).map((x) => x.toLowerCase()).includes(tagNorm),
+        ),
       )
     : allPublished;
 
@@ -56,22 +69,20 @@ export default async function StoriesIndexPage({
             </FilterChip>
             {allTags.map((t) => (
               <FilterChip
-              key={t}
-              href={`/stories?tag=${encodeURIComponent(t)}`}
-              active={tagNorm === t.toLowerCase()}
-            >
+                key={t}
+                href={`/stories?tag=${encodeURIComponent(t)}`}
+                active={tagNorm === t.toLowerCase()}
+              >
                 {t}
               </FilterChip>
             ))}
           </div>
         ) : null}
 
-        {!client ? (
+        {stories.length === 0 ? (
           <p className="text-on-surface-variant">
-            Stories are not configured yet (missing Sanity environment variables).
+            No published stories yet. Check back soon.
           </p>
-        ) : stories.length === 0 ? (
-          <p className="text-on-surface-variant">No published stories yet. Check back soon.</p>
         ) : (
           <ul className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
             {stories.map((s) => (

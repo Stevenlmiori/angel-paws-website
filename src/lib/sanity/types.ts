@@ -1,6 +1,7 @@
 export type StoryFeaturedImage = {
   asset?: { _ref?: string };
   alt?: string;
+  url?: string;
 };
 
 export type StoryListItem = {

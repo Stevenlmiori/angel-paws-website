@@ -32,16 +32,16 @@ Do not add public “become a member,” “join the team,” or volunteer recru
 
 ## 1. Route map (Debbie’s list → this site)
 
-| Need | Route | Status |
-|------|--------|--------|
-| Who we are / mission & beliefs | `/about` | Live — refine copy as needed; beliefs align with CFBC-style language |
-| Where we serve | `/where-we-serve` | Live |
-| What is pet therapy | `/what-is-pet-therapy` | Live — editorial page |
-| Existing handler resources | `/members/portal` | Protected direct URL; not public navigation |
-| Contact + visit requests | `/contact` | Live — **Tally** embeds when env vars are set; email fallback otherwise |
-| Give / donations | `/donate` | Live — **Donorbox** embed (see §5 + env vars) |
-| Board | `/meet-the-board` | Live layout; sample roster/bios/photos need Debbie’s real board details |
-| Stories (blog) | `/stories` | Live — **Sanity** content; home strip optional tag filter |
+| Need                           | Route                  | Status                                                                               |
+| ------------------------------ | ---------------------- | ------------------------------------------------------------------------------------ |
+| Who we are / mission & beliefs | `/about`               | Live — refine copy as needed; beliefs align with CFBC-style language                 |
+| Where we serve                 | `/where-we-serve`      | Live                                                                                 |
+| What is pet therapy            | `/what-is-pet-therapy` | Live — editorial page                                                                |
+| Existing handler resources     | `/members/portal`      | Protected direct URL; not public navigation                                          |
+| Contact + visit requests       | `/contact`             | Live — **Tally** embeds when env vars are set; email fallback otherwise              |
+| Give / donations               | `/donate`              | Live — **Donorbox** embed (see §5 + env vars)                                        |
+| Board                          | `/meet-the-board`      | Live layout; sample roster/bios/photos need Debbie’s real board details              |
+| Stories (blog)                 | `/stories`             | Live — repo-backed launch story + **Sanity** content; home strip optional tag filter |
 
 **Operator admin (one login):** After signing in at `/admin/member-portal/login`, you land on **`/admin`**. From there open **Member portal links** or **Stories**. Stories are stored in Sanity; no separate Sanity account is required for day-to-day editing.
 
@@ -90,11 +90,11 @@ Do not add public “become a member,” “join the team,” or volunteer recru
 
 ## 4. Forms — **Tally** (code implemented; production IDs pending)
 
-| Form | Public? | Env var | Notes |
-|------|---------|---------|--------|
-| Contact | Yes | `NEXT_PUBLIC_TALLY_CONTACT_FORM_ID` | Embed under “Send a message” on `/contact` |
-| Request a visit | Yes | `NEXT_PUBLIC_TALLY_VISIT_FORM_ID` (optional) | Second embed; omit if one Tally form covers both |
-| Member-only forms | No | — | After Phase C: add hidden or gated Tally links on `/members/portal` |
+| Form              | Public? | Env var                                      | Notes                                                               |
+| ----------------- | ------- | -------------------------------------------- | ------------------------------------------------------------------- |
+| Contact           | Yes     | `NEXT_PUBLIC_TALLY_CONTACT_FORM_ID`          | Embed under “Send a message” on `/contact`                          |
+| Request a visit   | Yes     | `NEXT_PUBLIC_TALLY_VISIT_FORM_ID` (optional) | Second embed; omit if one Tally form covers both                    |
+| Member-only forms | No      | —                                            | After Phase C: add hidden or gated Tally links on `/members/portal` |
 
 If neither public Tally ID is configured, `/contact` shows a client-friendly “Online forms are being finalized” message and the protected email reveal fallback.
 
@@ -122,11 +122,11 @@ Copy `.env.example` to `.env.local` and set values. In **Vercel** (or similar), 
 
 ---
 
-## 6. Stories — **Sanity** + `/admin`
+## 6. Stories — repo launch stories + **Sanity** `/admin`
 
-- **Public:** `/stories` and each post at `/stories/[slug]`. Optional **home** section shows up to three posts; set **`NEXT_PUBLIC_HOME_STORIES_TAG`** to a tag (e.g. `home-spotlight`) so only tagged posts appear, or leave it unset for the three latest.
+- **Public:** `/stories` and each post at `/stories/[slug]`. The site merges repo-backed launch stories from `src/lib/stories/localStories.ts` with Sanity stories, with local slugs winning if duplicated. Optional **home** section shows up to three posts; set **`NEXT_PUBLIC_HOME_STORIES_TAG`** to a tag (e.g. `home-spotlight`) so only tagged posts appear, or leave it unset for the three latest.
 - **Editing:** `/admin` → **Stories** (same email/password as member portal admin). Featured image, title, slug, tags, date, and body blocks (paragraphs, headings, quotes, bullets).
-- **Env:** See `.env.example` (`NEXT_PUBLIC_SANITY_*`, `SANITY_API_WRITE_TOKEN`, optional `SANITY_REVALIDATE_SECRET` for the revalidate webhook at `/api/revalidate-sanity`).
+- **Env:** See `.env.example` (`NEXT_PUBLIC_SANITY_*`, `SANITY_API_WRITE_TOKEN`, optional `SANITY_REVALIDATE_SECRET` for the revalidate webhook at `/api/revalidate-sanity`). If Sanity rejects story edits with 403, replace `SANITY_API_WRITE_TOKEN` with a token that has create/update/delete permissions.
 - **Sample posts:** Run `npm run seed:stories` once (requires write token + three images under `public/stories-seed/` — see script header).
 
 ---
@@ -153,4 +153,4 @@ When you launch publicly, set **`NEXT_PUBLIC_SITE_INDEXABLE=true`** in Vercel, *
 
 ---
 
-*Last updated: May 2026 — Blue Edition palette plus inverse/charcoal section bands; production domain, Contact fallback, member portal gate, Donorbox/Tally env notes, and pre-launch indexing controls.*
+_Last updated: May 2026 — Blue Edition palette plus inverse/charcoal section bands; production domain, Contact fallback, member portal gate, Donorbox/Tally env notes, and pre-launch indexing controls._
