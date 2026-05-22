@@ -40,3 +40,8 @@ export function tallyDataSrc(formId: string): string {
   });
   return `https://tally.so/embed/${encodeURIComponent(formId)}?${q.toString()}`;
 }
+
+/** Public share URL for opening a Tally form outside the embedded iframe. */
+export function tallyShareUrl(formId: string): string {
+  return `https://tally.so/r/${encodeURIComponent(formId)}`;
+}
