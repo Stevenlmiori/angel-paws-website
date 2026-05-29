@@ -22,6 +22,7 @@ export function MemberPortalLoginForm() {
         name="password"
         type="password"
         autoComplete="current-password"
+        autoFocus
         required
         className="mb-4 w-full rounded-[0.625rem] border border-primary/15 bg-surface-container-lowest px-4 py-3.5 text-on-surface shadow-none outline-none ring-primary/25 transition focus-visible:ring-2"
       />
