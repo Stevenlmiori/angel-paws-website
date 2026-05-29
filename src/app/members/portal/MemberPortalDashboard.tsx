@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LogOut } from "lucide-react";
+import { ExternalLink, LogOut } from "lucide-react";
 import { loadStoredPortalResources } from "@/lib/memberPortal/resourcesStore";
 import { getPortalIcon } from "@/lib/memberPortal/portalIcons";
 import { Button } from "@/components/ui/Button";
@@ -47,15 +47,27 @@ export async function MemberPortalDashboard() {
                 <span className="mb-4 flex size-11 items-center justify-center rounded-2xl bg-primary/12 text-primary">
                   <Icon className="size-5" strokeWidth={2} aria-hidden />
                 </span>
-                <span className="font-serif text-xl text-on-surface">{item.title}</span>
+                <span className="flex items-center gap-1.5 font-serif text-xl text-on-surface">
+                  {item.title}
+                  {item.external ? (
+                    <ExternalLink
+                      className="size-4 shrink-0 text-on-surface-variant"
+                      strokeWidth={2}
+                      aria-hidden
+                    />
+                  ) : null}
+                </span>
                 <span className="mt-2 block text-sm text-on-surface-variant leading-relaxed">
                   {item.description}
                 </span>
+                {item.external ? (
+                  <span className="sr-only"> (opens in a new tab)</span>
+                ) : null}
               </>
             );
 
             const cardClass =
-              "block rounded-[1.75rem] bg-surface-container-high p-6 shadow-soft transition hover:shadow-md md:p-8";
+              "block rounded-[1.75rem] bg-surface-container-high p-6 shadow-soft transition hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-surface md:p-8";
 
             if (item.external) {
               return (

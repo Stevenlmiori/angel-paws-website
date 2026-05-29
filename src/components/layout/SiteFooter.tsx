@@ -67,6 +67,11 @@ export function SiteFooter() {
                 What Is Pet Therapy
               </Link>
             </li>
+            <li>
+              <Link href="/members/portal" className={linkClass}>
+                Member Login
+              </Link>
+            </li>
           </ul>
         </div>
 
