@@ -13,7 +13,7 @@ export function sanityReadClient(): SanityClient | null {
     projectId: cfg.projectId,
     dataset: cfg.dataset,
     apiVersion: cfg.apiVersion,
-    useCdn: true,
+    useCdn: false,
     perspective: "published",
   });
 }

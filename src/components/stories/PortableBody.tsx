@@ -5,45 +5,6 @@ import { normalizePortableTextForPublic } from "@/lib/stories/normalizePortableT
 
 const components: PortableTextComponents = {
   types: {
-    localImage: ({ value }) => {
-      const src = typeof value?.src === "string" ? value.src : "";
-      if (!src.startsWith("/")) {
-        return null;
-      }
-      const alt =
-        typeof value?.alt === "string" && value.alt
-          ? value.alt
-          : "Story image";
-      const width = typeof value?.width === "number" ? value.width : 1200;
-      const height = typeof value?.height === "number" ? value.height : 800;
-      const aspectRatio = `${width} / ${height}`;
-      const maxWidth =
-        typeof value?.maxWidth === "number"
-          ? `${value.maxWidth}px`
-          : undefined;
-
-      return (
-        <figure
-          className="my-10 overflow-hidden rounded-[2rem] bg-surface-container-low shadow-soft"
-          style={maxWidth ? { maxWidth, marginInline: "auto" } : undefined}
-        >
-          <div className="relative w-full" style={{ aspectRatio }}>
-            <Image
-              src={src}
-              alt={alt}
-              fill
-              className="object-contain"
-              sizes="(max-width: 768px) 100vw, 720px"
-            />
-          </div>
-          {typeof value?.caption === "string" && value.caption ? (
-            <figcaption className="px-6 py-4 text-sm text-on-surface-variant">
-              {value.caption}
-            </figcaption>
-          ) : null}
-        </figure>
-      );
-    },
     image: ({ value }) => {
       const alt =
         typeof value?.alt === "string" && value.alt
