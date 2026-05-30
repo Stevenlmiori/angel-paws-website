@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DonateHero } from "@/components/donate/DonateHero";
 import { DonateImpactSection } from "@/components/donate/DonateImpactSection";
 import { DonateDonationPanel } from "@/components/donate/DonateDonationPanel";
+import { DonateByMail } from "@/components/donate/DonateByMail";
 import { DonateNewsletter } from "@/components/donate/DonateNewsletter";
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export default function DonatePage() {
       <DonateHero />
       <DonateImpactSection />
       <DonateDonationPanel />
+      <DonateByMail />
       <DonateNewsletter />
     </div>
   );
