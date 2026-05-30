@@ -122,8 +122,8 @@ export function SiteFooter() {
       <div className="bg-stone-200/40">
         <div className="mx-auto max-w-screen-xl px-6 py-10 text-center sm:px-10 lg:px-12">
           <p className="font-sans text-xs uppercase leading-relaxed tracking-[0.22em] text-stone-500">
-            © {new Date().getFullYear()} Angel Paws Pet Therapy. A Digital
-            Home for Healing and Hope.
+            © {new Date().getFullYear()} Angel Paws Pet Therapy. All rights
+            reserved.
           </p>
         </div>
       </div>
