@@ -17,7 +17,6 @@ const MISSION_SEGMENTS = [
 
 export function HomeMission() {
   const root = useRef<HTMLElement>(null);
-  const underline = useRef<HTMLSpanElement>(null);
 
   useGSAP(
     () => {
@@ -31,14 +30,11 @@ export function HomeMission() {
       const segs = el.querySelectorAll<HTMLElement>(".mission-seg");
       const jesus = el.querySelector<HTMLElement>(".mission-jesus");
       const label = el.querySelector<HTMLElement>(".mission-kicker");
-      const line = underline.current;
 
       if (reduced) {
-        gsap.set([label, segs, jesus, line].filter(Boolean), {
+        gsap.set([label, segs, jesus].filter(Boolean), {
           opacity: 1,
           y: 0,
-          scale: 1,
-          scaleX: 1,
           filter: "none",
         });
         return;
@@ -47,7 +43,6 @@ export function HomeMission() {
       gsap.set(label, { opacity: 0, y: 14 });
       gsap.set(segs, { opacity: 0, y: 32, filter: "blur(10px)" });
       gsap.set(jesus, { opacity: 0, y: 28, filter: "blur(10px)" });
-      if (line) gsap.set(line, { scaleX: 0 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -85,27 +80,12 @@ export function HomeMission() {
           },
           "-=0.72",
         );
-
-      if (line) {
-        tl.to(
-          line,
-          {
-            scaleX: 1,
-            duration: 0.9,
-            ease: "power2.inOut",
-          },
-          "-=0.55",
-        );
-      }
     },
     { scope: root },
   );
 
   return (
-    <section
-      ref={root}
-      className="section-tone-inverse py-24 md:py-32"
-    >
+    <section ref={root} className="section-tone-inverse py-24 md:py-32">
       <div className="mx-auto max-w-4xl space-y-8 px-6 text-center sm:px-10 lg:px-12">
         <p className="mission-kicker font-sans text-[0.65rem] font-semibold uppercase tracking-[0.35em] text-on-surface-inverse-muted">
           Mission
@@ -113,15 +93,8 @@ export function HomeMission() {
         <h2 className="font-serif text-3xl font-bold leading-[1.35] sm:text-4xl lg:text-5xl lg:leading-[1.28]">
           <span className="sr-only">&ldquo;</span>
           <span className="mission-seg inline">{MISSION_SEGMENTS[0]}</span>
-          <span className="mission-jesus relative inline-block px-0.5 align-baseline">
-            <span className="relative z-10 font-serif italic text-primary">
-              Jesus
-            </span>
-            <span
-              ref={underline}
-              className="pointer-events-none absolute bottom-1 left-1/2 z-0 h-[0.35rem] w-[min(100%,5.25rem)] -translate-x-1/2 origin-center rounded-full bg-primary-container/90 sm:bottom-1.5 sm:h-2"
-              aria-hidden
-            />
+          <span className="mission-jesus inline font-serif italic text-primary">
+            Jesus
           </span>
           <span className="mission-seg inline">{MISSION_SEGMENTS[1]}</span>
           <span className="mission-seg inline">{MISSION_SEGMENTS[2]}</span>

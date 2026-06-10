@@ -49,7 +49,7 @@ export async function HomeStories() {
         <ul className="grid gap-10 md:grid-cols-3">
           {items.map((s) => (
             <li key={s._id}>
-              <StoryCard story={s} />
+              <StoryCard story={s} compact />
             </li>
           ))}
         </ul>

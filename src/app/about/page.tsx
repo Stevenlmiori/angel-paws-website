@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { AboutBeliefsStatement } from "@/components/about/AboutBeliefsStatement";
+import { AboutHeart } from "@/components/about/AboutHeart";
 import { AboutHero } from "@/components/about/AboutHero";
 import { AboutLeadershipCTA } from "@/components/about/AboutLeadershipCTA";
 import { AboutMissionBeliefs } from "@/components/about/AboutMissionBeliefs";
@@ -16,6 +18,8 @@ export default function AboutPage() {
     <div className="flex flex-col">
       <AboutHero />
       <AboutMissionBeliefs />
+      <AboutBeliefsStatement />
+      <AboutHeart />
       <AboutTherapyDifference />
       <AboutStory />
       <AboutLeadershipCTA />

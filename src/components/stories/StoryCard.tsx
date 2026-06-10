@@ -4,7 +4,14 @@ import { ArrowRight } from "lucide-react";
 import { safeSanityImageUrl } from "@/lib/sanity/image";
 import type { StoryListItem } from "@/lib/sanity/types";
 
-export function StoryCard({ story }: { story: StoryListItem }) {
+export function StoryCard({
+  story,
+  compact = false,
+}: {
+  story: StoryListItem;
+  /** Hide date and tag chips (Debbie: cleaner story cards). */
+  compact?: boolean;
+}) {
   const img = story.featuredImage;
   const src =
     img?.url ?? safeSanityImageUrl(img, (b) => b.width(800).height(520));
@@ -30,7 +37,7 @@ export function StoryCard({ story }: { story: StoryListItem }) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-8">
-        {story.publishedAt ? (
+        {!compact && story.publishedAt ? (
           <time
             dateTime={story.publishedAt}
             className="mb-2 text-xs font-bold uppercase tracking-widest text-primary"
@@ -50,7 +57,7 @@ export function StoryCard({ story }: { story: StoryListItem }) {
             {story.excerpt}
           </p>
         ) : null}
-        {story.tags?.length ? (
+        {!compact && story.tags?.length ? (
           <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-secondary">
             {story.tags.join(" · ")}
           </p>

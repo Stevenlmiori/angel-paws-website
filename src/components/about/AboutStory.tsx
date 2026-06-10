@@ -1,18 +1,7 @@
 import Image from "next/image";
 import { ABOUT_IMG } from "./media";
 
-const youtubeEmbedParams = new URLSearchParams({
-  rel: "0",
-  modestbranding: "1",
-  playsinline: "1",
-  /** Replays when the video ends so viewers are less likely to sit on YouTube’s end-screen suggestions. */
-  loop: "1",
-  playlist: "sxl9IDVqQVw",
-});
-
-type StoryMedia =
-  | { kind: "image"; src: string; alt: string }
-  | { kind: "youtube"; videoId: string; iframeTitle: string };
+type StoryMedia = { kind: "image"; src: string; alt: string };
 
 const blocks: ReadonlyArray<{
   title: string;
@@ -23,28 +12,28 @@ const blocks: ReadonlyArray<{
   {
     media: {
       kind: "image",
-      src: ABOUT_IMG.storySeed,
-      alt: "Elderly woman laughing with a therapy dog in a care setting",
+      src: ABOUT_IMG.storyHurting,
+      alt: "Covey during an Angel Paws community visit",
     },
-    title: "The Seed of Hope",
-    body: "In 2014, after receiving life-changing medical news, our founder began searching for hope and found both a church family and a renewed calling in Christ. Soon after, she witnessed how therapy-dog visits shifted hospital rooms from fear and isolation to calm conversation and comfort.",
+    title: "Helping the Hurting",
+    body: "Angel Paws began in 2017 as a small church-based ministry and grew as requests for visits increased across Houston. We served schools, colleges, assisted living communities, hospitals, and crisis-impacted communities, and saw God open doors far beyond what our early team could have imagined.",
     reverse: false,
   },
   {
     media: {
-      kind: "youtube",
-      videoId: "sxl9IDVqQVw",
-      iframeTitle: "Angel Paws ministry video on YouTube",
+      kind: "image",
+      src: ABOUT_IMG.storyJourney,
+      alt: "Sam during an Angel Paws visit",
     },
-    title: "Helping the Hurting",
-    body: "Angel Paws began in 2017 as a small church-based ministry and grew as requests for visits increased across Houston. We served schools, colleges, assisted living communities, hospitals, and crisis-impacted communities, and saw God open doors far beyond what our early team could have imagined.",
+    title: "The Journey",
+    body: "From a single visit that sparked a vision to teams serving across Greater Houston and beyond, Angel Paws has been shaped by faithful handlers, remarkable dogs, and partners who welcome us into their spaces.",
     reverse: true,
   },
   {
     media: {
       kind: "image",
       src: ABOUT_IMG.storyForward,
-      alt: "Brown therapy cocker spaniel in a vest, looking toward the camera",
+      alt: "Sam, Angel Paws therapy dog",
     },
     title: "Looking Forward",
     body: "Today, as a 501(c)(3) nonprofit ministry, we continue to equip handlers and therapy dogs to serve with excellence, humility, and compassion. Our prayer is simple: to keep sharing the love of Jesus through the steady comfort our pets bring to every place we are invited.",
@@ -71,25 +60,13 @@ export function AboutStory() {
           >
             <div className="w-full md:w-1/2">
               <div className="relative aspect-video overflow-hidden rounded-2xl shadow-lg md:rounded-3xl">
-                {media.kind === "image" ? (
-                  <Image
-                    src={media.src}
-                    alt={media.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                ) : (
-                  <iframe
-                    title={media.iframeTitle}
-                    src={`https://www.youtube-nocookie.com/embed/${media.videoId}?${youtubeEmbedParams.toString()}`}
-                    className="absolute inset-0 h-full w-full border-0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                  />
-                )}
+                <Image
+                  src={media.src}
+                  alt={media.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
               </div>
             </div>
             <div className="w-full md:w-1/2">

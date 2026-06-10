@@ -1,6 +1,6 @@
-import { SITE_IMAGES } from "@/lib/siteImages";
+import { DEBBIE_IMG } from "@/lib/debbieImages";
 
 export const PET_THERAPY_IMG = {
-  hero: SITE_IMAGES.ministrySamComfortingKid1,
-  whyItWorks: SITE_IMAGES.stockDogWindowLight,
+  hero: DEBBIE_IMG.angelSaying,
+  whyItWorks: DEBBIE_IMG.khaki,
 } as const;

@@ -12,10 +12,12 @@ const aboutSubLinks = [
   { href: "/what-is-pet-therapy", label: "What is Pet Therapy?" },
   { href: "/meet-the-board", label: "Meet our Board" },
   { href: "/where-we-serve", label: "Where We Serve" },
+  { href: "/get-involved", label: "Get Involved" },
 ] as const;
 
 const navAfterAbout = [
   { href: "/stories", label: "Stories" },
+  { href: "/photo-gallery", label: "Photo Gallery" },
 ] as const;
 
 const ABOUT_PATHS = [
@@ -23,6 +25,7 @@ const ABOUT_PATHS = [
   "/what-is-pet-therapy",
   "/meet-the-board",
   "/where-we-serve",
+  "/get-involved",
 ] as const;
 
 function navLinkActive(href: string, pathname: string) {

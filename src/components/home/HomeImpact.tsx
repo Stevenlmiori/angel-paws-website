@@ -17,13 +17,20 @@ export function HomeImpact() {
               <div className="relative h-[420px] w-full sm:h-[520px] lg:h-[600px]">
                 <Image
                   src={IMG.impactFeature}
-                  alt="Angel Paws therapy dog with handler, ready for visits"
+                  alt="AJ, Angel Paws therapy dog with handler"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />
               </div>
             </div>
+            <p className="mt-6 text-center font-serif text-lg italic leading-relaxed text-on-surface-inverse-muted md:text-left">
+              &ldquo;Be completely humble and gentle; be patient, bearing with one
+              another in love.&rdquo;
+              <cite className="mt-2 block text-sm not-italic text-primary-container">
+                Ephesians 4:2
+              </cite>
+            </p>
           </div>
 
           <div className="space-y-8">
@@ -49,20 +56,6 @@ export function HomeImpact() {
               <p className="font-medium text-on-surface-inverse">
                 It&apos;s simple. And it matters.
               </p>
-            </div>
-            <div className="grid grid-cols-2 gap-8 pt-6">
-              <div>
-                <p className="text-4xl font-bold text-primary-container">1,000+</p>
-                <p className="text-sm font-semibold uppercase tracking-wider text-on-surface-inverse-muted">
-                  People Visited
-                </p>
-              </div>
-              <div>
-                <p className="text-4xl font-bold text-primary-container">Houston</p>
-                <p className="text-sm font-semibold uppercase tracking-wider text-on-surface-inverse-muted">
-                  Area Served
-                </p>
-              </div>
             </div>
             <Link
               href="/stories"

@@ -15,9 +15,7 @@ export function DonateHero() {
           </h1>
           <p className="mb-10 max-w-xl text-xl leading-relaxed text-on-surface-variant">
             Your generosity allows us to provide certified therapy animals to
-            hospitals, schools, and communities in need. Every dollar directly
-            supports the care, training, and travel of our dedicated animal
-            partners.
+            hospitals, schools, and communities in need.
           </p>
           <div className="flex flex-wrap gap-4">
             <a
@@ -38,7 +36,7 @@ export function DonateHero() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-[3rem] bg-surface-container-low shadow-soft">
             <Image
               src={DONATE_IMG.hero}
-              alt="Golden retriever sitting in a sunny green field"
+              alt="Sam, Angel Paws therapy dog"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 42vw"
@@ -50,7 +48,7 @@ export function DonateHero() {
               100%
             </p>
             <p className="text-xs font-bold uppercase leading-tight tracking-widest text-on-surface-variant">
-              Of public donations fund direct animal care and training.
+              Of public donations fund our mission.
             </p>
           </div>
         </div>

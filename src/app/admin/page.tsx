@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { unstable_noStore as noStore } from "next/cache";
 import { redirect } from "next/navigation";
-import { BookOpen, Link2, LogOut } from "lucide-react";
+import { BookOpen, Images, Link2, LogOut, Quote } from "lucide-react";
 import { getAdminPortalEnv } from "@/lib/memberPortal/adminEnv";
 import { getAdminSession } from "@/lib/memberPortal/getAdminSession";
 import { adminLogoutAction } from "@/app/admin/member-portal/actions";
@@ -48,7 +48,7 @@ export default async function AdminHubPage() {
         </form>
       </div>
 
-      <ul className="grid gap-6 sm:grid-cols-2">
+      <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
         <li>
           <Link
             href="/admin/member-portal"
@@ -84,6 +84,44 @@ export default async function AdminHubPage() {
             </p>
             <span className="mt-6 text-sm font-semibold text-primary underline-offset-4 group-hover:underline">
               Open stories
+            </span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/admin/testimonials"
+            className="group flex h-full flex-col rounded-3xl bg-surface-container-high p-8 shadow-soft ring-1 ring-primary/5 transition hover:ring-primary/15"
+          >
+            <span className="mb-4 flex size-14 items-center justify-center rounded-2xl bg-secondary-container text-on-secondary-container">
+              <Quote className="size-7" strokeWidth={1.75} aria-hidden />
+            </span>
+            <h2 className="font-serif text-2xl text-on-surface group-hover:text-primary">
+              Testimonials
+            </h2>
+            <p className="mt-2 flex-1 text-on-surface-variant">
+              Edit the auto-rotating quotes on the homepage.
+            </p>
+            <span className="mt-6 text-sm font-semibold text-primary underline-offset-4 group-hover:underline">
+              Open testimonials
+            </span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/admin/gallery"
+            className="group flex h-full flex-col rounded-3xl bg-surface-container-high p-8 shadow-soft ring-1 ring-primary/5 transition hover:ring-primary/15"
+          >
+            <span className="mb-4 flex size-14 items-center justify-center rounded-2xl bg-primary-container text-on-primary-container">
+              <Images className="size-7" strokeWidth={1.75} aria-hidden />
+            </span>
+            <h2 className="font-serif text-2xl text-on-surface group-hover:text-primary">
+              Photo gallery
+            </h2>
+            <p className="mt-2 flex-1 text-on-surface-variant">
+              Upload and manage photos for the gallery page and home preview.
+            </p>
+            <span className="mt-6 text-sm font-semibold text-primary underline-offset-4 group-hover:underline">
+              Open gallery
             </span>
           </Link>
         </li>

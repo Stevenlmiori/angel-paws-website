@@ -15,10 +15,11 @@ export function HomeWhatWeDo() {
             show up.
           </p>
           <p>
-            In hospitals, schools, and care facilities, our dogs bring a calm
-            presence into places that often feel heavy. For a few minutes, the
-            room changes. People breathe easier. Conversations open up.
-            Shoulders relax.
+            In hospitals, schools, and care facilities along with businesses
+            wanting to bring in a little stress relief for employees, our dogs
+            can bring a calm presence into places that often feel heavy. For a
+            few minutes, the room changes. People breathe easier. Conversations
+            open up. Shoulders relax.
           </p>
           <p>They don&apos;t fix everything. But they make hard moments easier.</p>
         </div>
@@ -28,7 +29,7 @@ export function HomeWhatWeDo() {
         <div className="group relative min-h-[320px] overflow-hidden rounded-[2.5rem] bg-surface-container-high transition-all duration-500 hover:shadow-xl md:col-span-8 md:h-full">
           <Image
             src={IMG.pillarHealthcare}
-            alt="Long-coated dog in a red and black harness (stock photo)"
+            alt="Sam during a hospital and healthcare visit"
             fill
             sizes="(max-width: 768px) 100vw, 66vw"
             className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
@@ -55,7 +56,7 @@ export function HomeWhatWeDo() {
           <div className="group relative min-h-[240px] overflow-hidden rounded-[2.5rem] bg-secondary-container md:min-h-0">
             <Image
               src={IMG.pillarSchools}
-              alt="Therapy dog and handler at a school campus visit"
+              alt="AJ during a schools and literacy visit"
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
@@ -82,7 +83,7 @@ export function HomeWhatWeDo() {
           <div className="group relative min-h-[280px] overflow-hidden rounded-[2.5rem] bg-surface-container-highest md:min-h-0">
             <Image
               src={IMG.pillarCareFacilities}
-              alt="Sam comforting a child during an Angel Paws visit"
+              alt="Covey during an assisted living facility visit"
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
@@ -96,7 +97,7 @@ export function HomeWhatWeDo() {
               />
               <div>
                 <h3 className="mb-2 font-serif text-2xl font-bold text-white drop-shadow-sm">
-                  Care Facilities
+                  Assisted Living Facilities
                 </h3>
                 <p className="text-white/95 drop-shadow-sm">
                   Companionship and familiarity—moments of connection that break

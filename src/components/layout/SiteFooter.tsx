@@ -30,7 +30,7 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
-              <Link href="/about" className={linkClass}>
+              <Link href="/about#beliefs" className={linkClass}>
                 Beliefs
               </Link>
             </li>
@@ -60,6 +60,21 @@ export function SiteFooter() {
             <li>
               <Link href="/stories" className={linkClass}>
                 Stories
+              </Link>
+            </li>
+            <li>
+              <Link href="/testimonials" className={linkClass}>
+                Testimonials
+              </Link>
+            </li>
+            <li>
+              <Link href="/photo-gallery" className={linkClass}>
+                Photo Gallery
+              </Link>
+            </li>
+            <li>
+              <Link href="/get-involved" className={linkClass}>
+                Get Involved
               </Link>
             </li>
             <li>

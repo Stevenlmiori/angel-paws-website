@@ -1,12 +1,21 @@
+import { HOW_TO_BECOME_INVOLVED_DOC_URL } from "@/lib/siteLinks";
 import type { StoredPortalResource } from "./resourceTypes";
 
 /** Shipped default list when no saved data exists yet (Redis / local file). */
 export const DEFAULT_PORTAL_RESOURCES: StoredPortalResource[] = [
   {
+    id: "how-to-become-involved",
+    title: "How to become involved",
+    description: "Overview of requirements and expectations for handlers.",
+    href: HOW_TO_BECOME_INVOLVED_DOC_URL,
+    external: true,
+    iconId: "file",
+  },
+  {
     id: "policies",
     title: "Policies & handbooks",
-    description: "PDFs and policy documents (Google Drive).",
-    href: "https://drive.google.com",
+    description: "Member policies and handbook materials (add Drive links as ready).",
+    href: HOW_TO_BECOME_INVOLVED_DOC_URL,
     external: true,
     iconId: "folder",
   },

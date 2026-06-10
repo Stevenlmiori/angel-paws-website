@@ -1,10 +1,13 @@
 import type { LucideIcon } from "lucide-react";
+import Link from "next/link";
 import { BookOpen, HeartHandshake, Shield, Sparkles } from "lucide-react";
+import { CHAMPION_FOREST_BELIEFS_URL } from "@/lib/siteLinks";
 
 const beliefs: {
   Icon: LucideIcon;
   title: string;
   body: string;
+  link?: { href: string; label: string; external?: boolean };
 }[] = [
   {
     Icon: Sparkles,
@@ -20,11 +23,16 @@ const beliefs: {
     Icon: BookOpen,
     title: "Biblical Foundation",
     body: "Scripture guides our convictions, our character, and the way we care for people of every age and background.",
+    link: {
+      href: CHAMPION_FOREST_BELIEFS_URL,
+      label: "Read our beliefs (Champion Forest)",
+      external: true,
+    },
   },
   {
     Icon: Shield,
     title: "Safety & Stewardship",
-    body: "We require training, temperament screening, and health standards so each team serves with professionalism and trust.",
+    body: "Our pets are highly trained. We require training, temperament screening, and health standards so each team serves with professionalism and trust.",
   },
 ];
 
@@ -48,7 +56,7 @@ export function AboutMissionBeliefs() {
             </p>
           </div>
           <div className="grid flex-1 grid-cols-1 gap-8 sm:grid-cols-2 md:min-w-0">
-            {beliefs.map(({ Icon, title, body }) => (
+            {beliefs.map(({ Icon, title, body, link }) => (
               <div
                 key={title}
                 className="rounded-2xl bg-surface-container-lowest p-8 shadow-soft transition-colors duration-300 hover:bg-white md:p-10"
@@ -60,6 +68,25 @@ export function AboutMissionBeliefs() {
                   {title}
                 </h3>
                 <p className="leading-relaxed text-on-surface-variant">{body}</p>
+                {link ? (
+                  link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="mt-4 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline"
+                    >
+                      {link.label}
+                    </Link>
+                  )
+                ) : null}
               </div>
             ))}
           </div>

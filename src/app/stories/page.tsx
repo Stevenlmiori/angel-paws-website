@@ -87,7 +87,7 @@ export default async function StoriesIndexPage({
           <ul className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
             {stories.map((s) => (
               <li key={s._id}>
-                <StoryCard story={s} />
+                <StoryCard story={s} compact />
               </li>
             ))}
           </ul>

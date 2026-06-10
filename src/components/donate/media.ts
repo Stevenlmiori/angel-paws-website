@@ -1,5 +1,5 @@
-import { SITE_IMAGES } from "@/lib/siteImages";
+import { DEBBIE_IMG } from "@/lib/debbieImages";
 
 export const DONATE_IMG = {
-  hero: SITE_IMAGES.stockGoldenField,
+  hero: DEBBIE_IMG.sam,
 } as const;

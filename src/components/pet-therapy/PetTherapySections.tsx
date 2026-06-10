@@ -6,12 +6,12 @@ const remainderCards = [
   {
     Icon: Shield,
     title: "What are your safety policies?",
-    body: "Safety is our priority. Every team is vaccinated, temperament-tested, and certified. We adhere to the policies of each facility, ensuring a professional and hygienic environment for all visits.",
+    body: "Safety is our priority. Every dog is vaccinated, temperament-tested, and certified. We adhere to the policies of each facility, ensuring a professional and hygienic environment for all visits.",
   },
   {
     Icon: Sparkles,
     title: "How does faith shape your work?",
-    body: "As a ministry of Champion Forest, we believe a faithful dog carries the comfort Christ asks us to share. We love without agenda, offering prayer and presence wherever we are invited.",
+    body: "As a faith-based 501(c)(3), we believe a faithful dog carries the comfort Christ asks us to share. We love without agenda, offering prayer and presence wherever we are invited.",
   },
 ] as const;
 
@@ -143,7 +143,9 @@ export function PetTherapySections() {
                 <li>
                   <strong className="font-semibold text-on-surface">Conduct:</strong>{" "}
                   Handlers are trained in active listening and proper hospital
-                  etiquette.
+                  etiquette. To be a Reading Buddy in the schools, dogs are
+                  tested for their ability to remain still and calm while a
+                  student reads to them.
                 </li>
                 <li>
                   <strong className="font-semibold text-on-surface">

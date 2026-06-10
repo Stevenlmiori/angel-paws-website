@@ -1,10 +1,9 @@
-import { SITE_IMAGES } from "@/lib/siteImages";
+import { DEBBIE_IMG } from "@/lib/debbieImages";
 
-/**
- * About page — each image is unique site-wide (`src/lib/siteImages.ts`).
- */
+/** About page — ministry photos from Debbie’s June 2026 review. */
 export const ABOUT_IMG = {
-  hero: SITE_IMAGES.aiAboutHeroTeam,
-  storySeed: SITE_IMAGES.dogElderlyWomanLaughing,
-  storyForward: SITE_IMAGES.aiAboutStoryForward,
+  hero: DEBBIE_IMG.benjiAboutHero,
+  storyJourney: DEBBIE_IMG.samJourney,
+  storyHurting: DEBBIE_IMG.coveyHurting,
+  storyForward: DEBBIE_IMG.sam,
 } as const;

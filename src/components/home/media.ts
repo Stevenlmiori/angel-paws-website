@@ -1,15 +1,16 @@
+import { DEBBIE_IMG } from "@/lib/debbieImages";
 import { SITE_IMAGES } from "@/lib/siteImages";
 
 /**
- * Homepage — each `SITE_IMAGES` key is used only here (see `src/lib/siteImages.ts`).
+ * Homepage — ministry photos from Debbie’s June 2026 package where noted.
  */
 
 export const IMG = {
   /** Must stay `gave-me-your-paw` — pairs with hero quote (“…gave me your paw.”). */
   heroDog: SITE_IMAGES.ministryPawHand,
-  pillarHealthcare: SITE_IMAGES.dogElderlyManWithDogInBed,
-  pillarSchools: SITE_IMAGES.ministrySamCathedralHigh2,
-  pillarCareFacilities: SITE_IMAGES.ministrySamWithChild2,
-  impactFeature: SITE_IMAGES.ministryHandlerHorizontal,
+  pillarHealthcare: DEBBIE_IMG.samHospitals,
+  pillarSchools: DEBBIE_IMG.ajSchools,
+  pillarCareFacilities: DEBBIE_IMG.coveyAssistedLiving,
+  impactFeature: DEBBIE_IMG.ajImpact,
   journeyInvite: SITE_IMAGES.dogElderlyManWithDogInBed,
 } as const;

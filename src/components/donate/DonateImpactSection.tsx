@@ -13,8 +13,8 @@ const items = [
   },
   {
     icon: PawPrint,
-    title: "Animal Welfare",
-    body: "Ensuring our therapy partners receive top-tier veterinary care.",
+    title: "Community Outreach",
+    body: "Extending visits to assisted living, churches, and crisis-response settings.",
   },
 ] as const;
 
@@ -48,11 +48,11 @@ export function DonateImpactSection() {
           <span className="mb-8 text-6xl text-primary">&ldquo;</span>
           <blockquote className="mb-10 font-serif text-3xl italic leading-snug md:text-4xl">
             Seeing my daughter smile for the first time in weeks because of a
-            visit from Bella was a miracle we&apos;ll never forget.
+            visit from Lexie was a miracle we&apos;ll never forget.
           </blockquote>
           <div>
             <p className="font-sans text-sm font-bold uppercase tracking-widest text-on-surface-charcoal">
-              Sarah J.
+              Grateful parent
             </p>
             <p className="text-sm text-on-surface-charcoal-muted">
               Parent of a patient
