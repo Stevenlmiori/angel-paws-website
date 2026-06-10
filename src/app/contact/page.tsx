@@ -12,9 +12,8 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="flex flex-col pb-16 md:pb-20">
-      <Reveal>
-        <ContactMainSection />
-      </Reveal>
+      {/* No Reveal here — gsap-reveal starts visibility:hidden and breaks Google Form iframes */}
+      <ContactMainSection />
       <Reveal delayMs={50}>
         <ContactMapTeaser />
       </Reveal>
