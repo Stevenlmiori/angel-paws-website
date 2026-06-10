@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { Heart } from "lucide-react";
-import { TallyContactSection } from "@/components/embeds/TallyContactSection";
 import { VisitationRequestForm } from "@/components/embeds/VisitationRequestForm";
 import { DirectEmailReveal } from "@/components/contact/DirectEmailReveal";
 
 export function ContactMainSection() {
   return (
     <section className="mx-auto mb-24 max-w-screen-xl px-6 sm:px-10 md:mb-32 lg:px-12">
-      <div className="mb-16 max-w-3xl">
+      <div className="mb-12 max-w-2xl">
         <p className="mb-4 text-xs font-bold uppercase tracking-[0.24em] text-primary">
           Contact
         </p>
@@ -15,21 +14,23 @@ export function ContactMainSection() {
           Get in touch
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-on-surface-variant">
-          Share a question, request a visit, or tell us a bit about your
-          organization. We will follow up as soon as we can.
+          Request a visit for your facility, or reach out with a general question.
+          We respond as soon as we can.
         </p>
       </div>
 
-      <div className="grid gap-16 lg:grid-cols-[minmax(0,0.92fr)_minmax(16rem,0.38fr)]">
-        <div className="space-y-16">
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(14rem,0.32fr)] lg:gap-16">
+        <div className="space-y-12">
           <VisitationRequestForm />
 
-          <div className="border-t border-primary/10 pt-16">
-            <p className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-primary">
-              General inquiries
+          <div className="max-w-xl">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+              General questions
             </p>
-            <TallyContactSection />
-            <div className="mt-10">
+            <p className="mt-3 leading-relaxed text-on-surface-variant">
+              For anything that is not a facility visit request, email us directly.
+            </p>
+            <div className="mt-6">
               <DirectEmailReveal />
             </div>
           </div>

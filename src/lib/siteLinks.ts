@@ -11,9 +11,6 @@ export const CHAMPION_FOREST_BELIEFS_URL =
 export const VISITATION_REQUEST_FORM_URL =
   "https://forms.gle/mJb8L4MjjTgs58oK8";
 
-export const VISITATION_REQUEST_FORM_EMBED_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSeqISmS-wDsIAM-6XpMActF0d2SXK5kYBHzEwXLx6msMesu8Q/viewform?embedded=true";
-
 export const VISITATION_REQUEST_EMAIL = "angelpawshouston@gmail.com";
 
 /** How to become involved / member overview (same public Google Doc). */
