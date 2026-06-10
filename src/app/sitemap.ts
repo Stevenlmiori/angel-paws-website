@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { sanityReadClient } from "@/lib/sanity/client";
 import { storySlugsQuery } from "@/lib/sanity/queries";
+import { isExcludedSeedStorySlug } from "@/lib/stories/excludedSeedStories";
 import { getLocalStorySlugs } from "@/lib/stories/localStories";
 import { siteUnderConstruction } from "@/lib/siteFlags";
 
@@ -51,7 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     slugs = Array.from(
       new Set([...slugs, ...(await client.fetch<string[]>(storySlugsQuery))]),
-    );
+    ).filter((slug) => !isExcludedSeedStorySlug(slug));
     const storyEntries: MetadataRoute.Sitemap = slugs.map((slug) => ({
       url: `${baseUrl}/stories/${slug}`,
       lastModified,

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { sanityReadClient } from "@/lib/sanity/client";
 import { storiesForHomeQuery } from "@/lib/sanity/queries";
 import type { StoryListItem } from "@/lib/sanity/types";
+import { withoutExcludedSeedStories } from "@/lib/stories/excludedSeedStories";
 import {
   getLocalPublishedStories,
   mergePublishedStories,
@@ -20,9 +21,8 @@ export async function HomeStories() {
       tag: tagParam,
     } as Record<string, string>);
   }
-  items = mergePublishedStories(
-    getLocalPublishedStories(tagParam),
-    items,
+  items = withoutExcludedSeedStories(
+    mergePublishedStories(getLocalPublishedStories(tagParam), items),
   ).slice(0, 3);
 
   if (items.length === 0) {

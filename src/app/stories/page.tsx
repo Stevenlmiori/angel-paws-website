@@ -3,6 +3,7 @@ import Link from "next/link";
 import { sanityReadClient } from "@/lib/sanity/client";
 import { storiesPublishedQuery } from "@/lib/sanity/queries";
 import type { StoryListItem } from "@/lib/sanity/types";
+import { withoutExcludedSeedStories } from "@/lib/stories/excludedSeedStories";
 import {
   getLocalPublishedStories,
   mergePublishedStories,
@@ -30,9 +31,8 @@ export default async function StoriesIndexPage({
   if (client) {
     allPublished = await client.fetch<StoryListItem[]>(storiesPublishedQuery);
   }
-  allPublished = mergePublishedStories(
-    getLocalPublishedStories(),
-    allPublished,
+  allPublished = withoutExcludedSeedStories(
+    mergePublishedStories(getLocalPublishedStories(), allPublished),
   );
 
   const tagNorm = tag?.trim().toLowerCase() ?? "";

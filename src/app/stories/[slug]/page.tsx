@@ -6,6 +6,7 @@ import { sanityReadClient } from "@/lib/sanity/client";
 import { safeSanityImageUrl } from "@/lib/sanity/image";
 import { storyBySlugQuery } from "@/lib/sanity/queries";
 import type { StoryDetail } from "@/lib/sanity/types";
+import { isExcludedSeedStorySlug } from "@/lib/stories/excludedSeedStories";
 import { getLocalStoryBySlug } from "@/lib/stories/localStories";
 import { PortableBody } from "@/components/stories/PortableBody";
 import { Section } from "@/components/ui/Section";
@@ -16,6 +17,9 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  if (isExcludedSeedStorySlug(slug)) {
+    return { title: "Story" };
+  }
   const localStory = getLocalStoryBySlug(slug);
   if (localStory) {
     const title = localStory.seoTitle?.trim() || localStory.title;
@@ -51,6 +55,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function StoryDetailPage({ params }: Props) {
   const { slug } = await params;
+  if (isExcludedSeedStorySlug(slug)) {
+    notFound();
+  }
   const localStory = getLocalStoryBySlug(slug);
   const client = sanityReadClient();
   if (!client && !localStory) {
