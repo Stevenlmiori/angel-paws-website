@@ -4,15 +4,14 @@ import { ContactMapTeaser } from "@/components/contact/ContactMapTeaser";
 import { Reveal } from "@/components/ui";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Therapy Dog Visit Requests",
+  title: "Get in Touch",
   description:
-    "Get in touch with Angel Paws Pet Therapy to request a facility visit or ask a question about therapy dog visits in Greater Houston.",
+    "Contact Angel Paws Pet Therapy by email, or submit a visitation request form to schedule therapy dog visits in Greater Houston.",
 };
 
 export default function ContactPage() {
   return (
     <div className="flex flex-col pb-16 md:pb-20">
-      {/* No Reveal here — gsap-reveal starts visibility:hidden and breaks Google Form iframes */}
       <ContactMainSection />
       <Reveal delayMs={50}>
         <ContactMapTeaser />

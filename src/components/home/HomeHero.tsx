@@ -29,7 +29,7 @@ export function HomeHero() {
           </p>
           <div className="flex flex-wrap gap-6 pt-4">
             <Link
-              href="/contact"
+              href="/contact#visitation-request"
               className="flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-lg font-bold text-on-primary shadow-lg shadow-primary/20 transition-transform hover:scale-[1.02]"
             >
               Request a Visit

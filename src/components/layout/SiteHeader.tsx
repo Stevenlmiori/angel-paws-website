@@ -136,7 +136,7 @@ export function SiteHeader() {
                 href="/contact"
                 className={linkClass(navLinkActive("/contact", pathname))}
               >
-                Contact
+                Get in Touch
               </Link>
             </li>
           </ul>
@@ -144,7 +144,7 @@ export function SiteHeader() {
 
         <div className="relative z-20 ml-auto flex min-w-0 shrink-0 items-center gap-2 sm:gap-3">
           <Link
-            href="/contact"
+            href="/contact#visitation-request"
             className="hidden rounded-full bg-surface-container-high px-4 py-2.5 font-sans text-sm font-semibold text-on-surface transition-colors hover:bg-surface-container-highest sm:inline-flex md:px-6"
           >
             Request a Visit
@@ -247,10 +247,10 @@ export function SiteHeader() {
             )}
             onClick={() => setOpen(false)}
           >
-            Contact
+            Get in Touch
           </Link>
           <Link
-            href="/contact"
+            href="/contact#visitation-request"
             className="rounded-xl px-3 py-3 font-serif text-lg text-stone-600 transition-colors hover:bg-stone-200/50 hover:text-stone-900 sm:hidden"
             onClick={() => setOpen(false)}
           >

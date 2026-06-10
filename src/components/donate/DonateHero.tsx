@@ -25,7 +25,7 @@ export function DonateHero() {
               Give Now
             </a>
             <a
-              href="/contact"
+              href="/contact#visitation-request"
               className="rounded-full bg-surface-container-high px-8 py-4 text-sm font-bold uppercase tracking-widest text-on-surface transition-colors hover:bg-surface-container-highest"
             >
               Request a Visit

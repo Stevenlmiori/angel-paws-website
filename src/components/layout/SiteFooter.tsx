@@ -53,8 +53,13 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
-              <Link href="/contact" className={linkClass}>
+              <Link href="/contact#visitation-request" className={linkClass}>
                 Request a Visit
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className={linkClass}>
+                Get in Touch
               </Link>
             </li>
             <li>

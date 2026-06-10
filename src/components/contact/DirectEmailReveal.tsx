@@ -1,15 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
-
-const EMAIL_LOCAL = "angelpawshouston";
-const EMAIL_DOMAIN = "gmail.com";
+import { useState } from "react";
+import { CONTACT_EMAIL } from "@/lib/siteLinks";
 
 export function DirectEmailReveal() {
   const [revealed, setRevealed] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const email = useMemo(() => `${EMAIL_LOCAL}@${EMAIL_DOMAIN}`, []);
+  const email = CONTACT_EMAIL;
 
   async function copyEmail() {
     try {

@@ -7,11 +7,15 @@ export const ANGEL_PAWS_FACEBOOK_URL =
 export const CHAMPION_FOREST_BELIEFS_URL =
   "https://www.championforest.org/about/beliefs/";
 
-/** Google Form — visitation requests (embed + direct link). */
+/** Primary inbox for general contact and visit follow-up. */
+export const CONTACT_EMAIL = "angelpawshouston@gmail.com";
+
+/** @deprecated Use CONTACT_EMAIL */
+export const VISITATION_REQUEST_EMAIL = CONTACT_EMAIL;
+
+/** Google Form — structured facility visit requests (opens in new tab). */
 export const VISITATION_REQUEST_FORM_URL =
   "https://forms.gle/mJb8L4MjjTgs58oK8";
-
-export const VISITATION_REQUEST_EMAIL = "angelpawshouston@gmail.com";
 
 /** How to become involved / member overview (same public Google Doc). */
 export const HOW_TO_BECOME_INVOLVED_DOC_URL =

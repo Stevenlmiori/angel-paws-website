@@ -85,7 +85,7 @@ export function MeetingDates() {
             </p>
             <div className="mt-8 flex justify-center">
               <a
-                href="/contact"
+                href="/contact#visitation-request"
                 className="rounded-full bg-primary px-8 py-4 font-sans text-base font-bold text-on-primary transition-opacity hover:opacity-90"
               >
                 Request a Visit

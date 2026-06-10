@@ -19,7 +19,7 @@ export function PetTherapyCTA() {
           with a question.
         </p>
         <Link
-          href="/contact"
+          href="/contact#visitation-request"
           className="inline-flex rounded-full bg-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-primary transition-transform hover:scale-[1.02]"
         >
           Request a Visit

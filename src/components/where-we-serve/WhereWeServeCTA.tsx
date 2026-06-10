@@ -26,7 +26,7 @@ export function WhereWeServeCTA() {
         </p>
         <div className="flex flex-wrap justify-center gap-6">
           <Link
-            href="/contact"
+            href="/contact#visitation-request"
             className="rounded-full bg-primary px-10 py-4 text-sm font-bold uppercase tracking-widest text-on-primary transition-opacity hover:opacity-90"
           >
             Request a Visit

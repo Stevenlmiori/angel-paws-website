@@ -24,7 +24,7 @@ export function HomeJourneyCTA() {
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             <Link
-              href="/contact"
+              href="/contact#visitation-request"
               className="rounded-full bg-white px-12 py-5 text-xl font-bold text-primary shadow-xl transition-transform hover:scale-105"
             >
               Request a Visit
