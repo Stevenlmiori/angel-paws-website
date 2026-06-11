@@ -141,7 +141,7 @@ export default async function StoryDetailPage({ params }: Props) {
         </div>
       ) : null}
 
-      <Section tone="warm" className="!pt-10 !pb-8 md:!pt-14 md:!pb-10">
+      <Section tone="warm" className="!pt-10 !pb-16 md:!pt-14 md:!pb-20">
         <div className="mx-auto max-w-screen-md px-6 sm:px-10 lg:px-12 [&_.prose-story>p:last-child]:mb-0">
           <PortableBody value={story.body ?? undefined} />
         </div>
