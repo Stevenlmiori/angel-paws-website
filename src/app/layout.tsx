@@ -92,7 +92,7 @@ export default function RootLayout({
           <>
             <JsonLd />
             <SiteHeader />
-            <main className="flex flex-1 flex-col pt-20 md:pt-24">
+            <main className="flex flex-col pt-20 md:pt-24">
               {children}
             </main>
             <SiteFooter />
