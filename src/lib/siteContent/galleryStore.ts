@@ -1,3 +1,6 @@
+import {
+  isExcludedGalleryImage,
+} from "./excludedGalleryImages";
 import { DEFAULT_GALLERY_IMAGES } from "./galleryDefaults";
 import {
   loadJsonFromLocalFile,
@@ -34,7 +37,9 @@ export async function loadStoredGalleryImages(): Promise<StoredGalleryImage[]> {
 }
 
 export async function loadActiveGalleryImages(): Promise<StoredGalleryImage[]> {
-  return (await loadStoredGalleryImages()).filter((img) => img.active);
+  return (await loadStoredGalleryImages()).filter(
+    (img) => img.active && !isExcludedGalleryImage(img),
+  );
 }
 
 export async function persistGalleryImages(

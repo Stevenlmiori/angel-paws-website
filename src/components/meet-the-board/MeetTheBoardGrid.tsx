@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BoardMemberCard } from "./BoardMemberCard";
-import { boardMembers } from "./boardData";
+import { advisoryBoardMembers, boardMembers } from "./boardData";
 
 export function MeetTheBoardGrid() {
   return (
@@ -35,6 +35,22 @@ export function MeetTheBoardGrid() {
           </div>
         </article>
       </div>
+
+      {advisoryBoardMembers.length > 0 ? (
+        <div className="mt-24 md:mt-32">
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.24em] text-primary">
+            Advisory board
+          </p>
+          <h2 className="mb-12 max-w-2xl font-serif text-3xl text-on-surface md:text-4xl">
+            Additional counsel and expertise
+          </h2>
+          <div className="grid grid-cols-1 gap-x-8 gap-y-16 md:grid-cols-2 lg:max-w-4xl">
+            {advisoryBoardMembers.map((member) => (
+              <BoardMemberCard key={member.name} member={member} />
+            ))}
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }

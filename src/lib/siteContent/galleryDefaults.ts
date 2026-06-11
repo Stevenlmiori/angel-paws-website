@@ -22,7 +22,6 @@ export const DEFAULT_GALLERY_IMAGES: StoredGalleryImage[] = [
   g("boone-nursing", "Boone Nursing home.jpg", "Boone visiting a nursing home"),
   g("boys-girls-sam", "Boys & Girls & Sam.jpg", "Sam with children at Boys & Girls Club"),
   g("charlie-reading-2", "Charlie reading buddy 2.jpg", "Charlie as a reading buddy"),
-  g("hope-squad-lexie", "Hope Squard Lexie.jpg", "Lexie with Hope Squad students"),
   g("khaki", "Khaki.jpg", "Khaki, therapy dog"),
   g("kylo-2", "Kylo 2.jpg", "Kylo during a visit"),
   g("kylo-methodist", "Kylo Methodist employee.jpg", "Kylo comforting a Methodist employee"),

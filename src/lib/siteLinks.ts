@@ -21,5 +21,9 @@ export const VISITATION_REQUEST_FORM_URL =
 export const HOW_TO_BECOME_INVOLVED_DOC_URL =
   "https://docs.google.com/document/d/1cbR9C-QVtEZL46k6Vqlyq4ZUIUMCSDHx/edit?usp=sharing&ouid=116763330466713943515&rtpof=true&sd=true";
 
+/** Board member bios (Debbie maintains; advisory roster in progress). */
+export const BOARD_MEMBERS_BIO_DOC_URL =
+  "https://docs.google.com/document/d/1nHAFHNsN4uBpijR_fZNnOCo8loeFYkQi/edit?usp=sharing&ouid=116763330466713943515&rtpof=true&sd=true";
+
 export const KHOU_FLOOD_COVERAGE =
   "https://www.khou.com/article/news/local/houston-therapy-dogs-kerville-floods/285-5159be1b-21ae-4946-932d-fe1cd397647e";
