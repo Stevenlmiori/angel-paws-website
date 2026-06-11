@@ -3,36 +3,36 @@ import { KHOU_FLOOD_COVERAGE } from "@/lib/siteLinks";
 import type { StoryDetail, StoryListItem } from "@/lib/sanity/types";
 import { storyParagraphs } from "./storyBlocks";
 
+/**
+ * Repo-backed stories. `publishedAt` is the **event date** (when the visit or
+ * crisis response happened), not when the story was added to the website.
+ * Listed oldest → newest; public indexes sort newest event first.
+ */
 export const localStories: StoryDetail[] = [
   {
-    _id: "local.comfort-hope-prayer-school",
-    title: "A Moment of Comfort, Hope, and Prayer",
-    slug: "a-moment-of-comfort-hope-and-prayer",
-    publishedAt: "2026-05-29T12:00:00.000Z",
+    _id: "local.sutherland-springs",
+    title: "Church Shooting in Sutherland Springs, Texas",
+    slug: "sutherland-springs",
+    /** Crisis response — November 2017 (Debbie: exact visit date not recalled) */
+    publishedAt: "2017-11-15T12:00:00.000Z",
     excerpt:
-      "During an Angel Paws visit with a local high school cheer team, a frightening medical emergency became a moment of prayer, comfort, and steady care.",
+      "Angel Paws teams served with quiet presence after the Sutherland Springs tragedy—comfort when words were hard to find.",
     featuredImage: {
-      url: DEBBIE_IMG.ajSchools,
-      alt: "Angel Paws therapy dog during a school visit",
+      url: "/gallery/Sutherland Springs Church Shooting.jpg",
+      alt: "Angel Paws therapy dogs serving after the Sutherland Springs church shooting",
     },
-    tags: ["visit", "schools", "prayer", "comfort"],
+    tags: ["visit", "crisis-response"],
     body: storyParagraphs([
-      "Sometimes God opens a door in a way we never could have planned.",
-      "Recently, the Angel Paws team had a visit scheduled with the cheer team at a local high school. Around 75 students were gathered and ready to spend time with the therapy dogs, excited for the comfort and joy that only a furry friend can bring.",
-      "That morning, as Debbie Benningfield prayed over the visit, she sensed a clear prompting from the Holy Spirit to offer prayer for the students. Knowing that prayer in a public school setting can be sensitive, she reached out to the coach ahead of time and asked if that would be possible. The coach responded that it would be okay, as long as the students were asked first.",
-      "About 30 minutes into the visit, one of the students was sitting on the floor petting the dogs when she suddenly fell backward and began having a seizure. The staff responded immediately, moving quickly to protect the student and care for her. Another staff member guided the rest of the students into a nearby room.",
-      "As the Angel Paws team walked the dogs into the room where the students had gathered, the coach asked Debbie if she would pray for the girls. So right there, in the middle of a classroom, they prayed. They prayed for the student. They prayed for the students. They prayed for the coaches and staff. In a moment filled with fear and uncertainty, God provided comfort, peace, and the opportunity to point others to Him.",
-      "This is the heart of Angel Paws. Yes, therapy dogs bring smiles. They help calm anxious hearts. They offer comfort through a gentle presence. But again and again, God uses this ministry to bring something even deeper: hope, compassion, and reminders of His nearness.",
-      "This ministry is also deeply grateful for the continued support of Champion Forest Baptist Church. From the beginning, Champion Forest saw the good this ministry could do in the community and beyond, and that support has helped Angel Paws bring comfort, hope, and the love of Jesus to so many.",
-      "As God continues to call Angel Paws to serve an even greater area, we know the next step was to form a 501(c)(3). Angel Paws trusted that calling and is now a 501(c)(3) nonprofit organization, ready to go wherever God calls us.",
-      "God is still opening doors. And sometimes, those doors open through gentle paws, willing hearts, and a prayer offered at just the right moment.",
+      "After the church shooting in Sutherland Springs, Angel Paws teams traveled to serve survivors, families, first responders, and a grieving community. Therapy dogs offered calm presence in a moment when words were difficult and hearts were heavy.",
+      "This is the heart of Angel Paws: trained teams entering schools, assisted living facilities, hospitals, churches, and moments of community crisis with humility and care. The dogs do not fix the loss. They make room for a breath, a prayer, a smile, or a few minutes when someone does not have to carry the whole weight alone.",
     ]),
   },
   {
     _id: "local.memory-care-ollie",
     title: "A Gentle Paw Opens a Quiet Heart",
     slug: "memory-care-ollie",
-    publishedAt: "2026-06-01T12:00:00.000Z",
+    /** Before 2020 (Debbie: exact date pending) — placeholder mid-2019 for sort order */
+    publishedAt: "2019-06-01T12:00:00.000Z",
     excerpt:
       "Ollie helped a quiet resident at assisted living recall childhood memories—and opened a conversation about faith.",
     featuredImage: {
@@ -50,7 +50,8 @@ export const localStories: StoryDetail[] = [
     _id: "local.kerrville-tucker",
     title: "Stories from Tragedy in the Hill Country Flooding",
     slug: "kerrville-flood-tucker",
-    publishedAt: "2026-06-02T12:00:00.000Z",
+    /** First Kerrville trip after July 4, 2025 floods (Debbie, July 9, 2025) */
+    publishedAt: "2025-07-09T12:00:00.000Z",
     excerpt:
       "A first responder asked Kathleen to deliver heartbreaking news about Tucker—a story of grief, hope, and faithful presence.",
     featuredImage: {
@@ -93,20 +94,28 @@ export const localStories: StoryDetail[] = [
     ],
   },
   {
-    _id: "local.sutherland-springs",
-    title: "Church Shooting in Sutherland Springs, Texas",
-    slug: "sutherland-springs",
-    publishedAt: "2026-06-03T12:00:00.000Z",
+    _id: "local.comfort-hope-prayer-school",
+    title: "A Moment of Comfort, Hope, and Prayer",
+    slug: "a-moment-of-comfort-hope-and-prayer",
+    /** High school cheer visit (Debbie, May 26, 2026) */
+    publishedAt: "2026-05-26T12:00:00.000Z",
     excerpt:
-      "Angel Paws teams served with quiet presence after the Sutherland Springs tragedy—comfort when words were hard to find.",
+      "During an Angel Paws visit with a local high school cheer team, a frightening medical emergency became a moment of prayer, comfort, and steady care.",
     featuredImage: {
-      url: "/gallery/Sutherland Springs Church Shooting.jpg",
-      alt: "Angel Paws therapy dogs serving after the Sutherland Springs church shooting",
+      url: DEBBIE_IMG.ajSchools,
+      alt: "Angel Paws therapy dog during a school visit",
     },
-    tags: ["visit", "crisis-response"],
+    tags: ["visit", "schools", "prayer", "comfort"],
     body: storyParagraphs([
-      "After the church shooting in Sutherland Springs, Angel Paws teams traveled to serve survivors, families, first responders, and a grieving community. Therapy dogs offered calm presence in a moment when words were difficult and hearts were heavy.",
-      "This is the heart of Angel Paws: trained teams entering schools, assisted living facilities, hospitals, churches, and moments of community crisis with humility and care. The dogs do not fix the loss. They make room for a breath, a prayer, a smile, or a few minutes when someone does not have to carry the whole weight alone.",
+      "Sometimes God opens a door in a way we never could have planned.",
+      "Recently, the Angel Paws team had a visit scheduled with the cheer team at a local high school. Around 75 students were gathered and ready to spend time with the therapy dogs, excited for the comfort and joy that only a furry friend can bring.",
+      "That morning, as Debbie Benningfield prayed over the visit, she sensed a clear prompting from the Holy Spirit to offer prayer for the students. Knowing that prayer in a public school setting can be sensitive, she reached out to the coach ahead of time and asked if that would be possible. The coach responded that it would be okay, as long as the students were asked first.",
+      "About 30 minutes into the visit, one of the students was sitting on the floor petting the dogs when she suddenly fell backward and began having a seizure. The staff responded immediately, moving quickly to protect the student and care for her. Another staff member guided the rest of the students into a nearby room.",
+      "As the Angel Paws team walked the dogs into the room where the students had gathered, the coach asked Debbie if she would pray for the girls. So right there, in the middle of a classroom, they prayed. They prayed for the student. They prayed for the students. They prayed for the coaches and staff. In a moment filled with fear and uncertainty, God provided comfort, peace, and the opportunity to point others to Him.",
+      "This is the heart of Angel Paws. Yes, therapy dogs bring smiles. They help calm anxious hearts. They offer comfort through a gentle presence. But again and again, God uses this ministry to bring something even deeper: hope, compassion, and reminders of His nearness.",
+      "This ministry is also deeply grateful for the continued support of Champion Forest Baptist Church. From the beginning, Champion Forest saw the good this ministry could do in the community and beyond, and that support has helped Angel Paws bring comfort, hope, and the love of Jesus to so many.",
+      "As God continues to call Angel Paws to serve an even greater area, we know the next step was to form a 501(c)(3). Angel Paws trusted that calling and is now a 501(c)(3) nonprofit organization, ready to go wherever God calls us.",
+      "God is still opening doors. And sometimes, those doors open through gentle paws, willing hearts, and a prayer offered at just the right moment.",
     ]),
   },
 ];
