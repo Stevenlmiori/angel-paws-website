@@ -90,7 +90,7 @@ export default async function StoryDetailPage({ params }: Props) {
   })();
 
   return (
-    <article className="flex flex-1 flex-col">
+    <article>
       <Section
         tone="inverse"
         className="!pt-28 md:!pt-32 !pb-8 md:!pb-10"
@@ -141,11 +141,8 @@ export default async function StoryDetailPage({ params }: Props) {
         </div>
       ) : null}
 
-      <Section
-        tone="warm"
-        className="flex-1 !pt-10 md:!pt-14 !pb-16 md:!pb-20"
-      >
-        <div className="mx-auto max-w-screen-md px-6 sm:px-10 lg:px-12">
+      <Section tone="warm" className="!py-10 md:!py-14">
+        <div className="mx-auto max-w-screen-md px-6 sm:px-10 lg:px-12 [&_.prose-story>p:last-child]:mb-0">
           <PortableBody value={story.body ?? undefined} />
         </div>
       </Section>
