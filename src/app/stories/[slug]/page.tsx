@@ -126,7 +126,7 @@ export default async function StoryDetailPage({ params }: Props) {
       </Section>
 
       {hero ? (
-        <div className="mx-auto max-w-screen-lg px-6 sm:px-10 lg:px-12">
+        <div className="mx-auto mt-8 max-w-screen-lg px-6 sm:px-10 md:mt-12 lg:px-12">
           <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[2.5rem] bg-surface-container-low shadow-soft">
             <Image
               src={hero}
