@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { GalleryImage } from "@/components/gallery/GalleryImage";
 import { loadActiveGalleryImages } from "@/lib/siteContent/galleryStore";
 
 export async function HomeGalleryPreview() {
@@ -35,10 +35,9 @@ export async function HomeGalleryPreview() {
               href="/photo-gallery"
               className="group relative block aspect-[4/5] bg-surface-container-low shadow-soft"
             >
-              <Image
+              <GalleryImage
                 src={img.src}
                 alt={img.alt}
-                fill
                 sizes="(max-width: 768px) 50vw, 33vw"
                 className="object-cover transition duration-500 group-hover:scale-[1.03]"
               />
