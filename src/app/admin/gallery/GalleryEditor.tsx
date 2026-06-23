@@ -1,13 +1,35 @@
 "use client";
 
-import { useRef, useState, useTransition } from "react";
-import { Plus, Trash2, Upload } from "lucide-react";
+import Image from "next/image";
+import { useMemo, useRef, useState, useTransition } from "react";
+import {
+  ArrowDown,
+  ArrowUp,
+  Check,
+  Eye,
+  EyeOff,
+  ImagePlus,
+  Plus,
+  Save,
+  Trash2,
+  UploadCloud,
+} from "lucide-react";
 import type { StoredGalleryImage } from "@/lib/siteContent/galleryTypes";
 import { Button } from "@/components/ui/Button";
+import { cn } from "@/lib/cn";
 import { saveGalleryDirect } from "./actions";
 
 function newId() {
-  return `g-${Date.now().toString(36)}`;
+  return `g-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
+}
+
+function imageTitle(item: StoredGalleryImage) {
+  return item.caption?.trim() || item.alt.trim() || "Untitled photo";
+}
+
+function canPreview(src: string) {
+  const clean = src.trim();
+  return clean.length > 0 && clean !== "/gallery/" && clean.startsWith("/");
 }
 
 export function GalleryEditor({
@@ -18,16 +40,27 @@ export function GalleryEditor({
   const [items, setItems] = useState(initialItems);
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [dragging, setDragging] = useState(false);
   const [pending, startTransition] = useTransition();
   const fileRef = useRef<HTMLInputElement>(null);
 
+  const activeCount = useMemo(
+    () => items.filter((item) => item.active).length,
+    [items],
+  );
+  const needsAltCount = useMemo(
+    () => items.filter((item) => item.alt.trim().length === 0).length,
+    [items],
+  );
+
   function update(id: string, patch: Partial<StoredGalleryImage>) {
-    setItems((prev) => prev.map((img) => (img.id === id ? { ...img, ...patch } : img)));
+    setItems((prev) =>
+      prev.map((img) => (img.id === id ? { ...img, ...patch } : img)),
+    );
   }
 
   function addItem() {
     setItems((prev) => [
-      ...prev,
       {
         id: newId(),
         src: "/gallery/",
@@ -35,44 +68,79 @@ export function GalleryEditor({
         caption: "",
         active: true,
       },
+      ...prev,
     ]);
+    setMessage("Blank photo card added.");
   }
 
   function remove(id: string) {
     setItems((prev) => prev.filter((img) => img.id !== id));
+    setMessage("Photo removed. Save to publish the change.");
   }
 
-  async function uploadFile(file: File) {
+  function moveItem(id: string, direction: -1 | 1) {
+    setItems((prev) => {
+      const from = prev.findIndex((item) => item.id === id);
+      const to = from + direction;
+      if (from < 0 || to < 0 || to >= prev.length) {
+        return prev;
+      }
+      const next = [...prev];
+      const [moved] = next.splice(from, 1);
+      next.splice(to, 0, moved);
+      return next;
+    });
+  }
+
+  async function uploadFiles(files: FileList | File[]) {
+    const imageFiles = Array.from(files).filter((file) =>
+      file.type.startsWith("image/"),
+    );
+    if (imageFiles.length === 0) {
+      setMessage("Choose an image file to upload.");
+      return;
+    }
+
     setUploading(true);
     setMessage("");
+    const uploaded: StoredGalleryImage[] = [];
+
     try {
-      const fd = new FormData();
-      fd.set("file", file);
-      const res = await fetch("/api/admin/gallery-image", {
-        method: "POST",
-        body: fd,
-      });
-      const data = (await res.json()) as { src?: string; error?: string };
-      const src = data.src;
-      if (!res.ok || !src) {
-        setMessage(data.error ?? "Upload failed.");
-        return;
-      }
-      setItems((prev) => [
-        ...prev,
-        {
+      for (const file of imageFiles) {
+        const fd = new FormData();
+        fd.set("file", file);
+        const res = await fetch("/api/admin/gallery-image", {
+          method: "POST",
+          body: fd,
+        });
+        const data = (await res.json()) as { src?: string; error?: string };
+        const src = data.src;
+        if (!res.ok || !src) {
+          setMessage(data.error ?? "Upload failed.");
+          continue;
+        }
+        uploaded.push({
           id: newId(),
           src,
           alt: file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " "),
           caption: "",
           active: true,
-        },
-      ]);
-      setMessage("Image uploaded. Add alt text and save.");
+        });
+      }
+
+      if (uploaded.length > 0) {
+        setItems((prev) => [...uploaded, ...prev]);
+        setMessage(
+          uploaded.length === 1
+            ? "Image uploaded. Add alt text and save."
+            : `${uploaded.length} images uploaded. Review alt text and save.`,
+        );
+      }
     } catch {
       setMessage("Upload failed.");
     } finally {
       setUploading(false);
+      setDragging(false);
     }
   }
 
@@ -85,105 +153,278 @@ export function GalleryEditor({
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap items-center gap-3">
-        <input
-          ref={fileRef}
-          type="file"
-          accept="image/jpeg,image/png,image/webp,image/gif"
-          className="sr-only"
-          onChange={(e) => {
-            const f = e.target.files?.[0];
-            if (f) {
-              void uploadFile(f);
-            }
-            e.target.value = "";
+    <div className="grid gap-8 lg:grid-cols-[20rem_1fr]">
+      <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
+        <div
+          className={cn(
+            "rounded-[1.5rem] bg-surface-container-low p-5 shadow-soft ring-1 ring-primary/5 transition",
+            dragging && "bg-primary-container/50 ring-primary/20",
+          )}
+          onDragEnter={(event) => {
+            event.preventDefault();
+            setDragging(true);
           }}
-        />
-        <Button
-          type="button"
-          variant="secondary"
-          className="gap-2"
-          disabled={uploading}
-          onClick={() => fileRef.current?.click()}
+          onDragOver={(event) => event.preventDefault()}
+          onDragLeave={(event) => {
+            if (event.currentTarget.contains(event.relatedTarget as Node)) {
+              return;
+            }
+            setDragging(false);
+          }}
+          onDrop={(event) => {
+            event.preventDefault();
+            void uploadFiles(event.dataTransfer.files);
+          }}
         >
-          <Upload className="size-4" aria-hidden />
-          {uploading ? "Uploading…" : "Upload new photo"}
-        </Button>
-        <p className="text-sm text-on-surface-variant">
-          Uploads go to <code className="text-xs">public/gallery/uploads/</code>.
-          You can also type paths to existing files in <code className="text-xs">public/gallery/</code>.
-        </p>
-      </div>
-
-      <ul className="space-y-4">
-        {items.map((item) => (
-          <li
-            key={item.id}
-            className="rounded-2xl bg-surface-container-high p-6 shadow-soft ring-1 ring-primary/5"
-          >
-            <div className="mb-4 flex items-center justify-between gap-3">
-              <label className="flex items-center gap-2 text-sm font-semibold text-on-surface">
-                <input
-                  type="checkbox"
-                  checked={item.active}
-                  onChange={(e) => update(item.id, { active: e.target.checked })}
-                />
-                Show in gallery
-              </label>
-              <button
-                type="button"
-                onClick={() => remove(item.id)}
-                className="rounded-lg p-2 text-on-surface-variant transition hover:bg-surface-container-highest hover:text-red-600"
-                aria-label="Remove image"
-              >
-                <Trash2 className="size-4" aria-hidden />
-              </button>
-            </div>
-            <div className="grid gap-3">
-              <label className="block text-xs font-bold uppercase tracking-wider text-primary">
-                Image path (e.g. /gallery/AJ.jpg)
-                <input
-                  value={item.src}
-                  onChange={(e) => update(item.id, { src: e.target.value })}
-                  className="mt-2 w-full rounded-xl border border-primary/10 bg-white px-4 py-3 font-mono text-sm text-on-surface"
-                />
-              </label>
-              <label className="block text-xs font-bold uppercase tracking-wider text-primary">
-                Alt text
-                <input
-                  value={item.alt}
-                  onChange={(e) => update(item.id, { alt: e.target.value })}
-                  className="mt-2 w-full rounded-xl border border-primary/10 bg-white px-4 py-3 text-base text-on-surface"
-                />
-              </label>
-              <label className="block text-xs font-bold uppercase tracking-wider text-primary">
-                Caption (optional)
-                <input
-                  value={item.caption ?? ""}
-                  onChange={(e) => update(item.id, { caption: e.target.value })}
-                  className="mt-2 w-full rounded-xl border border-primary/10 bg-white px-4 py-3 text-base text-on-surface"
-                />
-              </label>
-            </div>
-          </li>
-        ))}
-      </ul>
-
-      <div className="flex flex-wrap items-center gap-4">
-        <Button type="button" variant="secondary" onClick={addItem} className="gap-2">
-          <Plus className="size-4" aria-hidden />
-          Add image row
-        </Button>
-        <Button type="button" onClick={save} disabled={pending}>
-          {pending ? "Saving…" : "Save gallery"}
-        </Button>
-        {message ? (
-          <p className="text-sm text-on-surface-variant" role="status">
-            {message}
+          <input
+            ref={fileRef}
+            type="file"
+            accept="image/jpeg,image/png,image/webp,image/gif"
+            multiple
+            className="sr-only"
+            onChange={(event) => {
+              const files = event.target.files;
+              if (files) {
+                void uploadFiles(files);
+              }
+              event.target.value = "";
+            }}
+          />
+          <div className="flex size-12 items-center justify-center rounded-2xl bg-primary text-on-primary">
+            <UploadCloud className="size-6" aria-hidden />
+          </div>
+          <h2 className="mt-5 font-serif text-2xl text-on-surface">
+            Add photos
+          </h2>
+          <p className="mt-2 text-sm text-on-surface-variant">
+            Drop images here or upload from your computer.
           </p>
-        ) : null}
-      </div>
+          <Button
+            type="button"
+            className="mt-5 w-full gap-2"
+            disabled={uploading}
+            onClick={() => fileRef.current?.click()}
+          >
+            <ImagePlus className="size-4" aria-hidden />
+            {uploading ? "Uploading..." : "Upload photos"}
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={addItem}
+            className="mt-3 w-full gap-2 bg-white"
+          >
+            <Plus className="size-4" aria-hidden />
+            Add by path
+          </Button>
+        </div>
+
+        <div className="rounded-[1.5rem] bg-white p-5 shadow-soft ring-1 ring-primary/5">
+          <p className="text-xs font-bold uppercase tracking-widest text-primary">
+            Gallery status
+          </p>
+          <dl className="mt-4 grid grid-cols-2 gap-3">
+            <div className="rounded-2xl bg-surface-container-low p-4">
+              <dt className="text-xs font-semibold text-on-surface-variant">
+                Total
+              </dt>
+              <dd className="mt-1 text-3xl font-bold text-on-surface">
+                {items.length}
+              </dd>
+            </div>
+            <div className="rounded-2xl bg-primary-container p-4">
+              <dt className="text-xs font-semibold text-on-primary-container">
+                Visible
+              </dt>
+              <dd className="mt-1 text-3xl font-bold text-on-primary-container">
+                {activeCount}
+              </dd>
+            </div>
+          </dl>
+          {needsAltCount > 0 ? (
+            <p className="mt-4 rounded-2xl bg-tertiary-container px-4 py-3 text-sm font-medium text-on-tertiary-container">
+              {needsAltCount} photo{needsAltCount === 1 ? "" : "s"} need alt
+              text before saving.
+            </p>
+          ) : (
+            <p className="mt-4 flex items-center gap-2 rounded-2xl bg-surface-container-low px-4 py-3 text-sm font-medium text-on-surface-variant">
+              <Check className="size-4 text-primary" aria-hidden />
+              Metadata is ready.
+            </p>
+          )}
+        </div>
+      </aside>
+
+      <section className="min-w-0">
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h2 className="font-serif text-3xl text-on-surface">
+              Gallery photos
+            </h2>
+            <p className="mt-1 text-sm text-on-surface-variant">
+              The first active photos lead the public gallery experience.
+            </p>
+          </div>
+          <Button type="button" onClick={save} disabled={pending} className="gap-2">
+            <Save className="size-4" aria-hidden />
+            {pending ? "Saving..." : "Save gallery"}
+          </Button>
+          <p
+            className="basis-full text-sm font-medium text-on-surface-variant"
+            role="status"
+          >
+            {message || `${activeCount} visible photos ready for the public gallery.`}
+          </p>
+        </div>
+
+        {items.length === 0 ? (
+          <div className="rounded-[1.5rem] bg-white p-10 text-center shadow-soft ring-1 ring-primary/5">
+            <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-primary-container text-on-primary-container">
+              <ImagePlus className="size-7" aria-hidden />
+            </div>
+            <h3 className="mt-5 font-serif text-2xl text-on-surface">
+              No photos yet
+            </h3>
+            <p className="mx-auto mt-2 max-w-sm text-sm text-on-surface-variant">
+              Upload a few ministry photos to start building the gallery.
+            </p>
+          </div>
+        ) : (
+          <ul className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {items.map((item, index) => {
+              const title = imageTitle(item);
+              const previewable = canPreview(item.src);
+
+              return (
+                <li key={item.id}>
+                  <article
+                    className={cn(
+                      "group overflow-hidden rounded-[1.5rem] bg-white shadow-soft ring-1 ring-primary/5 transition hover:-translate-y-0.5 hover:shadow-lg hover:ring-primary/15",
+                      !item.active && "opacity-75",
+                    )}
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden bg-surface-container-high">
+                      {previewable ? (
+                        <Image
+                          src={item.src}
+                          alt={item.alt || ""}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                          loading={index === 0 ? "eager" : "lazy"}
+                          className={cn(
+                            "object-cover transition duration-500 group-hover:scale-[1.03]",
+                            !item.active && "grayscale",
+                          )}
+                        />
+                      ) : (
+                        <div className="flex h-full flex-col items-center justify-center gap-3 text-on-surface-variant">
+                          <ImagePlus className="size-10" aria-hidden />
+                          <span className="text-sm font-semibold">
+                            Add an image path
+                          </span>
+                        </div>
+                      )}
+                      <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-3">
+                        <span className="rounded-full bg-black/55 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">
+                          #{index + 1}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => update(item.id, { active: !item.active })}
+                          className={cn(
+                            "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold shadow-sm backdrop-blur-sm transition",
+                            item.active
+                              ? "bg-primary text-on-primary"
+                              : "bg-white/90 text-on-surface",
+                          )}
+                        >
+                          {item.active ? (
+                            <Eye className="size-3.5" aria-hidden />
+                          ) : (
+                            <EyeOff className="size-3.5" aria-hidden />
+                          )}
+                          {item.active ? "Visible" : "Hidden"}
+                        </button>
+                      </div>
+                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-4">
+                        <p className="line-clamp-2 text-sm font-semibold text-white">
+                          {title}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4 p-4">
+                      <label className="block text-xs font-bold uppercase tracking-wider text-primary">
+                        Image path
+                        <input
+                          value={item.src}
+                          onChange={(event) =>
+                            update(item.id, { src: event.target.value })
+                          }
+                          className="mt-2 w-full rounded-xl border border-primary/10 bg-surface-container-low px-3 py-2.5 font-mono text-xs text-on-surface outline-none transition focus:border-primary/35 focus:bg-white"
+                        />
+                      </label>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-primary">
+                        Alt text
+                        <input
+                          value={item.alt}
+                          onChange={(event) =>
+                            update(item.id, { alt: event.target.value })
+                          }
+                          className="mt-2 w-full rounded-xl border border-primary/10 bg-surface-container-low px-3 py-2.5 text-sm text-on-surface outline-none transition focus:border-primary/35 focus:bg-white"
+                        />
+                      </label>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-primary">
+                        Caption
+                        <textarea
+                          value={item.caption ?? ""}
+                          onChange={(event) =>
+                            update(item.id, { caption: event.target.value })
+                          }
+                          rows={2}
+                          className="mt-2 w-full resize-none rounded-xl border border-primary/10 bg-surface-container-low px-3 py-2.5 text-sm text-on-surface outline-none transition focus:border-primary/35 focus:bg-white"
+                        />
+                      </label>
+
+                      <div className="flex items-center justify-between gap-2 border-t border-primary/10 pt-3">
+                        <div className="flex items-center gap-1">
+                          <button
+                            type="button"
+                            onClick={() => moveItem(item.id, -1)}
+                            disabled={index === 0}
+                            className="rounded-lg p-2 text-on-surface-variant transition hover:bg-surface-container-low hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"
+                            aria-label="Move photo up"
+                          >
+                            <ArrowUp className="size-4" aria-hidden />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => moveItem(item.id, 1)}
+                            disabled={index === items.length - 1}
+                            className="rounded-lg p-2 text-on-surface-variant transition hover:bg-surface-container-low hover:text-primary disabled:cursor-not-allowed disabled:opacity-30"
+                            aria-label="Move photo down"
+                          >
+                            <ArrowDown className="size-4" aria-hidden />
+                          </button>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => remove(item.id)}
+                          className="rounded-lg p-2 text-on-surface-variant transition hover:bg-red-50 hover:text-red-600"
+                          aria-label="Remove image"
+                        >
+                          <Trash2 className="size-4" aria-hidden />
+                        </button>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+
+      </section>
     </div>
   );
 }

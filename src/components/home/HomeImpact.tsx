@@ -13,14 +13,14 @@ export function HomeImpact() {
               className="absolute -left-8 -top-8 h-40 w-40 rounded-full bg-primary/20 blur-3xl"
               aria-hidden
             />
-            <div className="relative -rotate-2 overflow-hidden rounded-[3rem] bg-surface-container-low shadow-2xl ring-1 ring-white/10">
+            <div className="relative -rotate-2 overflow-hidden rounded-[3rem] bg-surface-inverse shadow-2xl">
               <div className="relative h-[420px] w-full sm:h-[520px] lg:h-[600px]">
                 <Image
                   src={IMG.impactFeature}
                   alt="AJ, Angel Paws therapy dog with handler"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
+                  className="scale-[1.01] object-cover"
                 />
               </div>
             </div>
