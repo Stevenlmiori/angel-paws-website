@@ -6,6 +6,23 @@ export type StoredGalleryImage = {
   active: boolean;
 };
 
+function isAllowedGallerySrc(src: string): boolean {
+  if (
+    src.startsWith("/gallery/") ||
+    src.startsWith("/img/") ||
+    src.startsWith("/img/debbie/")
+  ) {
+    return true;
+  }
+
+  try {
+    const url = new URL(src);
+    return url.protocol === "https:" && url.hostname === "cdn.sanity.io";
+  } catch {
+    return false;
+  }
+}
+
 export function isStoredGalleryImage(value: unknown): value is StoredGalleryImage {
   if (!value || typeof value !== "object") {
     return false;
@@ -15,9 +32,7 @@ export function isStoredGalleryImage(value: unknown): value is StoredGalleryImag
     typeof v.id === "string" &&
     v.id.length > 0 &&
     typeof v.src === "string" &&
-    (v.src.startsWith("/gallery/") ||
-      v.src.startsWith("/img/") ||
-      v.src.startsWith("/img/debbie/")) &&
+    isAllowedGallerySrc(v.src) &&
     typeof v.alt === "string" &&
     v.alt.trim().length > 0 &&
     (v.caption === undefined || typeof v.caption === "string") &&
