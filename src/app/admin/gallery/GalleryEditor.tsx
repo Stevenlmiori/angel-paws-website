@@ -29,7 +29,11 @@ function imageTitle(item: StoredGalleryImage) {
 
 function canPreview(src: string) {
   const clean = src.trim();
-  return clean.length > 0 && clean !== "/gallery/" && clean.startsWith("/");
+  return (
+    clean.length > 0 &&
+    clean !== "/gallery/" &&
+    (clean.startsWith("/") || clean.startsWith("https://"))
+  );
 }
 
 export function GalleryEditor({
