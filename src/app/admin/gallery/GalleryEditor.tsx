@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useMemo, useRef, useState, useTransition } from "react";
 import {
   ArrowDown,
@@ -17,6 +16,7 @@ import {
 import type { StoredGalleryImage } from "@/lib/siteContent/galleryTypes";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
+import { GalleryImage } from "@/components/gallery/GalleryImage";
 import { saveGalleryDirect } from "./actions";
 
 function newId() {
@@ -29,7 +29,56 @@ function imageTitle(item: StoredGalleryImage) {
 
 function canPreview(src: string) {
   const clean = src.trim();
-  return clean.length > 0 && clean !== "/gallery/" && clean.startsWith("/");
+  return (
+    clean.length > 0 &&
+    clean !== "/gallery/" &&
+    (clean.startsWith("/") ||
+      clean.startsWith("https://") ||
+      clean.startsWith("data:image/"))
+  );
+}
+
+function fileBaseName(file: File) {
+  return file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
+}
+
+function loadImage(src: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new window.Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error("Could not read image."));
+    img.src = src;
+  });
+}
+
+function readFileAsDataUrl(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () =>
+      typeof reader.result === "string"
+        ? resolve(reader.result)
+        : reject(new Error("Could not read image."));
+    reader.onerror = () => reject(new Error("Could not read image."));
+    reader.readAsDataURL(file);
+  });
+}
+
+async function compressedDataUrl(file: File): Promise<string> {
+  const source = await readFileAsDataUrl(file);
+  const img = await loadImage(source);
+  const maxSide = 1800;
+  const scale = Math.min(1, maxSide / Math.max(img.width, img.height));
+  const width = Math.max(1, Math.round(img.width * scale));
+  const height = Math.max(1, Math.round(img.height * scale));
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) {
+    throw new Error("Could not prepare image.");
+  }
+  ctx.drawImage(img, 0, 0, width, height);
+  return canvas.toDataURL("image/jpeg", 0.82);
 }
 
 export function GalleryEditor({
@@ -115,14 +164,14 @@ export function GalleryEditor({
         });
         const data = (await res.json()) as { src?: string; error?: string };
         const src = data.src;
-        if (!res.ok || !src) {
-          setMessage(data.error ?? "Upload failed.");
-          continue;
+        let nextSrc = src;
+        if (!res.ok || !nextSrc) {
+          nextSrc = await compressedDataUrl(file);
         }
         uploaded.push({
           id: newId(),
-          src,
-          alt: file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " "),
+          src: nextSrc,
+          alt: fileBaseName(file),
           caption: "",
           active: true,
         });
@@ -132,8 +181,8 @@ export function GalleryEditor({
         setItems((prev) => [...uploaded, ...prev]);
         setMessage(
           uploaded.length === 1
-            ? "Image uploaded. Add alt text and save."
-            : `${uploaded.length} images uploaded. Review alt text and save.`,
+            ? "Image added. Review alt text and save."
+            : `${uploaded.length} images added. Review alt text and save.`,
         );
       }
     } catch {
@@ -305,12 +354,11 @@ export function GalleryEditor({
                   >
                     <div className="relative aspect-[4/3] overflow-hidden bg-surface-container-high">
                       {previewable ? (
-                        <Image
+                        <GalleryImage
                           src={item.src}
                           alt={item.alt || ""}
-                          fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                          loading={index === 0 ? "eager" : "lazy"}
+                          priority={index === 0}
                           className={cn(
                             "object-cover transition duration-500 group-hover:scale-[1.03]",
                             !item.active && "grayscale",
