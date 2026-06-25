@@ -5,6 +5,13 @@ import { getSanityWebhookSecret } from "@/lib/sanity/env";
 
 export async function POST(req: NextRequest) {
   const secret = getSanityWebhookSecret();
+  if (process.env.NODE_ENV === "production" && !secret) {
+    return NextResponse.json(
+      { message: "Revalidation webhook secret is not configured" },
+      { status: 503 },
+    );
+  }
+
   const { isValidSignature, body } = await parseBody(req, secret ?? undefined, true);
 
   if (secret && isValidSignature === false) {

@@ -3,18 +3,13 @@ import path from "node:path";
 import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/memberPortal/getAdminSession";
 import { sanityWriteClient } from "@/lib/sanity/client";
+import { readVerifiedImageUpload } from "@/lib/security/uploads";
 
-function safeFilename(name: string): string {
-  const base = path.basename(name).replace(/[^a-zA-Z0-9._-]+/g, "-");
-  return base.length > 0 ? base : `upload-${Date.now()}.jpg`;
-}
-
-async function saveLocalUpload(file: File): Promise<string> {
-  const filename = `${Date.now()}-${safeFilename(file.name || "gallery-upload.jpg")}`;
+async function saveLocalUpload(buffer: Buffer, filenameBase: string): Promise<string> {
+  const filename = `${Date.now()}-${path.basename(filenameBase)}`;
   const dir = path.join(process.cwd(), "public", "gallery", "uploads");
   await mkdir(dir, { recursive: true });
-  const buf = Buffer.from(await file.arrayBuffer());
-  await writeFile(path.join(dir, filename), buf);
+  await writeFile(path.join(dir, filename), buffer);
   return `/gallery/uploads/${filename}`;
 }
 
@@ -40,7 +35,14 @@ export async function POST(request: Request) {
       if (!(file instanceof File) || file.size === 0) {
         return NextResponse.json({ error: "Missing image file." }, { status: 400 });
       }
-      const src = await saveLocalUpload(file);
+      const upload = await readVerifiedImageUpload(file, "gallery-upload.jpg");
+      if (!upload.ok) {
+        return NextResponse.json(
+          { error: upload.message },
+          { status: upload.status },
+        );
+      }
+      const src = await saveLocalUpload(upload.value.buffer, upload.value.filename);
       return NextResponse.json({ src });
     }
 
@@ -61,12 +63,18 @@ export async function POST(request: Request) {
   if (!(file instanceof File) || file.size === 0) {
     return NextResponse.json({ error: "Missing image file." }, { status: 400 });
   }
+  const upload = await readVerifiedImageUpload(file, "gallery-upload.jpg");
+  if (!upload.ok) {
+    return NextResponse.json(
+      { error: upload.message },
+      { status: upload.status },
+    );
+  }
 
   try {
-    const buf = Buffer.from(await file.arrayBuffer());
-    const asset = await client.assets.upload("image", buf, {
-      filename: file.name || "gallery-upload.jpg",
-      contentType: file.type || "image/jpeg",
+    const asset = await client.assets.upload("image", upload.value.buffer, {
+      filename: upload.value.filename,
+      contentType: upload.value.contentType,
     });
 
     if (!asset.url) {
@@ -79,7 +87,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ src: asset.url });
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {
-      const src = await saveLocalUpload(file);
+      const src = await saveLocalUpload(upload.value.buffer, upload.value.filename);
       return NextResponse.json({ src });
     }
 

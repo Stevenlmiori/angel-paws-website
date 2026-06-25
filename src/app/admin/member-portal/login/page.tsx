@@ -37,7 +37,9 @@ export default async function AdminMemberPortalLoginPage({
   const loginPostAction =
     host.length > 0 ? `${proto}://${host}/api/admin/login` : "/api/admin/login";
   const loginDiagnosticsEnabled = Boolean(
-    process.env.ADMIN_LOGIN_DEBUG_KEY?.trim(),
+    process.env.ADMIN_LOGIN_DEBUG_KEY?.trim() &&
+      (process.env.NODE_ENV !== "production" ||
+        process.env.ADMIN_LOGIN_DEBUG_ENABLED === "true"),
   );
 
   const adminEnv = getAdminPortalEnv();
