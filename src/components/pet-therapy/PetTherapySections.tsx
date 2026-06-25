@@ -102,60 +102,58 @@ export function PetTherapySections() {
         </div>
       </div>
 
-      <section className="mx-auto max-w-screen-xl px-6 pb-16 sm:px-10 md:pb-20 lg:px-12">
-        <div className="rounded-[2.5rem] bg-surface-container-low px-6 py-16 md:rounded-[3rem] md:px-10 md:py-20 lg:px-12">
-          <div className="mx-auto grid max-w-screen-xl gap-8 md:grid-cols-2 md:gap-10">
-            {remainderCards.map(({ Icon, title, body }) => (
-              <div
-                key={title}
-                className="rounded-3xl border border-on-surface/[0.06] bg-surface-container-lowest p-8 shadow-soft"
-              >
-                <div className="mb-5 flex size-12 items-center justify-center rounded-2xl bg-primary-container text-on-primary-container">
-                  <Icon className="size-6" strokeWidth={2} aria-hidden />
-                </div>
-                <h2 className="mb-3 font-serif text-2xl text-on-surface">{title}</h2>
-                <p className="leading-relaxed text-on-surface-variant">{body}</p>
+      <section className="mx-auto max-w-screen-xl px-6 pb-16 pt-16 sm:px-10 md:pb-20 md:pt-20 lg:px-12">
+        <div className="mx-auto grid max-w-screen-xl gap-8 md:grid-cols-2 md:gap-10">
+          {remainderCards.map(({ Icon, title, body }) => (
+            <div
+              key={title}
+              className="rounded-3xl border border-on-surface/[0.06] bg-surface-container-lowest p-8 shadow-soft"
+            >
+              <div className="mb-5 flex size-12 items-center justify-center rounded-2xl bg-primary-container text-on-primary-container">
+                <Icon className="size-6" strokeWidth={2} aria-hidden />
               </div>
-            ))}
-          </div>
-
-          <div className="mx-auto mt-20 max-w-screen-xl border-t border-stone-200/60 pt-16 md:mt-24 md:pt-20">
-            <div className="max-w-4xl">
-              <h3 className="mb-6 font-serif text-3xl text-on-surface">
-                Policies & Procedures
-              </h3>
-              <p className="mb-6 text-lg leading-relaxed text-on-surface-variant">
-                To ensure the highest quality of service, Angel Paws teams follow a
-                strict set of protocols:
-              </p>
-              <ul className="list-disc space-y-4 pl-6 text-lg text-on-surface-variant">
-                <li>
-                  <strong className="font-semibold text-on-surface">
-                    Certification:
-                  </strong>{" "}
-                  All dogs must pass a temperament evaluation and basic obedience
-                  test.
-                </li>
-                <li>
-                  <strong className="font-semibold text-on-surface">Health:</strong>{" "}
-                  Up-to-date vaccinations and wellness exams are required annually.
-                </li>
-                <li>
-                  <strong className="font-semibold text-on-surface">Conduct:</strong>{" "}
-                  Handlers are trained in active listening and proper hospital
-                  etiquette. To be a Reading Buddy in the schools, dogs are
-                  tested for their ability to remain still and calm while a
-                  student reads to them.
-                </li>
-                <li>
-                  <strong className="font-semibold text-on-surface">
-                    Frequency:
-                  </strong>{" "}
-                  Teams typically visit for 1-2 hours at a time to ensure the
-                  comfort and health of the animal.
-                </li>
-              </ul>
+              <h2 className="mb-3 font-serif text-2xl text-on-surface">{title}</h2>
+              <p className="leading-relaxed text-on-surface-variant">{body}</p>
             </div>
+          ))}
+        </div>
+
+        <div className="mx-auto mt-20 max-w-screen-xl border-t border-stone-200/70 pt-16 md:mt-24 md:pt-20">
+          <div className="max-w-4xl">
+            <h3 className="mb-6 font-serif text-3xl text-on-surface">
+              Policies & Procedures
+            </h3>
+            <p className="mb-6 text-lg leading-relaxed text-on-surface-variant">
+              To ensure the highest quality of service, Angel Paws teams follow a
+              strict set of protocols:
+            </p>
+            <ul className="list-disc space-y-4 pl-6 text-lg text-on-surface-variant">
+              <li>
+                <strong className="font-semibold text-on-surface">
+                  Certification:
+                </strong>{" "}
+                All dogs must pass a temperament evaluation and basic obedience
+                test.
+              </li>
+              <li>
+                <strong className="font-semibold text-on-surface">Health:</strong>{" "}
+                Up-to-date vaccinations and wellness exams are required annually.
+              </li>
+              <li>
+                <strong className="font-semibold text-on-surface">Conduct:</strong>{" "}
+                Handlers are trained in active listening and proper hospital
+                etiquette. To be a Reading Buddy in the schools, dogs are tested
+                for their ability to remain still and calm while a student reads
+                to them.
+              </li>
+              <li>
+                <strong className="font-semibold text-on-surface">
+                  Frequency:
+                </strong>{" "}
+                Teams typically visit for 1-2 hours at a time to ensure the
+                comfort and health of the animal.
+              </li>
+            </ul>
           </div>
         </div>
       </section>
