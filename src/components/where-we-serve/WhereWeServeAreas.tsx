@@ -34,7 +34,7 @@ export function WhereWeServeAreas() {
           <div className="lg:col-span-7">
             <ImagePanel
               src={SERVE_IMG.hospitals}
-              alt="Placeholder: bright hospital corridor (stock photo)"
+              alt="Sam during a Methodist hospital visit"
             />
           </div>
           <div className="lg:col-span-5">
@@ -204,7 +204,7 @@ export function WhereWeServeAreas() {
           <div className="order-1 lg:order-2 lg:col-span-7">
             <ImagePanel
               src={SERVE_IMG.community}
-              alt="Placeholder: people with dogs in a park (stock photo for community)"
+              alt="Angel Paws teams serving alongside FEMA after the Kerrville floods"
             />
           </div>
         </div>

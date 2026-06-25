@@ -12,5 +12,5 @@ export const IMG = {
   pillarSchools: DEBBIE_IMG.ajSchools,
   pillarCareFacilities: DEBBIE_IMG.coveyAssistedLiving,
   impactFeature: DEBBIE_IMG.ajImpact,
-  journeyInvite: SITE_IMAGES.dogElderlyManWithDogInBed,
+  journeyInvite: "/gallery/Kylo School.jpg",
 } as const;

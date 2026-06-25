@@ -38,7 +38,7 @@ Do not add public “become a member,” “join the team,” or volunteer recru
 | Where we serve                 | `/where-we-serve`      | Live                                                                                 |
 | What is pet therapy            | `/what-is-pet-therapy` | Live — editorial page                                                                |
 | Existing handler resources     | `/members/portal`      | Protected direct URL; not public navigation                                          |
-| Contact + visit requests       | `/contact`             | Live — **Tally** embeds when env vars are set; email fallback otherwise              |
+| Contact + visit requests       | `/contact`             | Live — email contact plus offsite **Google Form** for visit requests                 |
 | Give / donations               | `/donate`              | Live — **Donorbox** embed (see §5 + env vars)                                        |
 | Board                          | `/meet-the-board`      | Live layout; sample roster/bios/photos need Debbie’s real board details              |
 | Stories (blog)                 | `/stories`             | Live — repo-backed launch story + **Sanity** content; home strip optional tag filter |
@@ -53,7 +53,7 @@ Do not add public “become a member,” “join the team,” or volunteer recru
 
 - [ ] Finalize wording on `/about`, `/what-is-pet-therapy`, and `/meet-the-board`.
 - [x] Donation platform: **Donorbox** — embed on `/donate` (§5).
-- [ ] Forms: **Tally** — code is wired, but production form IDs still need to be configured (§4).
+- [x] Forms: **Google Forms** — visit request opens offsite from `/contact` (§4).
 - [x] Replace footer placeholder links with real routes / site URL.
 
 ### Phase B — Debbie’s weekly tools (low code)
@@ -88,19 +88,19 @@ Do not add public “become a member,” “join the team,” or volunteer recru
 
 ---
 
-## 4. Forms — **Tally** (code implemented; production IDs pending)
+## 4. Forms — **Google Forms** (implemented)
 
-| Form              | Public? | Env var                                      | Notes                                                               |
+| Form              | Public? | Link source                                  | Notes                                                               |
 | ----------------- | ------- | -------------------------------------------- | ------------------------------------------------------------------- |
-| Contact           | Yes     | `NEXT_PUBLIC_TALLY_CONTACT_FORM_ID`          | Embed under “Send a message” on `/contact`                          |
-| Request a visit   | Yes     | `NEXT_PUBLIC_TALLY_VISIT_FORM_ID` (optional) | Second embed; omit if one Tally form covers both                    |
-| Member-only forms | No      | —                                            | After Phase C: add hidden or gated Tally links on `/members/portal` |
+| General contact   | Yes     | `CONTACT_EMAIL` in `src/lib/siteLinks.ts`    | Visitors email Angel Paws directly from `/contact`                  |
+| Request a visit   | Yes     | `VISITATION_REQUEST_FORM_URL` in `siteLinks` | Offsite Google Form opens from `/contact#visitation-request`        |
+| Member-only forms | No      | Member portal admin links                    | Add gated Google Form or Drive links on `/members/portal` as needed |
 
-If neither public Tally ID is configured, `/contact` shows a client-friendly “Online forms are being finalized” message and the protected email reveal fallback.
+The public site does not embed forms. Visit requests open in a new tab using the official Google Form so Debbie can manage submissions in Google Workspace.
 
-**Debbie’s workflow:** Log in at [tally.so](https://tally.so) → Submissions → email notifications per form.
+**Debbie’s workflow:** Log in to Google → Forms → Submissions, or use Google Form email notifications.
 
-**Code:** `src/components/embeds/TallyContactSection.tsx` (loads `https://tally.so/widgets/embed.js` once, iframes use `data-tally-src`), `src/lib/embeds.ts`.
+**Code:** `src/components/contact/VisitationRequestCTA.tsx`, `src/lib/siteLinks.ts`.
 
 ---
 
@@ -135,7 +135,7 @@ Copy `.env.example` to `.env.local` and set values. In **Vercel** (or similar), 
 
 - Next.js App Router routes live under `src/app/`.
 - Member portal gate: `src/app/members/portal/page.tsx`, `src/app/members/portal/actions.ts`, and server helpers under `src/lib/memberPortal/`.
-- Donorbox loads `widgets.js` (`type="module"`) with `next/script` (`afterInteractive`) and a `<dbox-widget>` custom element. If CSP is enabled later, allow `donorbox.org` and `tally.so` for frames and scripts.
+- Donorbox loads `widgets.js` (`type="module"`) with `next/script` (`afterInteractive`) and a `<dbox-widget>` custom element. If CSP is enabled later, allow `donorbox.org` for scripts and frames.
 - Embed URL helpers: `src/lib/embeds.ts`.
 - Visual system: **AngelPaws Serif — Blue Edition** with optional **navy (`section-tone-inverse`)** and **charcoal (`section-tone-charcoal`)** marketing bands documented in **`DESIGN.md`**. Historical token snapshots remain in **`docs/theme-archive/angelpaws-serif-blue.css`**.
 
@@ -153,4 +153,4 @@ When you launch publicly, set **`NEXT_PUBLIC_SITE_INDEXABLE=true`** in Vercel, *
 
 ---
 
-_Last updated: May 2026 — Blue Edition palette plus inverse/charcoal section bands; production domain, Contact fallback, member portal gate, Donorbox/Tally env notes, and pre-launch indexing controls._
+_Last updated: June 2026 — Blue Edition palette plus inverse/charcoal section bands; production domain, Google Forms visit requests, member portal gate, Donorbox env notes, and pre-launch indexing controls._

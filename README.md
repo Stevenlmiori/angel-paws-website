@@ -7,7 +7,7 @@ Public-facing site for **Angel Paws**, a pet therapy organization: mission and b
 - [Next.js](https://nextjs.org/) 16 (App Router) — routes under `src/app/`
 - React 19 and TypeScript
 - Tailwind CSS v4
-- Embedded third-party flows: **Tally** (forms on `/contact` when IDs are configured; friendly email fallback otherwise), **Donorbox** (widget on `/donate`)
+- Embedded third-party flows: **Google Forms** (offsite visit request on `/contact`), **Donorbox** (widget on `/donate`)
 - Optional **Upstash Redis** for production persistence (member portal tooling); see `.env.example`
 
 > This repo tracks a newer Next.js major than many tutorials. If you touch framework APIs, skim the version-specific notes in [`AGENTS.md`](./AGENTS.md) and the guides under `node_modules/next/dist/docs/` when something looks unfamiliar.
@@ -42,7 +42,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Doc | Purpose |
 |-----|---------|
-| [`docs/HANDOFF.md`](./docs/HANDOFF.md) | Route map, phased rollout, embeds (Tally / Donorbox), environment variables, indexing (`NEXT_PUBLIC_SITE_INDEXABLE`), and operator-focused notes |
+| [`docs/HANDOFF.md`](./docs/HANDOFF.md) | Route map, phased rollout, forms/donations, environment variables, indexing (`NEXT_PUBLIC_SITE_INDEXABLE`), and operator-focused notes |
 | [`DESIGN.md`](./DESIGN.md) | **AngelPaws Serif** — typography, colors, spacing, and UI patterns |
 | [`AGENTS.md`](./AGENTS.md) | Conventions for contributors and AI-assisted edits |
 
