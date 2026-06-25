@@ -1,12 +1,5 @@
 import { DEBBIE_IMG } from "@/lib/debbieImages";
-import { SITE_IMAGES } from "@/lib/siteImages";
 import type { BoardMember } from "./BoardMemberCard";
-
-/** Hero and section imagery */
-export const BOARD_IMG = {
-  hero: SITE_IMAGES.stockBoardHeroDog,
-  impact: SITE_IMAGES.stockVolunteerTeam,
-} as const;
 
 /** Interim card photos: handler + therapy dog until portrait photos arrive. */
 export const BOARD_MEMBER_IMG = {

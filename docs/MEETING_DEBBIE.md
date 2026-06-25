@@ -38,7 +38,7 @@
 ## Executive snapshot
 
 - **Angel Paws Pet Therapy** is presented as a **faith-based pet therapy ministry** in the **Greater Houston** area, sharing comfort through certified therapy dog teams in hospitals, schools, care settings, and community contexts.
-- The public site is a **Next.js** marketing site with embedded **Tally** contact/visit forms when configured, a friendly email fallback when they are not configured, **Donorbox** on `/donate`, and a **member portal** at `/members/portal` for password-protected resources.
+- The public site is a **Next.js** marketing site with email contact, an offsite **Google Form** for visit requests, **Donorbox** on `/donate`, and a **member portal** at `/members/portal` for password-protected resources.
 - **Champion Forest** is referenced on the “What is pet therapy?” page as the church context for how faith shapes the work.
 - Several sections still use **template statistics**, **sample board bios**, or **remote placeholder photos** (see **Placeholders & factual review**).
 
@@ -58,7 +58,7 @@
 | `/members`             | Membership hero, four steps, member portal teaser                                                                                                                       |
 | `/members/portal`      | Sign-in or resource hub (after password)                                                                                                                                |
 | `/donate`              | Case for support, impact areas, Donorbox panel, newsletter strip                                                                                                        |
-| `/contact`             | “Get in touch” + Tally embeds + map teaser                                                                                                                              |
+| `/contact`             | “Get in touch” + email contact + offsite Google Form visit request + map teaser                                                                                         |
 
 
 **Global chrome:** `SiteHeader` (nav, Donate, Member Resources) and `SiteFooter` (mission links, quick links, connect icons, legal links).
@@ -438,8 +438,8 @@ Copy below is **user-visible marketing text** from components (not page metadata
 
 - H2: **Get in touch**
 - Lead: Share a question, request a visit, or tell us a bit about your organization. We will follow up as soon as we can.
-- **Tally:** When form IDs are set in environment variables, the page embeds your Tally form(s). If not configured, visitors see a friendly “Online forms are being finalized” message and can reveal the direct email address.
-- When visit form is present: **Request a visit** — Tell us about your facility or need. We will follow up by email or phone.
+- **Visit request form:** The public site sends visitors to the official Google Form in a new tab.
+- **Email:** General questions use the direct Angel Paws email on the contact page.
 
 **Quick links aside**
 
@@ -508,7 +508,7 @@ Replace these with ministry-owned photography when ready.
 
 | System                  | Role on site                                             | Configuration (see `.env.example`)                                                                                          |
 | ----------------------- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **Tally**               | Contact + optional “request a visit” embed on `/contact` | `NEXT_PUBLIC_TALLY_CONTACT_FORM_ID`, `NEXT_PUBLIC_TALLY_VISIT_FORM_ID`                                                      |
+| **Google Forms**        | Offsite “request a visit” flow from `/contact`           | `VISITATION_REQUEST_FORM_URL` in `src/lib/siteLinks.ts`                                                                     |
 | **Donorbox**            | Donation widget on `/donate`                             | `NEXT_PUBLIC_DONORBOX_CAMPAIGN` (optional; has default in code)                                                             |
 | **Member portal**       | Password gate + resource cards                           | `MEMBER_PORTAL_PASSWORD`, `MEMBER_PORTAL_COOKIE_SECRET`, optional session TTL; Redis keys for persisted links in production |
 | **Member portal admin** | Not in public nav; bookmark for operators                | `MEMBER_PORTAL_ADMIN_EMAIL`, `MEMBER_PORTAL_ADMIN_PASSWORD`                                                                 |
@@ -528,7 +528,7 @@ Operator-facing detail also lives in `docs/HANDOFF.md`.
 | **Story narrative** (founding, TMC, “team of three”)  | `/about` Our Story                                                        | Confirm accuracy or mark as inspirational draft.                                                                      |
 | **Home / Care stats** (**1,000+**, **85%**, **400+**) | Home, Where We Serve                                                      | Confirm, source, or soften wording.                                                                                   |
 | **Testimonial “Sarah J.” / Bella**                    | `/donate`                                                                 | Replace with a permissioned real quote or remove.                                                                     |
-| **Some CTA destinations still need final flow decisions** | Home hero & CTA, Home impact, application/visit flows | Decide whether each should go to `/contact`, a Tally form, Donate, or the member portal. |
+| **Some CTA destinations still need final flow decisions** | Home hero & CTA, Home impact, application/visit flows | Decide whether each should go to `/contact`, the Google visit request form, Donate, or the member portal. |
 | `**#` links**                                         | Footer social/legal, Get Involved application, Community “Event Calendar” | Replace with real URLs or remove until ready.                                                                         |
 | **Newsletter form**                                   | `/donate`                                                                 | Connect to your email platform or hide until live.                                                                    |
 | **Logo `alt` text**                                   | Header                                                                    | Set to meaningful alt (e.g. “Angel Paws Pet Therapy”) for accessibility.                                              |
@@ -540,7 +540,7 @@ Operator-facing detail also lives in `docs/HANDOFF.md`.
 
 - Debbie approval on mission wording, geography, and Champion Forest references  
 - Replace placeholder imagery paths with final assets
-- Tally forms live + tested; optional visit form  
+- Google visit request form live + tested
 - Donorbox campaign tested end-to-end  
 - Member portal password rotated and shared through secure channel  
 - Footer connect links finalized (Website / Email / Support now point to live site, Contact, and Donate)
@@ -553,13 +553,13 @@ Operator-facing detail also lives in `docs/HANDOFF.md`.
 1. [AngelPawsHouston.com](http://AngelPawsHouston.com) - Recommended domain
 2. **Donations - Recommended Platform Setup: Donorbox + Stripe**
   Donorbox provides the donation forms and donor tools, while Stripe processes the payments. This is a strong option for Angel Paws because it is simple to launch, easy for donors to use, and supports recurring giving. Standard public pricing is typically 2.95% through Donorbox plus Stripe processing fees of 2.9% + 30¢ per domestic card transaction. 
-3. **Forms** service - [Tally.so](http://Tally.so)  - (Free) Good with this? 
+3. **Forms** service - Google Forms for visit requests.
 4. **Geography:** Confirm preferred phrase everywhere: Greater Houston, Northwest Houston, specific campuses only, etc.
 5. **Story:** Is the **Our Story** three-chapter narrative accurate as written, or should it be shortened to only verified history?
 6. **Statistics:** What numbers/stats can we say on the site, that only need to be updated once a year or so.
 7. **Board:** Who belongs on `/meet-the-board`, in what order, with which photos and one-line bios?
 8. **Champion Forest:** Any wording you want standardized when we name the church (e.g. “Ministry Partner of Champion Forest Baptist Church”)?
-9. **Calls to action:** Should **Join Our Mission** / **Become a Volunteer** / **Request a Visit** all route to Contact, to a single Tally form, or split flows? Recommendation: 
+9. **Calls to action:** Should **Join Our Mission** / **Become a Volunteer** / **Request a Visit** all route to Contact, to Google Forms, or split flows? Recommendation:
   1. Join Our Mission → Volunteer form
   2. Request a Visit → Visit Request form
   3. Contact → General Contact form
@@ -577,7 +577,7 @@ Operator-facing detail also lives in `docs/HANDOFF.md`.
 | Steven        | Wire hero/CTA buttons and placeholder `#` links once destinations are chosen | After May 11 review  |
 | Steven        | Swap board + story + stats per approved facts                                | After content lock   |
 | Debbie / team | Supply final photography list + permissions                                  | As available         |
-| Steven        | Connect newsletter + confirm Donorbox + Tally in production env              | Before launch        |
+| Steven        | Connect newsletter + confirm Donorbox and Google Forms flow                  | Before launch        |
 
 
 ---

@@ -1,9 +1,9 @@
 import { SITE_IMAGES } from "@/lib/siteImages";
 
 export const SERVE_IMG = {
-  hero: SITE_IMAGES.stockDogWindowLight,
-  hospitals: SITE_IMAGES.stockHospitalCorridor,
+  hero: "/gallery/Kylo 2.jpg",
+  hospitals: "/gallery/sam at methodist.jpg",
   schools: SITE_IMAGES.ministryBenjiSchool,
   care: SITE_IMAGES.ministryCoveyAssistedLiving,
-  community: SITE_IMAGES.stockCommunityPark,
+  community: "/gallery/group Kerrville.jpg",
 } as const;
