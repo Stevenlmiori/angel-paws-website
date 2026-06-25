@@ -1,7 +1,7 @@
 export function MeetTheBoardImpact() {
   return (
-    <section className="mx-auto mt-24 max-w-screen-xl px-6 pb-12 sm:px-10 md:mt-32 lg:px-12">
-      <div className="section-tone-inverse mx-auto max-w-4xl rounded-[2.5rem] p-10 shadow-soft lg:p-20">
+    <section className="section-tone-inverse mt-24 w-full px-6 py-20 sm:px-10 md:mt-32 md:py-28 lg:px-12">
+      <div className="mx-auto max-w-screen-md">
         <span className="mb-6 block text-xs font-bold uppercase tracking-[0.2em] text-primary">
           Our Shared Vision
         </span>
