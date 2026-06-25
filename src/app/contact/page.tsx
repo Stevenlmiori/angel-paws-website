@@ -1,13 +1,20 @@
-import type { Metadata } from "next";
 import { ContactMainSection } from "@/components/contact/ContactMainSection";
 import { ContactMapTeaser } from "@/components/contact/ContactMapTeaser";
 import { Reveal } from "@/components/ui";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Get in Touch",
+export const metadata = pageMetadata({
+  title: "Request a Therapy Dog Visit in Houston",
   description:
-    "Contact Angel Paws Pet Therapy by email, or submit a visitation request form to schedule therapy dog visits in Greater Houston.",
-};
+    "Contact Angel Paws Pet Therapy or submit the visitation request form to schedule therapy dog visits for Houston-area hospitals, schools, senior care, churches, and community partners.",
+  path: "/contact",
+  keywords: [
+    "request therapy dog visit Houston",
+    "schedule therapy dog visit Houston",
+    "Angel Paws contact",
+    "pet therapy visit request Greater Houston",
+  ],
+});
 
 export default function ContactPage() {
   return (

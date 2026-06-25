@@ -14,7 +14,7 @@ export function SiteFooter() {
             Angel Paws
           </div>
           <p className="font-sans text-sm leading-[1.75] text-stone-500">
-            Serving our community through faith, compassion, and the comfort
+            Serving Greater Houston through faith, compassion, and the comfort
             of therapy dogs.
           </p>
         </div>

@@ -15,7 +15,8 @@ export function WhereWeServeHero() {
           </h1>
           <div className="mb-8 max-w-lg space-y-6 text-xl leading-relaxed text-on-surface-variant">
             <p>
-              Our teams serve in a variety of environments across the community.
+              Our teams serve in hospitals, schools, senior care communities,
+              churches, workplaces, and crisis settings across Greater Houston.
             </p>
             <p>
               Each one is different, but the need is the same. A calm presence in

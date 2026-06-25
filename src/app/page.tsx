@@ -8,6 +8,20 @@ import { HomeMission } from "@/components/home/HomeMission";
 import { HomeTestimonials } from "@/components/home/HomeTestimonials";
 import { HomeWhatWeDo } from "@/components/home/HomeWhatWeDo";
 import { Reveal } from "@/components/ui";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Therapy Dog Visits in Houston & Greater Houston",
+  description:
+    "Angel Paws Pet Therapy offers faith-based therapy dog visits for hospitals, schools, senior care communities, churches, workplaces, and crisis response across Greater Houston.",
+  path: "/",
+  keywords: [
+    "Houston pet therapy nonprofit",
+    "request a therapy dog visit Houston",
+    "therapy dogs for hospitals Houston",
+    "therapy dogs for schools Houston",
+  ],
+});
 
 export default function Home() {
   return (

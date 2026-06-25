@@ -1,14 +1,20 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ExternalLink, FileText, HeartHandshake } from "lucide-react";
 import { Section } from "@/components/ui/Section";
+import { pageMetadata } from "@/lib/seo";
 import { HOW_TO_BECOME_INVOLVED_DOC_URL } from "@/lib/siteLinks";
 
-export const metadata: Metadata = {
-  title: "Get Involved",
+export const metadata = pageMetadata({
+  title: "Get Involved with Angel Paws Therapy Dogs in Houston",
   description:
-    "Learn what is involved in serving with Angel Paws Pet Therapy—handler requirements, training, and how to become part of the team.",
-};
+    "Learn what is involved in serving with Angel Paws Pet Therapy in Greater Houston, including handler expectations, training, temperament standards, and next steps.",
+  path: "/get-involved",
+  keywords: [
+    "volunteer therapy dog Houston",
+    "become a therapy dog team Houston",
+    "Angel Paws volunteer",
+  ],
+});
 
 export default function GetInvolvedPage() {
   return (

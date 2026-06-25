@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { DEBBIE_IMG } from "@/lib/debbieImages";
+import { pageMetadata } from "@/lib/seo";
 import {
   MCGOWN_ATTRIBUTION,
   MCGOWN_LETTER_BODY,
@@ -9,11 +9,17 @@ import {
 import { HeadingBlock } from "@/components/ui/HeadingBlock";
 import { Section } from "@/components/ui/Section";
 
-export const metadata: Metadata = {
-  title: "Testimonials",
+export const metadata = pageMetadata({
+  title: "Houston Therapy Dog Testimonials",
   description:
-    "Letters and stories from partners, schools, care facilities, and community leaders about Angel Paws Pet Therapy.",
-};
+    "Read testimonials from Houston-area schools, churches, senior care communities, and leaders about Angel Paws Pet Therapy visits.",
+  path: "/testimonials",
+  keywords: [
+    "Houston therapy dog testimonials",
+    "school therapy dog testimonial Houston",
+    "senior care therapy dog testimonial Houston",
+  ],
+});
 
 const featured = [
   {

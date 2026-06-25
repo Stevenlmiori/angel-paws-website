@@ -6,6 +6,7 @@ import { sanityReadClient } from "@/lib/sanity/client";
 import { safeSanityImageUrl } from "@/lib/sanity/image";
 import { storyBySlugQuery } from "@/lib/sanity/queries";
 import type { StoryDetail } from "@/lib/sanity/types";
+import { DEFAULT_OG_IMAGE, pageMetadata } from "@/lib/seo";
 import { isExcludedSeedStorySlug } from "@/lib/stories/excludedSeedStories";
 import { getLocalStoryBySlug } from "@/lib/stories/localStories";
 import { PortableBody } from "@/components/stories/PortableBody";
@@ -18,7 +19,12 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   if (isExcludedSeedStorySlug(slug)) {
-    return { title: "Story" };
+    return pageMetadata({
+      title: "Therapy Dog Story",
+      description:
+        "A story from Angel Paws Pet Therapy visits across Greater Houston.",
+      path: `/stories/${slug}`,
+    });
   }
   const localStory = getLocalStoryBySlug(slug);
   if (localStory) {
@@ -26,31 +32,64 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const desc =
       localStory.seoDescription?.trim() ||
       localStory.excerpt?.trim() ||
-      undefined;
-    return {
+      "A story from Angel Paws Pet Therapy visits across Greater Houston.";
+    return pageMetadata({
       title,
       description: desc,
-      openGraph: { title, description: desc },
-    };
+      path: `/stories/${slug}`,
+      image: localStory.featuredImage?.url
+        ? {
+            url: localStory.featuredImage.url,
+            width: 1200,
+            height: 630,
+            alt: localStory.featuredImage.alt ?? title,
+          }
+        : DEFAULT_OG_IMAGE,
+      keywords: ["Angel Paws story", "Houston therapy dog visit story"],
+    });
   }
   const client = sanityReadClient();
   if (!client) {
-    return { title: "Story" };
+    return pageMetadata({
+      title: "Therapy Dog Story",
+      description:
+        "A story from Angel Paws Pet Therapy visits across Greater Houston.",
+      path: `/stories/${slug}`,
+    });
   }
   const story = await client.fetch<StoryDetail | null>(storyBySlugQuery, {
     slug,
   });
   if (!story) {
-    return { title: "Story" };
+    return pageMetadata({
+      title: "Therapy Dog Story",
+      description:
+        "A story from Angel Paws Pet Therapy visits across Greater Houston.",
+      path: `/stories/${slug}`,
+    });
   }
   const title = story.seoTitle?.trim() || story.title;
   const desc =
-    story.seoDescription?.trim() || story.excerpt?.trim() || undefined;
-  return {
+    story.seoDescription?.trim() ||
+    story.excerpt?.trim() ||
+    "A story from Angel Paws Pet Therapy visits across Greater Houston.";
+  const imageUrl =
+    story.featuredImage?.url ??
+    safeSanityImageUrl(story.featuredImage, (b) => b.width(1200).height(630));
+  return pageMetadata({
     title,
     description: desc,
-    openGraph: { title, description: desc },
-  };
+    path: `/stories/${slug}`,
+    image: imageUrl
+      ? {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: story.featuredImage?.alt ?? title,
+        }
+      : DEFAULT_OG_IMAGE,
+    keywords: ["Angel Paws story", "Houston therapy dog visit story"],
+  });
 }
 
 export default async function StoryDetailPage({ params }: Props) {

@@ -23,8 +23,8 @@ export function HomeHero() {
             Moment At A{"\u00A0"}Time.
           </h1>
           <p className="max-w-xl text-lg leading-relaxed text-on-surface-variant lg:text-xl">
-            Angel Paws is a faith-based pet therapy ministry in the Houston
-            area, sharing the love of Jesus through the steady comfort of
+            Angel Paws is a faith-based pet therapy ministry serving Greater
+            Houston, sharing the love of Jesus through the steady comfort of
             therapy dogs.
           </p>
           <div className="flex flex-wrap gap-6 pt-4">
