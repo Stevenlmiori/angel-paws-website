@@ -8,15 +8,22 @@ import {
   getLocalPublishedStories,
   mergePublishedStories,
 } from "@/lib/stories/localStories";
+import { pageMetadata } from "@/lib/seo";
 import { StoryCard } from "@/components/stories/StoryCard";
 import { HeadingBlock } from "@/components/ui/HeadingBlock";
 import { Section } from "@/components/ui/Section";
 
-export const metadata: Metadata = {
-  title: "Stories",
+export const metadata: Metadata = pageMetadata({
+  title: "Therapy Dog Stories from Houston & Greater Houston",
   description:
-    "Field notes and moments from Angel Paws therapy dog visits across Houston.",
-};
+    "Read field notes and stories from Angel Paws therapy dog visits with schools, hospitals, senior communities, churches, and community partners across Greater Houston.",
+  path: "/stories",
+  keywords: [
+    "Houston therapy dog stories",
+    "pet therapy stories Houston",
+    "Angel Paws visits",
+  ],
+});
 
 export const revalidate = 120;
 

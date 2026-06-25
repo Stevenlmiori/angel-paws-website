@@ -3,6 +3,7 @@ import { Manrope, Noto_Serif } from "next/font/google";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { DEFAULT_KEYWORDS, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { siteUnderConstruction } from "@/lib/siteFlags";
 import "./globals.css";
 
@@ -26,38 +27,38 @@ const underConstruction = siteUnderConstruction();
 
 export const metadata: Metadata = {
   /** Match production traffic (www); host-only cookies set on www are not sent on apex. */
-  metadataBase: new URL("https://www.angelpawspettherapy.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Angel Paws Pet Therapy",
-    template: "%s · Angel Paws Pet Therapy",
+    default: SITE_NAME,
+    template: `%s · ${SITE_NAME}`,
   },
   description:
-    "Faith-based pet therapy ministry in Greater Houston—hope and comfort through the love of therapy dogs.",
+    "Angel Paws Pet Therapy provides faith-based therapy dog visits for hospitals, schools, senior care communities, churches, workplaces, and crisis response across Greater Houston.",
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: "Pet therapy nonprofit",
+  keywords: DEFAULT_KEYWORDS,
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Angel Paws Pet Therapy",
+    title: SITE_NAME,
     description:
-      "Bringing the love of Jesus to those in need through the gentle presence of therapy dogs.",
-    url: "https://www.angelpawspettherapy.com",
-    siteName: "Angel Paws Pet Therapy",
+      "Faith-based therapy dog visits for hospitals, schools, senior care communities, and community partners across Greater Houston.",
+    url: "/",
+    siteName: SITE_NAME,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "/brand/angel-paws/logo@2x.png",
-        width: 1200,
-        height: 630,
-        alt: "Angel Paws Pet Therapy Logo",
-      },
-    ],
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Angel Paws Pet Therapy",
-    description: "Faith-based pet therapy ministry in Greater Houston.",
-    images: ["/brand/angel-paws/logo@2x.png"],
+    title: SITE_NAME,
+    description:
+      "Faith-based therapy dog visits for hospitals, schools, and care communities in Greater Houston.",
+    images: [DEFAULT_OG_IMAGE.url],
   },
   robots:
     siteIndexable && !underConstruction
