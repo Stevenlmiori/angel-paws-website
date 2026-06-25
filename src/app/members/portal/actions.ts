@@ -1,6 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { getMemberPortalEnv } from "@/lib/memberPortal/env";
 import {
@@ -8,6 +9,10 @@ import {
   MEMBER_PORTAL_COOKIE_NAME,
   safePasswordEqual,
 } from "@/lib/memberPortal/session";
+import {
+  checkRateLimit,
+  rateLimitKey,
+} from "@/lib/security/rateLimit";
 
 function portalCookieBase() {
   return {
@@ -24,6 +29,22 @@ export async function loginAction(
   _prev: LoginActionState,
   formData: FormData,
 ): Promise<LoginActionState> {
+  const h = await headers();
+  const ip =
+    h.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    h.get("x-real-ip")?.trim() ||
+    "unknown";
+  const limit = await checkRateLimit({
+    key: rateLimitKey(["member-portal-login", ip]),
+    limit: 20,
+    windowSec: 15 * 60,
+  });
+  if (!limit.ok) {
+    return {
+      error: "Too many attempts. Please wait a few minutes and try again.",
+    };
+  }
+
   const passwordField = formData.get("password");
   if (typeof passwordField !== "string") {
     return { error: "Enter the member password." };

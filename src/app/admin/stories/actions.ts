@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getAdminSession } from "@/lib/memberPortal/getAdminSession";
 import { sanityWriteClient } from "@/lib/sanity/client";
+import { readVerifiedImageUpload } from "@/lib/security/uploads";
 import { parseStoryBodyPortableTextJson } from "@/lib/stories/storyBodyEditorSchema";
 import { slugify } from "@/lib/stories/slugify";
 
@@ -80,10 +81,13 @@ export async function saveStoryFromFormData(
         message: "Add alt text for the featured image (accessibility).",
       };
     }
-    const buf = Buffer.from(await file.arrayBuffer());
-    const asset = await client.assets.upload("image", buf, {
-      filename: file.name || "featured.jpg",
-      contentType: file.type || "image/jpeg",
+    const upload = await readVerifiedImageUpload(file, "featured.jpg");
+    if (!upload.ok) {
+      return { ok: false, message: upload.message };
+    }
+    const asset = await client.assets.upload("image", upload.value.buffer, {
+      filename: upload.value.filename,
+      contentType: upload.value.contentType,
     });
     featuredPatch = {
       featuredImage: {

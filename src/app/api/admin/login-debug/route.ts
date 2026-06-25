@@ -21,6 +21,13 @@ function bearerFromRequest(request: Request): string {
 }
 
 export async function POST(request: Request) {
+  const debugEnabled =
+    process.env.NODE_ENV !== "production" ||
+    process.env.ADMIN_LOGIN_DEBUG_ENABLED === "true";
+  if (!debugEnabled) {
+    return NextResponse.json({ error: "debug_disabled" }, { status: 404 });
+  }
+
   const expected = process.env.ADMIN_LOGIN_DEBUG_KEY?.trim() ?? "";
   if (!expected || expected.length < 16) {
     return NextResponse.json(

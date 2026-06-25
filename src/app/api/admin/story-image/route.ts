@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/memberPortal/getAdminSession";
 import { sanityWriteClient } from "@/lib/sanity/client";
+import { readVerifiedImageUpload } from "@/lib/security/uploads";
 
 export async function POST(request: Request) {
   const session = await getAdminSession();
@@ -27,11 +28,17 @@ export async function POST(request: Request) {
   if (!(file instanceof File) || file.size === 0) {
     return NextResponse.json({ error: "Missing image file." }, { status: 400 });
   }
+  const upload = await readVerifiedImageUpload(file, "story-inline.jpg");
+  if (!upload.ok) {
+    return NextResponse.json(
+      { error: upload.message },
+      { status: upload.status },
+    );
+  }
 
-  const buf = Buffer.from(await file.arrayBuffer());
-  const asset = await client.assets.upload("image", buf, {
-    filename: file.name || "story-inline.jpg",
-    contentType: file.type || "image/jpeg",
+  const asset = await client.assets.upload("image", upload.value.buffer, {
+    filename: upload.value.filename,
+    contentType: upload.value.contentType,
   });
 
   return NextResponse.json({ ref: asset._id });
