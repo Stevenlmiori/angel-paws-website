@@ -45,7 +45,6 @@ export function StoryCard({
             {new Date(story.publishedAt).toLocaleDateString(undefined, {
               year: "numeric",
               month: "long",
-              day: "numeric",
             })}
           </time>
         ) : null}

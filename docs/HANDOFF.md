@@ -124,7 +124,7 @@ Copy `.env.example` to `.env.local` and set values. In **Vercel** (or similar), 
 
 ## 6. Stories — repo launch stories + **Sanity** `/admin`
 
-- **Public:** `/stories` and each post at `/stories/[slug]`. The site merges repo-backed launch stories from `src/lib/stories/localStories.ts` with Sanity stories, with local slugs winning if duplicated. Optional **home** section shows up to three posts; set **`NEXT_PUBLIC_HOME_STORIES_TAG`** to a tag (e.g. `home-spotlight`) so only tagged posts appear, or leave it unset for the three latest.
+- **Public:** `/stories` and each post at `/stories/[slug]`. The site merges repo-backed launch stories from `src/lib/stories/localStories.ts` with Sanity stories, with Sanity slugs winning if duplicated so Debbie's admin edits control the public story. Optional **home** section shows up to three posts; set **`NEXT_PUBLIC_HOME_STORIES_TAG`** to a tag (e.g. `home-spotlight`) so only tagged posts appear, or leave it unset for the three latest.
 - **Editing:** `/admin` → **Stories** (same email/password as member portal admin). Featured image, title, slug, tags, date, and body blocks (paragraphs, headings, quotes, bullets).
 - **Env:** See `.env.example` (`NEXT_PUBLIC_SANITY_*`, `SANITY_API_WRITE_TOKEN`, optional `SANITY_REVALIDATE_SECRET` for the revalidate webhook at `/api/revalidate-sanity`). If Sanity rejects story edits with 403, replace `SANITY_API_WRITE_TOKEN` with a token that has create/update/delete permissions.
 - **Sample posts:** Run `npm run seed:stories` once (requires write token + three images under `public/stories-seed/` — see script header).

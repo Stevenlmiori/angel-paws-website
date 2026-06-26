@@ -31,8 +31,8 @@ export const localStories: StoryDetail[] = [
     _id: "local.memory-care-ollie",
     title: "A Gentle Paw Opens a Quiet Heart",
     slug: "memory-care-ollie",
-    /** Before 2020 (Debbie: exact date pending) — placeholder mid-2019 for sort order */
-    publishedAt: "2019-06-01T12:00:00.000Z",
+    /** Debbie: exact day not recalled; month/year confirmed June 2018. */
+    publishedAt: "2018-06-15T12:00:00.000Z",
     excerpt:
       "Ollie helped a quiet resident at assisted living recall childhood memories—and opened a conversation about faith.",
     featuredImage: {
@@ -158,7 +158,7 @@ export function mergePublishedStories(
   sanityItems: StoryListItem[],
 ): StoryListItem[] {
   const seen = new Set<string>();
-  return [...localItems, ...sanityItems]
+  return [...sanityItems, ...localItems]
     .filter((story) => {
       if (seen.has(story.slug)) {
         return false;
