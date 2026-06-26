@@ -9,12 +9,37 @@ import type { StoryDetail } from "@/lib/sanity/types";
 import { DEFAULT_OG_IMAGE, pageMetadata } from "@/lib/seo";
 import { isExcludedSeedStorySlug } from "@/lib/stories/excludedSeedStories";
 import { getLocalStoryBySlug } from "@/lib/stories/localStories";
+import { normalizeStoryPublishedAt } from "@/lib/stories/storyDateOverrides";
 import { PortableBody } from "@/components/stories/PortableBody";
 import { Section } from "@/components/ui/Section";
 
 export const revalidate = 120;
 
 type Props = { params: Promise<{ slug: string }> };
+
+function formatStoryMonthYear(publishedAt?: string | null): string | null {
+  if (!publishedAt) {
+    return null;
+  }
+  const d = new Date(publishedAt);
+  if (Number.isNaN(d.getTime())) {
+    return null;
+  }
+  return d.toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "long",
+  });
+}
+
+async function getPublishedStory(slug: string): Promise<StoryDetail | null> {
+  const client = sanityReadClient();
+  const sanityStory = client
+    ? await client.fetch<StoryDetail | null>(storyBySlugQuery, { slug })
+    : null;
+
+  const story = sanityStory ?? getLocalStoryBySlug(slug);
+  return story ? normalizeStoryPublishedAt(story) : null;
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -26,40 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       path: `/stories/${slug}`,
     });
   }
-  const localStory = getLocalStoryBySlug(slug);
-  if (localStory) {
-    const title = localStory.seoTitle?.trim() || localStory.title;
-    const desc =
-      localStory.seoDescription?.trim() ||
-      localStory.excerpt?.trim() ||
-      "A story from Angel Paws Pet Therapy visits across Greater Houston.";
-    return pageMetadata({
-      title,
-      description: desc,
-      path: `/stories/${slug}`,
-      image: localStory.featuredImage?.url
-        ? {
-            url: localStory.featuredImage.url,
-            width: 1200,
-            height: 630,
-            alt: localStory.featuredImage.alt ?? title,
-          }
-        : DEFAULT_OG_IMAGE,
-      keywords: ["Angel Paws story", "Houston therapy dog visit story"],
-    });
-  }
-  const client = sanityReadClient();
-  if (!client) {
-    return pageMetadata({
-      title: "Therapy Dog Story",
-      description:
-        "A story from Angel Paws Pet Therapy visits across Greater Houston.",
-      path: `/stories/${slug}`,
-    });
-  }
-  const story = await client.fetch<StoryDetail | null>(storyBySlugQuery, {
-    slug,
-  });
+  const story = await getPublishedStory(slug);
   if (!story) {
     return pageMetadata({
       title: "Therapy Dog Story",
@@ -97,14 +89,7 @@ export default async function StoryDetailPage({ params }: Props) {
   if (isExcludedSeedStorySlug(slug)) {
     notFound();
   }
-  const localStory = getLocalStoryBySlug(slug);
-  const client = sanityReadClient();
-  if (!client && !localStory) {
-    notFound();
-  }
-  const story =
-    localStory ??
-    (await client!.fetch<StoryDetail | null>(storyBySlugQuery, { slug }));
+  const story = await getPublishedStory(slug);
   if (!story) {
     notFound();
   }
@@ -113,20 +98,7 @@ export default async function StoryDetailPage({ params }: Props) {
     story.featuredImage?.url ??
     safeSanityImageUrl(story.featuredImage, (b) => b.width(1600).height(900));
 
-  const publishedLabel = (() => {
-    if (!story.publishedAt) {
-      return null;
-    }
-    const d = new Date(story.publishedAt);
-    if (Number.isNaN(d.getTime())) {
-      return null;
-    }
-    return d.toLocaleDateString(undefined, {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  })();
+  const publishedLabel = formatStoryMonthYear(story.publishedAt);
 
   return (
     <article>
@@ -156,11 +128,6 @@ export default async function StoryDetailPage({ params }: Props) {
           <h1 className="font-serif text-4xl font-semibold leading-tight md:text-5xl lg:text-6xl">
             {story.title}
           </h1>
-          {story.tags?.length ? (
-            <p className="mt-4 text-sm font-semibold uppercase tracking-wider text-on-surface-inverse-muted">
-              {story.tags.join(" · ")}
-            </p>
-          ) : null}
         </div>
       </Section>
 
