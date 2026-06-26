@@ -14,24 +14,6 @@ export function MeetTheBoardImpact() {
           actual wagging tails and the smiles they provoke—that keeps our
           leadership grounded and focused.
         </p>
-        <div className="flex gap-12">
-          <div>
-            <span className="mb-1 block font-serif text-4xl text-primary">
-              500+
-            </span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-inverse-muted">
-              Monthly Visits
-            </span>
-          </div>
-          <div>
-            <span className="mb-1 block font-serif text-4xl text-primary">
-              12
-            </span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-inverse-muted">
-              Districts Served
-            </span>
-          </div>
-        </div>
       </div>
     </section>
   );

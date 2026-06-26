@@ -98,11 +98,36 @@ type PortableBodyProps = {
   value: unknown[] | null | undefined;
 };
 
+function isSourcesReviewedBlock(block: unknown): boolean {
+  if (!block || typeof block !== "object") {
+    return false;
+  }
+  const b = block as Record<string, unknown>;
+  if (b._type !== "block" || !Array.isArray(b.children)) {
+    return false;
+  }
+  const text = b.children
+    .map((child) => {
+      if (!child || typeof child !== "object") {
+        return "";
+      }
+      const c = child as Record<string, unknown>;
+      return typeof c.text === "string" ? c.text : "";
+    })
+    .join("")
+    .trim()
+    .toLowerCase();
+
+  return text.startsWith("sources reviewed:");
+}
+
 export function PortableBody({ value }: PortableBodyProps) {
   if (!value || !Array.isArray(value) || value.length === 0) {
     return null;
   }
-  const safe = normalizePortableTextForPublic(value);
+  const safe = normalizePortableTextForPublic(
+    value.filter((block) => !isSourcesReviewedBlock(block)),
+  );
   if (!safe?.length) {
     return null;
   }

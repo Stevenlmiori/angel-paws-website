@@ -19,11 +19,6 @@ export function WhereWeServeCTA() {
           Does your facility need a{" "}
           <span className="italic">visit from Angel Paws?</span>
         </h2>
-        <p className="mx-auto mb-12 max-w-2xl text-pretty text-xl leading-relaxed text-on-surface-charcoal-muted">
-          If you represent a healthcare, educational, senior care, or community
-          organization, tell us a little about your setting and what kind of
-          visit would be helpful.
-        </p>
         <div className="flex flex-wrap justify-center gap-6">
           <Link
             href="/contact#visitation-request"
