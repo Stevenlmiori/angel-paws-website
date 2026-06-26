@@ -3,7 +3,6 @@ import {
   ArrowRight,
   BookOpen,
   CircleCheck,
-  School,
   Stethoscope,
   UserRound,
   UsersRound,
@@ -102,28 +101,6 @@ export function WhereWeServeAreas() {
                   tails and listen to the magic of the words.&rdquo;
                 </p>
               </div>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <BookOpen
-                    className="mt-0.5 size-6 shrink-0 text-primary"
-                    strokeWidth={2}
-                    aria-hidden
-                  />
-                  <span className="font-medium text-on-surface-inverse">
-                    One-on-One Literacy Coaching
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <School
-                    className="mt-0.5 size-6 shrink-0 text-primary"
-                    strokeWidth={2}
-                    aria-hidden
-                  />
-                  <span className="font-medium text-on-surface-inverse">
-                    University Finals Week De-stressing
-                  </span>
-                </li>
-              </ul>
             </div>
             <div className="order-1 lg:order-2 lg:col-span-7">
               <ImagePanel

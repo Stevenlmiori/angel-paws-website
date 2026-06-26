@@ -89,7 +89,7 @@ export function SiteFooter() {
             </li>
             <li>
               <Link href="/members/portal" className={linkClass}>
-                Member Login
+                Member Portal
               </Link>
             </li>
           </ul>

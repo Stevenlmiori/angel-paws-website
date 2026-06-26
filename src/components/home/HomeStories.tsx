@@ -38,7 +38,7 @@ export async function HomeStories() {
         <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
           <HeadingBlock
             label="Stories"
-            title="Recent moments"
+            title="Moments in Ministry"
             description="A few highlights from visits across Houston—schools, hospitals, and senior communities."
             className="max-w-2xl"
           />

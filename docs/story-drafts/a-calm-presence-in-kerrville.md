@@ -37,9 +37,3 @@ This is the heart of Angel Paws: trained teams entering schools, assisted living
 ## How to help
 
 If your school, care facility, church, or community organization would benefit from a therapy dog visit, [request a visit](/contact). If you want to help Angel Paws continue bringing comfort into places of need, you can [give here](/donate).
-
-Sources reviewed:
-
-- [CNN transcript, July 16, 2025](https://transcripts.cnn.com/show/cnc/date/2025-07-16/segment/04)
-- [StateDefenseForce.com coverage of Kerrville recovery efforts, July 22, 2025](https://statedefenseforce.com/2025/07/22/hope-in-the-aftermath-texas-state-guard-aids-central-texas-in-long-term-recovery/)
-- [Boykin Spaniel Club September 2025 newsletter PDF](https://img1.wsimg.com/blobby/go/9b51756f-d8a0-4f7e-90e1-6fa56ef746c0/September%20Newsletter%202025%20COM-ca8ad04.pdf), Kathleen Yeaman, "Covey and Angel Paws: Therapy Ministry"
