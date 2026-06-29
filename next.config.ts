@@ -46,6 +46,11 @@ function securityHeaders(): { key: string; value: string }[] {
 }
 
 const nextConfig: NextConfig = {
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "10mb",
+    },
+  },
   images: {
     remotePatterns: [
       {

@@ -377,8 +377,8 @@ function StoryFormFields({ story }: { story: StoryDetail | null }) {
             </label>
             <p className="max-w-md text-sm text-on-surface-variant sm:pt-1">
               {isNew
-                ? "JPG, PNG, or WebP. Alt text is required when you add a new image."
-                : "Leave empty to keep the current image. Pick a new file to replace it, or use Remove on the preview to clear it."}
+                ? "JPG, PNG, or WebP under 8 MB. Alt text is required when you add a new image."
+                : "Leave empty to keep the current image. Pick a JPG, PNG, or WebP under 8 MB to replace it, or use Remove on the preview to clear it."}
             </p>
           </div>
           <div className="space-y-2">
