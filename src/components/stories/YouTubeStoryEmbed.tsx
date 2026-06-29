@@ -86,10 +86,10 @@ function loadYouTubeApi(): Promise<YouTubeApi> {
 function getEmbedSrc(videoId: string): string {
   const params = new URLSearchParams({
     autoplay: "1",
-    controls: "0",
-    disablekb: "1",
+    cc_load_policy: "0",
+    controls: "1",
     enablejsapi: "1",
-    fs: "0",
+    fs: "1",
     iv_load_policy: "3",
     modestbranding: "1",
     playsinline: "1",
