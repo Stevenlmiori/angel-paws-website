@@ -11,6 +11,7 @@ import { sanityReadClient } from "@/lib/sanity/client";
 import { safeSanityImageUrl } from "@/lib/sanity/image";
 import { storiesAllAdminQuery } from "@/lib/sanity/queries";
 import type { StoryAdminListItem } from "@/lib/sanity/types";
+import { isExcludedSeedStorySlug } from "@/lib/stories/excludedSeedStories";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -55,6 +56,9 @@ export default async function AdminStoriesListPage() {
   let items: StoryAdminListItem[] = [];
   if (client) {
     items = await client.fetch<StoryAdminListItem[]>(storiesAllAdminQuery);
+    items = items.filter(
+      (item) => !item.slug || !isExcludedSeedStorySlug(item.slug),
+    );
   }
 
   return (

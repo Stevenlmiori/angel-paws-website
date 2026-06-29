@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "import:local-stories": "tsx ./scripts/import-local-stories-to-sanity.ts",
     "seed:stories": "tsx ./scripts/seed-stories.ts",
     "delete:seed-stories": "tsx ./scripts/delete-seed-stories.ts"
   },
