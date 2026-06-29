@@ -41,10 +41,10 @@ function aboutSectionActive(pathname: string) {
 
 function linkClass(active: boolean) {
   return cn(
-    "block whitespace-nowrap font-serif text-[1.05rem] tracking-[0.01em] transition-all duration-300 2xl:text-lg",
+    "inline-flex h-9 items-center whitespace-nowrap border-b-2 font-serif text-[1.05rem] leading-none tracking-[0.01em] transition-colors duration-300 2xl:text-lg",
     active
-      ? "font-bold text-primary underline decoration-primary decoration-2 underline-offset-[10px]"
-      : "text-stone-600 hover:text-primary",
+      ? "border-primary font-bold text-primary"
+      : "border-transparent text-stone-600 hover:text-primary",
   );
 }
 
@@ -85,12 +85,12 @@ export function SiteHeader() {
             </li>
 
             <li className="group/aboutnav relative">
-              <div className="flex items-center gap-0.5">
+              <div className="flex h-9 items-center gap-0.5">
                 <Link href="/about" className={linkClass(aboutActive)}>
                   About
                 </Link>
                 <ChevronDown
-                  className="size-[1.05rem] shrink-0 text-stone-400 transition-transform duration-200 group-hover/aboutnav:rotate-180 group-hover/aboutnav:text-primary"
+                  className="mt-px size-[1.05rem] shrink-0 text-stone-400 transition-transform duration-200 group-hover/aboutnav:rotate-180 group-hover/aboutnav:text-primary"
                   strokeWidth={2}
                   aria-hidden
                 />
