@@ -6,12 +6,11 @@ const beliefPhotos = [
   { src: DEBBIE_IMG.lexie, alt: "Lexie during a visit" },
   { src: DEBBIE_IMG.boone, alt: "Boone, therapy dog" },
   { src: DEBBIE_IMG.kylo, alt: "Kylo during a community visit" },
-  { src: DEBBIE_IMG.sam, alt: "Sam, Angel Paws therapy dog" },
 ] as const;
 
 export function AboutHeart() {
   return (
-    <section className="section-tone-inverse py-24 md:py-32">
+    <section className="section-tone-inverse pt-24 pb-12 md:pt-32 md:pb-16">
       <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-12">
         <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
           <div className="space-y-6 text-lg leading-relaxed text-on-surface-inverse-muted">
@@ -36,7 +35,7 @@ export function AboutHeart() {
               pets bring.
             </p>
           </div>
-          <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-2">
+          <ul className="grid grid-cols-2 gap-3 lg:grid-cols-2">
             {beliefPhotos.map((photo) => (
               <li
                 key={photo.src}
