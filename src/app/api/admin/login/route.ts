@@ -2,6 +2,12 @@ import { NextResponse } from "next/server";
 import { adminCookieBase } from "@/lib/memberPortal/adminCookie";
 import { issueAdminPortalSession } from "@/lib/memberPortal/issueAdminPortalSession";
 import { ADMIN_PORTAL_COOKIE_NAME } from "@/lib/memberPortal/adminSession";
+import {
+  applyRateLimitHeaders,
+  checkRateLimit,
+  rateLimitKey,
+  requestIp,
+} from "@/lib/security/rateLimit";
 
 function sameOriginOk(request: Request): boolean {
   const host = new URL(request.url).host;
@@ -22,6 +28,12 @@ function loginUrl(request: Request, query: string): URL {
   return u;
 }
 
+function rateLimitedRedirect(request: Request, retryAfterSec: number) {
+  const res = NextResponse.redirect(loginUrl(request, "error=rate"), 303);
+  res.headers.set("Retry-After", String(retryAfterSec));
+  return res;
+}
+
 function isHttpsRequest(request: Request): boolean {
   const raw = request.headers.get("x-forwarded-proto");
   if (raw) {
@@ -35,6 +47,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
+  const ip = requestIp(request);
+  const ipLimit = await checkRateLimit({
+    key: rateLimitKey(["admin-login-ip", ip]),
+    limit: 40,
+    windowSec: 15 * 60,
+  });
+  if (!ipLimit.ok) {
+    return rateLimitedRedirect(request, ipLimit.retryAfterSec);
+  }
+
   let formData: FormData;
   try {
     formData = await request.formData();
@@ -44,6 +66,19 @@ export async function POST(request: Request) {
 
   const email = formData.get("email");
   const password = formData.get("password");
+  const emailKey =
+    typeof email === "string" && email.trim()
+      ? email.trim().toLowerCase()
+      : "blank";
+  const credentialLimit = await checkRateLimit({
+    key: rateLimitKey(["admin-login-credential", ip, emailKey]),
+    limit: 8,
+    windowSec: 15 * 60,
+  });
+  if (!credentialLimit.ok) {
+    return rateLimitedRedirect(request, credentialLimit.retryAfterSec);
+  }
+
   const result = issueAdminPortalSession(
     typeof email === "string" ? email : "",
     typeof password === "string" ? password : "",
@@ -71,6 +106,7 @@ export async function POST(request: Request) {
     ...adminCookieBase({ secure }),
     maxAge: result.value.maxAgeSec,
   });
+  applyRateLimitHeaders(res.headers, credentialLimit);
   return res;
 }
 

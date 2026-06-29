@@ -4,6 +4,7 @@ const ERROR_MESSAGES: Record<string, string> = {
   invalid: "That email or password did not match.",
   fields: "Enter email and password.",
   config: "Admin sign-in is not configured on the server.",
+  rate: "Too many sign-in attempts. Please wait a few minutes and try again.",
 };
 
 type Props = {

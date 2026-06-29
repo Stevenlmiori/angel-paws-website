@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { X } from "lucide-react";
 import type { StoredGalleryImage } from "@/lib/siteContent/galleryTypes";
+import { GalleryImage, GalleryLightboxImage } from "./GalleryImage";
 
 export function GalleryGrid({ images }: { images: StoredGalleryImage[] }) {
   const [lightbox, setLightbox] = useState<StoredGalleryImage | null>(null);
@@ -26,10 +26,9 @@ export function GalleryGrid({ images }: { images: StoredGalleryImage[] }) {
               onClick={() => setLightbox(img)}
               className="group relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-surface-container-low shadow-soft ring-1 ring-primary/5 transition hover:ring-primary/20 md:rounded-3xl"
             >
-              <Image
+              <GalleryImage
                 src={img.src}
                 alt={img.alt}
-                fill
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 className="object-cover transition duration-500 group-hover:scale-[1.03]"
               />
@@ -63,11 +62,9 @@ export function GalleryGrid({ images }: { images: StoredGalleryImage[] }) {
             className="relative max-h-[85vh] max-w-4xl overflow-hidden rounded-3xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <Image
+            <GalleryLightboxImage
               src={lightbox.src}
               alt={lightbox.alt}
-              width={1200}
-              height={900}
               className="max-h-[85vh] w-auto object-contain"
             />
             {lightbox.caption ? (

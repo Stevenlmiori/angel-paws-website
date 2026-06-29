@@ -14,7 +14,7 @@ const items = [
   {
     icon: PawPrint,
     title: "Community Outreach",
-    body: "Extending visits to assisted living, churches, and crisis-response settings.",
+    body: "Extending visits to assisted living, churches, business settings, crisis-response settings, and much more.",
   },
 ] as const;
 

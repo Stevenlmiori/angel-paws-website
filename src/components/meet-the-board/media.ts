@@ -1,6 +1,3 @@
-import { SITE_IMAGES } from "@/lib/siteImages";
-
 export const BOARD_IMG = {
-  hero: SITE_IMAGES.stockBoardHeroDog,
-  impact: SITE_IMAGES.stockVolunteerTeam,
+  hero: "/gallery/Redeemer Church .jpeg",
 } as const;

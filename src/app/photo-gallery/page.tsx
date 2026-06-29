@@ -1,14 +1,20 @@
-import type { Metadata } from "next";
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
 import { HeadingBlock } from "@/components/ui/HeadingBlock";
 import { Section } from "@/components/ui/Section";
+import { pageMetadata } from "@/lib/seo";
 import { loadActiveGalleryImages } from "@/lib/siteContent/galleryStore";
 
-export const metadata: Metadata = {
-  title: "Photo Gallery",
+export const metadata = pageMetadata({
+  title: "Houston Therapy Dog Photo Gallery",
   description:
-    "Photos from Angel Paws Pet Therapy visits—schools, hospitals, assisted living, and community events across Greater Houston.",
-};
+    "See photos from Angel Paws Pet Therapy visits with schools, hospitals, assisted living communities, churches, and community events across Greater Houston.",
+  path: "/photo-gallery",
+  keywords: [
+    "Houston therapy dog photos",
+    "Angel Paws photo gallery",
+    "pet therapy gallery Houston",
+  ],
+});
 
 export const dynamic = "force-dynamic";
 

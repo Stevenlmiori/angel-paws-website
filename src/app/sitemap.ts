@@ -7,8 +7,25 @@ import { siteUnderConstruction } from "@/lib/siteFlags";
 
 const baseUrl = "https://www.angelpawspettherapy.com";
 
+const routePriority = new Map<string, number>([
+  ["", 1],
+  ["/contact", 0.95],
+  ["/where-we-serve", 0.95],
+  ["/what-is-pet-therapy", 0.9],
+  ["/donate", 0.9],
+  ["/stories", 0.85],
+  ["/photo-gallery", 0.8],
+  ["/testimonials", 0.8],
+  ["/about", 0.8],
+  ["/get-involved", 0.75],
+  ["/meet-the-board", 0.7],
+]);
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  if (siteUnderConstruction()) {
+  if (
+    siteUnderConstruction() ||
+    process.env.NEXT_PUBLIC_SITE_INDEXABLE !== "true"
+  ) {
     return [];
   }
 
@@ -32,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${baseUrl}${route}`,
     lastModified,
     changeFrequency: "monthly",
-    priority: route === "" ? 1 : route === "/stories" ? 0.85 : 0.8,
+    priority: routePriority.get(route) ?? 0.7,
   }));
 
   const client = sanityReadClient();

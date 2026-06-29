@@ -1,7 +1,7 @@
 export function MeetTheBoardImpact() {
   return (
-    <section className="mx-auto mt-24 max-w-screen-xl px-6 pb-12 sm:px-10 md:mt-32 lg:px-12">
-      <div className="section-tone-inverse mx-auto max-w-4xl rounded-[2.5rem] p-10 shadow-soft lg:p-20">
+    <section className="section-tone-inverse mt-24 w-full px-6 py-20 sm:px-10 md:mt-32 md:py-28 lg:px-12">
+      <div className="mx-auto max-w-screen-md">
         <span className="mb-6 block text-xs font-bold uppercase tracking-[0.2em] text-primary">
           Our Shared Vision
         </span>
@@ -14,24 +14,6 @@ export function MeetTheBoardImpact() {
           actual wagging tails and the smiles they provoke—that keeps our
           leadership grounded and focused.
         </p>
-        <div className="flex gap-12">
-          <div>
-            <span className="mb-1 block font-serif text-4xl text-primary">
-              500+
-            </span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-inverse-muted">
-              Monthly Visits
-            </span>
-          </div>
-          <div>
-            <span className="mb-1 block font-serif text-4xl text-primary">
-              12
-            </span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-inverse-muted">
-              Districts Served
-            </span>
-          </div>
-        </div>
       </div>
     </section>
   );

@@ -50,6 +50,13 @@ export function TestimonialsEditor({
 
   return (
     <div className="space-y-6">
+      <div className="flex justify-end">
+        <Button type="button" variant="secondary" onClick={addItem} className="gap-2">
+          <Plus className="size-4" aria-hidden />
+          Add testimonial
+        </Button>
+      </div>
+
       <ul className="space-y-4">
         {items.map((item) => (
           <li

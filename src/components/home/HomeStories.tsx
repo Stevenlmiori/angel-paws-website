@@ -3,6 +3,7 @@ import { sanityReadClient } from "@/lib/sanity/client";
 import { storiesForHomeQuery } from "@/lib/sanity/queries";
 import type { StoryListItem } from "@/lib/sanity/types";
 import { withoutExcludedSeedStories } from "@/lib/stories/excludedSeedStories";
+import { normalizeStoryPublishedDates } from "@/lib/stories/storyDateOverrides";
 import {
   getLocalPublishedStories,
   mergePublishedStories,
@@ -22,7 +23,9 @@ export async function HomeStories() {
     } as Record<string, string>);
   }
   items = withoutExcludedSeedStories(
-    mergePublishedStories(getLocalPublishedStories(tagParam), items),
+    normalizeStoryPublishedDates(
+      mergePublishedStories(getLocalPublishedStories(tagParam), items),
+    ),
   ).slice(0, 3);
 
   if (items.length === 0) {
@@ -35,7 +38,7 @@ export async function HomeStories() {
         <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
           <HeadingBlock
             label="Stories"
-            title="Recent moments"
+            title="Moments in Ministry"
             description="A few highlights from visits across Houston—schools, hospitals, and senior communities."
             className="max-w-2xl"
           />

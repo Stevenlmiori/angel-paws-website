@@ -31,8 +31,8 @@ export const localStories: StoryDetail[] = [
     _id: "local.memory-care-ollie",
     title: "A Gentle Paw Opens a Quiet Heart",
     slug: "memory-care-ollie",
-    /** Before 2020 (Debbie: exact date pending) — placeholder mid-2019 for sort order */
-    publishedAt: "2019-06-01T12:00:00.000Z",
+    /** Debbie: exact day not recalled; month/year confirmed June 2018. */
+    publishedAt: "2018-06-15T12:00:00.000Z",
     excerpt:
       "Ollie helped a quiet resident at assisted living recall childhood memories—and opened a conversation about faith.",
     featuredImage: {
@@ -65,6 +65,14 @@ export const localStories: StoryDetail[] = [
         "I think deep down, he suspected Tucker's family may not have survived the flood and his heart couldn't take it. I proceeded to call the first number on the tag and got voicemail. I left a message informing her that Tucker did not survive and that the first responder respectfully and lovingly took care of him. But even then, I had a sinking feeling in the pit of my stomach, so I searched the list of missing people from the flood. Sadly, I found Tucker's owners were still missing. I then saw a social media post from a family member seeking information about them, so I messaged her after I returned home.",
         "Theirs is a story of hope and survival. While Tucker and his owners did not survive the flood, three family members were rescued and were being treated at the hospital. I was able to return Tucker's tag to the family. She said that Tucker was a spoiled and beloved pet.",
       ]),
+      {
+        _type: "youtube",
+        _key: "khou-kerrville-ministry-video",
+        videoId: "sxl9IDVqQVw",
+        title: "KHOU 11 coverage of Angel Paws in Kerrville",
+        caption:
+          "KHOU 11 shared how Angel Paws therapy dogs helped comfort Hill Country flood survivors and recovery teams.",
+      },
       {
         _type: "block",
         _key: "links-block",
@@ -158,7 +166,7 @@ export function mergePublishedStories(
   sanityItems: StoryListItem[],
 ): StoryListItem[] {
   const seen = new Set<string>();
-  return [...localItems, ...sanityItems]
+  return [...sanityItems, ...localItems]
     .filter((story) => {
       if (seen.has(story.slug)) {
         return false;

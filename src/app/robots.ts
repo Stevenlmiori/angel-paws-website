@@ -13,10 +13,19 @@ export default function robots(): MetadataRoute.Robots {
 
   const siteIndexable = process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true";
 
+  if (!siteIndexable) {
+    return {
+      rules: {
+        userAgent: "*",
+        disallow: ["/"],
+      },
+    };
+  }
+
   return {
     rules: {
       userAgent: "*",
-      allow: siteIndexable ? "/" : [],
+      allow: "/",
       disallow: ["/members/portal/", "/admin/", "/private/"],
     },
     sitemap: "https://www.angelpawspettherapy.com/sitemap.xml",

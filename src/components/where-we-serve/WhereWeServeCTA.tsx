@@ -11,19 +11,14 @@ export function WhereWeServeCTA() {
         className="pointer-events-none absolute -bottom-24 -left-24 size-96 rounded-full bg-primary/10 blur-3xl"
         aria-hidden
       />
-      <div className="relative z-10 mx-auto max-w-3xl">
-        <p className="mb-8 font-serif text-2xl italic leading-snug text-primary md:text-3xl">
+      <div className="relative z-10 mx-auto max-w-4xl">
+        <p className="mx-auto mb-8 max-w-2xl text-balance font-serif text-2xl italic leading-snug text-primary md:text-3xl">
           A calm presence can change the tone of an entire room.
         </p>
-        <h2 className="mb-8 font-serif text-3xl leading-tight md:text-4xl">
+        <h2 className="mx-auto mb-8 max-w-3xl text-balance font-serif text-3xl leading-tight md:text-4xl">
           Does your facility need a{" "}
           <span className="italic">visit from Angel Paws?</span>
         </h2>
-        <p className="mb-12 text-xl text-on-surface-charcoal-muted">
-          If you represent a healthcare, educational, senior care, or community
-          organization, tell us a little about your setting and what kind of
-          visit would be helpful.
-        </p>
         <div className="flex flex-wrap justify-center gap-6">
           <Link
             href="/contact#visitation-request"

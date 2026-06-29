@@ -15,7 +15,8 @@ export function WhereWeServeHero() {
           </h1>
           <div className="mb-8 max-w-lg space-y-6 text-xl leading-relaxed text-on-surface-variant">
             <p>
-              Our teams serve in a variety of environments across the community.
+              Our teams serve in hospitals, schools, senior care communities,
+              churches, workplaces, and crisis settings across Greater Houston.
             </p>
             <p>
               Each one is different, but the need is the same. A calm presence in
@@ -27,7 +28,7 @@ export function WhereWeServeHero() {
           <div className="relative aspect-[4/5] rotate-2 overflow-hidden rounded-[2rem] shadow-2xl transition-transform duration-700 hover:rotate-0">
             <Image
               src={SERVE_IMG.hero}
-              alt="Golden retriever in soft window light"
+              alt="Kylo, an Angel Paws therapy dog, with his handler"
               fill
               priority
               sizes="(max-width: 768px) 100vw, 50vw"

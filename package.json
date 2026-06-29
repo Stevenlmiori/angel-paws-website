@@ -20,16 +20,16 @@
     "@portabletext/plugin-paste-link": "^3.0.25",
     "@portabletext/plugin-typography": "^7.0.25",
     "@portabletext/react": "^6.0.3",
-    "@sanity/client": "^7.21.0",
+    "@sanity/client": "^7.23.0",
     "@sanity/image-url": "^2.1.1",
     "@upstash/redis": "^1.37.0",
     "gsap": "^3.14.2",
     "lucide-react": "^1.7.0",
-    "next": "16.2.3",
-    "next-sanity": "^12.3.0",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "sanity": "^5.21.0"
+    "next": "^16.2.9",
+    "next-sanity": "^13.1.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "sanity": "^6.2.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -41,5 +41,17 @@
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@module-federation/dts-plugin": "2.6.0",
+    "@sanity/uuid": "3.0.3",
+    "js-yaml": "4.2.0",
+    "postcss": "8.5.15",
+    "@vercel/frameworks": {
+      "smol-toml": "1.7.0"
+    },
+    "typeid-js": {
+      "uuid": "11.1.1"
+    }
   }
 }

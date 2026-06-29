@@ -2,6 +2,7 @@ import Image from "next/image";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { safeSanityImageUrl } from "@/lib/sanity/image";
 import { normalizePortableTextForPublic } from "@/lib/stories/normalizePortableTextForPublic";
+import { YouTubeStoryEmbed } from "./YouTubeStoryEmbed";
 
 const components: PortableTextComponents = {
   types: {
@@ -32,6 +33,27 @@ const components: PortableTextComponents = {
             </figcaption>
           ) : null}
         </figure>
+      );
+    },
+    youtube: ({ value }) => {
+      const videoId = typeof value?.videoId === "string" ? value.videoId : "";
+      const title =
+        typeof value?.title === "string" && value.title
+          ? value.title
+          : "Angel Paws ministry video";
+      const caption =
+        typeof value?.caption === "string" ? value.caption : undefined;
+
+      if (!/^[\w-]{11}$/.test(videoId)) {
+        return null;
+      }
+
+      return (
+        <YouTubeStoryEmbed
+          videoId={videoId}
+          title={title}
+          caption={caption}
+        />
       );
     },
   },
@@ -98,11 +120,36 @@ type PortableBodyProps = {
   value: unknown[] | null | undefined;
 };
 
+function isSourcesReviewedBlock(block: unknown): boolean {
+  if (!block || typeof block !== "object") {
+    return false;
+  }
+  const b = block as Record<string, unknown>;
+  if (b._type !== "block" || !Array.isArray(b.children)) {
+    return false;
+  }
+  const text = b.children
+    .map((child) => {
+      if (!child || typeof child !== "object") {
+        return "";
+      }
+      const c = child as Record<string, unknown>;
+      return typeof c.text === "string" ? c.text : "";
+    })
+    .join("")
+    .trim()
+    .toLowerCase();
+
+  return text.startsWith("sources reviewed:");
+}
+
 export function PortableBody({ value }: PortableBodyProps) {
   if (!value || !Array.isArray(value) || value.length === 0) {
     return null;
   }
-  const safe = normalizePortableTextForPublic(value);
+  const safe = normalizePortableTextForPublic(
+    value.filter((block) => !isSourcesReviewedBlock(block)),
+  );
   if (!safe?.length) {
     return null;
   }

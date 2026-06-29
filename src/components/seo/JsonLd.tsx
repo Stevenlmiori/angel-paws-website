@@ -1,65 +1,122 @@
 "use client";
 
 import Script from "next/script";
-
-const siteUrl = "https://www.angelpawspettherapy.com";
+import { absoluteUrl, SITE_NAME, SITE_URL } from "@/lib/seo";
+import {
+  ANGEL_PAWS_FACEBOOK_URL,
+  CONTACT_EMAIL,
+  VISITATION_REQUEST_FORM_URL,
+} from "@/lib/siteLinks";
 
 export function JsonLd() {
-  const organizationData = {
-    "@context": "https://schema.org",
-    "@type": "NonprofitOrganization",
-    name: "Angel Paws Pet Therapy",
-    url: siteUrl,
-    logo: `${siteUrl}/brand/angel-paws/logo@2x.png`,
-    description:
-      "A faith-based pet therapy ministry serving the Greater Houston area, sharing the unconditional love of Jesus through therapy dogs.",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Houston",
-      addressRegion: "TX",
-      addressCountry: "US",
-    },
-    areaServed: {
-      "@type": "AdministrativeArea",
-      name: "Greater Houston",
-    },
-    knowsAbout: ["Pet Therapy", "Animal-Assisted Activities", "Faith-based Ministry"],
-  };
+  const organizationId = `${SITE_URL}/#organization`;
+  const serviceId = `${SITE_URL}/#therapy-dog-visits`;
+  const websiteId = `${SITE_URL}/#website`;
 
-  const localBusinessData = {
+  const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Angel Paws Pet Therapy",
-    image: `${siteUrl}/brand/angel-paws/logo@2x.png`,
-    priceRange: "$",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Houston",
-      addressRegion: "TX",
-      postalCode: "77069",
-      streetAddress: "Northwest Houston",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 29.7604,
-      longitude: -95.3698,
-    },
-    url: siteUrl,
-    telephone: "",
+    "@graph": [
+      {
+        "@type": "NonprofitOrganization",
+        "@id": organizationId,
+        name: SITE_NAME,
+        alternateName: ["Angel Paws", "Angel Paws Houston"],
+        url: SITE_URL,
+        logo: absoluteUrl("/brand/angel-paws/logo@4x.png"),
+        image: [
+          absoluteUrl("/img/angelpaws-dog-and-owner-nk_horizontal.jpg"),
+          absoluteUrl("/img/gave-me-your-paw.jpg"),
+        ],
+        description:
+          "A faith-based pet therapy nonprofit serving the Greater Houston area through certified therapy dog visits.",
+        email: CONTACT_EMAIL,
+        foundingDate: "2017",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Houston",
+          addressRegion: "TX",
+          addressCountry: "US",
+        },
+        areaServed: [
+          {
+            "@type": "City",
+            name: "Houston",
+            addressRegion: "TX",
+            addressCountry: "US",
+          },
+          {
+            "@type": "AdministrativeArea",
+            name: "Greater Houston",
+          },
+        ],
+        sameAs: [ANGEL_PAWS_FACEBOOK_URL],
+        knowsAbout: [
+          "Pet therapy",
+          "Therapy dogs",
+          "Animal-assisted activities",
+          "Hospital visits",
+          "School visits",
+          "Senior care visits",
+          "Crisis response",
+          "Faith-based ministry",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": websiteId,
+        name: SITE_NAME,
+        url: SITE_URL,
+        publisher: {
+          "@id": organizationId,
+        },
+        inLanguage: "en-US",
+      },
+      {
+        "@type": "Service",
+        "@id": serviceId,
+        name: "Therapy dog visits in Greater Houston",
+        serviceType: "Pet therapy and therapy dog visits",
+        provider: {
+          "@id": organizationId,
+        },
+        areaServed: [
+          {
+            "@type": "City",
+            name: "Houston",
+            addressRegion: "TX",
+            addressCountry: "US",
+          },
+          {
+            "@type": "AdministrativeArea",
+            name: "Greater Houston",
+          },
+        ],
+        audience: [
+          {
+            "@type": "Audience",
+            audienceType:
+              "Hospitals, schools, senior care communities, churches, workplaces, and community partners",
+          },
+        ],
+        description:
+          "Certified Angel Paws therapy dog teams visit hospitals, schools, senior care communities, churches, workplaces, and crisis-impacted settings across Greater Houston.",
+        url: absoluteUrl("/contact#visitation-request"),
+        potentialAction: {
+          "@type": "RequestAction",
+          name: "Request a therapy dog visit",
+          target: VISITATION_REQUEST_FORM_URL,
+        },
+      },
+    ],
   };
 
   return (
-    <>
-      <Script
-        id="json-ld-organization"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
-      />
-      <Script
-        id="json-ld-local"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessData) }}
-      />
-    </>
+    <Script
+      id="json-ld-site"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+      }}
+    />
   );
 }

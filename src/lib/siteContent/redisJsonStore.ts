@@ -45,9 +45,12 @@ export async function loadJsonFromRedis<T>(key: string): Promise<T | null> {
   if (!redis) {
     return null;
   }
-  const raw = await redis.get<string>(key);
+  const raw = await redis.get<unknown>(key);
   if (raw == null || raw === "") {
     return null;
+  }
+  if (typeof raw !== "string") {
+    return raw as T;
   }
   try {
     return JSON.parse(raw) as T;
@@ -90,7 +93,7 @@ export async function persistJson<T>(
 
   if (redis) {
     try {
-      await redis.set(key, payload);
+      await redis.set(key, value);
       return { ok: true };
     } catch {
       return { ok: false, error: "redis_write_failed" };
