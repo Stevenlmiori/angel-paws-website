@@ -14,7 +14,7 @@ export const DEFAULT_PORTAL_RESOURCES: StoredPortalResource[] = [
   {
     id: "policies",
     title: "Policies & handbooks",
-    description: "Member policies and handbook materials (add Drive links as ready).",
+    description: "Member policies and handbook materials.",
     href: HOW_TO_BECOME_INVOLVED_DOC_URL,
     external: true,
     iconId: "folder",

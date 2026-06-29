@@ -4,9 +4,6 @@ export const ANGEL_PAWS_FACEBOOK_URL =
   process.env.NEXT_PUBLIC_ANGEL_PAWS_FACEBOOK_URL?.trim() ||
   "https://www.facebook.com/profile.php?id=100016022499126";
 
-export const CHAMPION_FOREST_BELIEFS_URL =
-  "https://www.championforest.org/about/beliefs/";
-
 /** Primary inbox for general contact and visit follow-up. */
 export const CONTACT_EMAIL = "angelpawshouston@gmail.com";
 

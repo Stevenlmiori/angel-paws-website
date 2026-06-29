@@ -1,44 +1,39 @@
 import type { LucideIcon } from "lucide-react";
-import Link from "next/link";
-import { BookOpen, HeartHandshake, Shield, Sparkles } from "lucide-react";
-import { CHAMPION_FOREST_BELIEFS_URL } from "@/lib/siteLinks";
+import { BookOpen, Cross, HeartHandshake, Sparkles } from "lucide-react";
 
 const beliefs: {
   Icon: LucideIcon;
   title: string;
   body: string;
-  link?: { href: string; label: string; external?: boolean };
 }[] = [
   {
     Icon: Sparkles,
     title: "Christ-Centered Mission",
-    body: "We serve to share the love of Jesus with gentleness, humility, and compassion in every visit.",
-  },
-  {
-    Icon: HeartHandshake,
-    title: "Compassion in Action",
-    body: "Therapy dogs help people feel seen and safe. We use that open door to bring encouragement, hope, and meaningful connection.",
+    body: "Angel Paws exists to share the love of Jesus with gentleness, humility, and compassion in every visit.",
   },
   {
     Icon: BookOpen,
-    title: "Biblical Foundation",
-    body: "Scripture guides our convictions, our character, and the way we care for people of every age and background.",
-    link: {
-      href: CHAMPION_FOREST_BELIEFS_URL,
-      label: "Read our beliefs (Champion Forest)",
-      external: true,
-    },
+    title: "Scripture",
+    body: "We believe the Bible is God's inspired Word and the trustworthy authority for faith, character, and the way we serve others.",
   },
   {
-    Icon: Shield,
-    title: "Safety & Stewardship",
-    body: "Our pets are highly trained. We require training, temperament screening, and health standards so each team serves with professionalism and trust.",
+    Icon: Cross,
+    title: "Jesus Christ",
+    body: "We believe in one God: Father, Son, and Holy Spirit. Jesus Christ is fully God and fully man, crucified for our sins, risen bodily, and coming again.",
+  },
+  {
+    Icon: HeartHandshake,
+    title: "Grace & Service",
+    body: "We believe salvation is God's gift of grace through faith in Jesus Christ. Because He first loved us, we seek to serve people with compassion, integrity, prayer, and hope.",
   },
 ];
 
 export function AboutMissionBeliefs() {
   return (
-    <section className="rounded-[2.5rem] bg-surface-container-low py-24 md:rounded-[3rem] md:py-32">
+    <section
+      id="beliefs"
+      className="rounded-[2.5rem] bg-surface-container-low py-24 md:rounded-[3rem] md:py-32"
+    >
       <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-12">
         <div className="flex flex-col gap-16 md:flex-row md:gap-20">
           <div className="md:w-1/3">
@@ -51,12 +46,12 @@ export function AboutMissionBeliefs() {
               <span className="h-2 w-2 rounded-full bg-primary/15" />
             </div>
             <p className="text-lg italic leading-relaxed text-on-surface-variant">
-              Guided by faith, led by compassion, and sustained by the simple wag
-              of a tail.
+              Guided by Scripture, centered on Jesus, and expressed through
+              compassionate service.
             </p>
           </div>
           <div className="grid flex-1 grid-cols-1 gap-8 sm:grid-cols-2 md:min-w-0">
-            {beliefs.map(({ Icon, title, body, link }) => (
+            {beliefs.map(({ Icon, title, body }) => (
               <div
                 key={title}
                 className="rounded-2xl bg-surface-container-lowest p-8 shadow-soft transition-colors duration-300 hover:bg-white md:p-10"
@@ -68,25 +63,6 @@ export function AboutMissionBeliefs() {
                   {title}
                 </h3>
                 <p className="leading-relaxed text-on-surface-variant">{body}</p>
-                {link ? (
-                  link.external ? (
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline"
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link
-                      href={link.href}
-                      className="mt-4 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline"
-                    >
-                      {link.label}
-                    </Link>
-                  )
-                ) : null}
               </div>
             ))}
           </div>
