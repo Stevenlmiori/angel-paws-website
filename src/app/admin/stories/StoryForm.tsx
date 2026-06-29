@@ -1,6 +1,13 @@
 "use client";
 
-import { useActionState, useCallback, useEffect, useMemo, useState } from "react";
+import {
+  useActionState,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ImagePlus, X } from "lucide-react";
@@ -54,6 +61,11 @@ function StoryFormFields({ story }: { story: StoryDetail | null }) {
   const [featuredAlt, setFeaturedAlt] = useState(story?.featuredImage?.alt ?? "");
   /** Edit mode: user chose to remove the saved featured image on next save. */
   const [featuredRemoved, setFeaturedRemoved] = useState(false);
+  const featuredInputRef = useRef<HTMLInputElement | null>(null);
+  const [selectedFeaturedImage, setSelectedFeaturedImage] = useState<{
+    name: string;
+    url: string;
+  } | null>(null);
 
   const initialBody = useMemo(
     () => normalizeStoryBodyInitial(story?.body),
@@ -87,6 +99,28 @@ function StoryFormFields({ story }: { story: StoryDetail | null }) {
     }
   }, [state.ok, state.message, isNew, router]);
 
+  useEffect(() => {
+    if (!state.ok) {
+      return undefined;
+    }
+    const timer = window.setTimeout(() => {
+      setSelectedFeaturedImage(null);
+      if (featuredInputRef.current) {
+        featuredInputRef.current.value = "";
+      }
+    }, 0);
+
+    return () => window.clearTimeout(timer);
+  }, [state.ok, state.message]);
+
+  useEffect(() => {
+    return () => {
+      if (selectedFeaturedImage) {
+        URL.revokeObjectURL(selectedFeaturedImage.url);
+      }
+    };
+  }, [selectedFeaturedImage]);
+
   const featuredPreview = useMemo(() => {
     const fi = story?.featuredImage;
     if (!fi?.asset?._ref) {
@@ -95,7 +129,10 @@ function StoryFormFields({ story }: { story: StoryDetail | null }) {
     return urlForImage(fi)?.width(640).height(400).url() ?? null;
   }, [story?.featuredImage]);
 
-  const showFeaturedPreview = Boolean(featuredPreview && !featuredRemoved);
+  const selectedFeaturedPreview = selectedFeaturedImage?.url ?? null;
+  const activeFeaturedPreview =
+    selectedFeaturedPreview ?? (!featuredRemoved ? featuredPreview : null);
+  const showFeaturedPreview = Boolean(activeFeaturedPreview);
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-10 sm:px-10 lg:px-12">
@@ -125,7 +162,7 @@ function StoryFormFields({ story }: { story: StoryDetail | null }) {
         <input
           type="hidden"
           name="clearFeaturedImage"
-          value={featuredRemoved ? "1" : "0"}
+          value={featuredRemoved && !selectedFeaturedImage ? "1" : "0"}
         />
         <textarea
           name="bodyPortableTextJson"
@@ -247,29 +284,53 @@ function StoryFormFields({ story }: { story: StoryDetail | null }) {
               This is the image at the top of the story and in story listings.
             </p>
           </div>
-          {showFeaturedPreview && featuredPreview ? (
+          {showFeaturedPreview && activeFeaturedPreview ? (
             <div className="relative aspect-[16/10] w-full max-w-xl overflow-hidden rounded-2xl bg-surface-container-low ring-1 ring-primary/10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={featuredPreview}
+                src={activeFeaturedPreview}
                 alt=""
                 className="h-full w-full object-cover"
               />
-              {!isNew ? (
-                <button
-                  type="button"
-                  className="absolute right-2 top-2 inline-flex size-10 items-center justify-center rounded-full bg-on-surface/85 text-white shadow-md ring-1 ring-white/20 transition hover:bg-on-surface"
-                  onClick={() => {
+              <button
+                type="button"
+                className="absolute right-2 top-2 inline-flex size-10 items-center justify-center rounded-full bg-on-surface/85 text-white shadow-md ring-1 ring-white/20 transition hover:bg-on-surface"
+                onClick={() => {
+                  if (selectedFeaturedImage) {
+                    URL.revokeObjectURL(selectedFeaturedImage.url);
+                    setSelectedFeaturedImage(null);
+                    if (featuredInputRef.current) {
+                      featuredInputRef.current.value = "";
+                    }
+                    setFeaturedRemoved(false);
+                  } else if (!isNew) {
                     setFeaturedRemoved(true);
                     setFeaturedAlt("");
-                  }}
-                  aria-label="Remove featured image"
-                  title="Remove featured image"
-                >
-                  <X className="size-5" aria-hidden />
-                </button>
-              ) : null}
+                  }
+                }}
+                aria-label={
+                  selectedFeaturedImage
+                    ? "Remove selected featured image"
+                    : "Remove featured image"
+                }
+                title={
+                  selectedFeaturedImage
+                    ? "Remove selected featured image"
+                    : "Remove featured image"
+                }
+              >
+                <X className="size-5" aria-hidden />
+              </button>
             </div>
+          ) : null}
+          {selectedFeaturedImage ? (
+            <p className="text-sm font-medium text-on-surface-variant">
+              Selected new featured photo:{" "}
+              <span className="font-semibold text-on-surface">
+                {selectedFeaturedImage.name}
+              </span>
+              . It will replace the saved image when you save.
+            </p>
           ) : null}
           {!isNew && featuredRemoved && featuredPreview ? (
             <p className="text-sm font-medium text-on-surface-variant">
@@ -291,14 +352,26 @@ function StoryFormFields({ story }: { story: StoryDetail | null }) {
               <ImagePlus className="size-5 shrink-0" aria-hidden />
               <span>Choose featured photo</span>
               <input
+                ref={featuredInputRef}
                 type="file"
                 name="featuredImage"
                 accept="image/jpeg,image/png,image/webp"
                 className="sr-only"
                 onChange={(e) => {
-                  if (e.target.files?.length) {
-                    setFeaturedRemoved(false);
+                  const file = e.target.files?.[0];
+                  if (!file) {
+                    return;
                   }
+                  setSelectedFeaturedImage((previous) => {
+                    if (previous) {
+                      URL.revokeObjectURL(previous.url);
+                    }
+                    return {
+                      name: file.name,
+                      url: URL.createObjectURL(file),
+                    };
+                  });
+                  setFeaturedRemoved(false);
                 }}
               />
             </label>
