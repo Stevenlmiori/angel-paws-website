@@ -48,7 +48,6 @@ export const storiesAllAdminQuery = `*[_type == "story"] | order(coalesce(publis
   "slug": slug.current,
   publishedAt,
   excerpt,
-  tags,
   featuredImage,
   "publishState": select(
     !defined(publishedAt) => "draft",

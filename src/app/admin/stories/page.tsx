@@ -149,19 +149,6 @@ export default async function AdminStoriesListPage() {
                         <Calendar className="size-3.5" aria-hidden />
                         {formatStoryDate(s.publishedAt)}
                       </span>
-                      {s.tags?.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-white/55 px-3 py-1.5 font-semibold"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                      {(s.tags?.length ?? 0) > 3 ? (
-                        <span className="rounded-full bg-white/55 px-3 py-1.5 font-semibold">
-                          +{(s.tags?.length ?? 0) - 3}
-                        </span>
-                      ) : null}
                     </div>
 
                     <div className="mt-5 flex flex-wrap gap-2">

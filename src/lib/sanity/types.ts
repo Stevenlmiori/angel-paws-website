@@ -26,7 +26,6 @@ export type StoryAdminListItem = {
   slug: string | null;
   publishedAt?: string | null;
   excerpt?: string | null;
-  tags?: string[] | null;
   featuredImage?: StoryFeaturedImage | null;
   publishState?: "draft" | "scheduled" | "published" | null;
   hasImage?: boolean;
