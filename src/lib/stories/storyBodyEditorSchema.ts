@@ -34,6 +34,15 @@ export const storyBodyEditorSchema = defineSchema({
         { name: "caption", type: "string" },
       ],
     },
+    {
+      name: "youtube",
+      title: "YouTube video",
+      fields: [
+        { name: "videoId", type: "string" },
+        { name: "title", type: "string" },
+        { name: "caption", type: "string" },
+      ],
+    },
   ],
   inlineObjects: [],
 });

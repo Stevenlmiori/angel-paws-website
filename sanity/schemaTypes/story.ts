@@ -69,6 +69,16 @@ export const storySchemaDescription = {
             { name: "caption", type: "string", title: "Caption" },
           ],
         },
+        {
+          type: "object",
+          name: "youtube",
+          title: "YouTube video",
+          fields: [
+            { name: "videoId", type: "string", title: "Video ID" },
+            { name: "title", type: "string", title: "Title" },
+            { name: "caption", type: "string", title: "Caption" },
+          ],
+        },
       ],
     },
     { name: "seoTitle", type: "string", title: "SEO title" },

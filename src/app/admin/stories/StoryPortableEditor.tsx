@@ -389,6 +389,9 @@ const renderBlock: RenderBlockFunction = (props) => {
     _type?: string;
     asset?: { _ref?: string };
     alt?: string;
+    caption?: string;
+    title?: string;
+    videoId?: string;
   };
   if (v._type === "image") {
     const src =
@@ -413,6 +416,19 @@ const renderBlock: RenderBlockFunction = (props) => {
         )}
         <figcaption className="border-t border-primary/10 px-3 py-2 text-xs text-on-surface-variant">
           In-story photo — same placement on the public story page.
+        </figcaption>
+      </figure>
+    );
+  }
+  if (v._type === "youtube") {
+    return (
+      <figure className="my-4 rounded-2xl border border-primary/15 bg-surface-container-low p-4 shadow-sm">
+        <div className="flex aspect-video items-center justify-center rounded-xl bg-surface-inverse px-5 text-center text-sm font-semibold text-on-surface-inverse">
+          {v.title || "YouTube video"}
+        </div>
+        <figcaption className="mt-3 text-xs leading-relaxed text-on-surface-variant">
+          YouTube video ID: {v.videoId || "missing"}
+          {v.caption ? ` — ${v.caption}` : ""}
         </figcaption>
       </figure>
     );

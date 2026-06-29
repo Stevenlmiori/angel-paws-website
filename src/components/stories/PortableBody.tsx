@@ -2,6 +2,7 @@ import Image from "next/image";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { safeSanityImageUrl } from "@/lib/sanity/image";
 import { normalizePortableTextForPublic } from "@/lib/stories/normalizePortableTextForPublic";
+import { YouTubeStoryEmbed } from "./YouTubeStoryEmbed";
 
 const components: PortableTextComponents = {
   types: {
@@ -32,6 +33,27 @@ const components: PortableTextComponents = {
             </figcaption>
           ) : null}
         </figure>
+      );
+    },
+    youtube: ({ value }) => {
+      const videoId = typeof value?.videoId === "string" ? value.videoId : "";
+      const title =
+        typeof value?.title === "string" && value.title
+          ? value.title
+          : "Angel Paws ministry video";
+      const caption =
+        typeof value?.caption === "string" ? value.caption : undefined;
+
+      if (!/^[\w-]{11}$/.test(videoId)) {
+        return null;
+      }
+
+      return (
+        <YouTubeStoryEmbed
+          videoId={videoId}
+          title={title}
+          caption={caption}
+        />
       );
     },
   },

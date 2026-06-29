@@ -66,6 +66,14 @@ export const localStories: StoryDetail[] = [
         "Theirs is a story of hope and survival. While Tucker and his owners did not survive the flood, three family members were rescued and were being treated at the hospital. I was able to return Tucker's tag to the family. She said that Tucker was a spoiled and beloved pet.",
       ]),
       {
+        _type: "youtube",
+        _key: "khou-kerrville-ministry-video",
+        videoId: "sxl9IDVqQVw",
+        title: "KHOU 11 coverage of Angel Paws in Kerrville",
+        caption:
+          "KHOU 11 shared how Angel Paws therapy dogs helped comfort Hill Country flood survivors and recovery teams.",
+      },
+      {
         _type: "block",
         _key: "links-block",
         style: "normal",

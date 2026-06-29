@@ -10,12 +10,12 @@ function contentSecurityPolicy(): string {
     "object-src 'none'",
     "frame-ancestors 'self'",
     "form-action 'self' https://donorbox.org https://*.donorbox.org",
-    "script-src 'self' 'unsafe-inline' https://donorbox.org",
+    "script-src 'self' 'unsafe-inline' https://donorbox.org https://www.youtube.com",
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob: https://cdn.sanity.io https://lh3.googleusercontent.com https://images.unsplash.com https://plus.unsplash.com https://donorbox.org https://*.donorbox.org",
+    "img-src 'self' data: blob: https://cdn.sanity.io https://lh3.googleusercontent.com https://images.unsplash.com https://plus.unsplash.com https://donorbox.org https://*.donorbox.org https://i.ytimg.com https://*.ytimg.com",
     "font-src 'self' data:",
     "connect-src 'self' https://cdn.sanity.io https://*.api.sanity.io https://*.apicdn.sanity.io https://*.upstash.io https://donorbox.org https://*.donorbox.org",
-    "frame-src 'self' https://donorbox.org https://*.donorbox.org https://docs.google.com",
+    "frame-src 'self' https://donorbox.org https://*.donorbox.org https://docs.google.com https://www.youtube.com https://www.youtube-nocookie.com",
     "worker-src 'self' blob:",
   ];
   return directives.join("; ");
