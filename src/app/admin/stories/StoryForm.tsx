@@ -10,7 +10,15 @@ import {
 } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ImagePlus, X } from "lucide-react";
+import {
+  AlertCircle,
+  ArrowLeft,
+  CheckCircle2,
+  ImagePlus,
+  Loader2,
+  Save,
+  X,
+} from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import {
   deleteStory,
@@ -30,6 +38,50 @@ const initialSave: StorySaveState = { ok: false, message: "" };
 
 const fieldClass =
   "w-full rounded-2xl border border-primary/15 bg-white px-4 py-3 text-on-surface shadow-sm outline-none transition ring-primary/20 focus:ring-2";
+
+function SaveFooterStatus({
+  pending,
+  state,
+}: {
+  pending: boolean;
+  state: StorySaveState;
+}) {
+  if (pending) {
+    return (
+      <p className="inline-flex items-center gap-2 rounded-2xl bg-primary-container/60 px-3 py-2 text-sm font-semibold text-on-primary-container">
+        <Loader2 className="size-4 animate-spin" aria-hidden />
+        Saving changes...
+      </p>
+    );
+  }
+
+  if (state.message) {
+    return (
+      <p
+        className={cn(
+          "inline-flex items-center gap-2 rounded-2xl px-3 py-2 text-sm font-semibold",
+          state.ok
+            ? "bg-primary-container/80 text-on-primary-container"
+            : "bg-red-50 text-red-900",
+        )}
+        aria-live="polite"
+      >
+        {state.ok ? (
+          <CheckCircle2 className="size-4 shrink-0" aria-hidden />
+        ) : (
+          <AlertCircle className="size-4 shrink-0" aria-hidden />
+        )}
+        {state.message}
+      </p>
+    );
+  }
+
+  return (
+    <p className="text-sm font-medium text-on-surface-variant">
+      Save your changes, then return to all stories.
+    </p>
+  );
+}
 
 export function StoryForm({ story }: { story: StoryDetail | null }) {
   return <StoryFormFields key={story?._id ?? "new"} story={story} />;
@@ -451,10 +503,27 @@ function StoryFormFields({ story }: { story: StoryDetail | null }) {
           />
         </section>
 
-        <div className="flex flex-wrap gap-3 pt-2">
-          <Button type="submit" disabled={pending}>
-            {pending ? "Saving…" : "Save story"}
-          </Button>
+        <div className="rounded-3xl bg-surface-container-low p-4 shadow-soft ring-1 ring-primary/10 sm:p-5">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Button type="submit" disabled={pending} className="gap-2">
+                {pending ? (
+                  <Loader2 className="size-4 animate-spin" aria-hidden />
+                ) : (
+                  <Save className="size-4" aria-hidden />
+                )}
+                {pending ? "Saving..." : "Save story"}
+              </Button>
+              <Link
+                href="/admin/stories"
+                className="inline-flex items-center justify-center gap-2 rounded-[0.625rem] bg-white/70 px-5 py-3.5 text-sm font-semibold tracking-wide text-on-surface shadow-sm transition hover:bg-white hover:shadow-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary/35"
+              >
+                <ArrowLeft className="size-4" aria-hidden />
+                All stories
+              </Link>
+            </div>
+            <SaveFooterStatus pending={pending} state={state} />
+          </div>
         </div>
       </form>
 

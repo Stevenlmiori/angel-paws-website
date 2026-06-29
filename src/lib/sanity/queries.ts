@@ -49,5 +49,11 @@ export const storiesAllAdminQuery = `*[_type == "story"] | order(coalesce(publis
   publishedAt,
   excerpt,
   tags,
+  featuredImage,
+  "publishState": select(
+    !defined(publishedAt) => "draft",
+    publishedAt > now() => "scheduled",
+    "published"
+  ),
   "hasImage": defined(featuredImage.asset)
 }`;
