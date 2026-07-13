@@ -26,7 +26,7 @@ export function ColoringPagesGrid({ pages }: Props) {
           >
             <div
               className={cn(
-                "relative mb-5 overflow-hidden rounded-2xl bg-tertiary-container/40",
+                "relative mb-5 overflow-hidden rounded-2xl bg-white",
                 page.orientation === "landscape"
                   ? "aspect-[11/8.5]"
                   : "aspect-[8.5/11]",
@@ -37,7 +37,7 @@ export function ColoringPagesGrid({ pages }: Props) {
                 alt={page.alt}
                 fill
                 unoptimized
-                className="object-contain p-3 transition duration-300 group-hover:scale-[1.02]"
+                className="object-contain transition duration-300 group-hover:scale-[1.02]"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
             </div>
@@ -91,7 +91,7 @@ export function ColoringPagesGrid({ pages }: Props) {
 
             <div
               className={cn(
-                "relative mx-auto mb-8 overflow-hidden rounded-2xl bg-stone-50 ring-1 ring-stone-200",
+                "relative mx-auto mb-8 overflow-hidden rounded-2xl bg-white",
                 active.orientation === "landscape"
                   ? "aspect-[11/8.5] max-w-2xl"
                   : "aspect-[8.5/11] max-w-md",
