@@ -37,7 +37,6 @@ import { openImagePrintWindow } from "@/lib/coloringPages/print";
 import type { ColoringPage } from "@/lib/siteContent/coloringPages";
 
 type Tool = "brush" | "fill" | "eraser";
-type PaletteTab = "fur" | "scenery";
 
 const BRUSH_SIZES = [10, 20, 36] as const;
 const MAX_UNDO = 24;
@@ -60,7 +59,6 @@ export function ColoringStudio({ page }: Props) {
   const [brushSize, setBrushSize] = useState<(typeof BRUSH_SIZES)[number]>(20);
   const [canUndo, setCanUndo] = useState(false);
   const [displaySize, setDisplaySize] = useState({ width: 0, height: 0 });
-  const [paletteTab, setPaletteTab] = useState<PaletteTab>("fur");
 
   const activeColor = tool === "eraser" ? ERASER_COLOR : color;
 
@@ -521,40 +519,22 @@ export function ColoringStudio({ page }: Props) {
             <div className="mb-2">{brushSizeControls}</div>
           ) : null}
 
-          <div className="mb-2 flex gap-1 rounded-full bg-surface-container-low p-1">
-            {(
-              [
-                { id: "fur" as const, label: "Dog fur" },
-                { id: "scenery" as const, label: "Backgrounds" },
-              ] as const
-            ).map(({ id, label }) => (
-              <button
-                key={id}
-                type="button"
-                onClick={() => setPaletteTab(id)}
-                className={cn(
-                  "flex-1 rounded-full px-3 py-1.5 text-xs font-semibold transition",
-                  paletteTab === id
-                    ? "bg-white text-on-surface shadow-sm"
-                    : "text-on-surface-variant",
-                )}
-              >
-                {label}
-              </button>
-            ))}
+          <div className="space-y-2">
+            <ColoringSwatchGroups
+              groups={DOG_FUR_PALETTE_GROUPS}
+              activeColor={color}
+              eraserActive={tool === "eraser"}
+              onPick={pickColor}
+              layout="strip"
+            />
+            <ColoringSwatchGroups
+              groups={SCENERY_PALETTE_GROUPS}
+              activeColor={color}
+              eraserActive={tool === "eraser"}
+              onPick={pickColor}
+              layout="strip"
+            />
           </div>
-
-          <ColoringSwatchGroups
-            groups={
-              paletteTab === "fur"
-                ? DOG_FUR_PALETTE_GROUPS
-                : SCENERY_PALETTE_GROUPS
-            }
-            activeColor={color}
-            eraserActive={tool === "eraser"}
-            onPick={pickColor}
-            layout="strip"
-          />
         </div>
 
         {/* Desktop / large tablet sidebar */}

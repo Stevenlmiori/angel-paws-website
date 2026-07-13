@@ -28,9 +28,9 @@ export function ColoringSwatchGroups({
               type="button"
               onClick={() => onPick(swatch.hex)}
               className={cn(
-                "size-9 shrink-0 rounded-full transition hover:scale-105 sm:size-10",
+                "size-8 shrink-0 rounded-full transition hover:scale-105",
                 activeColor === swatch.hex && !eraserActive
-                  ? "ring-2 ring-primary ring-offset-2"
+                  ? "ring-2 ring-primary ring-offset-1"
                   : "ring-1 ring-stone-200/80",
               )}
               style={{ backgroundColor: swatch.hex }}
