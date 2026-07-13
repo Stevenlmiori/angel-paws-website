@@ -1,5 +1,13 @@
 import type { LucideIcon } from "lucide-react";
-import { BookOpen, Cross, HeartHandshake, Sparkles } from "lucide-react";
+import {
+  Baby,
+  BookOpen,
+  Cross,
+  HeartHandshake,
+  ShieldCheck,
+  Sparkles,
+  Users,
+} from "lucide-react";
 
 const beliefs: {
   Icon: LucideIcon;
@@ -26,6 +34,21 @@ const beliefs: {
     title: "Grace & Service",
     body: "We believe salvation is God's gift of grace through faith in Jesus Christ. Because He first loved us, we seek to serve people with compassion, integrity, prayer, and hope.",
   },
+  {
+    Icon: Users,
+    title: "Marriage",
+    body: "We believe marriage is a covenant union ordained by God between one biological man and one biological woman. Sexual intimacy is intended only within that marriage covenant.",
+  },
+  {
+    Icon: Baby,
+    title: "Sanctity of Human Life",
+    body: "We believe human life is sacred from conception to natural death. We oppose abortion, euthanasia, and the deliberate taking of innocent human life.",
+  },
+  {
+    Icon: ShieldCheck,
+    title: "Ministry Membership",
+    body: "Angel Paws is a Christ-centered ministry. Team membership, leadership, and representation of the organization align with these biblical beliefs and our governing documents, including our bylaws and membership application.",
+  },
 ];
 
 export function AboutMissionBeliefs() {
@@ -47,7 +70,9 @@ export function AboutMissionBeliefs() {
             </div>
             <p className="text-lg italic leading-relaxed text-on-surface-variant">
               Guided by Scripture, centered on Jesus, and expressed through
-              compassionate service.
+              compassionate service. These convictions are stated clearly so
+              everyone we serve—and every team member who represents Angel
+              Paws—understands who we are.
             </p>
           </div>
           <div className="grid flex-1 grid-cols-1 gap-8 sm:grid-cols-2 md:min-w-0">

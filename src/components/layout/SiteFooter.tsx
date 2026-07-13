@@ -78,6 +78,11 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/coloring-pages" className={linkClass}>
+                Coloring Pages
+              </Link>
+            </li>
+            <li>
               <Link href="/get-involved" className={linkClass}>
                 Get Involved
               </Link>

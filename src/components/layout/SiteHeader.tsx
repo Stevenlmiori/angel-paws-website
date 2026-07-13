@@ -18,6 +18,7 @@ const aboutSubLinks = [
 const navAfterAbout = [
   { href: "/stories", label: "Stories" },
   { href: "/photo-gallery", label: "Photo Gallery" },
+  { href: "/coloring-pages", label: "Coloring Pages" },
 ] as const;
 
 const ABOUT_PATHS = [

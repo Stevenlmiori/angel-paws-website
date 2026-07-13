@@ -1,0 +1,60 @@
+import { ColoringPagesGrid } from "@/components/coloring-pages/ColoringPagesGrid";
+import { Section } from "@/components/ui/Section";
+import { pageMetadata } from "@/lib/seo";
+import { coloringPages } from "@/lib/siteContent/coloringPages";
+import { Sparkles } from "lucide-react";
+
+export const metadata = pageMetadata({
+  title: "Therapy Dog Coloring Pages",
+  description:
+    "Free printable coloring pages featuring Angel Paws therapy dogs. Download letter-size pages for kids, classrooms, and community events.",
+  path: "/coloring-pages",
+  keywords: [
+    "therapy dog coloring pages",
+    "Angel Paws coloring sheets",
+    "printable dog coloring pages",
+  ],
+});
+
+export default function ColoringPagesPage() {
+  return (
+    <>
+      <Section
+        tone="inverse"
+        className="!pt-28 md:!pt-32 !pb-16 md:!pb-20"
+      >
+        <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-12">
+          <div className="max-w-2xl">
+            <p className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.28em] text-primary">
+              <Sparkles className="size-4" aria-hidden />
+              For kids &amp; classrooms
+            </p>
+            <h1 className="mb-6 font-serif text-5xl leading-tight md:text-6xl">
+              Meet our dogs — then color them in
+            </h1>
+            <p className="text-lg leading-relaxed text-on-surface-inverse-muted">
+              Download free letter-size coloring pages of Angel Paws therapy
+              dogs. Each page is sized for home printers with comfortable
+              margins so little artists can stay inside the lines.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      <Section tone="warm" className="!pt-12 !pb-20 md:!pt-16 md:!pb-28">
+        <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-12">
+          <ColoringPagesGrid pages={coloringPages} />
+          <p className="mt-14 max-w-2xl text-sm leading-relaxed text-on-surface-variant">
+            These pages are free to print for personal use, classrooms, and
+            community events. Please do not sell or redistribute the artwork.
+            Questions?{" "}
+            <a href="/contact" className="font-semibold text-primary underline-offset-4 hover:underline">
+              Get in touch
+            </a>
+            .
+          </p>
+        </div>
+      </Section>
+    </>
+  );
+}
