@@ -130,7 +130,7 @@ export function ColoringPagesGrid({ pages }: Props) {
                 className="inline-flex items-center gap-2 rounded-full bg-surface-container-high px-5 py-3 text-sm font-semibold text-on-surface transition hover:bg-surface-container-highest"
               >
                 <Printer className="size-4" aria-hidden />
-                Print blank
+                Print
               </button>
             </div>
           </div>
