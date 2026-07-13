@@ -125,7 +125,9 @@ export function mergePaintAndLineArt(
   ctx.fillStyle = "#ffffff";
   ctx.fillRect(0, 0, offscreen.width, offscreen.height);
   ctx.drawImage(paintCanvas, 0, 0);
+  ctx.globalCompositeOperation = "multiply";
   ctx.drawImage(lineArt, 0, 0, offscreen.width, offscreen.height);
+  ctx.globalCompositeOperation = "source-over";
   return offscreen.toDataURL("image/png");
 }
 

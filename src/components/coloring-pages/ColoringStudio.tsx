@@ -355,7 +355,7 @@ export function ColoringStudio({ page }: Props) {
           className="flex min-h-[50dvh] flex-1 items-center justify-center lg:min-h-[62dvh]"
         >
           <div
-            className="relative shadow-soft ring-1 ring-stone-200/80"
+            className="relative isolate bg-white shadow-soft ring-1 ring-stone-200/80"
             style={
               displaySize.width > 0
                 ? { width: displaySize.width, height: displaySize.height }
@@ -365,7 +365,7 @@ export function ColoringStudio({ page }: Props) {
             <canvas
               ref={paintRef}
               className={cn(
-                "absolute inset-0 h-full w-full touch-none bg-white",
+                "absolute inset-0 z-10 h-full w-full touch-none bg-white",
                 tool === "fill" ? "cursor-cell" : "cursor-crosshair",
               )}
               onPointerDown={handlePointerDown}
@@ -379,7 +379,7 @@ export function ColoringStudio({ page }: Props) {
               ref={lineArtRef}
               src={page.file}
               alt=""
-              className="pointer-events-none absolute inset-0 h-full w-full select-none object-fill"
+              className="pointer-events-none absolute inset-0 z-20 h-full w-full select-none object-fill mix-blend-multiply"
               draggable={false}
             />
             {!ready ? (
