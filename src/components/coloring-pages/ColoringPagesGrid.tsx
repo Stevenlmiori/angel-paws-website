@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Download, Palette, Printer, X } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { openColoringPagePrintWindow } from "@/lib/coloringPages/print";
 import type { ColoringPage } from "@/lib/siteContent/coloringPages";
 
 type Props = {
@@ -84,7 +85,8 @@ export function ColoringPagesGrid({ pages }: Props) {
             </p>
             <p className="mb-6 text-sm text-on-surface-variant">
               Letter-size page with print margins — ready for crayons, colored
-              pencils, or markers.
+              pencils, or markers. If your browser still shows two pages, turn
+              off &ldquo;Print headers and footers&rdquo; in the print dialog.
             </p>
 
             <div
@@ -116,10 +118,7 @@ export function ColoringPagesGrid({ pages }: Props) {
               </a>
               <button
                 type="button"
-                onClick={() => {
-                  const win = window.open(active.file, "_blank", "noopener,noreferrer");
-                  win?.addEventListener("load", () => win.print());
-                }}
+                onClick={() => openColoringPagePrintWindow(active)}
                 className="inline-flex items-center gap-2 rounded-full bg-surface-container-high px-5 py-3 text-sm font-semibold text-on-surface transition hover:bg-surface-container-highest"
               >
                 <Printer className="size-4" aria-hidden />
