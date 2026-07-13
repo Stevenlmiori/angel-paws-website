@@ -33,9 +33,9 @@ export default function ColoringPagesPage() {
               Meet our dogs — then color them in
             </h1>
             <p className="text-lg leading-relaxed text-on-surface-inverse-muted">
-              Download free letter-size coloring pages of Angel Paws therapy
-              dogs. Each page is sized for home printers with comfortable
-              margins so little artists can stay inside the lines.
+              Color our therapy dogs online with brush and tap-to-fill tools, or
+              download free letter-size pages for crayons and markers at home or
+              in the classroom.
             </p>
           </div>
         </div>

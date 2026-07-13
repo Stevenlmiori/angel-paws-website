@@ -1,18 +1,33 @@
 import type { ColoringPage } from "@/lib/siteContent/coloringPages";
 
+type PrintOptions = {
+  orientation?: "portrait" | "landscape";
+  title?: string;
+};
+
 /**
  * Open a chrome-free print window sized for one US Letter sheet.
  * Raw JPG printing in Safari often queues a second page when headers/footers
  * are enabled because the image fills the full printable area.
  */
 export function openColoringPagePrintWindow(page: ColoringPage): void {
+  const imgSrc = new URL(page.file, window.location.origin).href;
+  openImagePrintWindow(imgSrc, {
+    orientation: page.orientation,
+    title: `${page.name} — Angel Paws Coloring Page`,
+  });
+}
+
+export function openImagePrintWindow(
+  imgSrc: string,
+  { orientation = "portrait", title = "Angel Paws Coloring Page" }: PrintOptions = {},
+): void {
   const win = window.open("", "_blank", "noopener,noreferrer");
   if (!win) {
     return;
   }
 
-  const imgSrc = new URL(page.file, window.location.origin).href;
-  const isLandscape = page.orientation === "landscape";
+  const isLandscape = orientation === "landscape";
   const pageCss = isLandscape
     ? "size: letter landscape; margin: 0;"
     : "size: letter portrait; margin: 0;";
@@ -27,7 +42,7 @@ export function openColoringPagePrintWindow(page: ColoringPage): void {
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>${page.name} — Angel Paws Coloring Page</title>
+  <title>${title}</title>
   <style>
     @page { ${pageCss} }
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -60,7 +75,7 @@ export function openColoringPagePrintWindow(page: ColoringPage): void {
   </style>
 </head>
 <body>
-  <img id="sheet" src="${imgSrc}" alt="${page.alt.replace(/"/g, "&quot;")}" />
+  <img id="sheet" src="${imgSrc}" alt="${title.replace(/"/g, "&quot;")}" />
   <script>
     const img = document.getElementById("sheet");
     const printSheet = () => setTimeout(() => window.print(), 150);

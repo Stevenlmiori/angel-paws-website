@@ -78,3 +78,7 @@ export const coloringPages: ColoringPage[] = [
     alt: "Sam the therapy dog — printable coloring page",
   },
 ];
+
+export function getColoringPageBySlug(slug: string): ColoringPage | undefined {
+  return coloringPages.find((page) => page.slug === slug);
+}

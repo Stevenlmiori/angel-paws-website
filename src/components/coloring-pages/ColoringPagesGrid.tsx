@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
-import { Download, Palette, Printer, X } from "lucide-react";
+import { Download, Palette, Printer, Sparkles, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { openColoringPagePrintWindow } from "@/lib/coloringPages/print";
 import type { ColoringPage } from "@/lib/siteContent/coloringPages";
@@ -45,7 +46,7 @@ export function ColoringPagesGrid({ pages }: Props) {
               <div>
                 <p className="font-serif text-2xl text-on-surface">{page.name}</p>
                 <p className="mt-1 text-sm text-on-surface-variant">
-                  Tap to preview &amp; print
+                  Tap to preview, print, or color online
                 </p>
               </div>
               <span className="flex size-11 items-center justify-center rounded-full bg-primary-container text-primary">
@@ -108,10 +109,17 @@ export function ColoringPagesGrid({ pages }: Props) {
             </div>
 
             <div className="flex flex-wrap gap-3">
+              <Link
+                href={`/coloring-pages/${active.slug}/color`}
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-on-primary transition hover:opacity-90"
+              >
+                <Sparkles className="size-4" aria-hidden />
+                Color online
+              </Link>
               <a
                 href={active.file}
                 download
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-on-primary transition hover:opacity-90"
+                className="inline-flex items-center gap-2 rounded-full bg-surface-container-high px-5 py-3 text-sm font-semibold text-on-surface transition hover:bg-surface-container-highest"
               >
                 <Download className="size-4" aria-hidden />
                 Download JPG
@@ -122,7 +130,7 @@ export function ColoringPagesGrid({ pages }: Props) {
                 className="inline-flex items-center gap-2 rounded-full bg-surface-container-high px-5 py-3 text-sm font-semibold text-on-surface transition hover:bg-surface-container-highest"
               >
                 <Printer className="size-4" aria-hidden />
-                Print
+                Print blank
               </button>
             </div>
           </div>
