@@ -27,9 +27,10 @@ import {
   mergePaintAndLineArt,
 } from "@/lib/coloringPages/canvasUtils";
 import {
-  COLORING_PALETTE,
   DEFAULT_COLORING_COLOR,
+  DOG_FUR_PALETTE,
   ERASER_COLOR,
+  SCENERY_PALETTE,
 } from "@/lib/coloringPages/palette";
 import { openImagePrintWindow } from "@/lib/coloringPages/print";
 import type { ColoringPage } from "@/lib/siteContent/coloringPages";
@@ -460,7 +461,7 @@ export function ColoringStudio({ page }: Props) {
             Dog fur colors
           </p>
           <div className="mb-4 grid grid-cols-8 gap-1.5 sm:grid-cols-8 lg:grid-cols-4">
-            {COLORING_PALETTE.slice(0, 16).map((swatch) => (
+            {DOG_FUR_PALETTE.map((swatch) => (
               <button
                 key={swatch.hex}
                 type="button"
@@ -487,7 +488,7 @@ export function ColoringStudio({ page }: Props) {
             Background &amp; accents
           </p>
           <div className="mb-4 grid grid-cols-8 gap-1.5 sm:grid-cols-8 lg:grid-cols-4">
-            {COLORING_PALETTE.slice(16).map((swatch) => (
+            {SCENERY_PALETTE.map((swatch) => (
               <button
                 key={swatch.hex}
                 type="button"
