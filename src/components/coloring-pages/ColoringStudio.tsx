@@ -28,6 +28,7 @@ import {
 } from "@/lib/coloringPages/canvasUtils";
 import {
   COLORING_PALETTE,
+  DEFAULT_COLORING_COLOR,
   ERASER_COLOR,
 } from "@/lib/coloringPages/palette";
 import { openImagePrintWindow } from "@/lib/coloringPages/print";
@@ -52,7 +53,7 @@ export function ColoringStudio({ page }: Props) {
 
   const [ready, setReady] = useState(false);
   const [tool, setTool] = useState<Tool>("brush");
-  const [color, setColor] = useState(COLORING_PALETTE[0]!.hex);
+  const [color, setColor] = useState(DEFAULT_COLORING_COLOR);
   const [brushSize, setBrushSize] = useState<(typeof BRUSH_SIZES)[number]>(20);
   const [canUndo, setCanUndo] = useState(false);
   const [displaySize, setDisplaySize] = useState({ width: 0, height: 0 });
@@ -456,10 +457,37 @@ export function ColoringStudio({ page }: Props) {
           )}
 
           <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-on-surface-variant">
-            Colors
+            Dog fur colors
           </p>
-          <div className="mb-4 grid grid-cols-6 gap-2 sm:grid-cols-6 lg:grid-cols-4">
-            {COLORING_PALETTE.map((swatch) => (
+          <div className="mb-4 grid grid-cols-8 gap-1.5 sm:grid-cols-8 lg:grid-cols-4">
+            {COLORING_PALETTE.slice(0, 16).map((swatch) => (
+              <button
+                key={swatch.hex}
+                type="button"
+                onClick={() => {
+                  setColor(swatch.hex);
+                  if (tool === "eraser") {
+                    setTool("brush");
+                  }
+                }}
+                className={cn(
+                  "aspect-square rounded-xl transition hover:scale-105",
+                  color === swatch.hex && tool !== "eraser"
+                    ? "ring-2 ring-primary ring-offset-2"
+                    : "ring-1 ring-stone-200/80",
+                )}
+                style={{ backgroundColor: swatch.hex }}
+                aria-label={swatch.name}
+                title={swatch.name}
+              />
+            ))}
+          </div>
+
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-on-surface-variant">
+            Background &amp; accents
+          </p>
+          <div className="mb-4 grid grid-cols-8 gap-1.5 sm:grid-cols-8 lg:grid-cols-4">
+            {COLORING_PALETTE.slice(16).map((swatch) => (
               <button
                 key={swatch.hex}
                 type="button"
