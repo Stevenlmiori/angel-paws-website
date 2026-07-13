@@ -1,7 +1,7 @@
 import { ColoringPagesGrid } from "@/components/coloring-pages/ColoringPagesGrid";
 import { Section } from "@/components/ui/Section";
 import { pageMetadata } from "@/lib/seo";
-import { coloringPages } from "@/lib/siteContent/coloringPages";
+import { loadActiveColoringPages } from "@/lib/siteContent/coloringPagesStore";
 import { Sparkles } from "lucide-react";
 
 export const metadata = pageMetadata({
@@ -16,7 +16,11 @@ export const metadata = pageMetadata({
   ],
 });
 
-export default function ColoringPagesPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ColoringPagesPage() {
+  const pages = await loadActiveColoringPages();
+
   return (
     <>
       <Section
@@ -43,12 +47,21 @@ export default function ColoringPagesPage() {
 
       <Section tone="warm" className="!pt-12 !pb-20 md:!pt-16 md:!pb-28">
         <div className="mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-12">
-          <ColoringPagesGrid pages={coloringPages} />
+          {pages.length > 0 ? (
+            <ColoringPagesGrid pages={pages} />
+          ) : (
+            <p className="rounded-[2rem] bg-white px-8 py-12 text-center text-on-surface-variant shadow-soft">
+              Coloring pages are being refreshed. Please check back soon.
+            </p>
+          )}
           <p className="mt-14 max-w-2xl text-sm leading-relaxed text-on-surface-variant">
             These pages are free to print for personal use, classrooms, and
             community events. Please do not sell or redistribute the artwork.
             Questions?{" "}
-            <a href="/contact" className="font-semibold text-primary underline-offset-4 hover:underline">
+            <a
+              href="/contact"
+              className="font-semibold text-primary underline-offset-4 hover:underline"
+            >
               Get in touch
             </a>
             .

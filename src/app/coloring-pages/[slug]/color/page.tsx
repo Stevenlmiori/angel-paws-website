@@ -1,20 +1,15 @@
 import { notFound } from "next/navigation";
 import { ColoringStudio } from "@/components/coloring-pages/ColoringStudio";
 import { pageMetadata } from "@/lib/seo";
-import {
-  coloringPages,
-  getColoringPageBySlug,
-} from "@/lib/siteContent/coloringPages";
+import { getActiveColoringPageBySlug } from "@/lib/siteContent/coloringPagesStore";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
-  return coloringPages.map((page) => ({ slug: page.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
-  const page = getColoringPageBySlug(slug);
+  const page = await getActiveColoringPageBySlug(slug);
   if (!page) {
     return pageMetadata({
       title: "Color Online",
@@ -31,7 +26,7 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function ColoringStudioPage({ params }: Props) {
   const { slug } = await params;
-  const page = getColoringPageBySlug(slug);
+  const page = await getActiveColoringPageBySlug(slug);
   if (!page) {
     notFound();
   }
