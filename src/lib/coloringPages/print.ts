@@ -5,6 +5,13 @@ type PrintOptions = {
   title?: string;
 };
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;");
+}
+
 function dataUrlToBlob(dataUrl: string): Blob {
   const [header, base64 = ""] = dataUrl.split(",");
   const mime = header?.match(/:(.*?);/)?.[1] ?? "image/png";
@@ -71,118 +78,84 @@ function printStyles(orientation: "portrait" | "landscape"): string {
   `;
 }
 
-function mountPrintDocument(
-  doc: Document,
+/**
+ * Print via a hidden iframe on the current page.
+ * Safari reliably blocks async DOM writes to window.open tabs, which left users
+ * on a blank about:blank page — iframe print avoids that entirely.
+ */
+export function openImagePrintWindow(
   imgSrc: string,
-  { orientation = "portrait", title = "Angel Paws Coloring Page" }: PrintOptions,
-  onReady: () => void,
-  onError: () => void,
-): () => void {
-  const { src, revoke } = resolvePrintImageSrc(imgSrc);
-  let readyCalled = false;
-
-  const ready = () => {
-    if (readyCalled) {
-      return;
-    }
-    readyCalled = true;
-    onReady();
-  };
-
-  doc.title = title;
-  doc.documentElement.lang = "en";
-
-  const style = doc.createElement("style");
-  style.textContent = printStyles(orientation);
-  doc.head.appendChild(style);
-
-  const img = doc.createElement("img");
-  img.alt = title;
-  img.decoding = "async";
-  img.addEventListener("load", ready, { once: true });
-  img.addEventListener(
-    "error",
-    () => {
-      revoke?.();
-      onError();
-    },
-    { once: true },
-  );
-
-  doc.body.appendChild(img);
-  img.src = src;
-
-  if (img.complete && img.naturalWidth > 0) {
-    ready();
+  { orientation = "portrait", title = "Angel Paws Coloring Page" }: PrintOptions = {},
+): void {
+  if (!imgSrc) {
+    return;
   }
 
-  return () => revoke?.();
-}
-
-function triggerPrint(win: Window, cleanup: () => void): void {
-  setTimeout(() => {
-    win.focus();
-    win.print();
-    win.addEventListener("afterprint", cleanup, { once: true });
-    setTimeout(cleanup, 60_000);
-  }, 150);
-}
-
-function printViaIframe(imgSrc: string, options: PrintOptions): void {
+  const { src, revoke } = resolvePrintImageSrc(imgSrc);
   const iframe = document.createElement("iframe");
   iframe.setAttribute("aria-hidden", "true");
   iframe.style.cssText =
-    "position:fixed;right:0;bottom:0;width:0;height:0;border:0;opacity:0;pointer-events:none;";
+    "position:fixed;left:-9999px;top:0;width:0;height:0;border:0;opacity:0;pointer-events:none;";
   document.body.appendChild(iframe);
 
-  const doc = iframe.contentDocument;
   const win = iframe.contentWindow;
-  if (!doc || !win) {
+  const doc = iframe.contentDocument;
+  if (!win || !doc) {
+    revoke?.();
     iframe.remove();
     return;
   }
 
-  const cleanup = mountPrintDocument(
-    doc,
-    imgSrc,
-    options,
-    () => triggerPrint(win, () => iframe.remove()),
-    () => iframe.remove(),
-  );
+  const cleanup = () => {
+    revoke?.();
+    iframe.remove();
+  };
+
+  const safeTitle = escapeHtml(title);
+  const safeSrc = escapeHtml(src);
+
+  doc.open();
+  doc.write(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>${safeTitle}</title>
+  <style>${printStyles(orientation)}</style>
+</head>
+<body>
+  <img id="print-image" src="${safeSrc}" alt="${safeTitle}" />
+  <script>
+    (function () {
+      var img = document.getElementById("print-image");
+      if (!img) return;
+      function runPrint() {
+        setTimeout(function () {
+          window.focus();
+          window.print();
+        }, 120);
+      }
+      img.addEventListener("load", runPrint, { once: true });
+      img.addEventListener("error", function () {
+        document.body.textContent = "Could not load image for printing.";
+      }, { once: true });
+      if (img.complete && img.naturalWidth > 0) {
+        runPrint();
+      }
+    })();
+  <\/script>
+</body>
+</html>`);
+  doc.close();
 
   win.addEventListener("afterprint", cleanup, { once: true });
+  setTimeout(cleanup, 60_000);
 }
 
-/**
- * Open a chrome-free print window sized for one US Letter sheet.
- */
+/** Print a repo-hosted blank coloring sheet. */
 export function openColoringPagePrintWindow(page: ColoringPage): void {
   const imgSrc = new URL(page.file, window.location.origin).href;
   openImagePrintWindow(imgSrc, {
     orientation: page.orientation,
     title: `${page.name} — Angel Paws Coloring Page`,
   });
-}
-
-export function openImagePrintWindow(
-  imgSrc: string,
-  options: PrintOptions = {},
-): void {
-  const win = window.open("about:blank", "_blank");
-  if (!win) {
-    printViaIframe(imgSrc, options);
-    return;
-  }
-
-  const cleanup = mountPrintDocument(
-    win.document,
-    imgSrc,
-    options,
-    () => triggerPrint(win, cleanup),
-    () => {
-      cleanup();
-      win.document.body.textContent =
-        "We could not prepare your coloring page for printing. Try Save, then print the downloaded image.";
-    },
-  );
 }

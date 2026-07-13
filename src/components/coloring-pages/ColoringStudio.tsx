@@ -300,7 +300,10 @@ export function ColoringStudio({ page }: Props) {
 
   const handlePrint = () => {
     const dataUrl = exportMergedPng();
-    if (!dataUrl) {
+    if (!dataUrl || dataUrl.length < 32) {
+      window.alert(
+        "We could not prepare your coloring for printing. Try Save first, then print the downloaded image.",
+      );
       return;
     }
     openImagePrintWindow(dataUrl, {
