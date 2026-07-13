@@ -26,11 +26,12 @@ import {
   hexToRgba,
   mergePaintAndLineArt,
 } from "@/lib/coloringPages/canvasUtils";
+import { ColoringSwatchGroups } from "@/components/coloring-pages/ColoringSwatchGroups";
 import {
   DEFAULT_COLORING_COLOR,
-  DOG_FUR_PALETTE,
+  DOG_FUR_PALETTE_GROUPS,
   ERASER_COLOR,
-  SCENERY_PALETTE,
+  SCENERY_PALETTE_GROUPS,
 } from "@/lib/coloringPages/palette";
 import { openImagePrintWindow } from "@/lib/coloringPages/print";
 import type { ColoringPage } from "@/lib/siteContent/coloringPages";
@@ -395,7 +396,7 @@ export function ColoringStudio({ page }: Props) {
           </div>
         </div>
 
-        <aside className="w-full shrink-0 rounded-[1.75rem] bg-white p-4 shadow-soft ring-1 ring-primary/5 sm:p-5 lg:w-72">
+        <aside className="w-full shrink-0 rounded-[1.75rem] bg-white p-4 shadow-soft ring-1 ring-primary/5 sm:p-5 lg:w-80">
           <p className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-primary">
             <Sparkles className="size-3.5" aria-hidden />
             Tools
@@ -461,57 +462,37 @@ export function ColoringStudio({ page }: Props) {
           )}
 
           <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-on-surface-variant">
-            Dog fur colors
+            Dog fur
           </p>
-          <div className="mb-4 grid grid-cols-8 gap-1.5 sm:grid-cols-8 lg:grid-cols-4">
-            {DOG_FUR_PALETTE.map((swatch) => (
-              <button
-                key={swatch.hex}
-                type="button"
-                onClick={() => {
-                  setColor(swatch.hex);
-                  if (tool === "eraser") {
-                    setTool("brush");
-                  }
-                }}
-                className={cn(
-                  "aspect-square rounded-xl transition hover:scale-105",
-                  color === swatch.hex && tool !== "eraser"
-                    ? "ring-2 ring-primary ring-offset-2"
-                    : "ring-1 ring-stone-200/80",
-                )}
-                style={{ backgroundColor: swatch.hex }}
-                aria-label={swatch.name}
-                title={swatch.name}
-              />
-            ))}
+          <div className="mb-5">
+            <ColoringSwatchGroups
+              groups={DOG_FUR_PALETTE_GROUPS}
+              activeColor={color}
+              eraserActive={tool === "eraser"}
+              onPick={(hex) => {
+                setColor(hex);
+                if (tool === "eraser") {
+                  setTool("brush");
+                }
+              }}
+            />
           </div>
 
           <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-on-surface-variant">
             Background &amp; accents
           </p>
-          <div className="mb-4 grid grid-cols-8 gap-1.5 sm:grid-cols-8 lg:grid-cols-4">
-            {SCENERY_PALETTE.map((swatch) => (
-              <button
-                key={swatch.hex}
-                type="button"
-                onClick={() => {
-                  setColor(swatch.hex);
-                  if (tool === "eraser") {
-                    setTool("brush");
-                  }
-                }}
-                className={cn(
-                  "aspect-square rounded-xl transition hover:scale-105",
-                  color === swatch.hex && tool !== "eraser"
-                    ? "ring-2 ring-primary ring-offset-2"
-                    : "ring-1 ring-stone-200/80",
-                )}
-                style={{ backgroundColor: swatch.hex }}
-                aria-label={swatch.name}
-                title={swatch.name}
-              />
-            ))}
+          <div className="mb-4">
+            <ColoringSwatchGroups
+              groups={SCENERY_PALETTE_GROUPS}
+              activeColor={color}
+              eraserActive={tool === "eraser"}
+              onPick={(hex) => {
+                setColor(hex);
+                if (tool === "eraser") {
+                  setTool("brush");
+                }
+              }}
+            />
           </div>
 
           <div className="flex gap-2">
