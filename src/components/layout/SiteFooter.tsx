@@ -1,11 +1,23 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Globe, Heart, Mail } from "lucide-react";
 
 /** Stitch footer is a light slab only — no dark theme variant (matches reference). */
 const linkClass =
   "text-xs font-medium uppercase tracking-[0.2em] text-stone-500 transition-colors hover:text-primary";
 
+function isColoringStudioPath(pathname: string | null) {
+  return Boolean(pathname?.match(/^\/coloring-pages\/[^/]+\/color\/?$/));
+}
+
 export function SiteFooter() {
+  const pathname = usePathname();
+  if (isColoringStudioPath(pathname)) {
+    return null;
+  }
+
   return (
     <footer className="w-full overflow-hidden rounded-t-[2rem] bg-stone-100 text-stone-900">
       <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-12 px-6 pb-16 pt-20 sm:px-10 md:grid-cols-2 md:gap-x-12 md:gap-y-14 md:pb-20 md:pt-24 lg:grid-cols-4 lg:gap-x-16 lg:px-12">

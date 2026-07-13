@@ -6,6 +6,8 @@ type SwatchGridProps = {
   activeColor: string;
   eraserActive: boolean;
   onPick: (hex: string) => void;
+  /** Vertical labeled grids (desktop sidebar) vs swipeable strip (mobile dock). */
+  layout?: "stack" | "strip";
 };
 
 export function ColoringSwatchGroups({
@@ -13,7 +15,34 @@ export function ColoringSwatchGroups({
   activeColor,
   eraserActive,
   onPick,
+  layout = "stack",
 }: SwatchGridProps) {
+  if (layout === "strip") {
+    const swatches = groups.flatMap((group) => group.swatches);
+    return (
+      <div className="-mx-1 overflow-x-auto overscroll-x-contain pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex w-max gap-2 px-1">
+          {swatches.map((swatch) => (
+            <button
+              key={swatch.hex}
+              type="button"
+              onClick={() => onPick(swatch.hex)}
+              className={cn(
+                "size-9 shrink-0 rounded-full transition hover:scale-105 sm:size-10",
+                activeColor === swatch.hex && !eraserActive
+                  ? "ring-2 ring-primary ring-offset-2"
+                  : "ring-1 ring-stone-200/80",
+              )}
+              style={{ backgroundColor: swatch.hex }}
+              aria-label={swatch.name}
+              title={swatch.name}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-3">
       {groups.map((group) => (

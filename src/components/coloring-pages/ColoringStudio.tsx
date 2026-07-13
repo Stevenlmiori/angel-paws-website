@@ -37,6 +37,7 @@ import { openImagePrintWindow } from "@/lib/coloringPages/print";
 import type { ColoringPage } from "@/lib/siteContent/coloringPages";
 
 type Tool = "brush" | "fill" | "eraser";
+type PaletteTab = "fur" | "scenery";
 
 const BRUSH_SIZES = [10, 20, 36] as const;
 const MAX_UNDO = 24;
@@ -59,8 +60,19 @@ export function ColoringStudio({ page }: Props) {
   const [brushSize, setBrushSize] = useState<(typeof BRUSH_SIZES)[number]>(20);
   const [canUndo, setCanUndo] = useState(false);
   const [displaySize, setDisplaySize] = useState({ width: 0, height: 0 });
+  const [paletteTab, setPaletteTab] = useState<PaletteTab>("fur");
 
   const activeColor = tool === "eraser" ? ERASER_COLOR : color;
+
+  const pickColor = useCallback(
+    (hex: string) => {
+      setColor(hex);
+      if (tool === "eraser") {
+        setTool("brush");
+      }
+    },
+    [tool],
+  );
 
   const snapshotUndo = useCallback(() => {
     const canvas = paintRef.current;
@@ -88,7 +100,7 @@ export function ColoringStudio({ page }: Props) {
 
     const fit = computeFitSize(
       container.clientWidth,
-      Math.max(container.clientHeight, 320),
+      Math.max(container.clientHeight, 240),
       page.orientation,
     );
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -313,9 +325,88 @@ export function ColoringStudio({ page }: Props) {
     });
   };
 
+  const toolButtons = (
+    <>
+      {(
+        [
+          { id: "brush" as const, label: "Brush", Icon: Paintbrush },
+          { id: "fill" as const, label: "Fill", Icon: Droplets },
+          { id: "eraser" as const, label: "Eraser", Icon: Eraser },
+        ] as const
+      ).map(({ id, label, Icon }) => (
+        <button
+          key={id}
+          type="button"
+          onClick={() => setTool(id)}
+          className={cn(
+            "flex flex-1 flex-col items-center gap-0.5 rounded-2xl px-2 py-2 text-[0.7rem] font-semibold transition sm:py-3 sm:text-xs",
+            tool === id
+              ? "bg-primary text-on-primary"
+              : "bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high",
+          )}
+        >
+          <Icon className="size-5" strokeWidth={1.75} aria-hidden />
+          {label}
+        </button>
+      ))}
+    </>
+  );
+
+  const brushSizeControls =
+    tool !== "fill" ? (
+      <div className="flex gap-2">
+        {BRUSH_SIZES.map((size) => (
+          <button
+            key={size}
+            type="button"
+            onClick={() => setBrushSize(size)}
+            className={cn(
+              "flex h-9 flex-1 items-center justify-center rounded-xl transition sm:h-10",
+              brushSize === size
+                ? "bg-primary-container text-on-primary-container ring-2 ring-primary/30"
+                : "bg-surface-container-low hover:bg-surface-container-high",
+            )}
+            aria-label={`Brush size ${size}`}
+          >
+            <span
+              className="rounded-full bg-on-surface"
+              style={{ width: size / 2, height: size / 2 }}
+            />
+          </button>
+        ))}
+      </div>
+    ) : (
+      <p className="text-sm leading-relaxed text-on-surface-variant">
+        Tap any white area to fill it. Black lines stay crisp on top.
+      </p>
+    );
+
+  const undoClearButtons = (
+    <>
+      <button
+        type="button"
+        onClick={handleUndo}
+        disabled={!canUndo}
+        className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-surface-container-low px-3 py-2.5 text-sm font-semibold text-on-surface transition hover:bg-surface-container-high disabled:opacity-40"
+      >
+        <Undo2 className="size-4" aria-hidden />
+        Undo
+      </button>
+      <button
+        type="button"
+        onClick={handleClear}
+        disabled={!ready}
+        className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-surface-container-low px-3 py-2.5 text-sm font-semibold text-on-surface transition hover:bg-surface-container-high disabled:opacity-40"
+      >
+        <RotateCcw className="size-4" aria-hidden />
+        Clear
+      </button>
+    </>
+  );
+
   return (
-    <div className="flex min-h-[calc(100dvh-5rem)] flex-col bg-background">
-      <header className="sticky top-20 z-40 border-b border-stone-200/80 bg-stone-50/95 px-4 py-3 backdrop-blur-md sm:px-6">
+    <div className="flex h-[calc(100dvh-5rem)] flex-col overflow-hidden bg-background md:h-[calc(100dvh-6rem)]">
+      <header className="z-40 shrink-0 border-b border-stone-200/80 bg-stone-50/95 px-4 py-2.5 backdrop-blur-md sm:px-6 sm:py-3">
         <div className="mx-auto flex max-w-screen-xl items-center gap-3">
           <Link
             href="/coloring-pages"
@@ -355,17 +446,21 @@ export function ColoringStudio({ page }: Props) {
         </div>
       </header>
 
-      <div className="mx-auto flex w-full max-w-screen-xl flex-1 flex-col gap-4 px-4 py-4 sm:px-6 sm:py-6 lg:flex-row lg:gap-8">
+      <div className="mx-auto flex min-h-0 w-full max-w-screen-xl flex-1 flex-col lg:flex-row lg:gap-8 lg:px-6 lg:py-6">
         <div
           ref={containerRef}
-          className="flex min-h-[50dvh] flex-1 items-center justify-center lg:min-h-[62dvh]"
+          className="flex min-h-0 flex-1 items-center justify-center px-3 py-2 sm:px-6 lg:min-h-[62dvh] lg:px-0 lg:py-0"
         >
           <div
-            className="relative isolate bg-white shadow-soft ring-1 ring-stone-200/80"
+            className="relative isolate max-h-full bg-white shadow-soft ring-1 ring-stone-200/80"
             style={
               displaySize.width > 0
                 ? { width: displaySize.width, height: displaySize.height }
-                : { width: "100%", aspectRatio: page.orientation === "landscape" ? "11/8.5" : "8.5/11" }
+                : {
+                    width: "100%",
+                    aspectRatio:
+                      page.orientation === "landscape" ? "11/8.5" : "8.5/11",
+                  }
             }
           >
             <canvas
@@ -396,70 +491,82 @@ export function ColoringStudio({ page }: Props) {
           </div>
         </div>
 
-        <aside className="w-full shrink-0 rounded-[1.75rem] bg-white p-4 shadow-soft ring-1 ring-primary/5 sm:p-5 lg:w-80">
-          <p className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            <Sparkles className="size-3.5" aria-hidden />
-            Tools
-          </p>
+        {/* Mobile dock — always visible, no long scroll */}
+        <div className="z-30 shrink-0 border-t border-stone-200/80 bg-white/95 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 shadow-[0_-8px_24px_rgba(26,28,28,0.06)] backdrop-blur-md lg:hidden">
+          <div className="mb-2 flex gap-2">
+            {toolButtons}
+            <button
+              type="button"
+              onClick={handleUndo}
+              disabled={!canUndo}
+              className="flex w-14 shrink-0 flex-col items-center justify-center gap-0.5 rounded-2xl bg-surface-container-low px-1 py-2 text-[0.65rem] font-semibold text-on-surface transition hover:bg-surface-container-high disabled:opacity-40"
+              aria-label="Undo"
+            >
+              <Undo2 className="size-5" aria-hidden />
+              Undo
+            </button>
+            <button
+              type="button"
+              onClick={handleClear}
+              disabled={!ready}
+              className="flex w-14 shrink-0 flex-col items-center justify-center gap-0.5 rounded-2xl bg-surface-container-low px-1 py-2 text-[0.65rem] font-semibold text-on-surface transition hover:bg-surface-container-high disabled:opacity-40"
+              aria-label="Clear"
+            >
+              <RotateCcw className="size-5" aria-hidden />
+              Clear
+            </button>
+          </div>
 
-          <div className="mb-4 grid grid-cols-3 gap-2">
+          {tool !== "fill" ? (
+            <div className="mb-2">{brushSizeControls}</div>
+          ) : null}
+
+          <div className="mb-2 flex gap-1 rounded-full bg-surface-container-low p-1">
             {(
               [
-                { id: "brush" as const, label: "Brush", Icon: Paintbrush },
-                { id: "fill" as const, label: "Fill", Icon: Droplets },
-                { id: "eraser" as const, label: "Eraser", Icon: Eraser },
+                { id: "fur" as const, label: "Dog fur" },
+                { id: "scenery" as const, label: "Backgrounds" },
               ] as const
-            ).map(({ id, label, Icon }) => (
+            ).map(({ id, label }) => (
               <button
                 key={id}
                 type="button"
-                onClick={() => setTool(id)}
+                onClick={() => setPaletteTab(id)}
                 className={cn(
-                  "flex flex-col items-center gap-1 rounded-2xl px-2 py-3 text-xs font-semibold transition",
-                  tool === id
-                    ? "bg-primary text-on-primary"
-                    : "bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high",
+                  "flex-1 rounded-full px-3 py-1.5 text-xs font-semibold transition",
+                  paletteTab === id
+                    ? "bg-white text-on-surface shadow-sm"
+                    : "text-on-surface-variant",
                 )}
               >
-                <Icon className="size-5" strokeWidth={1.75} aria-hidden />
                 {label}
               </button>
             ))}
           </div>
 
-          {tool !== "fill" ? (
-            <div className="mb-4">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-on-surface-variant">
-                Brush size
-              </p>
-              <div className="flex gap-2">
-                {BRUSH_SIZES.map((size) => (
-                  <button
-                    key={size}
-                    type="button"
-                    onClick={() => setBrushSize(size)}
-                    className={cn(
-                      "flex h-10 flex-1 items-center justify-center rounded-xl transition",
-                      brushSize === size
-                        ? "bg-primary-container text-on-primary-container ring-2 ring-primary/30"
-                        : "bg-surface-container-low hover:bg-surface-container-high",
-                    )}
-                    aria-label={`Brush size ${size}`}
-                  >
-                    <span
-                      className="rounded-full bg-on-surface"
-                      style={{ width: size / 2, height: size / 2 }}
-                    />
-                  </button>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <p className="mb-4 text-sm leading-relaxed text-on-surface-variant">
-              Tap any white area to fill it with your color. Black lines stay
-              crisp on top.
-            </p>
-          )}
+          <ColoringSwatchGroups
+            groups={
+              paletteTab === "fur"
+                ? DOG_FUR_PALETTE_GROUPS
+                : SCENERY_PALETTE_GROUPS
+            }
+            activeColor={color}
+            eraserActive={tool === "eraser"}
+            onPick={pickColor}
+            layout="strip"
+          />
+        </div>
+
+        {/* Desktop / large tablet sidebar */}
+        <aside className="hidden w-full shrink-0 overflow-y-auto rounded-[1.75rem] bg-white p-4 shadow-soft ring-1 ring-primary/5 sm:p-5 lg:block lg:w-80 lg:max-h-[calc(100dvh-10rem)]">
+          <p className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-primary">
+            <Sparkles className="size-3.5" aria-hidden />
+            Tools
+          </p>
+
+          <div className="mb-4 flex gap-2">{toolButtons}</div>
+
+          <div className="mb-4">{brushSizeControls}</div>
 
           <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-on-surface-variant">
             Dog fur
@@ -469,12 +576,7 @@ export function ColoringStudio({ page }: Props) {
               groups={DOG_FUR_PALETTE_GROUPS}
               activeColor={color}
               eraserActive={tool === "eraser"}
-              onPick={(hex) => {
-                setColor(hex);
-                if (tool === "eraser") {
-                  setTool("brush");
-                }
-              }}
+              onPick={pickColor}
             />
           </div>
 
@@ -486,35 +588,11 @@ export function ColoringStudio({ page }: Props) {
               groups={SCENERY_PALETTE_GROUPS}
               activeColor={color}
               eraserActive={tool === "eraser"}
-              onPick={(hex) => {
-                setColor(hex);
-                if (tool === "eraser") {
-                  setTool("brush");
-                }
-              }}
+              onPick={pickColor}
             />
           </div>
 
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={handleUndo}
-              disabled={!canUndo}
-              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-surface-container-low px-3 py-2.5 text-sm font-semibold text-on-surface transition hover:bg-surface-container-high disabled:opacity-40"
-            >
-              <Undo2 className="size-4" aria-hidden />
-              Undo
-            </button>
-            <button
-              type="button"
-              onClick={handleClear}
-              disabled={!ready}
-              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-surface-container-low px-3 py-2.5 text-sm font-semibold text-on-surface transition hover:bg-surface-container-high disabled:opacity-40"
-            >
-              <RotateCcw className="size-4" aria-hidden />
-              Clear
-            </button>
-          </div>
+          <div className="flex gap-2">{undoClearButtons}</div>
         </aside>
       </div>
     </div>
