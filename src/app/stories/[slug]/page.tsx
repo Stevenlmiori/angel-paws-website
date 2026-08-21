@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 import { sanityReadClient } from "@/lib/sanity/client";
 import { safeSanityImageUrl } from "@/lib/sanity/image";
 import { storyBySlugQuery } from "@/lib/sanity/queries";
@@ -33,9 +34,16 @@ function formatStoryMonthYear(publishedAt?: string | null): string | null {
 
 async function getPublishedStory(slug: string): Promise<StoryDetail | null> {
   const client = sanityReadClient();
-  const sanityStory = client
-    ? await client.fetch<StoryDetail | null>(storyBySlugQuery, { slug })
-    : null;
+  let sanityStory: StoryDetail | null = null;
+  if (client) {
+    try {
+      sanityStory = await client.fetch<StoryDetail | null>(storyBySlugQuery, {
+        slug,
+      });
+    } catch {
+      sanityStory = null;
+    }
+  }
 
   const story = sanityStory ?? getLocalStoryBySlug(slug);
   return story ? normalizeStoryPublishedAt(story) : null;
@@ -104,30 +112,40 @@ export default async function StoryDetailPage({ params }: Props) {
     <article>
       <Section
         tone="inverse"
-        className="!pt-28 md:!pt-32 !pb-8 md:!pb-10"
+        className="!pt-28 md:!pt-36 !pb-14 md:!pb-20"
       >
         <div className="mx-auto max-w-screen-md px-6 sm:px-10 lg:px-12">
-          <Link
-            href="/stories"
-            className="mb-8 inline-block text-sm font-semibold text-primary underline-offset-4 hover:underline"
-          >
-            ← All stories
-          </Link>
-          {publishedLabel ? (
-            <time
-              dateTime={
-                typeof story.publishedAt === "string"
-                  ? story.publishedAt
-                  : undefined
-              }
-              className="mb-3 block text-xs font-bold uppercase tracking-widest text-primary"
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+            <Link
+              href="/stories"
+              className="group inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-on-surface-inverse-muted transition-colors hover:text-white"
             >
-              {publishedLabel}
-            </time>
-          ) : null}
-          <h1 className="font-serif text-4xl font-semibold leading-tight md:text-5xl lg:text-6xl">
+              <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" strokeWidth={2} aria-hidden />
+              All stories
+            </Link>
+            {publishedLabel ? (
+              <time
+                dateTime={
+                  typeof story.publishedAt === "string"
+                    ? story.publishedAt
+                    : undefined
+                }
+                className="text-xs font-semibold uppercase tracking-[0.24em] text-primary-container"
+              >
+                {publishedLabel}
+              </time>
+            ) : null}
+          </div>
+
+          <h1 className="font-serif text-4xl font-bold leading-[1.15] tracking-tight text-white sm:text-5xl md:text-6xl">
             {story.title}
           </h1>
+
+          {story.excerpt ? (
+            <p className="mt-6 text-lg leading-relaxed text-on-surface-inverse-muted md:text-xl">
+              {story.excerpt}
+            </p>
+          ) : null}
         </div>
       </Section>
 

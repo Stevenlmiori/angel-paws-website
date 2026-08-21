@@ -1,12 +1,4 @@
 import Image from "next/image";
-import { DEBBIE_IMG } from "@/lib/debbieImages";
-
-const beliefPhotos = [
-  { src: DEBBIE_IMG.lily, alt: "Lily, Angel Paws therapy dog" },
-  { src: DEBBIE_IMG.lexie, alt: "Lexie during a visit" },
-  { src: DEBBIE_IMG.boone, alt: "Boone, therapy dog" },
-  { src: DEBBIE_IMG.kylo, alt: "Kylo during a community visit" },
-] as const;
 
 export function AboutHeart() {
   return (
@@ -23,8 +15,8 @@ export function AboutHeart() {
               serve. We do not take those invitations lightly.
             </p>
             <p>
-              As God continues to call Angel Paws to serve an even greater area,
-              we know the next step was to form a 501(c)(3). Angel Paws trusted
+              As God continued to call Angel Paws to serve an even greater area,
+              we knew the next step was to form a 501(c)(3). Angel Paws trusted
               that calling and is now a 501(c)(3) nonprofit organization, ready
               to go wherever God calls us.
             </p>
@@ -35,22 +27,15 @@ export function AboutHeart() {
               pets bring.
             </p>
           </div>
-          <ul className="grid grid-cols-2 gap-3 lg:grid-cols-2">
-            {beliefPhotos.map((photo) => (
-              <li
-                key={photo.src}
-                className="relative aspect-square overflow-hidden rounded-2xl bg-surface-container-low shadow-soft md:rounded-3xl"
-              >
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover"
-                />
-              </li>
-            ))}
-          </ul>
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-surface-container-low shadow-soft md:rounded-[2.5rem]">
+            <Image
+              src="/img/lillian-and-lily.jpg"
+              alt="Lillian with foster children and rescue therapy dog Lily at Redeemer Church"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
         </div>
       </div>
     </section>

@@ -31,6 +31,19 @@ const featured = [
     isLetter: true as const,
   },
   {
+    image: "/img/testimonials/dee-turk.jpg",
+    alt: "Dee Turk, School Counselor at Schultz Elementary in Klein ISD",
+    paragraphs: [
+      "As a school counselor at Schultz Elementary in Klein ISD, I have had the privilege of witnessing firsthand the incredible impact the Angel Paws Reading Program has had on our students. We were honored to be the first elementary school in Klein ISD to implement a reading program that pairs struggling readers with therapy dogs, and it has become one of the most meaningful and transformative programs on our campus.",
+      "While we certainly celebrate the measurable academic gains our students make in decoding and fluency, the true magic of this program reaches far beyond literacy. Many students walk into their weekly sessions carrying self-doubt but leave with renewed confidence and a sense of pride in themselves. Our four-legged reading partners offer a calm nonjudgmental space where students feel accepted exactly as they are. They don't mind if a child reads slowly, needs extra time to sound out a difficult word, or makes a mistake along the way. Instead, they provide unwavering patience, unconditional love, and quiet encouragement that helps students take risks without fear of embarrassment or failure.",
+      "The Angel Paws Reading Program reminds us that meaningful learning happens when students feel safe, connected, and encouraged. The bond formed between a child and a dog creates an environment where growth happens naturally while also building self-esteem, perseverance, and sense of belonging.",
+      "We are deeply grateful to the Angel Paws volunteers and their incredible therapy dogs for the gift they bring to our campus. Their time, dedication, and compassionate hearts have made a lasting difference in the lives of our students as well as our staff. The impact of this program extends well beyond the pages of a book—it helps children discover confidence in themselves, one story at a time.",
+    ],
+    attribution: "Dee Turk",
+    role: "School Counselor, Schultz Elementary (Klein ISD)",
+    isLetter: true as const,
+  },
+  {
     image: DEBBIE_IMG.christinaGooger,
     alt: "Christina Googer at Redeemer Church with Angel Paws",
     quote:

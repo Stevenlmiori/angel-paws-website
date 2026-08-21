@@ -1,5 +1,4 @@
 import { DEBBIE_IMG } from "@/lib/debbieImages";
-import { KHOU_FLOOD_COVERAGE } from "@/lib/siteLinks";
 import type { StoryDetail, StoryListItem } from "@/lib/sanity/types";
 import { storyParagraphs } from "./storyBlocks";
 
@@ -59,47 +58,11 @@ export const localStories: StoryDetail[] = [
       alt: "Memorial flowers in Kerrville after Hill Country flooding",
     },
     tags: ["visit", "kerrville", "crisis-response"],
-    body: [
-      ...storyParagraphs([
-        "One encounter in Kerrville will stay with me forever—Kathleen, a team member of Angel Paws. The storm became personal, even though I never knew them. A local first responder approached me with something in his hand and a face full of emotion. He asked, \"Can I ask something of you?\" I told him I would help in any way I could. He then handed me a bone-shaped tag from a dog collar with the name Tucker on it. On the back were Tucker's owner's phone numbers. He informed me that he had found Tucker's remains and had taken the tag to make a notification. He said, \"Because you are a pet therapy ministry, maybe you can deliver the news better than I can.\" How could I refuse?",
-        "I think deep down, he suspected Tucker's family may not have survived the flood and his heart couldn't take it. I proceeded to call the first number on the tag and got voicemail. I left a message informing her that Tucker did not survive and that the first responder respectfully and lovingly took care of him. But even then, I had a sinking feeling in the pit of my stomach, so I searched the list of missing people from the flood. Sadly, I found Tucker's owners were still missing. I then saw a social media post from a family member seeking information about them, so I messaged her after I returned home.",
-        "Theirs is a story of hope and survival. While Tucker and his owners did not survive the flood, three family members were rescued and were being treated at the hospital. I was able to return Tucker's tag to the family. She said that Tucker was a spoiled and beloved pet.",
-      ]),
-      {
-        _type: "youtube",
-        _key: "khou-kerrville-ministry-video",
-        videoId: "sxl9IDVqQVw",
-        title: "KHOU 11 coverage of Angel Paws in Kerrville",
-        caption:
-          "KHOU 11 shared how Angel Paws therapy dogs helped comfort Hill Country flood survivors and recovery teams.",
-      },
-      {
-        _type: "block",
-        _key: "links-block",
-        style: "normal",
-        markDefs: [
-          {
-            _key: "khou1",
-            _type: "link",
-            href: KHOU_FLOOD_COVERAGE,
-          },
-        ],
-        children: [
-          {
-            _type: "span",
-            _key: "l1",
-            text: "Related coverage: ",
-            marks: [],
-          },
-          {
-            _type: "span",
-            _key: "l2",
-            text: "Houston therapy dogs serve Kerrville flood survivors (KHOU)",
-            marks: ["khou1"],
-          },
-        ],
-      },
-    ],
+    body: storyParagraphs([
+      "One encounter in Kerrville will stay with me forever—Kathleen, a team member of Angel Paws. The storm became personal, even though I never knew them. A local first responder approached me with something in his hand and a face full of emotion. He asked, \"Can I ask something of you?\" I told him I would help in any way I could. He then handed me a bone-shaped tag from a dog collar with the name Tucker on it. On the back were Tucker's owner's phone numbers. He informed me that he had found Tucker's remains and had taken the tag to make a notification. He said, \"Because you are a pet therapy ministry, maybe you can deliver the news better than I can.\" How could I refuse?",
+      "I think deep down, he suspected Tucker's family may not have survived the flood and his heart couldn't take it. I proceeded to call the first number on the tag and got voicemail. I left a message informing her that Tucker did not survive and that the first responder respectfully and lovingly took care of him. But even then, I had a sinking feeling in the pit of my stomach, so I searched the list of missing people from the flood. Sadly, I found Tucker's owners were still missing. I then saw a social media post from a family member seeking information about them, so I messaged her after I returned home.",
+      "Theirs is a story of hope and survival. While Tucker and his owners did not survive the flood, three family members were rescued and were being treated at the hospital. I was able to return Tucker's tag to the family. She said that Tucker was a spoiled and beloved pet.",
+    ]),
   },
   {
     _id: "local.comfort-hope-prayer-school",

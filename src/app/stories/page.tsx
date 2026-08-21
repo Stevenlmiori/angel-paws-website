@@ -31,7 +31,11 @@ export default async function StoriesIndexPage() {
   const client = sanityReadClient();
   let allPublished: StoryListItem[] = [];
   if (client) {
-    allPublished = await client.fetch<StoryListItem[]>(storiesPublishedQuery);
+    try {
+      allPublished = await client.fetch<StoryListItem[]>(storiesPublishedQuery);
+    } catch {
+      allPublished = [];
+    }
   }
   allPublished = withoutExcludedSeedStories(
     normalizeStoryPublishedDates(

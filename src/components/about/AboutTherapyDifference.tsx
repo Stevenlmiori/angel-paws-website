@@ -17,20 +17,11 @@ export function AboutTherapyDifference() {
               They are trained to interact with many people, offering comfort,
               companionship, and emotional support in a variety of environments.
             </p>
-            <div className="grid gap-3 sm:grid-cols-3">
-              {["They do not judge.", "They do not rush.", "They do not interrupt."].map(
-                (line) => (
-                  <p
-                    key={line}
-                    className="rounded-2xl bg-white/7 px-4 py-4 text-sm font-semibold text-on-surface-inverse ring-1 ring-white/10"
-                  >
-                    {line}
-                  </p>
-                ),
-              )}
-            </div>
+            <p className="font-serif text-xl italic text-on-surface-inverse sm:text-2xl">
+              They do not judge. They do not rush. They do not interrupt.
+            </p>
             <p className="font-medium text-on-surface-inverse">
-              They simply show up with calm, steady presence, and that is often
+              They simply show up with a calm, steady presence—and that is often
               enough.
             </p>
           </div>

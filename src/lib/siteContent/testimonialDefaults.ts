@@ -31,6 +31,14 @@ export const DEFAULT_TESTIMONIALS: StoredTestimonial[] = [
     active: true,
   },
   {
+    id: "schultz-elementary",
+    quote:
+      "The Angel Paws Reading Program reminds us that meaningful learning happens when students feel safe, connected, and encouraged. Our four-legged reading partners offer a calm nonjudgmental space where students feel accepted exactly as they are. They provide unwavering patience, unconditional love, and quiet encouragement that helps students take risks without fear of embarrassment or failure.",
+    attribution: "Dee Turk",
+    role: "School Counselor, Schultz Elementary (Klein ISD)",
+    active: true,
+  },
+  {
     id: "dr-mcgown",
     quote: MCGOWN_LETTER_EXCERPT,
     attribution: MCGOWN_ATTRIBUTION,

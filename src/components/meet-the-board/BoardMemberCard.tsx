@@ -43,18 +43,23 @@ export function BoardMemberCard({ member }: { member: BoardMember }) {
         </div>
       </div>
       <div>
-        <div className="mb-2 flex flex-wrap items-start justify-between gap-2">
-          <h3 className="font-serif text-2xl text-on-surface">{member.name}</h3>
-          <span className="rounded-full bg-primary/15 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-primary">
-            {member.role}
-          </span>
-        </div>
+        <h3 className="font-serif text-2xl text-on-surface">{member.name}</h3>
+        <p className="mt-1 font-sans text-xs font-bold uppercase tracking-[0.2em] text-primary">
+          {member.role}
+        </p>
         {member.companion ? (
-          <p className="mb-4 flex items-center gap-2 text-sm font-semibold text-secondary">
-            <PawPrint className="size-4 shrink-0" strokeWidth={2} aria-hidden />
-            Companion: {member.companion}
+          <p className="mt-2.5 mb-4 flex items-center gap-1.5 text-sm text-on-surface-variant">
+            <PawPrint className="size-4 shrink-0 text-primary" strokeWidth={1.75} aria-hidden />
+            <span>
+              Companion:{" "}
+              <strong className="font-medium text-on-surface">
+                {member.companion}
+              </strong>
+            </span>
           </p>
-        ) : null}
+        ) : (
+          <div className="mb-4" />
+        )}
         <p className="font-light leading-relaxed text-on-surface-variant">
           {member.bio}
         </p>

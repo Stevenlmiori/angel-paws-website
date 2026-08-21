@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Heart, PawPrint } from "lucide-react";
+import { ArrowRight, PawPrint } from "lucide-react";
 import { IMG } from "./media";
 
 const HERO_QUOTE = "When I needed a hand, you gave me your paw.";
@@ -10,22 +10,14 @@ export function HomeHero() {
     <section className="relative flex min-h-[85vh] items-center overflow-hidden px-6 py-12 sm:px-10 lg:min-h-[90vh] lg:px-12">
       <div className="relative z-10 mx-auto grid w-full max-w-screen-xl grid-cols-1 items-center gap-12 py-12 lg:grid-cols-12">
         <div className="z-10 space-y-8 lg:col-span-6">
-          <div className="inline-flex items-center gap-2 rounded-full bg-primary-container px-4 py-1.5 text-sm font-medium uppercase tracking-wide text-primary">
-            <Heart
-              className="size-[1.05rem] shrink-0 fill-primary stroke-primary"
-              strokeWidth={0}
-              aria-hidden
-            />
-            Faith-Based Ministry
-          </div>
           <h1 className="font-serif text-5xl font-bold leading-[1.1] tracking-tighter text-on-background lg:text-7xl">
             Delivering <span className="italic text-primary">Hope</span> One
             Moment At A{"\u00A0"}Time.
           </h1>
           <p className="max-w-xl text-lg leading-relaxed text-on-surface-variant lg:text-xl">
-            Angel Paws is a faith-based pet therapy ministry serving Greater
-            Houston, sharing the love of Jesus through the steady comfort of
-            therapy dogs.
+            Angel Paws is a faith-based 501(c)(3) nonprofit pet therapy ministry
+            serving Greater Houston, sharing the love of Jesus through the steady
+            comfort of therapy dogs.
           </p>
           <div className="flex flex-wrap gap-6 pt-4">
             <Link
