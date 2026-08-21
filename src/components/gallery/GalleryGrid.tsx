@@ -1,12 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import type { StoredGalleryImage } from "@/lib/siteContent/galleryTypes";
 import { GalleryImage, GalleryLightboxImage } from "./GalleryImage";
 
 export function GalleryGrid({ images }: { images: StoredGalleryImage[] }) {
   const [lightbox, setLightbox] = useState<StoredGalleryImage | null>(null);
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setLightbox(null);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [lightbox]);
 
   if (images.length === 0) {
     return (

@@ -25,6 +25,15 @@ export function Reveal({ children, className, delayMs = 0 }: RevealProps) {
     () => {
       if (!container.current) return;
 
+      const reduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (reduced) {
+        gsap.set(container.current, { autoAlpha: 1, y: 0 });
+        return;
+      }
+
       // Force-hide immediately before animation starts to avoid flash
       gsap.set(container.current, { autoAlpha: 0, y: 40 });
 

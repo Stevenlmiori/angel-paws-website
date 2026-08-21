@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ColoringPagesGrid } from "@/components/coloring-pages/ColoringPagesGrid";
 import { Section } from "@/components/ui/Section";
 import { pageMetadata } from "@/lib/seo";
@@ -58,12 +59,12 @@ export default async function ColoringPagesPage() {
             These pages are free to print for personal use, classrooms, and
             community events. Please do not sell or redistribute the artwork.
             Questions?{" "}
-            <a
+            <Link
               href="/contact"
               className="font-semibold text-primary underline-offset-4 hover:underline"
             >
               Get in touch
-            </a>
+            </Link>
             .
           </p>
         </div>

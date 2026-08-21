@@ -16,9 +16,12 @@ const routePriority = new Map<string, number>([
   ["/stories", 0.85],
   ["/photo-gallery", 0.8],
   ["/testimonials", 0.8],
+  ["/coloring-pages", 0.8],
   ["/about", 0.8],
   ["/get-involved", 0.75],
   ["/meet-the-board", 0.7],
+  ["/privacy-policy", 0.3],
+  ["/terms-of-service", 0.3],
 ]);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -42,7 +45,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/stories",
     "/photo-gallery",
     "/testimonials",
+    "/coloring-pages",
     "/get-involved",
+    "/privacy-policy",
+    "/terms-of-service",
   ];
 
   const staticEntries: MetadataRoute.Sitemap = routes.map((route) => ({

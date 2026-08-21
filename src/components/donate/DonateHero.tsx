@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { DONATE_IMG } from "./media";
 
 export function DonateHero() {
@@ -24,12 +25,12 @@ export function DonateHero() {
             >
               Give Now
             </a>
-            <a
+            <Link
               href="/contact#visitation-request"
               className="rounded-full bg-surface-container-high px-8 py-4 text-sm font-bold uppercase tracking-widest text-on-surface transition-colors hover:bg-surface-container-highest"
             >
               Request a Visit
-            </a>
+            </Link>
           </div>
         </div>
         <div className="relative order-1 lg:order-2 lg:col-span-5">

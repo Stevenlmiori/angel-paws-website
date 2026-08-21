@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Download, Palette, Printer, Sparkles, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { openColoringPagePrintWindow } from "@/lib/coloringPages/print";
@@ -14,6 +14,17 @@ type Props = {
 
 export function ColoringPagesGrid({ pages }: Props) {
   const [active, setActive] = useState<ColoringPage | null>(null);
+
+  useEffect(() => {
+    if (!active) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActive(null);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [active]);
 
   return (
     <>
