@@ -95,9 +95,9 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
-              <Link href="/get-involved" className={linkClass}>
+              <a href="/get-involved" className={linkClass}>
                 Get Involved
-              </Link>
+              </a>
             </li>
             <li>
               <Link href="/what-is-pet-therapy" className={linkClass}>
