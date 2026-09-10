@@ -20,6 +20,8 @@ const routePriority = new Map<string, number>([
   ["/about", 0.8],
   ["/get-involved", 0.75],
   ["/meet-the-board", 0.7],
+  ["/statement-of-beliefs", 0.65],
+  ["/policies-and-procedures", 0.65],
   ["/privacy-policy", 0.3],
   ["/terms-of-service", 0.3],
 ]);
@@ -40,6 +42,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/what-is-pet-therapy",
     "/where-we-serve",
     "/meet-the-board",
+    "/statement-of-beliefs",
+    "/policies-and-procedures",
     "/contact",
     "/donate",
     "/stories",

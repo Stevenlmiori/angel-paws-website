@@ -31,7 +31,7 @@ export async function saveGalleryDirect(
   if (!result.ok) {
     const message =
       result.error === "no_storage"
-        ? "Production storage is not set up. Add Upstash Redis env vars on Vercel."
+        ? "Gallery storage is not configured. Check the Sanity write token or Redis settings."
         : "Could not save gallery.";
     return { ok: false, message };
   }

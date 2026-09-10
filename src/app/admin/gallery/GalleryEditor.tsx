@@ -42,45 +42,6 @@ function fileBaseName(file: File) {
   return file.name.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
 }
 
-function loadImage(src: string): Promise<HTMLImageElement> {
-  return new Promise((resolve, reject) => {
-    const img = new window.Image();
-    img.onload = () => resolve(img);
-    img.onerror = () => reject(new Error("Could not read image."));
-    img.src = src;
-  });
-}
-
-function readFileAsDataUrl(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () =>
-      typeof reader.result === "string"
-        ? resolve(reader.result)
-        : reject(new Error("Could not read image."));
-    reader.onerror = () => reject(new Error("Could not read image."));
-    reader.readAsDataURL(file);
-  });
-}
-
-async function compressedDataUrl(file: File): Promise<string> {
-  const source = await readFileAsDataUrl(file);
-  const img = await loadImage(source);
-  const maxSide = 1800;
-  const scale = Math.min(1, maxSide / Math.max(img.width, img.height));
-  const width = Math.max(1, Math.round(img.width * scale));
-  const height = Math.max(1, Math.round(img.height * scale));
-  const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  const ctx = canvas.getContext("2d");
-  if (!ctx) {
-    throw new Error("Could not prepare image.");
-  }
-  ctx.drawImage(img, 0, 0, width, height);
-  return canvas.toDataURL("image/jpeg", 0.82);
-}
-
 export function GalleryEditor({
   initialItems,
 }: {
@@ -164,13 +125,12 @@ export function GalleryEditor({
         });
         const data = (await res.json()) as { src?: string; error?: string };
         const src = data.src;
-        let nextSrc = src;
-        if (!res.ok || !nextSrc) {
-          nextSrc = await compressedDataUrl(file);
+        if (!res.ok || !src) {
+          throw new Error(data.error || "Upload failed.");
         }
         uploaded.push({
           id: newId(),
-          src: nextSrc,
+          src,
           alt: fileBaseName(file),
           caption: "",
           active: true,
@@ -185,8 +145,8 @@ export function GalleryEditor({
             : `${uploaded.length} images added. Review alt text and save.`,
         );
       }
-    } catch {
-      setMessage("Upload failed.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Upload failed.");
     } finally {
       setUploading(false);
       setDragging(false);

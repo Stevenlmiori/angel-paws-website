@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Heart, Shield, Sparkles } from "lucide-react";
 import { PET_THERAPY_IMG } from "./media";
 
@@ -154,6 +155,16 @@ export function PetTherapySections() {
                 comfort and health of the animal.
               </li>
             </ul>
+            <p className="mt-8 text-lg text-on-surface-variant">
+              To learn more, read our{" "}
+              <Link
+                href="/policies-and-procedures"
+                className="font-semibold text-primary underline underline-offset-4"
+              >
+                full Policies and Procedures
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </section>

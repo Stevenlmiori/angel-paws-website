@@ -23,7 +23,7 @@ const blocks: ReadonlyArray<{
     media: {
       kind: "image",
       src: ABOUT_IMG.storyJourney,
-      alt: "Sam during an Angel Paws visit",
+      alt: "A gentle hand resting on a therapy dog during a visit",
     },
     title: "The Journey",
     body: "From a single visit that sparked a vision to teams serving across Greater Houston and beyond, Angel Paws has been shaped by faithful handlers, remarkable dogs, and partners who welcome us into their spaces.",

@@ -31,6 +31,11 @@ export const boardMembers: BoardMember[] = [
     image: BOARD_MEMBER_IMG.andrea,
     imageAlt: "Andrea Langford, Secretary of Angel Paws Pet Therapy",
   },
+  {
+    name: "Bart Canon",
+    role: "At-Large Board Member",
+    bio: "Bart brings more than 45 years of professional experience in risk management, serving as a leader for major corporations and as an insurance broker. He is also a CPA. Bart, like his wife Susan, has a heart for serving others as an advisor and active participant in Angel Paws Pet Therapy. He serves in several ministries at his local church and participates in a non-denominational Bible study. Bart believes pet therapy animals can help reach people for Christ while providing comfort and joy.",
+  },
 ];
 
 /** Advisory roster will be added once finalized. */

@@ -1,5 +1,7 @@
+import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import {
+  ArrowRight,
   BookOpen,
   Cross,
   HeartHandshake,
@@ -62,6 +64,13 @@ export function AboutMissionBeliefs() {
               everyone we serve—and every team participant who represents Angel
               Paws—understands who we are.
             </p>
+            <Link
+              href="/statement-of-beliefs"
+              className="mt-8 inline-flex items-center gap-2 font-semibold text-primary underline-offset-4 hover:underline"
+            >
+              Read our full Statement of Beliefs
+              <ArrowRight className="size-4" strokeWidth={2} aria-hidden />
+            </Link>
           </div>
           <div className="grid flex-1 grid-cols-1 gap-8 sm:grid-cols-2 md:min-w-0">
             {beliefs.map(({ Icon, title, body }) => (

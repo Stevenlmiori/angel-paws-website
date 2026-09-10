@@ -16,9 +16,9 @@ seoDescription: "Angel Paws was featured by CNN after therapy dog teams served f
 status: "Ready to publish when SANITY_API_WRITE_TOKEN has create/update permissions."
 ---
 
-In July 2025, after devastating flash flooding in the Texas Hill Country, Angel Paws teams traveled from Houston to Kerrville with a simple ministry posture: show up, listen, and let trained therapy dogs offer calm where words were hard to find.
+In July 2025, after devastating flash flooding in the Texas Hill Country, Angel Paws teams traveled from Houston to Kerrville with a simple ministry posture: show up, listen, and let trained therapy dogs offer calmness where words were hard to find.
 
-That quiet work was noticed nationally. [CNN News Central](https://transcripts.cnn.com/show/cnc/date/2025-07-16/segment/04) featured Angel Paws on July 16, 2025, describing the dogs as comfort for first responders and flood survivors. Debbie Benningfield told CNN that the dogs know their job: to comfort.
+That quiet work was noticed nationally. CNN News Central featured Angel Paws on July 16, 2025, describing the dogs as comfort for first responders and flood survivors. Debbie Benningfield told CNN that the dogs know their job: to comfort.
 
 > These dogs know their job very well.
 

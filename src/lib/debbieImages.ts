@@ -21,4 +21,6 @@ export const DEBBIE_IMG = {
   christinaGooger: "/img/debbie/18-christina-googer.jpg",
   stacha: "/img/debbie/19-stacha.jpg",
   brookdale: "/img/debbie/20-brookdale.jpeg",
+  journeyDogComfort: "/img/debbie/september-2026/journey-dog-comfort.jpg",
+  petTherapyChildren: "/img/debbie/september-2026/pet-therapy-children.jpg",
 } as const;

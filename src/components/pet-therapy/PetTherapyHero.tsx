@@ -45,7 +45,7 @@ export function PetTherapyHero() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-2xl md:rounded-3xl">
             <Image
               src={PET_THERAPY_IMG.hero}
-              alt="Therapy dog with a child during a comfort visit"
+              alt="Children sharing a gentle moment with a therapy dog"
               fill
               priority
               sizes="(max-width: 768px) 100vw, 50vw"

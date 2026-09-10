@@ -37,6 +37,8 @@ Do not add public “become a member,” “join the team,” or volunteer recru
 | Who we are / mission & beliefs | `/about`               | Live — refine copy as needed; beliefs align with CFBC-style language                 |
 | Where we serve                 | `/where-we-serve`      | Live                                                                                 |
 | What is pet therapy            | `/what-is-pet-therapy` | Live — editorial page                                                                |
+| Full Statement of Beliefs      | `/statement-of-beliefs` | Live — linked from `/about#beliefs`                                                  |
+| Policies and Procedures        | `/policies-and-procedures` | Live — linked from `/what-is-pet-therapy`                                         |
 | Existing handler resources     | `/members/portal`      | Protected direct URL; not public navigation                                          |
 | Contact + visit requests       | `/contact`             | Live — email contact plus offsite **Google Form** for visit requests                 |
 | Give / donations               | `/donate`              | Live — **Donorbox** embed (see §5 + env vars)                                        |
@@ -44,6 +46,8 @@ Do not add public “become a member,” “join the team,” or volunteer recru
 | Stories (blog)                 | `/stories`             | Live — repo-backed launch story + **Sanity** content; home strip optional tag filter |
 
 **Operator admin (one login):** After signing in at `/admin/member-portal/login`, you land on **`/admin`**. From there open **Member portal links** or **Stories**. Stories are stored in Sanity; no separate Sanity account is required for day-to-day editing.
+
+The same admin hub also manages the public **Photo gallery**, **Testimonials**, and **Coloring pages**. Gallery images and their order are stored in Sanity; Redis remains a fallback for older environments.
 
 ---
 
@@ -138,6 +142,7 @@ Copy `.env.example` to `.env.local` and set values. In **Vercel** (or similar), 
 - Donorbox loads `widgets.js` (`type="module"`) with `next/script` (`afterInteractive`) and a `<dbox-widget>` custom element. If CSP is enabled later, allow `donorbox.org` for scripts and frames.
 - Embed URL helpers: `src/lib/embeds.ts`.
 - Visual system: **AngelPaws Serif — Blue Edition** with optional **navy (`section-tone-inverse`)** and **charcoal (`section-tone-charcoal`)** marketing bands documented in **`DESIGN.md`**. Historical token snapshots remain in **`docs/theme-archive/angelpaws-serif-blue.css`**.
+- Gallery uploads use Sanity image assets, and the gallery list/order is saved in the `site-gallery-settings` Sanity document. This prevents production edits from depending on Vercel's read-only filesystem.
 
 ---
 
@@ -153,4 +158,4 @@ When you launch publicly, set **`NEXT_PUBLIC_SITE_INDEXABLE=true`** in Vercel, *
 
 ---
 
-_Last updated: June 2026 — Blue Edition palette plus inverse/charcoal section bands; production domain, Google Forms visit requests, member portal gate, Donorbox env notes, and pre-launch indexing controls._
+_Last updated: September 2026 — Debbie's content-review updates, full beliefs and policies pages, persistent Sanity-backed gallery management, and September photo refresh._

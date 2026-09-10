@@ -25,7 +25,7 @@ export function VisitationRequestCTA() {
       <p className="mt-4 text-lg leading-relaxed text-on-surface-inverse-muted">
         For hospitals, schools, assisted living communities, churches, and
         workplaces ready to request a visit — use our official request form so we
-        have the details needed to schedule your team.
+        have the details needed to schedule your visit.
       </p>
 
       <ul className="mt-8 space-y-3">

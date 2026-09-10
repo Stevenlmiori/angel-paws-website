@@ -11,11 +11,12 @@ type Props = {
 
 export function TestimonialsCarousel({
   testimonials,
-  intervalMs = 8000,
+  intervalMs = 18000,
 }: Props) {
   const items = testimonials.filter((t) => t.active && t.quote.trim());
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const currentQuote = items[index]?.quote ?? "";
 
   const advance = useCallback(() => {
     if (items.length <= 1) {
@@ -39,9 +40,11 @@ export function TestimonialsCarousel({
     if (reduced) {
       return;
     }
-    const id = window.setInterval(advance, intervalMs);
+    const wordCount = currentQuote.trim().split(/\s+/).filter(Boolean).length;
+    const readingTimeMs = Math.min(45000, Math.max(intervalMs, wordCount * 300 + 4000));
+    const id = window.setInterval(advance, readingTimeMs);
     return () => window.clearInterval(id);
-  }, [advance, intervalMs, items.length, paused]);
+  }, [advance, currentQuote, intervalMs, items.length, paused]);
 
   if (items.length === 0) {
     return null;
