@@ -52,5 +52,5 @@ export async function savePortalResourcesDirect(
 
   revalidatePath("/members/portal");
   revalidatePath("/admin/member-portal");
-  return { ok: true, message: "Saved. Members will see this on their next visit." };
+  return { ok: true, message: "Saved. Participants will see this on their next visit." };
 }

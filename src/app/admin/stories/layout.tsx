@@ -42,7 +42,7 @@ export default async function AdminStoriesLayout({
               href="/admin/member-portal"
               className="text-sm font-semibold text-on-surface-variant underline-offset-4 hover:text-primary hover:underline"
             >
-              Member portal
+              Participant portal
             </Link>
             <Link
               href="/stories"

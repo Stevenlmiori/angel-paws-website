@@ -64,7 +64,7 @@ export default async function AdminMemberPortalLoginPage({
           Site admin
         </h1>
         <p className="mb-10 text-lg leading-relaxed text-on-surface-variant">
-          Sign in to manage member portal links and public stories. This area is
+          Sign in to manage participant portal links and public stories. This area is
           not linked in the public navigation.
         </p>
         <AdminLoginForm errorKey={error} postAction={loginPostAction} />
@@ -73,7 +73,7 @@ export default async function AdminMemberPortalLoginPage({
             href="/members/portal"
             className="font-semibold text-primary underline underline-offset-4"
           >
-            Member portal
+            Participant portal
           </Link>
         </p>
         <AdminLoginDiagnostics enabled={loginDiagnosticsEnabled} />

@@ -268,7 +268,7 @@ export function MemberPortalEditor({ initialItems }: Props) {
     const row: StoredPortalResource = {
       id,
       title: "New resource",
-      description: "Short description for members.",
+      description: "Short description for participants.",
       href: "https://",
       external: true,
       iconId: "folder",
@@ -294,7 +294,7 @@ export function MemberPortalEditor({ initialItems }: Props) {
             Admin
           </p>
           <h1 className="font-serif text-3xl text-on-surface md:text-4xl">
-            Member portal links
+            Participant portal links
           </h1>
           <p className="mt-2 max-w-2xl text-sm text-on-surface-variant leading-relaxed">
             Drag the handle to reorder. Click a row or{" "}

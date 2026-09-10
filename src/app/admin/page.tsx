@@ -58,10 +58,10 @@ export default async function AdminHubPage() {
               <Link2 className="size-7" strokeWidth={1.75} aria-hidden />
             </span>
             <h2 className="font-serif text-2xl text-on-surface group-hover:text-primary">
-              Member portal links
+              Participant portal links
             </h2>
             <p className="mt-2 flex-1 text-on-surface-variant">
-              Reorder resources, edit titles and URLs for the member-only portal.
+              Reorder resources, edit titles and URLs for the participant-only portal.
             </p>
             <span className="mt-6 text-sm font-semibold text-primary underline-offset-4 group-hover:underline">
               Open editor
@@ -99,7 +99,7 @@ export default async function AdminHubPage() {
               Testimonials
             </h2>
             <p className="mt-2 flex-1 text-on-surface-variant">
-              Edit the auto-rotating quotes on the homepage.
+              Edit the homepage quotes, attributions, and testimonial photos.
             </p>
             <span className="mt-6 text-sm font-semibold text-primary underline-offset-4 group-hover:underline">
               Open testimonials

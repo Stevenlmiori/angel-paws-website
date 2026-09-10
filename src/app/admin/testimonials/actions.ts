@@ -37,6 +37,7 @@ export async function saveTestimonialsDirect(
   }
 
   revalidatePath("/");
+  revalidatePath("/testimonials");
   revalidatePath("/admin/testimonials");
   return { ok: true, message: "Saved. The homepage carousel will update on next visit." };
 }

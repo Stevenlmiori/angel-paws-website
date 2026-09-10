@@ -14,7 +14,7 @@ export const DEFAULT_PORTAL_RESOURCES: StoredPortalResource[] = [
   {
     id: "policies",
     title: "Policies & handbooks",
-    description: "Member policies and handbook materials.",
+    description: "Participant policies and handbook materials.",
     href: HOW_TO_BECOME_INVOLVED_DOC_URL,
     external: true,
     iconId: "folder",
@@ -22,7 +22,7 @@ export const DEFAULT_PORTAL_RESOURCES: StoredPortalResource[] = [
   {
     id: "forms-templates",
     title: "Form templates",
-    description: "Printable or fillable templates for members.",
+    description: "Printable or fillable templates for participants.",
     href: "https://drive.google.com",
     external: true,
     iconId: "file",
@@ -30,7 +30,7 @@ export const DEFAULT_PORTAL_RESOURCES: StoredPortalResource[] = [
   {
     id: "wellness",
     title: "Annual wellness form",
-    description: "Member wellness submission (add your Google Form link when ready).",
+    description: "Participant wellness submission (add your Google Form link when ready).",
     href: "https://docs.google.com/forms",
     external: true,
     iconId: "clipboard",
@@ -45,7 +45,7 @@ export const DEFAULT_PORTAL_RESOURCES: StoredPortalResource[] = [
   },
   {
     id: "roster",
-    title: "Membership roster",
+    title: "Participant roster",
     description: "Living roster or link to your internal tool.",
     href: "https://drive.google.com",
     external: true,

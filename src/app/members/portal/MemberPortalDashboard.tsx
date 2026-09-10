@@ -13,7 +13,7 @@ export async function MemberPortalDashboard() {
       <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            Members
+            Participants
           </p>
           <h1 className="font-serif text-4xl text-on-surface md:text-5xl">
             Resource hub

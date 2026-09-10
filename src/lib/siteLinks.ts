@@ -14,7 +14,7 @@ export const VISITATION_REQUEST_EMAIL = CONTACT_EMAIL;
 export const VISITATION_REQUEST_FORM_URL =
   "https://forms.gle/mJb8L4MjjTgs58oK8";
 
-/** How to become involved / member overview (same public Google Doc). */
+/** How to become involved / participant overview (same public Google Doc). */
 export const HOW_TO_BECOME_INVOLVED_DOC_URL =
   "https://docs.google.com/document/d/1cbR9C-QVtEZL46k6Vqlyq4ZUIUMCSDHx/edit?usp=sharing&ouid=116763330466713943515&rtpof=true&sd=true";
 

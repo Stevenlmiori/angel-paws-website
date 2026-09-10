@@ -70,9 +70,9 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
-              <Link href="/contact" className={linkClass}>
+              <a href="/contact" className={linkClass}>
                 Get in Touch
-              </Link>
+              </a>
             </li>
             <li>
               <Link href="/stories" className={linkClass}>
@@ -106,7 +106,7 @@ export function SiteFooter() {
             </li>
             <li>
               <Link href="/members/portal" className={linkClass}>
-                Member Portal
+                Participant Portal
               </Link>
             </li>
           </ul>

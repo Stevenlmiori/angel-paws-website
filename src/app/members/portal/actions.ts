@@ -47,7 +47,7 @@ export async function loginAction(
 
   const passwordField = formData.get("password");
   if (typeof passwordField !== "string") {
-    return { error: "Enter the member password." };
+    return { error: "Enter the participant password." };
   }
 
   const env = getMemberPortalEnv();

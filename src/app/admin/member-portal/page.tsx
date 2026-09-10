@@ -48,7 +48,7 @@ export default async function AdminMemberPortalPage() {
               href="/members/portal"
               className="text-sm font-semibold text-primary underline underline-offset-4"
             >
-              View member portal
+              View participant portal
             </Link>
             <form action={adminLogoutAction}>
               <Button

@@ -59,11 +59,11 @@ export default function GetInvolvedPage() {
             <div className="mb-4 flex items-center gap-3 text-primary">
               <HeartHandshake className="size-8" strokeWidth={1.75} aria-hidden />
               <h2 className="font-serif text-2xl text-on-surface">
-                Already a member?
+                Already a participant?
               </h2>
             </div>
             <p className="mb-6 leading-relaxed text-on-surface-variant">
-              Handlers can sign in to the member portal for day-to-day resources,
+              Handlers can sign in to the participant portal for day-to-day resources,
               or review the same involvement overview linked above.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -71,7 +71,7 @@ export default function GetInvolvedPage() {
                 href="/members/portal"
                 className="inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-on-primary transition hover:opacity-90"
               >
-                Member login
+                Participant login
               </Link>
               <a
                 href={HOW_TO_BECOME_INVOLVED_DOC_URL}
@@ -79,7 +79,7 @@ export default function GetInvolvedPage() {
                 rel="noopener noreferrer"
                 className="inline-flex rounded-full bg-surface-container-high px-6 py-3 text-sm font-semibold text-on-surface transition hover:bg-surface-container-highest"
               >
-                Member overview doc
+                Participant overview doc
               </a>
             </div>
           </div>

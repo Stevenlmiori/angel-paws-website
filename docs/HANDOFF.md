@@ -28,7 +28,7 @@ The public site should present only two action paths:
 - **Request a Visit** → `/contact`
 - **Give** → `/donate`
 
-Do not add public “become a member,” “join the team,” or volunteer recruitment CTAs. Keep `/members/portal` available only as a protected direct URL for existing handlers/operators.
+Do not add public “become a participant,” “join the team,” or volunteer recruitment CTAs. Keep `/members/portal` available only as a protected direct URL for existing handlers/operators.
 
 ## 1. Route map (Debbie’s list → this site)
 
@@ -45,7 +45,7 @@ Do not add public “become a member,” “join the team,” or volunteer recru
 | Board                          | `/meet-the-board`      | Live layout; sample roster/bios/photos need Debbie’s real board details              |
 | Stories (blog)                 | `/stories`             | Live — repo-backed launch story + **Sanity** content; home strip optional tag filter |
 
-**Operator admin (one login):** After signing in at `/admin/member-portal/login`, you land on **`/admin`**. From there open **Member portal links** or **Stories**. Stories are stored in Sanity; no separate Sanity account is required for day-to-day editing.
+**Operator admin (one login):** After signing in at `/admin/member-portal/login`, you land on **`/admin`**. From there open **Participant portal links** or **Stories**. Stories are stored in Sanity; no separate Sanity account is required for day-to-day editing.
 
 The same admin hub also manages the public **Photo gallery**, **Testimonials**, and **Coloring pages**. Gallery images and their order are stored in Sanity; Redis remains a fallback for older environments.
 
@@ -64,13 +64,13 @@ The same admin hub also manages the public **Photo gallery**, **Testimonials**, 
 
 - [ ] **Donations:** log in to the chosen platform to see gifts, issue receipts, run small campaigns.
 - [ ] **Forms:** log in to the form tool to see submissions, export to spreadsheet if needed.
-- [ ] **Files (policies, PDFs):** start with **Google Drive** in a nonprofit Google Workspace—shared folders with clear names (`Policies`, `Forms templates`). Link from `/members/portal` when gated auth exists, or link from emails to members until then.
+- [ ] **Files (policies, PDFs):** start with **Google Drive** in a nonprofit Google Workspace—shared folders with clear names (`Policies`, `Forms templates`). Link from `/members/portal` when gated auth exists, or link from emails to participants until then.
 
-### Phase C — Member portal (current lightweight gate + future auth)
+### Phase C — Participant portal (current lightweight gate + future auth)
 
-- [x] Current launch gate: shared member password + signed session cookie.
+- [x] Current launch gate: shared participant password + signed session cookie.
 - [ ] Future upgrade, if needed: pick **one** auth approach, e.g. Clerk, Memberstack, or Supabase Auth.
-- [ ] Host member-only PDFs in Drive with link sharing off, or in secure storage behind the app.
+- [ ] Host participant-only PDFs in Drive with link sharing off, or in secure storage behind the app.
 
 ---
 
@@ -79,7 +79,7 @@ The same admin hub also manages the public **Photo gallery**, **Testimonials**, 
 **Logins to keep in a password manager (1Password, Bitwarden, etc.):**
 
 1. **Website hosting** (Vercel/similar) — only if she needs to invite someone; optional for day-to-day.
-2. **Site admin** — bookmark `/admin` (sign in at `/admin/member-portal/login`) for **member portal links** and **Stories**; same operator email/password as today.
+2. **Site admin** — bookmark `/admin` (sign in at `/admin/member-portal/login`) for **participant portal links** and **Stories**; same operator email/password as today.
 3. **Donation platform** — primary money workflow.
 4. **Form builder** — see all inquiries and visit requests.
 5. **Google Workspace** (nonprofit) — email, Drive for documents, optional Forms.
@@ -98,7 +98,7 @@ The same admin hub also manages the public **Photo gallery**, **Testimonials**, 
 | ----------------- | ------- | -------------------------------------------- | ------------------------------------------------------------------- |
 | General contact   | Yes     | `CONTACT_EMAIL` in `src/lib/siteLinks.ts`    | Visitors email Angel Paws directly from `/contact`                  |
 | Request a visit   | Yes     | `VISITATION_REQUEST_FORM_URL` in `siteLinks` | Offsite Google Form opens from `/contact#visitation-request`        |
-| Member-only forms | No      | Member portal admin links                    | Add gated Google Form or Drive links on `/members/portal` as needed |
+| Participant-only forms | No      | Participant portal admin links                    | Add gated Google Form or Drive links on `/members/portal` as needed |
 
 The public site does not embed forms. Visit requests open in a new tab using the official Google Form so Debbie can manage submissions in Google Workspace.
 
@@ -129,7 +129,7 @@ Copy `.env.example` to `.env.local` and set values. In **Vercel** (or similar), 
 ## 6. Stories — repo launch stories + **Sanity** `/admin`
 
 - **Public:** `/stories` and each post at `/stories/[slug]`. The site merges repo-backed launch stories from `src/lib/stories/localStories.ts` with Sanity stories, with Sanity slugs winning if duplicated so Debbie's admin edits control the public story. Optional **home** section shows up to three posts; set **`NEXT_PUBLIC_HOME_STORIES_TAG`** to a tag (e.g. `home-spotlight`) so only tagged posts appear, or leave it unset for the three latest.
-- **Editing:** `/admin` → **Stories** (same email/password as member portal admin). Featured image, title, slug, tags, date, and body blocks (paragraphs, headings, quotes, bullets).
+- **Editing:** `/admin` → **Stories** (same email/password as participant portal admin). Featured image, title, slug, tags, date, and body blocks (paragraphs, headings, quotes, bullets).
 - **Env:** See `.env.example` (`NEXT_PUBLIC_SANITY_*`, `SANITY_API_WRITE_TOKEN`, optional `SANITY_REVALIDATE_SECRET` for the revalidate webhook at `/api/revalidate-sanity`). If Sanity rejects story edits with 403, replace `SANITY_API_WRITE_TOKEN` with a token that has create/update/delete permissions.
 - **Sample posts:** Run `npm run seed:stories` once (requires write token + three images under `public/stories-seed/` — see script header).
 

@@ -15,7 +15,7 @@ export function MemberPortalLoginForm() {
         htmlFor="member-portal-password"
         className="mb-2 block text-sm font-semibold text-on-surface"
       >
-        Member password
+        Participant password
       </label>
       <input
         id="member-portal-password"

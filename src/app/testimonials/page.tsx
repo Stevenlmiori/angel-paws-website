@@ -1,11 +1,6 @@
 import Image from "next/image";
 import { DEBBIE_IMG } from "@/lib/debbieImages";
 import { pageMetadata } from "@/lib/seo";
-import {
-  MCGOWN_ATTRIBUTION,
-  MCGOWN_LETTER_BODY,
-  MCGOWN_ROLE,
-} from "@/lib/mcgownLetter";
 import { HeadingBlock } from "@/components/ui/HeadingBlock";
 import { Section } from "@/components/ui/Section";
 
@@ -23,16 +18,8 @@ export const metadata = pageMetadata({
 
 const featured = [
   {
-    image: DEBBIE_IMG.drMcGown,
-    alt: "Letter of support from Dr. Jenny McGown, Klein ISD Superintendent",
-    paragraphs: MCGOWN_LETTER_BODY.split("\n\n"),
-    attribution: MCGOWN_ATTRIBUTION,
-    role: MCGOWN_ROLE,
-    isLetter: true as const,
-  },
-  {
-    image: "/img/testimonials/dee-turk.jpg",
-    alt: "Dee Turk, School Counselor at Schultz Elementary in Klein ISD",
+    image: DEBBIE_IMG.deeTurk,
+    alt: "Dee Turk with Angel Paws therapy dogs at Schultz Elementary",
     paragraphs: [
       "As a school counselor at Schultz Elementary in Klein ISD, I have had the privilege of witnessing firsthand the incredible impact the Angel Paws Reading Program has had on our students. We were honored to be the first elementary school in Klein ISD to implement a reading program that pairs struggling readers with therapy dogs, and it has become one of the most meaningful and transformative programs on our campus.",
       "While we certainly celebrate the measurable academic gains our students make in decoding and fluency, the true magic of this program reaches far beyond literacy. Many students walk into their weekly sessions carrying self-doubt but leave with renewed confidence and a sense of pride in themselves. Our four-legged reading partners offer a calm nonjudgmental space where students feel accepted exactly as they are. They don't mind if a child reads slowly, needs extra time to sound out a difficult word, or makes a mistake along the way. Instead, they provide unwavering patience, unconditional love, and quiet encouragement that helps students take risks without fear of embarrassment or failure.",
@@ -45,7 +32,7 @@ const featured = [
   },
   {
     image: DEBBIE_IMG.christinaGooger,
-    alt: "Christina Googer at Redeemer Church with Angel Paws",
+    alt: "Christina Googer with Angel Paws therapy dogs at Redeemer Church",
     quote:
       "Angel Paws has been a crucial part of our Parent's Night Out ministry for the last 5 years. They have been on board with our vision from the start to provide a safe, fun environment for foster and adoptive children, and the calming, comforting presence of the dogs is a key component. One of our first lines of defense when a child becomes dysregulated or feels uncomfortable is to visit the Angel Paws room! Their human counterparts are absolutely wonderful as well. God truly did gift us with their enthusiastic partnership. We love Angel Paws!",
     attribution: "Christina Googer",
@@ -54,7 +41,7 @@ const featured = [
   },
   {
     image: DEBBIE_IMG.stacha,
-    alt: "Adrai Stacha and the Hassler Reading Program",
+    alt: "Adrai Stacha with an Angel Paws therapy dog",
     quote:
       "The Angel Paws Reading Program has been an incredible addition to Hassler! Watching students spend 15 minutes each week reading to a calm, friendly therapy dog is both heartwarming and inspiring. Students feel safe, supported, and accepted when reading to the Angel Paws dogs because the animals provide a completely judgment-free audience. For many participants, the Angel Paws dogs become trusted companions who help them feel valued, capable, and successful.",
     attribution: "Adrai Stacha",
@@ -63,7 +50,7 @@ const featured = [
   },
   {
     image: DEBBIE_IMG.brookdale,
-    alt: "Brookdale Champions Assisted Living visit",
+    alt: "Ihuoma J. with an Angel Paws therapy dog at Brookdale Champions",
     quote:
       "Angel Paws is a great organization. They are a delight to have. I love to watch my Residents' eyes light up when the Angel Paws group comes to visit. The dogs do remember us and we love having them over. Angel Paws also gives my Residents time to remember the wonderful times they had with their own fur babies and gives them a chance to reminisce and share those times with one another. Thank you so much Angel Paws for what you do and for sharing your love with everyone you meet, especially my Residents.",
     attribution: "Ihuoma J.",

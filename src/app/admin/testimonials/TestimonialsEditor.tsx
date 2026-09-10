@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { Plus, Trash2 } from "lucide-react";
+import Image from "next/image";
+import { ImagePlus, Plus, Trash2, X } from "lucide-react";
 import type { StoredTestimonial } from "@/lib/siteContent/testimonialTypes";
 import { Button } from "@/components/ui/Button";
 import { saveTestimonialsDirect } from "./actions";
@@ -17,6 +18,7 @@ export function TestimonialsEditor({
 }) {
   const [items, setItems] = useState(initialItems);
   const [message, setMessage] = useState("");
+  const [uploadingId, setUploadingId] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
 
   function update(id: string, patch: Partial<StoredTestimonial>) {
@@ -38,6 +40,29 @@ export function TestimonialsEditor({
 
   function remove(id: string) {
     setItems((prev) => prev.filter((t) => t.id !== id));
+  }
+
+  async function uploadPhoto(id: string, file: File) {
+    setUploadingId(id);
+    setMessage("");
+    try {
+      const formData = new FormData();
+      formData.set("file", file);
+      const response = await fetch("/api/admin/testimonial-image", {
+        method: "POST",
+        body: formData,
+      });
+      const data = (await response.json()) as { src?: string; error?: string };
+      if (!response.ok || !data.src) {
+        throw new Error(data.error || "Upload failed.");
+      }
+      update(id, { image: data.src });
+      setMessage("Photo uploaded. Review the crop and save testimonials.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Upload failed.");
+    } finally {
+      setUploadingId(null);
+    }
   }
 
   function save() {
@@ -107,6 +132,79 @@ export function TestimonialsEditor({
                   className="mt-2 w-full rounded-xl border border-primary/10 bg-white px-4 py-3 text-base text-on-surface"
                 />
               </label>
+            </div>
+            <div className="mt-5 grid gap-4 rounded-2xl bg-surface-container-low p-4 sm:grid-cols-[6rem_1fr] sm:items-center">
+              <div className="relative size-24 overflow-hidden rounded-full bg-surface-container-high ring-4 ring-white shadow-soft">
+                {item.image ? (
+                  <Image
+                    src={item.image}
+                    alt={item.imageAlt || `Photo of ${item.attribution || "testimonial author"}`}
+                    fill
+                    sizes="96px"
+                    className="object-cover"
+                    style={{ objectPosition: item.imagePosition || "50% 30%" }}
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center text-on-surface-variant">
+                    <ImagePlus className="size-7" aria-hidden />
+                  </div>
+                )}
+              </div>
+              <div className="space-y-3">
+                <div className="flex flex-wrap gap-2">
+                  <label className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition hover:opacity-90">
+                    <ImagePlus className="size-4" aria-hidden />
+                    {uploadingId === item.id ? "Uploading…" : "Upload photo"}
+                    <input
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,image/gif"
+                      className="sr-only"
+                      disabled={uploadingId !== null}
+                      onChange={(event) => {
+                        const file = event.target.files?.[0];
+                        if (file) {
+                          void uploadPhoto(item.id, file);
+                        }
+                        event.target.value = "";
+                      }}
+                    />
+                  </label>
+                  {item.image ? (
+                    <button
+                      type="button"
+                      onClick={() => update(item.id, { image: "" })}
+                      className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-on-surface transition hover:bg-surface-container-highest"
+                    >
+                      <X className="size-4" aria-hidden />
+                      Remove photo
+                    </button>
+                  ) : null}
+                </div>
+                <div className="grid gap-3 lg:grid-cols-2">
+                  <label className="block text-xs font-bold uppercase tracking-wider text-primary">
+                    Photo description
+                    <input
+                      value={item.imageAlt ?? ""}
+                      onChange={(event) => update(item.id, { imageAlt: event.target.value })}
+                      placeholder="Person and therapy dog"
+                      className="mt-2 w-full rounded-xl border border-primary/10 bg-white px-4 py-3 text-base font-normal normal-case tracking-normal text-on-surface"
+                    />
+                  </label>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-primary">
+                    Crop focus
+                    <input
+                      value={item.imagePosition ?? "50% 30%"}
+                      onChange={(event) => update(item.id, { imagePosition: event.target.value })}
+                      placeholder="50% 30%"
+                      pattern="\\d{1,3}% \\d{1,3}%"
+                      className="mt-2 w-full rounded-xl border border-primary/10 bg-white px-4 py-3 text-base font-normal normal-case tracking-normal text-on-surface"
+                    />
+                    <span className="mt-1 block font-normal normal-case tracking-normal text-on-surface-variant">
+                      Horizontal and vertical position, such as 50% 30%.
+                    </span>
+                  </label>
+                </div>
+              </div>
             </div>
           </li>
         ))}

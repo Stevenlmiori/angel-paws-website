@@ -15,7 +15,7 @@ export function MemberPortalMisconfigured({ reason }: Props) {
           Portal setup needed
         </h1>
         <p className="mb-2 text-on-surface-variant leading-relaxed">
-          The member portal cannot accept sign-ins until environment variables
+          The participant portal cannot accept sign-ins until environment variables
           are configured on the server ({detail}).
         </p>
         <p className="mb-8 text-sm text-on-surface-variant leading-relaxed">

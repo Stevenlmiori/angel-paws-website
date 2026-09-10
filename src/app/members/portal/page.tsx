@@ -14,9 +14,9 @@ import { MemberPortalMisconfigured } from "./MemberPortalMisconfigured";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Member Portal",
+  title: "Participant Portal",
   description:
-    "Member resources for Angel Paws Pet Therapy—forms, policies, and links.",
+    "Participant resources for Angel Paws Pet Therapy—forms, policies, and links.",
 };
 
 export default async function MemberPortalPage() {
@@ -43,7 +43,7 @@ export default async function MemberPortalPage() {
           </span>
         </div>
         <h1 className="mb-6 font-serif text-4xl text-on-surface md:text-5xl">
-          Member portal
+          Participant portal
         </h1>
         <p className="mb-10 text-lg leading-relaxed text-on-surface-variant">
           Enter the password your team lead shared with you. This page lists
