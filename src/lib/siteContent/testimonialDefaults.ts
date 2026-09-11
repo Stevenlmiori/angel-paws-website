@@ -1,5 +1,11 @@
 import type { StoredTestimonial } from "./testimonialTypes";
 
+export const DEE_TURK_TESTIMONIAL =
+  "As a school counselor at Schultz Elementary, I have seen firsthand how the Angel Paws Reading Program helps students grow as readers and believe in themselves. The therapy dogs give children a calm, judgment-free place to read, make mistakes, and build confidence. We are deeply grateful to the Angel Paws participants and their dogs for the lasting difference they have made for our students and staff, one story at a time.";
+
+export const PREVIOUS_DEE_TURK_TESTIMONIAL =
+  "The Angel Paws Reading Program reminds us that meaningful learning happens when students feel safe, connected, and encouraged. Our four-legged reading partners offer a calm nonjudgmental space where students feel accepted exactly as they are. They provide unwavering patience, unconditional love, and quiet encouragement that helps students take risks without fear of embarrassment or failure.";
+
 export const DEFAULT_TESTIMONIALS: StoredTestimonial[] = [
   {
     id: "redeemer-church",
@@ -36,8 +42,7 @@ export const DEFAULT_TESTIMONIALS: StoredTestimonial[] = [
   },
   {
     id: "schultz-elementary",
-    quote:
-      "The Angel Paws Reading Program reminds us that meaningful learning happens when students feel safe, connected, and encouraged. Our four-legged reading partners offer a calm nonjudgmental space where students feel accepted exactly as they are. They provide unwavering patience, unconditional love, and quiet encouragement that helps students take risks without fear of embarrassment or failure.",
+    quote: DEE_TURK_TESTIMONIAL,
     attribution: "Dee Turk",
     role: "School Counselor, Schultz Elementary (Klein ISD)",
     image: "/img/testimonials/dee-turk-september-2026.jpg",

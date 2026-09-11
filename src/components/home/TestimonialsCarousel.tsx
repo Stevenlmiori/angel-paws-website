@@ -1,23 +1,17 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { StoredTestimonial } from "@/lib/siteContent/testimonialTypes";
 
 type Props = {
   testimonials: StoredTestimonial[];
-  intervalMs?: number;
 };
 
-export function TestimonialsCarousel({
-  testimonials,
-  intervalMs = 18000,
-}: Props) {
+export function TestimonialsCarousel({ testimonials }: Props) {
   const items = testimonials.filter((t) => t.active && t.quote.trim());
   const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const currentQuote = items[index]?.quote ?? "";
 
   const advance = useCallback(() => {
     if (items.length <= 1) {
@@ -33,20 +27,6 @@ export function TestimonialsCarousel({
     setIndex((i) => (i - 1 + items.length) % items.length);
   }, [items.length]);
 
-  useEffect(() => {
-    if (items.length <= 1 || paused) {
-      return;
-    }
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) {
-      return;
-    }
-    const wordCount = currentQuote.trim().split(/\s+/).filter(Boolean).length;
-    const readingTimeMs = Math.min(45000, Math.max(intervalMs, wordCount * 300 + 4000));
-    const id = window.setInterval(advance, readingTimeMs);
-    return () => window.clearInterval(id);
-  }, [advance, currentQuote, intervalMs, items.length, paused]);
-
   if (items.length === 0) {
     return null;
   }
@@ -56,10 +36,6 @@ export function TestimonialsCarousel({
   return (
     <div
       className="group relative mx-auto max-w-5xl px-10 sm:px-20 md:px-24"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
     >
       {items.length > 1 ? (
         <>

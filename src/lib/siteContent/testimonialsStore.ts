@@ -1,4 +1,8 @@
-import { DEFAULT_TESTIMONIALS } from "./testimonialDefaults";
+import {
+  DEE_TURK_TESTIMONIAL,
+  DEFAULT_TESTIMONIALS,
+  PREVIOUS_DEE_TURK_TESTIMONIAL,
+} from "./testimonialDefaults";
 import {
   loadJsonFromLocalFile,
   loadJsonFromRedis,
@@ -28,6 +32,11 @@ function applyEditorialUpdates(items: StoredTestimonial[]): StoredTestimonial[] 
       }
       return {
         ...item,
+        quote:
+          item.id === "schultz-elementary" &&
+          item.quote === PREVIOUS_DEE_TURK_TESTIMONIAL
+            ? DEE_TURK_TESTIMONIAL
+            : item.quote,
         image: item.image === undefined ? fallback.image : item.image,
         imageAlt: item.imageAlt === undefined ? fallback.imageAlt : item.imageAlt,
         imagePosition:
