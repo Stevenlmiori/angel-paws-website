@@ -26,12 +26,17 @@ function applyEditorialUpdates(items: StoredTestimonial[]): StoredTestimonial[] 
         !/jenny\s+mcgown/i.test(item.attribution),
     )
     .map((item) => {
-      const fallback = defaultsById.get(item.id);
+      const normalizedAttribution = item.attribution.trim().toLowerCase();
+      const fallback =
+        defaultsById.get(item.id) ??
+        DEFAULT_TESTIMONIALS.find((candidate) =>
+          normalizedAttribution.startsWith(candidate.attribution.toLowerCase()),
+        );
       if (!fallback) {
         return item;
       }
       const hasLegacyDeeQuote =
-        item.id === "schultz-elementary" &&
+        fallback.id === "schultz-elementary" &&
         (item.quote === PREVIOUS_DEE_TURK_TESTIMONIAL ||
           (item.quote.startsWith(
             "As a school counselor at Schultz Elementary in Klein ISD, I have had the privilege of witnessing firsthand",
