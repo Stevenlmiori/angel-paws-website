@@ -30,13 +30,15 @@ function applyEditorialUpdates(items: StoredTestimonial[]): StoredTestimonial[] 
       if (!fallback) {
         return item;
       }
+      const hasLegacyDeeQuote =
+        item.id === "schultz-elementary" &&
+        (item.quote === PREVIOUS_DEE_TURK_TESTIMONIAL ||
+          (item.quote.startsWith(
+            "As a school counselor at Schultz Elementary in Klein ISD, I have had the privilege of witnessing firsthand",
+          ) && item.quote.includes("Forever Blessed by Angel Paws!")));
       return {
         ...item,
-        quote:
-          item.id === "schultz-elementary" &&
-          item.quote === PREVIOUS_DEE_TURK_TESTIMONIAL
-            ? DEE_TURK_TESTIMONIAL
-            : item.quote,
+        quote: hasLegacyDeeQuote ? DEE_TURK_TESTIMONIAL : item.quote,
         image: item.image === undefined ? fallback.image : item.image,
         imageAlt: item.imageAlt === undefined ? fallback.imageAlt : item.imageAlt,
         imagePosition:
