@@ -38,7 +38,7 @@ function applyEditorialUpdates(items: StoredTestimonial[]): StoredTestimonial[] 
       const hasLegacyDeeQuote =
         fallback.id === "schultz-elementary" &&
         (item.quote === PREVIOUS_DEE_TURK_TESTIMONIAL ||
-          (item.quote.startsWith(
+          (item.quote.trimStart().startsWith(
             "As a school counselor at Schultz Elementary in Klein ISD, I have had the privilege of witnessing firsthand",
           ) && item.quote.includes("Forever Blessed by Angel Paws!")));
       return {
