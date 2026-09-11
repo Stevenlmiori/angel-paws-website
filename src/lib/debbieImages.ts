@@ -24,5 +24,7 @@ export const DEBBIE_IMG = {
   deeTurk: "/img/testimonials/dee-turk-september-2026.jpg",
   journeyDogComfort: "/img/debbie/september-2026/journey-dog-comfort.jpg",
   samInBedPatient: "/img/debbie/september-2026/sam-in-bed-with-patient.jpg",
+  samInBedPatientWide:
+    "/img/debbie/september-2026/sam-in-bed-with-patient-wide.jpg",
   petTherapyChildren: "/img/debbie/september-2026/pet-therapy-children.jpg",
 } as const;
