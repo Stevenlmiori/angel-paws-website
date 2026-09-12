@@ -12,6 +12,33 @@ const REDIS_KEY = "angel-paws:member-portal:resources:v1";
 const REDIS_HEARTBEAT_KEY = "angel-paws:ops:redis-heartbeat:v1";
 const LOCAL_RELATIVE = [".data", "member-portal-resources.json"] as const;
 
+/** IDs from the pre-Debbie placeholder list that was seeded into Redis. */
+const LEGACY_PLACEHOLDER_IDS = new Set([
+  "how-to-become-involved",
+  "policies",
+  "forms-templates",
+  "wellness",
+  "incident",
+  "roster",
+]);
+
+/**
+ * True when Redis/file still holds only the old stub list (generic Drive/Forms
+ * URLs). Those rows must not block the shipped eight-document defaults.
+ */
+export function isLegacyPlaceholderPortalList(
+  items: StoredPortalResource[],
+): boolean {
+  if (items.length === 0) {
+    return false;
+  }
+  return items.every((item) => LEGACY_PLACEHOLDER_IDS.has(item.id));
+}
+
+function cloneDefaults(): StoredPortalResource[] {
+  return DEFAULT_PORTAL_RESOURCES.map((r) => ({ ...r }));
+}
+
 function getRedisCredentials(): { url: string; token: string } | null {
   const pairs: Array<[string | undefined, string | undefined]> = [
     [process.env.UPSTASH_REDIS_REST_URL, process.env.UPSTASH_REDIS_REST_TOKEN],
@@ -83,13 +110,24 @@ export async function loadStoredPortalResources(): Promise<
 > {
   const fromRedis = await loadFromRedis();
   if (fromRedis !== null) {
+    if (isLegacyPlaceholderPortalList(fromRedis)) {
+      const next = cloneDefaults();
+      // Best-effort overwrite so Admin/public stop serving stubs after deploy.
+      void persistPortalResources(next);
+      return next;
+    }
     return fromRedis;
   }
   const fromFile = await loadFromLocalFile();
   if (fromFile !== null) {
+    if (isLegacyPlaceholderPortalList(fromFile)) {
+      const next = cloneDefaults();
+      void persistPortalResources(next);
+      return next;
+    }
     return fromFile;
   }
-  return DEFAULT_PORTAL_RESOURCES.map((r) => ({ ...r }));
+  return cloneDefaults();
 }
 
 export type PersistPortalResult =

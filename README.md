@@ -48,7 +48,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Search indexing (launch)
 
-Until you intentionally allow indexing, leave `NEXT_PUBLIC_SITE_INDEXABLE` unset (or not exactly `true`). When the site should appear in search engines, set `NEXT_PUBLIC_SITE_INDEXABLE=true` in your host’s environment, redeploy, and verify `robots.txt` and metadata as described in [`docs/HANDOFF.md`](./docs/HANDOFF.md).
+Until you intentionally pause indexing, leave `NEXT_PUBLIC_SITE_INDEXABLE` unset (indexing is on by default). To pause search without taking the site offline, set `NEXT_PUBLIC_SITE_INDEXABLE=false`, redeploy, and verify `robots.txt` and metadata as described in [`docs/HANDOFF.md`](./docs/HANDOFF.md).
 
 ## Deployment
 

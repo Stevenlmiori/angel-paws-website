@@ -3,7 +3,7 @@ import { sanityReadClient } from "@/lib/sanity/client";
 import { storySlugsQuery } from "@/lib/sanity/queries";
 import { isExcludedSeedStorySlug } from "@/lib/stories/excludedSeedStories";
 import { getLocalStorySlugs } from "@/lib/stories/localStories";
-import { siteUnderConstruction } from "@/lib/siteFlags";
+import { siteIndexable } from "@/lib/siteFlags";
 
 const baseUrl = "https://www.angelpawspettherapy.com";
 
@@ -27,10 +27,7 @@ const routePriority = new Map<string, number>([
 ]);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  if (
-    siteUnderConstruction() ||
-    process.env.NEXT_PUBLIC_SITE_INDEXABLE !== "true"
-  ) {
+  if (!siteIndexable()) {
     return [];
   }
 

@@ -19,8 +19,8 @@ export const DEFAULT_KEYWORDS = [
 
 export const DEFAULT_OG_IMAGE = {
   url: "/img/angelpaws-dog-and-owner-nk_horizontal.jpg",
-  width: 1200,
-  height: 630,
+  width: 2000,
+  height: 1414,
   alt: "Angel Paws therapy dog team serving in Greater Houston",
 };
 

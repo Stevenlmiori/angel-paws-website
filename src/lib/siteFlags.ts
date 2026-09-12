@@ -7,3 +7,15 @@
 export function siteUnderConstruction(): boolean {
   return process.env.NEXT_PUBLIC_UNDER_CONSTRUCTION === "true";
 }
+
+/**
+ * Public search indexing. Default **on** after launch (robots allow, sitemap filled,
+ * no X-Robots-Tag noindex). Set `NEXT_PUBLIC_SITE_INDEXABLE=false` to pause indexing
+ * without taking the site offline. Under-construction mode always disables indexing.
+ */
+export function siteIndexable(): boolean {
+  if (siteUnderConstruction()) {
+    return false;
+  }
+  return process.env.NEXT_PUBLIC_SITE_INDEXABLE !== "false";
+}

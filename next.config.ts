@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
+import { siteIndexable } from "./src/lib/siteFlags";
 
-const siteIndexable = process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true";
 const isProd = process.env.NODE_ENV === "production";
+const indexable = siteIndexable();
 
 function contentSecurityPolicy(): string {
   const directives = [
@@ -85,7 +86,7 @@ const nextConfig: NextConfig = {
       },
       { key: "Vary", value: "Cookie" },
     ];
-    if (siteIndexable) {
+    if (indexable) {
       return [
         { source: "/:path*", headers: base },
         { source: "/admin", headers: adminNoCache },

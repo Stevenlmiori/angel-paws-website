@@ -1,19 +1,8 @@
 import { MetadataRoute } from "next";
-import { siteUnderConstruction } from "@/lib/siteFlags";
+import { siteIndexable, siteUnderConstruction } from "@/lib/siteFlags";
 
 export default function robots(): MetadataRoute.Robots {
-  if (siteUnderConstruction()) {
-    return {
-      rules: {
-        userAgent: "*",
-        disallow: ["/"],
-      },
-    };
-  }
-
-  const siteIndexable = process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true";
-
-  if (!siteIndexable) {
+  if (siteUnderConstruction() || !siteIndexable()) {
     return {
       rules: {
         userAgent: "*",
@@ -26,7 +15,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/members/portal/", "/admin/", "/private/"],
+      disallow: ["/members/portal", "/admin", "/api/", "/private"],
     },
     sitemap: "https://www.angelpawspettherapy.com/sitemap.xml",
   };

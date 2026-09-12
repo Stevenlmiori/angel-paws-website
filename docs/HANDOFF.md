@@ -13,7 +13,7 @@ Production domain: **https://www.angelpawspettherapy.com**. Older `angelpawshous
 
 On **Vercel → Production → Environment Variables**, set **`NEXT_PUBLIC_UNDER_CONSTRUCTION`** to **`true`** (and redeploy). Visitors then see only the notice page on **every URL**; **`/api/*`** responds **503**; **`robots.txt`** disallows all; **`sitemap.xml`** is empty. Keep this variable **unset** on Preview/local **`npm run dev`** so you can keep building the full site. To preview the **full** site online before launch, use a **Preview** deployment (or a branch deploy) **without** this variable—Production stays gated.
 
-When you’re ready to go live: remove that variable (or set it to `false`), redeploy, then turn on **`NEXT_PUBLIC_SITE_INDEXABLE=true`** only when you want search indexing.
+When you’re ready to go live: remove that variable (or set it to `false`) and redeploy. Search indexing is on by default; set **`NEXT_PUBLIC_SITE_INDEXABLE=false`** only if you need to pause crawlers.
 
 ---
 
@@ -69,8 +69,9 @@ The same admin hub also manages the public **Photo gallery**, **Testimonials**, 
 ### Phase C — Participant portal (current lightweight gate + future auth)
 
 - [x] Current launch gate: shared participant password + signed session cookie.
+- [x] Eight participant documents linked from shipped defaults (`src/lib/memberPortal/defaults.ts`). Production Redis previously held six placeholder stubs; deploy migrates that list automatically (Admin also has **Load shipped docs**).
+- [ ] Drive access for participants is still an open ops decision. Codex removed open “anyone with the link” access because the roster includes private contact details. Prefer: Google Group Viewer for general docs + a tighter share for the roster. Portal password alone does **not** unlock Drive files.
 - [ ] Future upgrade, if needed: pick **one** auth approach, e.g. Clerk, Memberstack, or Supabase Auth.
-- [ ] Host participant-only PDFs in Drive with link sharing off, or in secure storage behind the app.
 
 ---
 
@@ -146,16 +147,16 @@ Copy `.env.example` to `.env.local` and set values. In **Vercel** (or similar), 
 
 ---
 
-### Search indexing (pre-launch)
+### Search indexing (live)
 
-Until you are ready for Google, **do not** set `NEXT_PUBLIC_SITE_INDEXABLE` in Vercel (or set it to anything other than exactly `true`). The site then serves:
+Search indexing is **on by default**. The site serves:
 
-- `robots.txt` with `Disallow: /` for all crawlers
-- `<meta name="robots" content="noindex,nofollow">` (via root layout metadata)
-- `X-Robots-Tag: noindex, nofollow` on all responses (via `next.config.ts`)
+- `robots.txt` allowing public routes (admin, portal, and `/api/` disallowed)
+- Indexable root metadata + Open Graph / Twitter cards
+- A filled `sitemap.xml` (static pages + story slugs)
 
-When you launch publicly, set **`NEXT_PUBLIC_SITE_INDEXABLE=true`** in Vercel, **redeploy**, then optionally request indexing in Google Search Console.
+To pause indexing without taking the site offline, set **`NEXT_PUBLIC_SITE_INDEXABLE=false`** in Vercel and redeploy. Optionally submit the sitemap in Google Search Console after launch.
 
 ---
 
-_Last updated: September 2026 — Debbie's content-review updates, full beliefs and policies pages, persistent Sanity-backed gallery management, and September photo refresh._
+_Last updated: September 2026 — public indexing enabled, participant portal eight-document defaults + Redis stub migration, Debbie's content-review updates, full beliefs and policies pages, Sanity-backed gallery._

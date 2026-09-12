@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { DEFAULT_KEYWORDS, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
-import { siteUnderConstruction } from "@/lib/siteFlags";
+import { siteIndexable, siteUnderConstruction } from "@/lib/siteFlags";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -20,8 +20,8 @@ const notoSerif = Noto_Serif({
   style: ["normal", "italic"],
 });
 
-/** Set `NEXT_PUBLIC_SITE_INDEXABLE=true` in Vercel when the site should appear in search. */
-const siteIndexable = process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true";
+/** Indexing defaults on; set `NEXT_PUBLIC_SITE_INDEXABLE=false` to pause search. */
+const indexable = siteIndexable();
 
 const underConstruction = siteUnderConstruction();
 
@@ -60,14 +60,19 @@ export const metadata: Metadata = {
       "Faith-based therapy dog visits for hospitals, schools, and care communities in Greater Houston.",
     images: [DEFAULT_OG_IMAGE.url],
   },
-  robots:
-    siteIndexable && !underConstruction
-      ? { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 }
-      : {
-          index: false,
-          follow: false,
-          googleBot: { index: false, follow: false },
-        },
+  robots: indexable
+    ? {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      }
+    : {
+        index: false,
+        follow: false,
+        googleBot: { index: false, follow: false },
+      },
 };
 
 /** AngelPaws Serif — light-first; match DESIGN.md */
