@@ -63,25 +63,14 @@ export default function GetInvolvedPage() {
               </h2>
             </div>
             <p className="mb-6 leading-relaxed text-on-surface-variant">
-              Handlers can sign in to the participant portal for day-to-day resources,
-              or review the same involvement overview linked above.
+              Handlers can sign in to the participant portal for day-to-day resources.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/members/portal"
-                className="inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-on-primary transition hover:opacity-90"
-              >
-                Participant login
-              </Link>
-              <a
-                href={HOW_TO_BECOME_INVOLVED_DOC_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex rounded-full bg-surface-container-high px-6 py-3 text-sm font-semibold text-on-surface transition hover:bg-surface-container-highest"
-              >
-                Participant overview doc
-              </a>
-            </div>
+            <Link
+              href="/members/portal"
+              className="inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-on-primary transition hover:opacity-90"
+            >
+              Participant login
+            </Link>
           </div>
         </div>
 
