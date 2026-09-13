@@ -69,7 +69,7 @@ The same admin hub also manages the public **Photo gallery**, **Testimonials**, 
 ### Phase C — Participant portal (current lightweight gate + future auth)
 
 - [x] Current launch gate: shared participant password + signed session cookie.
-- [x] Eight participant documents linked from shipped defaults (`src/lib/memberPortal/defaults.ts`). Production Redis previously held six placeholder stubs; deploy migrates that list automatically (Admin also has **Load shipped docs**).
+- [x] Eight participant documents linked from shipped defaults (`src/lib/memberPortal/defaults.ts`). Production Redis previously held six placeholder stubs; deploy migrates that list automatically.
 - [ ] Drive access for participants is still an open ops decision. Codex removed open “anyone with the link” access because the roster includes private contact details. Prefer: Google Group Viewer for general docs + a tighter share for the roster. Portal password alone does **not** unlock Drive files.
 - [ ] Future upgrade, if needed: pick **one** auth approach, e.g. Clerk, Memberstack, or Supabase Auth.
 

@@ -3,7 +3,6 @@
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { DEFAULT_PORTAL_RESOURCES } from "@/lib/memberPortal/defaults";
 import { getAdminSession } from "@/lib/memberPortal/getAdminSession";
 import { persistPortalResources } from "@/lib/memberPortal/resourcesStore";
 import { expireAllAdminPortalCookiePaths } from "@/lib/memberPortal/adminCookie";
@@ -54,36 +53,4 @@ export async function savePortalResourcesDirect(
   revalidatePath("/members/portal");
   revalidatePath("/admin/member-portal");
   return { ok: true, message: "Saved. Participants will see this on their next visit." };
-}
-
-/** Replace Redis/file contents with the eight shipped Drive document links. */
-export async function resetPortalResourcesToDefaults(): Promise<
-  SavePortalState & { items?: typeof DEFAULT_PORTAL_RESOURCES }
-> {
-  const session = await getAdminSession();
-  if (!session) {
-    return { ok: false, message: "Not signed in." };
-  }
-
-  const items = DEFAULT_PORTAL_RESOURCES.map((r) => ({ ...r }));
-  const result = await persistPortalResources(items);
-  if (!result.ok) {
-    const message =
-      result.error === "no_storage"
-        ? "Production storage is not set up. Add Upstash Redis env vars on Vercel (see .env.example)."
-        : result.error === "redis_write_failed"
-          ? "Could not save to Redis. Check credentials and try again."
-          : result.error === "file_write_failed"
-            ? "Could not write the local data file."
-            : "Could not save.";
-    return { ok: false, message };
-  }
-
-  revalidatePath("/members/portal");
-  revalidatePath("/admin/member-portal");
-  return {
-    ok: true,
-    message: "Restored the eight shipped participant documents. Participants will see them on their next visit.",
-    items,
-  };
 }

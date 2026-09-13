@@ -31,7 +31,7 @@ import {
   isPortalIconId,
 } from "@/lib/memberPortal/resourceTypes";
 import { Button } from "@/components/ui/Button";
-import { savePortalResourcesDirect, resetPortalResourcesToDefaults } from "./actions";
+import { savePortalResourcesDirect } from "./actions";
 
 function truncateMiddle(s: string, max: number): string {
   if (s.length <= max) {
@@ -286,25 +286,6 @@ export function MemberPortalEditor({ initialItems }: Props) {
     });
   };
 
-  const handleResetDefaults = () => {
-    if (
-      !window.confirm(
-        "Replace the current list with the eight shipped participant documents from Debbie’s Drive folder? This overwrites what is stored now.",
-      )
-    ) {
-      return;
-    }
-    setSaveMessage(null);
-    startTransition(async () => {
-      const res = await resetPortalResourcesToDefaults();
-      if (res.ok && res.items) {
-        setItems(res.items.map((r) => ({ ...r })));
-        setExpandedId(null);
-      }
-      setSaveMessage(res.message);
-    });
-  };
-
   return (
     <div className="mx-auto max-w-screen-xl px-6 py-12 sm:px-10 lg:px-12">
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -326,14 +307,6 @@ export function MemberPortalEditor({ initialItems }: Props) {
           <Button type="button" variant="secondary" className="gap-2" onClick={addItem}>
             <Plus className="size-4" aria-hidden />
             Add link
-          </Button>
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={handleResetDefaults}
-            disabled={isPending}
-          >
-            Load shipped docs
           </Button>
           <Button type="button" onClick={handleSave} disabled={isPending}>
             {isPending ? "Saving…" : "Save changes"}
