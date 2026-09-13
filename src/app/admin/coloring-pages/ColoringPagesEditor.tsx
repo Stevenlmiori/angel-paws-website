@@ -22,12 +22,12 @@ import {
   Eye,
   EyeOff,
   GripVertical,
-  Palette,
   Plus,
   Save,
   Trash2,
   UploadCloud,
 } from "lucide-react";
+import { AdminSaveBar } from "@/components/admin/AdminSaveBar";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 import {
@@ -276,10 +276,6 @@ export function ColoringPagesEditor({
   );
 
   const ids = useMemo(() => items.map((item) => item.id), [items]);
-  const activeCount = useMemo(
-    () => items.filter((item) => item.active).length,
-    [items],
-  );
 
   const patchItem = useCallback(
     (id: string, patch: Partial<StoredColoringPage>) => {
@@ -411,37 +407,15 @@ export function ColoringPagesEditor({
   }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
+    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_16rem]">
       <div>
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <p className="text-sm text-on-surface-variant">
-            <span className="font-semibold text-on-surface">{activeCount}</span>{" "}
-            visible · drag to rearrange · upload printer-ready letter-size pages
-          </p>
-          <Button
-            type="button"
-            onClick={save}
-            disabled={pending || uploading}
-            className="gap-2"
-          >
-            <Save className="size-4" aria-hidden />
-            {pending ? "Saving…" : "Save changes"}
-          </Button>
-        </div>
-
-        {message ? (
-          <p className="mb-4 rounded-2xl bg-primary-container/50 px-4 py-3 text-sm text-on-primary-container">
-            {message}
-          </p>
-        ) : null}
-
         <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
           onDragEnd={handleDragEnd}
         >
           <SortableContext items={ids} strategy={verticalListSortingStrategy}>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {items.map((item) => (
                 <SortableColoringRow
                   key={item.id}
@@ -457,20 +431,31 @@ export function ColoringPagesEditor({
         </DndContext>
 
         {items.length === 0 ? (
-          <p className="rounded-2xl bg-surface-container-low px-6 py-10 text-center text-on-surface-variant">
-            No coloring pages yet. Upload a printer-ready letter-size image to
-            get started.
+          <p className="rounded-2xl border border-black/[0.06] bg-white px-6 py-10 text-center text-sm text-on-surface-variant">
+            No coloring pages yet. Upload a letter-size image to get started.
           </p>
         ) : null}
+
+        <AdminSaveBar message={message}>
+          <Button
+            type="button"
+            onClick={save}
+            disabled={pending || uploading}
+            className="gap-2"
+          >
+            <Save className="size-4" aria-hidden />
+            {pending ? "Saving…" : "Save changes"}
+          </Button>
+        </AdminSaveBar>
       </div>
 
       <aside className="space-y-4 lg:sticky lg:top-28 lg:self-start">
         <div
           className={cn(
-            "rounded-[1.75rem] border-2 border-dashed p-6 text-center transition",
+            "rounded-2xl border-2 border-dashed p-5 text-center transition",
             dragging
               ? "border-primary bg-primary-container/40"
-              : "border-primary/20 bg-surface-container-high",
+              : "border-primary/20 bg-white",
           )}
           onDragEnter={(e) => {
             e.preventDefault();
@@ -483,12 +468,12 @@ export function ColoringPagesEditor({
             void uploadFiles(e.dataTransfer.files);
           }}
         >
-          <span className="mx-auto mb-3 flex size-12 items-center justify-center rounded-2xl bg-primary-container text-on-primary-container">
-            <Plus className="size-6" aria-hidden />
+          <span className="mx-auto mb-3 flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <Plus className="size-5" aria-hidden />
           </span>
-          <p className="font-serif text-xl text-on-surface">Add pages</p>
-          <p className="mt-2 text-sm text-on-surface-variant">
-            Drop printer-ready JPGs here (letter size with margins), or browse.
+          <p className="font-medium text-on-surface">Add pages</p>
+          <p className="mt-1 text-sm text-on-surface-variant">
+            Drop letter-size JPGs here, or choose files.
           </p>
           <input
             ref={fileRef}
@@ -506,23 +491,13 @@ export function ColoringPagesEditor({
           <Button
             type="button"
             variant="secondary"
-            className="mt-4 gap-2"
+            className="mt-4 gap-2 px-4 py-2.5"
             disabled={uploading}
             onClick={() => fileRef.current?.click()}
           >
             <UploadCloud className="size-4" aria-hidden />
             {uploading ? "Uploading…" : "Choose files"}
           </Button>
-        </div>
-
-        <div className="rounded-[1.75rem] bg-surface-container-low p-5 text-sm leading-relaxed text-on-surface-variant">
-          <p className="mb-2 flex items-center gap-2 font-semibold text-on-surface">
-            <Palette className="size-4 text-primary" aria-hidden />
-            For Debbie
-          </p>
-          Upload finished letter-size coloring sheets. Portrait or landscape is
-          detected automatically. Click <strong>Save changes</strong> before
-          leaving.
         </div>
       </aside>
     </div>

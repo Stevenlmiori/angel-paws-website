@@ -1,13 +1,10 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { getAdminPortalEnv } from "@/lib/memberPortal/adminEnv";
 import { getAdminSession } from "@/lib/memberPortal/getAdminSession";
 import { loadStoredPortalResources } from "@/lib/memberPortal/resourcesStore";
-import { adminLogoutAction } from "./actions";
 import { AdminMisconfigured } from "./AdminMisconfigured";
 import { MemberPortalEditor } from "./MemberPortalEditor";
-import { Button } from "@/components/ui/Button";
-import { LogOut } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -25,45 +22,18 @@ export default async function AdminMemberPortalPage() {
   const initialItems = await loadStoredPortalResources();
 
   return (
-    <>
-      <div className="border-b border-primary/10 bg-surface-container-low px-6 py-3 sm:px-10">
-        <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between gap-3">
-          <span className="text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
-            Signed in
-          </span>
-          <div className="flex flex-wrap items-center gap-3">
-            <Link
-              href="/admin"
-              className="text-sm font-semibold text-on-surface-variant underline-offset-4 hover:text-primary hover:underline"
-            >
-              Admin home
-            </Link>
-            <Link
-              href="/admin/stories"
-              className="text-sm font-semibold text-on-surface-variant underline-offset-4 hover:text-primary hover:underline"
-            >
-              Stories
-            </Link>
-            <Link
-              href="/members/portal"
-              className="text-sm font-semibold text-primary underline underline-offset-4"
-            >
-              View participant portal
-            </Link>
-            <form action={adminLogoutAction}>
-              <Button
-                type="submit"
-                variant="secondary"
-                className="gap-2 py-2.5 text-xs uppercase tracking-widest"
-              >
-                <LogOut className="size-4" aria-hidden />
-                Sign out
-              </Button>
-            </form>
-          </div>
-        </div>
+    <div className="mx-auto w-full max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mb-2 flex justify-end">
+        <Link
+          href="/members/portal"
+          target="_blank"
+          rel="noreferrer"
+          className="text-sm font-medium text-primary hover:underline"
+        >
+          Preview portal
+        </Link>
       </div>
       <MemberPortalEditor initialItems={initialItems} />
-    </>
+    </div>
   );
 }

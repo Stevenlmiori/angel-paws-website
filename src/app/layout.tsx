@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, Noto_Serif } from "next/font/google";
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SiteHeader } from "@/components/layout/SiteHeader";
-import { JsonLd } from "@/components/seo/JsonLd";
+import { AppShell } from "@/components/layout/AppShell";
 import { DEFAULT_KEYWORDS, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { siteIndexable, siteUnderConstruction } from "@/lib/siteFlags";
 import "./globals.css";
@@ -92,18 +90,7 @@ export default function RootLayout({
       className={`${manrope.variable} ${notoSerif.variable} h-full scroll-smooth antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
-        {underConstruction ? (
-          children
-        ) : (
-          <>
-            <JsonLd />
-            <SiteHeader />
-            <main className="flex flex-col pt-20 md:pt-24">
-              {children}
-            </main>
-            <SiteFooter />
-          </>
-        )}
+        {underConstruction ? children : <AppShell>{children}</AppShell>}
       </body>
     </html>
   );

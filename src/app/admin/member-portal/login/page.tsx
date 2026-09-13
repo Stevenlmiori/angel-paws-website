@@ -2,7 +2,6 @@ import Link from "next/link";
 import { unstable_noStore as noStore } from "next/cache";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { Settings2 } from "lucide-react";
 import { getAdminPortalEnv } from "@/lib/memberPortal/adminEnv";
 import { getAdminSession } from "@/lib/memberPortal/getAdminSession";
 import { AdminMisconfigured } from "../AdminMisconfigured";
@@ -32,8 +31,7 @@ export default async function AdminMemberPortalLoginPage({
     host.includes("localhost") ||
     host.includes("127.0.0.1") ||
     host.includes("::1");
-  const proto =
-    forwardedProto ?? (isLocal ? "http" : "https");
+  const proto = forwardedProto ?? (isLocal ? "http" : "https");
   const loginPostAction =
     host.length > 0 ? `${proto}://${host}/api/admin/login` : "/api/admin/login";
   const loginDiagnosticsEnabled = Boolean(
@@ -53,27 +51,24 @@ export default async function AdminMemberPortalLoginPage({
   }
 
   return (
-    <div className="mx-auto max-w-screen-xl px-6 py-16 sm:px-10 md:py-24 lg:px-12">
-      <div className="mx-auto max-w-2xl text-center">
-        <div className="mb-8 flex justify-center">
-          <span className="flex size-16 items-center justify-center rounded-full bg-primary-container text-on-primary-container">
-            <Settings2 className="size-8" strokeWidth={1.75} aria-hidden />
-          </span>
-        </div>
-        <h1 className="mb-4 font-serif text-4xl text-on-surface md:text-5xl">
-          Site admin
-        </h1>
-        <p className="mb-10 text-lg leading-relaxed text-on-surface-variant">
-          Sign in to manage participant portal links and public stories. This area is
-          not linked in the public navigation.
+    <div className="flex flex-1 items-center justify-center px-4 py-16 sm:px-6">
+      <div className="w-full max-w-md rounded-2xl border border-black/[0.06] bg-white p-8 shadow-sm sm:p-10">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+          Angel Paws
         </p>
-        <AdminLoginForm errorKey={error} postAction={loginPostAction} />
-        <p className="mt-10 text-sm text-on-surface-variant">
-          <Link
-            href="/members/portal"
-            className="font-semibold text-primary underline underline-offset-4"
-          >
-            Participant portal
+        <h1 className="mt-2 font-serif text-3xl tracking-tight text-on-surface">
+          Sign in
+        </h1>
+        <p className="mt-2 text-sm leading-relaxed text-on-surface-variant">
+          Manage portal links, stories, testimonials, gallery, and coloring
+          pages.
+        </p>
+        <div className="mt-8">
+          <AdminLoginForm errorKey={error} postAction={loginPostAction} />
+        </div>
+        <p className="mt-8 text-center text-sm text-on-surface-variant">
+          <Link href="/" className="font-medium text-primary hover:underline">
+            Back to website
           </Link>
         </p>
         <AdminLoginDiagnostics enabled={loginDiagnosticsEnabled} />

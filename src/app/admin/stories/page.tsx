@@ -7,11 +7,13 @@ import {
   Pencil,
   Plus,
 } from "lucide-react";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { sanityReadClient } from "@/lib/sanity/client";
 import { safeSanityImageUrl } from "@/lib/sanity/image";
 import { storiesAllAdminQuery } from "@/lib/sanity/queries";
 import type { StoryAdminListItem } from "@/lib/sanity/types";
 import { isExcludedSeedStorySlug } from "@/lib/stories/excludedSeedStories";
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -19,26 +21,26 @@ function storyStatus(story: StoryAdminListItem) {
   if (story.publishState === "draft" || !story.publishedAt) {
     return {
       label: "Draft",
-      className: "bg-tertiary-container text-on-tertiary-container",
+      className: "bg-amber-100 text-amber-900",
     };
   }
 
   if (story.publishState === "scheduled") {
     return {
       label: "Scheduled",
-      className: "bg-secondary-container text-on-secondary-container",
+      className: "bg-sky-100 text-sky-900",
     };
   }
 
   return {
     label: "Published",
-    className: "bg-primary-container text-on-primary-container",
+    className: "bg-emerald-100 text-emerald-900",
   };
 }
 
 function formatStoryDate(value?: string | null) {
   if (!value) {
-    return "No publish date";
+    return "No date";
   }
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) {
@@ -62,115 +64,102 @@ export default async function AdminStoriesListPage() {
   }
 
   return (
-    <div className="mx-auto max-w-screen-xl px-6 py-10 sm:px-10 lg:px-12">
-      <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-            Stories admin
-          </p>
-          <h1 className="mt-2 font-serif text-4xl text-on-surface md:text-5xl">
-            Blog editor
-          </h1>
-          <p className="mt-2 max-w-xl text-on-surface-variant">
-            Create and manage public stories with images, publishing status, and
-            quick edit controls.
-          </p>
-        </div>
-        <Link
-          href="/admin/stories/new"
-          className="inline-flex items-center justify-center gap-2 rounded-[0.625rem] bg-gradient-to-br from-primary to-[#3468d9] px-8 py-3.5 text-sm font-semibold tracking-wide text-on-primary shadow-none transition duration-300 ease-out hover:shadow-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary/35"
-        >
-          <Plus className="size-4" aria-hidden />
-          New story
-        </Link>
-      </div>
+    <div className="mx-auto w-full max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+      <AdminPageHeader
+        title="Stories"
+        description="Create and edit public stories. Drafts stay private until you publish."
+        actions={
+          <Link
+            href="/admin/stories/new"
+            className="inline-flex items-center justify-center gap-2 rounded-[0.625rem] bg-gradient-to-br from-primary to-primary-strong px-5 py-2.5 text-sm font-semibold text-on-primary transition hover:shadow-soft"
+          >
+            <Plus className="size-4" aria-hidden />
+            New story
+          </Link>
+        }
+      />
 
       {!client ? (
-        <p className="rounded-2xl bg-tertiary-container/50 px-4 py-3 text-sm text-on-tertiary-container">
-          Sanity is not configured. Set{" "}
-          <code className="font-mono text-xs">NEXT_PUBLIC_SANITY_PROJECT_ID</code> and
-          related env vars (see <code className="font-mono text-xs">.env.example</code>
-          ).
+        <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
+          Stories are not connected yet. Ask Steven to check the Sanity settings.
         </p>
       ) : items.length === 0 ? (
-        <p className="text-on-surface-variant">No stories yet. Create your first one.</p>
+        <p className="text-sm text-on-surface-variant">
+          No stories yet. Create your first one.
+        </p>
       ) : (
-        <ul className="grid gap-5 lg:grid-cols-2">
-          {items.map((s) => {
+        <ul className="overflow-hidden rounded-2xl border border-black/[0.06] bg-white shadow-sm">
+          {items.map((s, index) => {
             const status = storyStatus(s);
             const imageSrc = safeSanityImageUrl(s.featuredImage, (b) =>
-              b.width(900).height(506),
+              b.width(240).height(160),
             );
 
             return (
-              <li key={s._id} className="h-full">
-                <article className="group flex h-full flex-col overflow-hidden rounded-2xl bg-surface-container-high shadow-soft ring-1 ring-primary/5 transition hover:-translate-y-0.5 hover:ring-primary/20">
-                  <div className="relative aspect-video bg-surface-container-low">
+              <li
+                key={s._id}
+                className={
+                  index > 0 ? "border-t border-black/[0.06]" : undefined
+                }
+              >
+                <div className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:gap-5 sm:px-5">
+                  <div className="relative h-20 w-full shrink-0 overflow-hidden rounded-xl bg-surface-container-low sm:h-16 sm:w-24">
                     {imageSrc ? (
                       <Image
                         src={imageSrc}
                         alt={s.featuredImage?.alt ?? ""}
                         fill
-                        className="object-cover transition duration-500 group-hover:scale-[1.02]"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-cover"
+                        sizes="96px"
                       />
                     ) : (
-                      <div className="flex h-full items-center justify-center bg-gradient-to-br from-primary-container/45 to-secondary-container/60 text-on-surface-variant">
-                        <div className="flex flex-col items-center gap-2 text-sm font-semibold">
-                          <ImageIcon className="size-6" aria-hidden />
-                          No featured image
-                        </div>
+                      <div className="flex h-full items-center justify-center text-on-surface-variant">
+                        <ImageIcon className="size-5" aria-hidden />
                       </div>
                     )}
-                    <span
-                      className={`absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider ${status.className}`}
-                    >
-                      {status.label}
-                    </span>
                   </div>
 
-                  <div className="flex flex-1 flex-col p-5">
-                    <div className="flex-1">
-                      <h2 className="font-serif text-2xl font-semibold leading-snug text-on-surface">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h2 className="truncate font-medium text-on-surface">
                         {s.title || "Untitled story"}
                       </h2>
-                      <p className="mt-2 truncate font-mono text-xs text-on-surface-variant">
-                        {s.slug ? `/stories/${s.slug}` : "No story URL yet"}
-                      </p>
-                      {s.excerpt ? (
-                        <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-on-surface-variant">
-                          {s.excerpt}
-                        </p>
-                      ) : null}
+                      <span
+                        className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${status.className}`}
+                      >
+                        {status.label}
+                      </span>
                     </div>
-
-                    <div className="mt-5 flex flex-wrap items-center gap-2 text-xs text-on-surface-variant">
-                      <span className="inline-flex items-center gap-1 rounded-full bg-white/55 px-3 py-1.5 font-semibold">
+                    <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-on-surface-variant">
+                      <span className="inline-flex items-center gap-1">
                         <Calendar className="size-3.5" aria-hidden />
                         {formatStoryDate(s.publishedAt)}
                       </span>
-                    </div>
-
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      <Link
-                        href={`/admin/stories/${s._id}`}
-                        className="inline-flex items-center justify-center gap-2 rounded-[0.625rem] bg-gradient-to-br from-primary to-[#3468d9] px-4 py-2.5 text-sm font-semibold tracking-wide text-on-primary transition hover:shadow-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary/35"
-                      >
-                        <Pencil className="size-4" aria-hidden />
-                        Edit story
-                      </Link>
-                      {s.slug && status.label === "Published" ? (
-                        <Link
-                          href={`/stories/${s.slug}`}
-                          className="inline-flex items-center justify-center gap-2 rounded-[0.625rem] bg-white/65 px-4 py-2.5 text-sm font-semibold tracking-wide text-on-surface transition hover:bg-white hover:shadow-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary/35"
-                        >
-                          <Eye className="size-4" aria-hidden />
-                          View
-                        </Link>
-                      ) : null}
-                    </div>
+                      {s.slug ? <span>/stories/{s.slug}</span> : null}
+                    </p>
                   </div>
-                </article>
+
+                  <div className="flex shrink-0 flex-wrap gap-2">
+                    <Link
+                      href={`/admin/stories/${s._id}`}
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-on-primary"
+                    >
+                      <Pencil className="size-3.5" aria-hidden />
+                      Edit
+                    </Link>
+                    {s.slug && status.label === "Published" ? (
+                      <Link
+                        href={`/stories/${s.slug}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-on-surface-variant hover:bg-black/[0.04]"
+                      >
+                        <Eye className="size-3.5" aria-hidden />
+                        View
+                      </Link>
+                    ) : null}
+                  </div>
+                </div>
               </li>
             );
           })}

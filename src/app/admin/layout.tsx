@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AdminNav } from "@/components/admin/AdminNav";
 
 export const metadata: Metadata = {
   title: "Site admin",
@@ -11,6 +12,9 @@ export default function AdminRootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-background text-on-background">{children}</div>
+    <div className="flex min-h-screen flex-col bg-[#f7f8fa] text-on-background">
+      <AdminNav />
+      <div className="flex-1">{children}</div>
+    </div>
   );
 }

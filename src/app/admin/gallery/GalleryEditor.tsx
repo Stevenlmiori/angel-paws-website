@@ -8,12 +8,12 @@ import {
   Eye,
   EyeOff,
   ImagePlus,
-  Plus,
   Save,
   Trash2,
   UploadCloud,
 } from "lucide-react";
 import type { StoredGalleryImage } from "@/lib/siteContent/galleryTypes";
+import { AdminSaveBar } from "@/components/admin/AdminSaveBar";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 import { GalleryImage } from "@/components/gallery/GalleryImage";
@@ -67,20 +67,6 @@ export function GalleryEditor({
     setItems((prev) =>
       prev.map((img) => (img.id === id ? { ...img, ...patch } : img)),
     );
-  }
-
-  function addItem() {
-    setItems((prev) => [
-      {
-        id: newId(),
-        src: "/gallery/",
-        alt: "",
-        caption: "",
-        active: true,
-      },
-      ...prev,
-    ]);
-    setMessage("Blank photo card added.");
   }
 
   function remove(id: string) {
@@ -215,77 +201,29 @@ export function GalleryEditor({
             onClick={() => fileRef.current?.click()}
           >
             <ImagePlus className="size-4" aria-hidden />
-            {uploading ? "Uploading..." : "Upload photos"}
-          </Button>
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={addItem}
-            className="mt-3 w-full gap-2 bg-white"
-          >
-            <Plus className="size-4" aria-hidden />
-            Add by path
+            {uploading ? "Uploading…" : "Upload photos"}
           </Button>
         </div>
 
-        <div className="rounded-[1.5rem] bg-white p-5 shadow-soft ring-1 ring-primary/5">
-          <p className="text-xs font-bold uppercase tracking-widest text-primary">
-            Gallery status
+        <div className="rounded-2xl border border-black/[0.06] bg-white p-4 text-sm">
+          <p className="font-medium text-on-surface">
+            {activeCount} visible · {items.length} total
           </p>
-          <dl className="mt-4 grid grid-cols-2 gap-3">
-            <div className="rounded-2xl bg-surface-container-low p-4">
-              <dt className="text-xs font-semibold text-on-surface-variant">
-                Total
-              </dt>
-              <dd className="mt-1 text-3xl font-bold text-on-surface">
-                {items.length}
-              </dd>
-            </div>
-            <div className="rounded-2xl bg-primary-container p-4">
-              <dt className="text-xs font-semibold text-on-primary-container">
-                Visible
-              </dt>
-              <dd className="mt-1 text-3xl font-bold text-on-primary-container">
-                {activeCount}
-              </dd>
-            </div>
-          </dl>
           {needsAltCount > 0 ? (
-            <p className="mt-4 rounded-2xl bg-tertiary-container px-4 py-3 text-sm font-medium text-on-tertiary-container">
-              {needsAltCount} photo{needsAltCount === 1 ? "" : "s"} need alt
-              text before saving.
+            <p className="mt-2 text-amber-800">
+              {needsAltCount} photo{needsAltCount === 1 ? "" : "s"} still need a
+              short description before saving.
             </p>
           ) : (
-            <p className="mt-4 flex items-center gap-2 rounded-2xl bg-surface-container-low px-4 py-3 text-sm font-medium text-on-surface-variant">
-              <Check className="size-4 text-primary" aria-hidden />
-              Metadata is ready.
+            <p className="mt-2 flex items-center gap-1.5 text-on-surface-variant">
+              <Check className="size-3.5 text-primary" aria-hidden />
+              Ready to save
             </p>
           )}
         </div>
       </aside>
 
       <section className="min-w-0">
-        <div className="mb-5 flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <h2 className="font-serif text-3xl text-on-surface">
-              Gallery photos
-            </h2>
-            <p className="mt-1 text-sm text-on-surface-variant">
-              The first active photos lead the public gallery experience.
-            </p>
-          </div>
-          <Button type="button" onClick={save} disabled={pending} className="gap-2">
-            <Save className="size-4" aria-hidden />
-            {pending ? "Saving..." : "Save gallery"}
-          </Button>
-          <p
-            className="basis-full text-sm font-medium text-on-surface-variant"
-            role="status"
-          >
-            {message || `${activeCount} visible photos ready for the public gallery.`}
-          </p>
-        </div>
-
         {items.length === 0 ? (
           <div className="rounded-[1.5rem] bg-white p-10 text-center shadow-soft ring-1 ring-primary/5">
             <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-primary-container text-on-primary-container">
@@ -328,7 +266,7 @@ export function GalleryEditor({
                         <div className="flex h-full flex-col items-center justify-center gap-3 text-on-surface-variant">
                           <ImagePlus className="size-10" aria-hidden />
                           <span className="text-sm font-semibold">
-                            Add an image path
+                            Waiting for upload
                           </span>
                         </div>
                       )}
@@ -361,36 +299,27 @@ export function GalleryEditor({
                       </div>
                     </div>
 
-                    <div className="space-y-4 p-4">
-                      <label className="block text-xs font-bold uppercase tracking-wider text-primary">
-                        Image path
-                        <input
-                          value={item.src}
-                          onChange={(event) =>
-                            update(item.id, { src: event.target.value })
-                          }
-                          className="mt-2 w-full rounded-xl border border-primary/10 bg-surface-container-low px-3 py-2.5 font-mono text-xs text-on-surface outline-none transition focus:border-primary/35 focus:bg-white"
-                        />
-                      </label>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-primary">
-                        Alt text
+                    <div className="space-y-3 p-4">
+                      <label className="block text-xs font-semibold uppercase tracking-wide text-on-surface-variant">
+                        Description
                         <input
                           value={item.alt}
                           onChange={(event) =>
                             update(item.id, { alt: event.target.value })
                           }
-                          className="mt-2 w-full rounded-xl border border-primary/10 bg-surface-container-low px-3 py-2.5 text-sm text-on-surface outline-none transition focus:border-primary/35 focus:bg-white"
+                          placeholder="What is in the photo?"
+                          className="mt-1.5 w-full rounded-lg border border-black/10 bg-[#fafafa] px-3 py-2 text-sm font-normal normal-case tracking-normal text-on-surface"
                         />
                       </label>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-primary">
-                        Caption
+                      <label className="block text-xs font-semibold uppercase tracking-wide text-on-surface-variant">
+                        Caption (optional)
                         <textarea
                           value={item.caption ?? ""}
                           onChange={(event) =>
                             update(item.id, { caption: event.target.value })
                           }
                           rows={2}
-                          className="mt-2 w-full resize-none rounded-xl border border-primary/10 bg-surface-container-low px-3 py-2.5 text-sm text-on-surface outline-none transition focus:border-primary/35 focus:bg-white"
+                          className="mt-1.5 w-full resize-none rounded-lg border border-black/10 bg-[#fafafa] px-3 py-2 text-sm font-normal normal-case tracking-normal text-on-surface"
                         />
                       </label>
 
@@ -432,6 +361,12 @@ export function GalleryEditor({
           </ul>
         )}
 
+        <AdminSaveBar message={message}>
+          <Button type="button" onClick={save} disabled={pending} className="gap-2">
+            <Save className="size-4" aria-hidden />
+            {pending ? "Saving…" : "Save gallery"}
+          </Button>
+        </AdminSaveBar>
       </section>
     </div>
   );

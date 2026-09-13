@@ -187,29 +187,25 @@ function StoryFormFields({ story }: { story: StoryDetail | null }) {
   const showFeaturedPreview = Boolean(activeFeaturedPreview);
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-10 sm:px-10 lg:px-12">
-      <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-primary/10 pb-8">
+    <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-            {isNew ? "New story" : "Edit story"}
-          </p>
-          <h1 className="mt-2 font-serif text-3xl text-on-surface md:text-4xl">
-            {isNew ? "Create a story" : story?.title}
+          <h1 className="font-serif text-3xl tracking-tight text-on-surface">
+            {isNew ? "New story" : story?.title || "Edit story"}
           </h1>
-          <p className="mt-2 max-w-xl text-sm text-on-surface-variant">
-            Write in the visual editor below. Use the toolbar for headings, lists,
-            bold, links, and photos—just like a word processor.
+          <p className="mt-1.5 max-w-xl text-sm text-on-surface-variant">
+            Use the toolbar for headings, lists, links, and photos—then save.
           </p>
         </div>
         <Link
           href="/admin/stories"
-          className="text-sm font-semibold text-primary underline underline-offset-4"
+          className="text-sm font-medium text-primary hover:underline"
         >
-          Back to list
+          Back to stories
         </Link>
       </div>
 
-      <form action={formAction} className="space-y-10">
+      <form action={formAction} className="space-y-8">
         {!isNew ? <input type="hidden" name="id" value={story!._id} /> : null}
         <input
           type="hidden"

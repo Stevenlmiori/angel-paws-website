@@ -30,8 +30,18 @@ import {
   type StoredPortalResource,
   isPortalIconId,
 } from "@/lib/memberPortal/resourceTypes";
+import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { AdminSaveBar } from "@/components/admin/AdminSaveBar";
 import { Button } from "@/components/ui/Button";
 import { savePortalResourcesDirect } from "./actions";
+
+const ICON_LABELS: Record<(typeof PORTAL_ICON_IDS)[number], string> = {
+  file: "Document",
+  folder: "Folder",
+  clipboard: "Form",
+  link: "Link",
+  mail: "Email",
+};
 
 function truncateMiddle(s: string, max: number): string {
   if (s.length <= max) {
@@ -75,12 +85,12 @@ function SortableResourceRow({
     <li
       ref={setNodeRef}
       style={style}
-      className="overflow-hidden rounded-2xl bg-surface-container-high shadow-soft ring-1 ring-primary/5"
+      className="overflow-hidden rounded-xl border border-black/[0.06] bg-white"
     >
       <div className="flex items-stretch gap-2 px-2 py-2 sm:gap-3 sm:px-3 sm:py-2.5">
         <button
           type="button"
-          className="mt-0.5 flex size-9 shrink-0 cursor-grab touch-none items-center justify-center rounded-lg bg-primary/10 text-primary active:cursor-grabbing sm:size-10"
+          className="mt-0.5 flex size-9 shrink-0 cursor-grab touch-none items-center justify-center rounded-lg text-on-surface-variant transition hover:bg-black/[0.04] hover:text-on-surface active:cursor-grabbing sm:size-10"
           aria-label="Drag to reorder"
           {...attributes}
           {...listeners}
@@ -92,17 +102,13 @@ function SortableResourceRow({
           type="button"
           onClick={onToggleExpand}
           aria-expanded={expanded}
-          className="min-w-0 flex-1 rounded-lg px-1 py-0.5 text-left transition hover:bg-primary/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary/30"
+          className="min-w-0 flex-1 rounded-lg px-1 py-0.5 text-left transition hover:bg-black/[0.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary/30"
         >
           <span className="block truncate font-medium text-on-surface">
             {item.title.trim() || "Untitled"}
           </span>
-          <span className="mt-0.5 block truncate font-mono text-xs text-on-surface-variant">
+          <span className="mt-0.5 block truncate text-xs text-on-surface-variant">
             {truncateMiddle(item.href.trim() || "—", 56)}
-          </span>
-          <span className="mt-1 block text-[11px] uppercase tracking-wide text-on-surface-variant/90">
-            {item.iconId}
-            {item.external ? " · new tab" : " · same tab"}
           </span>
         </button>
 
@@ -188,7 +194,7 @@ function SortableResourceRow({
               >
                 {PORTAL_ICON_IDS.map((id) => (
                   <option key={id} value={id}>
-                    {id}
+                    {ICON_LABELS[id]}
                   </option>
                 ))}
               </select>
@@ -287,41 +293,22 @@ export function MemberPortalEditor({ initialItems }: Props) {
   };
 
   return (
-    <div className="mx-auto max-w-screen-xl px-6 py-12 sm:px-10 lg:px-12">
-      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="mb-1 text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            Admin
-          </p>
-          <h1 className="font-serif text-3xl text-on-surface md:text-4xl">
-            Participant portal links
-          </h1>
-          <p className="mt-2 max-w-2xl text-sm text-on-surface-variant leading-relaxed">
-            Drag the handle to reorder. Click a row or{" "}
-            <span className="font-semibold text-on-surface">Edit</span> to change
-            details. Save sends the list to storage (Redis in production,
-            or a local file in dev when Redis is not set).
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-3">
-          <Button type="button" variant="secondary" className="gap-2" onClick={addItem}>
+    <div>
+      <AdminPageHeader
+        title="Participant portal"
+        description="Drag to reorder. Open Edit to change a title or link. Remember to save."
+        actions={
+          <Button
+            type="button"
+            variant="secondary"
+            className="gap-2 px-4 py-2.5"
+            onClick={addItem}
+          >
             <Plus className="size-4" aria-hidden />
             Add link
           </Button>
-          <Button type="button" onClick={handleSave} disabled={isPending}>
-            {isPending ? "Saving…" : "Save changes"}
-          </Button>
-        </div>
-      </div>
-
-      {saveMessage ? (
-        <p
-          className="mb-6 rounded-2xl bg-primary-container/50 px-4 py-3 text-sm font-medium text-on-primary-container"
-          role="status"
-        >
-          {saveMessage}
-        </p>
-      ) : null}
+        }
+      />
 
       <DndContext
         sensors={sensors}
@@ -345,11 +332,16 @@ export function MemberPortalEditor({ initialItems }: Props) {
       </DndContext>
 
       {items.length === 0 ? (
-        <p className="mt-8 text-center text-on-surface-variant">
-          No links yet. Add one, or reload to restore defaults from code until you
-          save.
+        <p className="mt-8 text-center text-sm text-on-surface-variant">
+          No links yet. Add one to get started.
         </p>
       ) : null}
+
+      <AdminSaveBar message={saveMessage}>
+        <Button type="button" onClick={handleSave} disabled={isPending}>
+          {isPending ? "Saving…" : "Save changes"}
+        </Button>
+      </AdminSaveBar>
     </div>
   );
 }
