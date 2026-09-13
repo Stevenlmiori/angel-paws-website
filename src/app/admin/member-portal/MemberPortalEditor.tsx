@@ -51,6 +51,26 @@ function truncateMiddle(s: string, max: number): string {
   return `${s.slice(0, edge)}…${s.slice(s.length - edge)}`;
 }
 
+function friendlyHrefLabel(href: string): string {
+  const clean = href.trim();
+  if (!clean) {
+    return "No link yet";
+  }
+  try {
+    const url = new URL(clean);
+    const host = url.hostname.replace(/^www\./, "");
+    if (host.includes("drive.google") || host.includes("docs.google")) {
+      return "Google Drive";
+    }
+    if (host.includes("forms.gle") || url.pathname.includes("/forms")) {
+      return "Google Form";
+    }
+    return host;
+  } catch {
+    return truncateMiddle(clean, 48);
+  }
+}
+
 type SortableRowProps = {
   item: StoredPortalResource;
   expanded: boolean;
@@ -108,7 +128,7 @@ function SortableResourceRow({
             {item.title.trim() || "Untitled"}
           </span>
           <span className="mt-0.5 block truncate text-xs text-on-surface-variant">
-            {truncateMiddle(item.href.trim() || "—", 56)}
+            {friendlyHrefLabel(item.href)}
           </span>
         </button>
 
