@@ -316,7 +316,7 @@ export function MemberPortalEditor({ initialItems }: Props) {
     <div>
       <AdminPageHeader
         title="Participant portal"
-        description="Drag to reorder. Open Edit to change a title or link. Remember to save."
+        description="Upload documents to Google Drive first, then paste their links here. Open Edit to replace a link, drag to reorder, and save your changes."
         actions={
           <Button
             type="button"

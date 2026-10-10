@@ -77,11 +77,15 @@ async function loadFromRedis(): Promise<StoredPortalResource[] | null> {
   if (!redis) {
     return null;
   }
-  const raw = await redis.get<string>(REDIS_KEY);
+  const raw = await redis.get<unknown>(REDIS_KEY);
   if (raw == null || raw === "") {
     return null;
   }
-  const parsed = parsePortalResourcesJsonString(raw);
+  // Upstash automatically deserializes JSON values, including saved arrays.
+  const parsed =
+    typeof raw === "string"
+      ? parsePortalResourcesJsonString(raw)
+      : parseStoredPortalResources(raw);
   if (!parsed) {
     return null;
   }

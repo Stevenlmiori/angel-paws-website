@@ -91,6 +91,14 @@ The same admin hub also manages the public **Photo gallery**, **Testimonials**, 
 
 **When something breaks:** Note the page URL, what she clicked, and screenshot — send to technical contact.
 
+### Replace a participant document
+
+1. Open the existing document in Google Drive, then use **File information → Manage versions → Upload new version** for Word/PDF files. Uploading a replacement version keeps the same link and permissions.
+2. If the Drive link stays the same, no portal edit is needed. For a new file, copy its Drive link, open `/admin` → **Participant portal links**, edit the existing resource, paste the new link, and choose **Save changes**.
+3. Reopen the admin list and preview `/members/portal` to verify the saved link. Removing a portal link does not delete the underlying Drive file.
+
+The portal editor manages links; it does not upload files. Drive sharing controls who can open each document independently of the portal password. Review the roster's sharing carefully because it contains participant contact details.
+
 ---
 
 ## 4. Forms — **Google Forms** (implemented)
