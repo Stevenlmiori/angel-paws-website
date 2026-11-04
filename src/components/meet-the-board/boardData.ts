@@ -2,7 +2,7 @@ import type { BoardMember } from "./BoardMemberCard";
 
 export const BOARD_MEMBER_IMG = {
   debbie: "/img/board/debbie-benningfield.png",
-  susan: "/img/board/susan-canon.png",
+  kathleen: "/img/board/kathleen-yeaman.jpg",
   andrea: "/img/board/andrea-langford.png",
 } as const;
 
@@ -16,12 +16,12 @@ export const boardMembers: BoardMember[] = [
     imageAlt: "Debbie Benningfield, President of Angel Paws Pet Therapy",
   },
   {
-    name: "Susan Canon",
+    name: "Kathleen Yeaman",
     role: "Treasurer",
-    companion: "Lexie",
-    bio: "Susan brings more than 20 years of professional experience as a practicing CPA and a heart for serving others to the Angel Paws board. She has been a dedicated Angel Paws volunteer for nine years, partnering with her Shetland Sheepdog, Lexie, to provide comfort and encouragement to those in need. Susan also serves in her local church and in the student program of a non-denominational Bible study.",
-    image: BOARD_MEMBER_IMG.susan,
-    imageAlt: "Susan Canon, Treasurer of Angel Paws Pet Therapy",
+    companion: "Covey",
+    bio: "Kathleen has participated in Angel Paws for seven years and has a heart for serving the elderly. Professionally, Kathleen works in the energy industry. Personally, she finds joy and fulfillment in serving others. Being the hands and feet of Jesus is both a privilege and a responsibility. Covey brings joy and opens doors to personal connections on visits.",
+    image: BOARD_MEMBER_IMG.kathleen,
+    imageAlt: "Kathleen Yeaman, Treasurer of Angel Paws Pet Therapy",
   },
   {
     name: "Andrea Langford",
@@ -30,11 +30,6 @@ export const boardMembers: BoardMember[] = [
     bio: "Andrea has volunteered in pet therapy for the past 10 years, sharing comfort, encouragement, and joy with those facing physical or emotional challenges. She works in healthcare, where caring for patients is both her profession and passion. Her faith in Jesus inspires her to serve others, and she and Kylo Ren enjoy bringing smiles and hope to the people they visit.",
     image: BOARD_MEMBER_IMG.andrea,
     imageAlt: "Andrea Langford, Secretary of Angel Paws Pet Therapy",
-  },
-  {
-    name: "Bart Canon",
-    role: "At-Large Board Member",
-    bio: "Bart brings more than 45 years of professional experience in risk management, serving as a leader for major corporations and as an insurance broker. He is also a CPA. Bart, like his wife Susan, has a heart for serving others as an advisor and active participant in Angel Paws Pet Therapy. He serves in several ministries at his local church and participates in a non-denominational Bible study. Bart believes pet therapy animals can help reach people for Christ while providing comfort and joy.",
   },
 ];
 

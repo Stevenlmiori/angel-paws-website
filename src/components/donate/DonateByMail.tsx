@@ -31,7 +31,7 @@ export function DonateByMail() {
             <span>Mailing Address</span>
           </div>
           <address className="font-serif text-lg not-italic leading-relaxed text-on-surface">
-            Debbie Benningfield / Susan Canon
+            Debbie Benningfield / Kathleen Yeaman
             <br />
             ℅ Angel Paws Pet Therapy
             <br />
