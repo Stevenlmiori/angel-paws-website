@@ -4,6 +4,10 @@ export const ANGEL_PAWS_FACEBOOK_URL =
   process.env.NEXT_PUBLIC_ANGEL_PAWS_FACEBOOK_URL?.trim() ||
   "https://www.facebook.com/profile.php?id=100016022499126";
 
+/** Public Instagram account Debbie opened in November 2026. */
+export const ANGEL_PAWS_INSTAGRAM_URL =
+  "https://www.instagram.com/angelpawspettherapy/";
+
 /** Primary inbox for general contact and visit follow-up. */
 export const CONTACT_EMAIL = "angelpawshouston@gmail.com";
 

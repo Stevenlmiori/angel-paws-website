@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { DEBBIE_IMG } from "@/lib/debbieImages";
 import { pageMetadata } from "@/lib/seo";
-import { DEE_TURK_TESTIMONIAL } from "@/lib/siteContent/testimonialDefaults";
+import {
+  ADRIA_STACHA_TESTIMONIAL,
+  DEE_TURK_TESTIMONIAL,
+} from "@/lib/siteContent/testimonialDefaults";
 import { HeadingBlock } from "@/components/ui/HeadingBlock";
 import { Section } from "@/components/ui/Section";
 
@@ -17,8 +20,16 @@ export const metadata = pageMetadata({
   ],
 });
 
+function quoteParagraphs(quote: string) {
+  return quote
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+}
+
 const featured = [
   {
+    id: "schultz-elementary",
     image: DEBBIE_IMG.deeTurk,
     alt: "Dee Turk with Angel Paws therapy dogs at Schultz Elementary",
     quote: DEE_TURK_TESTIMONIAL,
@@ -26,6 +37,7 @@ const featured = [
     role: "School Counselor, Schultz Elementary (Klein ISD)",
   },
   {
+    id: "redeemer-church",
     image: DEBBIE_IMG.christinaGooger,
     alt: "Christina Googer with Angel Paws therapy dogs at Redeemer Church",
     quote:
@@ -34,14 +46,15 @@ const featured = [
     role: "Redeemer Church",
   },
   {
+    id: "hassler-reading",
     image: DEBBIE_IMG.stacha,
-    alt: "Adrai Stacha with an Angel Paws therapy dog",
-    quote:
-      "The Angel Paws Reading Program has been an incredible addition to Hassler! Watching students spend 15 minutes each week reading to a calm, friendly therapy dog is both heartwarming and inspiring. Students feel safe, supported, and accepted when reading to the Angel Paws dogs because the animals provide a completely judgment-free audience. For many participants, the Angel Paws dogs become trusted companions who help them feel valued, capable, and successful.",
-    attribution: "Adrai Stacha",
-    role: "Hassler Elementary",
+    alt: "Adria Stacha with Lexie and Sam, Angel Paws therapy dogs",
+    quote: ADRIA_STACHA_TESTIMONIAL,
+    attribution: "Adria Stacha",
+    role: "Counselor, Hassler Elementary",
   },
   {
+    id: "brookdale-champions",
     image: DEBBIE_IMG.brookdale,
     alt: "Ihuoma J. with an Angel Paws therapy dog at Brookdale Champions",
     quote:
@@ -63,10 +76,14 @@ export default function TestimonialsPage() {
           className="mb-16 max-w-2xl"
         />
         <ul className="space-y-20 md:space-y-28">
-          {featured.map((item, index) => (
+          {featured.map((item, index) => {
+            const paragraphs = quoteParagraphs(item.quote);
+            const isLetter = paragraphs.length > 1;
+            return (
             <li
-              key={item.attribution}
-              className={`grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14 ${
+              key={item.id}
+              id={item.id}
+              className={`scroll-mt-28 grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14 ${
                 index % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""
               }`}
             >
@@ -82,8 +99,24 @@ export default function TestimonialsPage() {
                 </div>
               </div>
               <div className="lg:col-span-7">
-                <blockquote className="font-serif text-2xl leading-relaxed text-on-surface md:text-3xl">
-                  &ldquo;{item.quote}&rdquo;
+                <blockquote
+                  className={
+                    isLetter
+                      ? "space-y-4 font-serif text-lg leading-relaxed text-on-surface md:text-xl"
+                      : "font-serif text-2xl leading-relaxed text-on-surface md:text-3xl"
+                  }
+                >
+                  {isLetter
+                    ? paragraphs.map((paragraph, paragraphIndex) => (
+                        <p key={paragraphIndex}>
+                          {paragraphIndex === 0 ? "\u201C" : ""}
+                          {paragraph}
+                          {paragraphIndex === paragraphs.length - 1
+                            ? "\u201D"
+                            : ""}
+                        </p>
+                      ))
+                    : `\u201C${item.quote}\u201D`}
                 </blockquote>
                 <footer className="mt-6">
                   <p className="font-sans text-sm font-bold uppercase tracking-[0.2em] text-on-surface">
@@ -93,7 +126,8 @@ export default function TestimonialsPage() {
                 </footer>
               </div>
             </li>
-          ))}
+            );
+          })}
         </ul>
       </div>
     </Section>

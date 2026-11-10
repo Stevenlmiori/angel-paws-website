@@ -4,6 +4,7 @@ import Script from "next/script";
 import { absoluteUrl, SITE_NAME, SITE_URL } from "@/lib/seo";
 import {
   ANGEL_PAWS_FACEBOOK_URL,
+  ANGEL_PAWS_INSTAGRAM_URL,
   CONTACT_EMAIL,
   VISITATION_REQUEST_FORM_URL,
 } from "@/lib/siteLinks";
@@ -49,7 +50,7 @@ export function JsonLd() {
             name: "Greater Houston",
           },
         ],
-        sameAs: [ANGEL_PAWS_FACEBOOK_URL],
+        sameAs: [ANGEL_PAWS_INSTAGRAM_URL, ANGEL_PAWS_FACEBOOK_URL],
         knowsAbout: [
           "Pet therapy",
           "Therapy dogs",

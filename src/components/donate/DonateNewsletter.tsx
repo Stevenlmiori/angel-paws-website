@@ -1,5 +1,8 @@
 import { ExternalLink } from "lucide-react";
-import { ANGEL_PAWS_FACEBOOK_URL } from "@/lib/siteLinks";
+import {
+  ANGEL_PAWS_FACEBOOK_URL,
+  ANGEL_PAWS_INSTAGRAM_URL,
+} from "@/lib/siteLinks";
 
 export function DonateNewsletter() {
   return (
@@ -9,18 +12,29 @@ export function DonateNewsletter() {
           Stay Connected with Hope
         </h2>
         <p className="mx-auto mb-10 max-w-2xl text-lg text-white/90">
-          Follow Angel Paws on Facebook for visit highlights, ministry updates,
-          and stories from the field.
+          Follow Angel Paws on Instagram and Facebook for visit highlights,
+          ministry updates, and stories from the field.
         </p>
-        <a
-          href={ANGEL_PAWS_FACEBOOK_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-primary transition-transform hover:scale-[1.02]"
-        >
-          Visit our Facebook page
-          <ExternalLink className="size-4" aria-hidden />
-        </a>
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a
+            href={ANGEL_PAWS_INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-bold uppercase tracking-widest text-primary transition-transform hover:scale-[1.02]"
+          >
+            Follow on Instagram
+            <ExternalLink className="size-4" aria-hidden />
+          </a>
+          <a
+            href={ANGEL_PAWS_FACEBOOK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-white/50 px-8 py-4 text-sm font-bold uppercase tracking-widest text-white transition-transform hover:scale-[1.02]"
+          >
+            Visit our Facebook page
+            <ExternalLink className="size-4" aria-hidden />
+          </a>
+        </div>
       </div>
     </section>
   );

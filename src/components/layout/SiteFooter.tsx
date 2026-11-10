@@ -3,6 +3,24 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Globe, Heart, Mail } from "lucide-react";
+import { ANGEL_PAWS_INSTAGRAM_URL } from "@/lib/siteLinks";
+
+function InstagramMark({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className={className}
+      aria-hidden
+    >
+      <rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="0.8" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
 
 /** Stitch footer is a light slab only — no dark theme variant (matches reference). */
 const linkClass =
@@ -117,6 +135,15 @@ export function SiteFooter() {
             Connect
           </h4>
           <div className="flex gap-5 text-stone-600">
+            <a
+              href={ANGEL_PAWS_INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg p-1 transition-colors hover:text-primary"
+              aria-label="Instagram"
+            >
+              <InstagramMark className="size-6" />
+            </a>
             <a
               href="https://www.angelpawspettherapy.com"
               className="rounded-lg p-1 transition-colors hover:text-primary"

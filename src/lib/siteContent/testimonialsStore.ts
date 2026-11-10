@@ -1,8 +1,4 @@
-import {
-  DEE_TURK_TESTIMONIAL,
-  DEFAULT_TESTIMONIALS,
-  PREVIOUS_DEE_TURK_TESTIMONIAL,
-} from "./testimonialDefaults";
+import { DEFAULT_TESTIMONIALS } from "./testimonialDefaults";
 import {
   loadJsonFromLocalFile,
   loadJsonFromRedis,
@@ -16,6 +12,8 @@ import {
 
 const REDIS_KEY = "angel-paws:site:testimonials:v1";
 const LOCAL_RELATIVE = [".data", "site-testimonials.json"] as const;
+
+const CANONICAL_IDS = new Set(["hassler-reading", "schultz-elementary"]);
 
 function applyEditorialUpdates(items: StoredTestimonial[]): StoredTestimonial[] {
   const defaultsById = new Map(DEFAULT_TESTIMONIALS.map((item) => [item.id, item]));
@@ -35,15 +33,19 @@ function applyEditorialUpdates(items: StoredTestimonial[]): StoredTestimonial[] 
       if (!fallback) {
         return item;
       }
-      const hasLegacyDeeQuote =
-        fallback.id === "schultz-elementary" &&
-        (item.quote === PREVIOUS_DEE_TURK_TESTIMONIAL ||
-          (item.quote.trimStart().startsWith(
-            "As a school counselor at Schultz Elementary in Klein ISD, I have had the privilege of witnessing firsthand",
-          ) && item.quote.includes("Forever Blessed by Angel Paws!")));
+      if (CANONICAL_IDS.has(fallback.id)) {
+        return {
+          ...item,
+          quote: fallback.quote,
+          attribution: fallback.attribution,
+          role: fallback.role,
+          image: fallback.image,
+          imageAlt: fallback.imageAlt,
+          imagePosition: fallback.imagePosition,
+        };
+      }
       return {
         ...item,
-        quote: hasLegacyDeeQuote ? DEE_TURK_TESTIMONIAL : item.quote,
         image: item.image === undefined ? fallback.image : item.image,
         imageAlt: item.imageAlt === undefined ? fallback.imageAlt : item.imageAlt,
         imagePosition:

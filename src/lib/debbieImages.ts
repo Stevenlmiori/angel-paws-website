@@ -19,7 +19,7 @@ export const DEBBIE_IMG = {
   khaki: "/img/debbie/16-khaki.jpg",
   drMcGown: "/img/debbie/17-dr-mcgown.jpg",
   christinaGooger: "/img/testimonials/christina-googer.jpg",
-  stacha: "/img/testimonials/adrai-stacha.jpg",
+  stacha: "/img/testimonials/adria-stacha-lexie-sam.jpg",
   brookdale: "/img/testimonials/ihuoma-brookdale.jpg",
   deeTurk: "/img/testimonials/dee-turk-september-2026.jpg",
   journeyDogComfort: "/img/debbie/september-2026/journey-dog-comfort.jpg",

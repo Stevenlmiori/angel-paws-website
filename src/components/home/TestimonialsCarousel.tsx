@@ -2,8 +2,16 @@
 
 import { useCallback, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { StoredTestimonial } from "@/lib/siteContent/testimonialTypes";
+
+function quoteParagraphs(quote: string) {
+  return quote
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+}
 
 type Props = {
   testimonials: StoredTestimonial[];
@@ -32,6 +40,9 @@ export function TestimonialsCarousel({ testimonials }: Props) {
   }
 
   const current = items[index]!;
+  const paragraphs = quoteParagraphs(current.quote);
+  const teaser = paragraphs[0] ?? current.quote;
+  const hasFullLetter = paragraphs.length > 1;
 
   return (
     <div
@@ -66,8 +77,18 @@ export function TestimonialsCarousel({ testimonials }: Props) {
           &ldquo;
         </span>
         <blockquote className="text-center font-serif text-xl leading-relaxed text-on-surface sm:text-2xl md:text-3xl md:leading-snug">
-          {current.quote}
+          {teaser}
         </blockquote>
+        {hasFullLetter ? (
+          <p className="mt-6 text-center">
+            <Link
+              href={`/testimonials#${current.id}`}
+              className="text-xs font-bold uppercase tracking-[0.2em] text-primary hover:underline"
+            >
+              Read the full testimony
+            </Link>
+          </p>
+        ) : null}
         <footer className="mt-8 flex flex-col items-center text-center">
           {current.image ? (
             <div className="relative mb-4 size-20 overflow-hidden rounded-full bg-surface-container-high shadow-soft ring-4 ring-white md:size-24">

@@ -4,6 +4,19 @@ import { safeSanityImageUrl } from "@/lib/sanity/image";
 import { normalizePortableTextForPublic } from "@/lib/stories/normalizePortableTextForPublic";
 import { YouTubeStoryEmbed } from "./YouTubeStoryEmbed";
 
+function sanityAssetSize(value: unknown): { width: number; height: number } | null {
+  if (!value || typeof value !== "object") {
+    return null;
+  }
+  const asset = (value as { asset?: { _ref?: string; _id?: string } }).asset;
+  const ref = asset?._ref || asset?._id || "";
+  const match = ref.match(/-(\d+)x(\d+)(?:-|$)/);
+  if (!match) {
+    return null;
+  }
+  return { width: Number(match[1]), height: Number(match[2]) };
+}
+
 const components: PortableTextComponents = {
   types: {
     image: ({ value }) => {
@@ -11,22 +24,38 @@ const components: PortableTextComponents = {
         typeof value?.alt === "string" && value.alt
           ? value.alt
           : "Story image";
-      const src = safeSanityImageUrl(value, (b) => b.width(1200));
+      const size = sanityAssetSize(value);
+      const isDocument = Boolean(size && size.height > size.width);
+      const src = safeSanityImageUrl(value, (b) =>
+        b.width(isDocument ? 1600 : 1200),
+      );
       if (!src) {
         return null;
       }
       return (
-        <figure className="my-10 overflow-hidden rounded-[2rem] bg-surface-container-low shadow-soft">
-          <div className="relative aspect-[16/10] w-full">
+        <figure className="my-10 overflow-hidden rounded-[2rem] bg-white shadow-soft">
+          {isDocument && size ? (
             <Image
               src={src}
               alt={alt}
-              fill
+              width={size.width}
+              height={size.height}
               unoptimized
-              className="object-cover"
+              className="h-auto w-full"
               sizes="(max-width: 768px) 100vw, 720px"
             />
-          </div>
+          ) : (
+            <div className="relative aspect-[16/10] w-full">
+              <Image
+                src={src}
+                alt={alt}
+                fill
+                unoptimized
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 720px"
+              />
+            </div>
+          )}
           {typeof value?.caption === "string" && value.caption ? (
             <figcaption className="px-6 py-4 text-sm text-on-surface-variant">
               {value.caption}

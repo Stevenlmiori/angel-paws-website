@@ -1,10 +1,24 @@
 import type { StoredTestimonial } from "./testimonialTypes";
 
-export const DEE_TURK_TESTIMONIAL =
-  "As a school counselor at Schultz Elementary, I have seen firsthand how the Angel Paws Reading Program helps students grow as readers and believe in themselves. The therapy dogs give children a calm, judgment-free place to read, make mistakes, and build confidence. We are deeply grateful to the Angel Paws participants and their dogs for the lasting difference they have made for our students and staff, one story at a time.";
+/** Full letter from Adria Stacha, counselor at Hassler Elementary. */
+export const ADRIA_STACHA_TESTIMONIAL = `The Angel Paws Reading Program has been an incredible addition to Hassler! Watching students spend 15 minutes each week reading to a calm, friendly therapy dog is both heartwarming and inspiring. While the program certainly strengthens reading skills and builds self-esteem and confidence in young readers, its impact extends far beyond academics.
 
-export const PREVIOUS_DEE_TURK_TESTIMONIAL =
-  "The Angel Paws Reading Program reminds us that meaningful learning happens when students feel safe, connected, and encouraged. Our four-legged reading partners offer a calm nonjudgmental space where students feel accepted exactly as they are. They provide unwavering patience, unconditional love, and quiet encouragement that helps students take risks without fear of embarrassment or failure.";
+Students feel safe, supported, and accepted when reading to the Angel Paws dogs because the animals provide a completely judgment-free audience. This environment helps reduce anxiety and fear of making mistakes, especially for struggling or reluctant readers. Many students who are typically hesitant to read aloud become more willing to take risks, practice fluency, and engage positively with books when reading alongside a therapy dog.
+
+Another meaningful benefit is the positive effect the program has on students' motivation and overall attitude toward school. Students genuinely look forward to their reading sessions each week, which increases enthusiasm for literacy, encourages consistent participation, and even supports improved school attendance. For many participants, the Angel Paws dogs become trusted companions who help them feel valued, capable, and successful.
+
+Angel Paws is much more than a reading intervention — it is a powerful support for the whole child. The positive impact on students' confidence, emotional well-being, and love of learning is evident each week in our Angel Paws participants. We are incredibly grateful for the dedicated Angel Paws volunteers and their amazing therapy dogs who make this meaningful experience possible for our students.`;
+
+/** Full letter from Dee Turk, counselor at Schultz Elementary. */
+export const DEE_TURK_TESTIMONIAL = `As a school counselor at Schultz Elementary in Klein ISD, I have had the privilege of witnessing firsthand the incredible impact the Angel Paws Reading Program has had on our students. We were honored to be the first elementary school in Klein ISD to implement a reading program that pairs struggling readers with therapy dogs, and it has become one of the most meaningful and transformative programs on our campus.
+
+While we certainly celebrate the measurable academic gains our students make in decoding and fluency, the true magic of this program reaches far beyond literacy. Many students walk into their weekly sessions carrying self-doubt but leave with renewed confidence and a sense of pride in themselves. Our four-legged reading partners offer a calm nonjudgmental space where students feel accepted exactly as they are. They don't mind if a child reads slowly, needs extra time to sound out a difficult word, or makes a mistake along the way. Instead, they provide unwavering patience, unconditional love, and quiet encouragement that helps students take risks without fear of embarrassment or failure.
+
+The Angel Paws Reading Program reminds us that meaningful learning happens when students feel safe, connected, and encouraged. The bond formed between a child and a dog creates an environment where growth happens naturally while also building self-esteem, perseverance, and sense of belonging.
+
+We are deeply grateful to the Angel Paws volunteers and their incredible therapy dogs for the gift they bring to our campus. Their time, dedication, and compassionate hearts have made a lasting difference in the lives of our students as well as our staff. The impact of this program extends well beyond the pages of a book—it helps children discover confidence in themselves, one story at a time.
+
+Forever Blessed by Angel Paws,`;
 
 export const DEFAULT_TESTIMONIALS: StoredTestimonial[] = [
   {
@@ -20,13 +34,12 @@ export const DEFAULT_TESTIMONIALS: StoredTestimonial[] = [
   },
   {
     id: "hassler-reading",
-    quote:
-      "The Angel Paws Reading Program has been an incredible addition to Hassler! Watching students spend 15 minutes each week reading to a calm, friendly therapy dog is both heartwarming and inspiring. While the program certainly strengthens reading skills and builds self-esteem and confidence in young readers, its impact extends far beyond academics. Students feel safe, supported, and accepted when reading to the Angel Paws dogs because the animals provide a completely judgment-free audience.",
-    attribution: "Adrai Stacha",
-    role: "Hassler Elementary",
-    image: "/img/testimonials/adrai-stacha.jpg",
-    imageAlt: "Adrai Stacha with an Angel Paws therapy dog",
-    imagePosition: "55% 28%",
+    quote: ADRIA_STACHA_TESTIMONIAL,
+    attribution: "Adria Stacha",
+    role: "Counselor, Hassler Elementary",
+    image: "/img/testimonials/adria-stacha-lexie-sam.jpg",
+    imageAlt: "Adria Stacha with Lexie and Sam, Angel Paws therapy dogs",
+    imagePosition: "50% 42%",
     active: true,
   },
   {
